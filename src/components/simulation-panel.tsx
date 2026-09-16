@@ -57,8 +57,11 @@ export function SimulationPanel({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioUrlsRef = useRef<Map<string, string>>(new Map());
 
-  const simulation =
-    answerState.simulation || startState.simulation || initialSimulation;
+  const simulation = selectVisibleSimulation(
+    answerState.simulation,
+    startState.simulation,
+    initialSimulation,
+  );
   const currentQuestion = simulation?.questions.find((q) => !q.answer);
 
   useEffect(
@@ -629,3 +632,14 @@ type SpeechRecognitionLike = {
 type SpeechRecognitionEventLike = {
   results: ArrayLike<ArrayLike<{ transcript: string }>>;
 };
+
+export function selectVisibleSimulation(
+  answerSimulation: SimulationState | undefined,
+  startedSimulation: SimulationState | undefined,
+  initialSimulation: SimulationState | null,
+) {
+  if (startedSimulation && startedSimulation.id !== answerSimulation?.id) {
+    return startedSimulation;
+  }
+  return answerSimulation || startedSimulation || initialSimulation;
+}

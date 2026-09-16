@@ -517,7 +517,14 @@ Evalua la respuesta del estudiante contra el contexto del compendio. No evalues 
 Devuelve JSON estricto con esta forma:
 {"score":{"conceptual":0,"application":0,"terminology":0,"argumentation":0,"clarity":0},"strengths":[],"missingConcepts":[],"misconceptions":[],"improvements":[],"needsFollowUp":true,"followUpReason":"","feedback":"","correctAnswer":"","didacticExplanation":"","didacticExample":"","policeApplication":"","modelAnswer":""}
 Maximos: conceptual 30, application 20, terminology 20, argumentation 20, clarity 10.
-Ahora si puedes generar retroalimentacion pedagogica breve para mostrar despues de esta respuesta: respuesta correcta orientativa, explicacion sencilla, ejemplo didactico generado y aplicacion policial. No presentes el ejemplo como cita del compendio.
+Genera retroalimentacion pedagogica que razone la respuesta:
+- correctAnswer: respuesta correcta orientativa directamente relacionada con la pregunta, usando solo informacion respaldada por el contexto recuperado.
+- didacticExplanation: explicacion sencilla del mismo punto, sin cambiar el significado academico.
+- didacticExample: ejemplo didactico generado, concreto e hipotetico; no lo presentes como cita, norma, articulo ni disposicion del compendio.
+- policeApplication: aplicacion coherente a la funcion policial cuando corresponda.
+- modelAnswer: respuesta oral breve y defendible para practicar ante tribunal.
+Evita frases genericas como "define el concepto"; escribe el contenido que el estudiante debio decir.
+Si el estudiante se equivoca o responde poco, explica que faltaba y luego ofrece una forma correcta de responder.
 
 Pregunta:
 ${input.question.question}
@@ -712,6 +719,18 @@ function heuristicEvaluateAnswer(
       : Math.min(10, Math.round(Math.min(words.length, 50) / 5)),
   });
   const missing = expected.filter((concept) => !hits.includes(concept));
+  const primaryConcept =
+    hits[0] || expected[0] || questionConcepts(question)[0] || "el concepto";
+  const missingText = missing.slice(0, 3).join(", ");
+  const expectedText = expected.slice(0, 4).join(", ");
+  const correctAnswer =
+    expectedText.length > 0
+      ? `Una respuesta correcta debe explicar ${primaryConcept} y relacionarlo con ${expectedText}, mostrando cómo orienta la conducta y el servicio policial.`
+      : `Una respuesta correcta debe responder directamente la pregunta, explicar el concepto central y vincularlo con la función policial.`;
+  const didacticExplanation =
+    missing.length > 0
+      ? `En palabras sencillas, tu respuesta debe mostrar qué significa ${primaryConcept}, qué elementos lo componen y por qué ${missingText} también es parte de la idea evaluada.`
+      : `En palabras sencillas, ${primaryConcept} debe entenderse como una guía para ordenar la actuación policial con sentido institucional.`;
   return {
     score,
     strengths: hits.length
@@ -729,17 +748,14 @@ function heuristicEvaluateAnswer(
       ? `Falta profundizar ${missing[0]}.`
       : "Conviene profundizar la aplicación policial.",
     feedback:
-      "Retroalimentación: revisa el concepto base, los elementos omitidos y cómo aplicar la idea a la función policial.",
-    correctAnswer:
-      "Respuesta correcta orientativa: define el concepto con apoyo del compendio, menciona sus elementos relevantes y relaciónalo con la actuación institucional.",
-    didacticExplanation:
-      "En palabras sencillas, muestra qué significa el concepto y para qué sirve dentro de la institución policial.",
-    didacticExample:
-      "Ejemplo didáctico generado: ante una pregunta del tribunal, define el concepto, menciona sus elementos y vincúlalo con una actuación policial concreta.",
-    policeApplication:
-      "Aplicación policial: el concepto debe orientar la conducta, la disciplina, la jerarquía o el servicio según corresponda.",
-    modelAnswer:
-      "Ejemplo de una respuesta oral bien estructurada: iniciar con el concepto base, mencionar la terminología institucional relevante y cerrar explicando su aplicación en la función policial.",
+      missing.length > 0
+        ? `Retroalimentación: la respuesta necesita incorporar ${missingText} y cerrar con una aplicación policial concreta.`
+        : "Retroalimentación: la respuesta identifica la idea central; puede mejorar si ordena concepto, explicación y aplicación policial.",
+    correctAnswer,
+    didacticExplanation,
+    didacticExample: `Ejemplo didáctico generado: si un estudiante explica ${primaryConcept}, puede mencionar una situación hipotética de servicio donde un efectivo debe actuar de acuerdo con los principios institucionales, manteniendo disciplina, respeto a la jerarquía y orientación al servicio.`,
+    policeApplication: `Aplicación policial: ${primaryConcept} sirve para orientar decisiones, conducta institucional y cumplimiento responsable del servicio, especialmente cuando el policía debe justificar por qué actúa de una manera ordenada y conforme a la institución.`,
+    modelAnswer: `Para examen oral: "${correctAnswer} En la práctica policial, esto permite actuar con criterio institucional, disciplina y orientación al servicio."`,
   };
 }
 function normalizeEvaluation(

@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { selectVisibleSimulation } from "@/components/simulation-panel";
 import { oralExamTestUtils } from "@/lib/simulations/oral-exam";
+import type { SimulationState } from "@/lib/simulations/oral-exam";
 
 const expected = [
   "doctrina policial",
@@ -30,6 +32,8 @@ describe("Sprint 4 simulacro oral inteligente", () => {
     expect(result.score.total).toBeLessThan(90);
     expect(result.missingConcepts).toContain("valores");
     expect(result.needsFollowUp).toBe(true);
+    expect(result.correctAnswer).toContain("doctrina policial");
+    expect(result.didacticExample).toContain("Ejemplo didáctico generado");
   });
 
   it("CASO C: respuesta incorrecta o no respaldada no inventa contenido", () => {
@@ -73,4 +77,32 @@ describe("Sprint 4 simulacro oral inteligente", () => {
     });
     expect(score.total).toBe(100);
   });
+
+  it("prioriza un simulacro nuevo sobre el intento anterior respondido", () => {
+    const previous = makeSimulation("anterior", "completed");
+    const next = makeSimulation("nuevo", "in_progress");
+
+    expect(selectVisibleSimulation(previous, next, previous)?.id).toBe(
+      "nuevo",
+    );
+  });
 });
+
+function makeSimulation(
+  id: string,
+  status: SimulationState["status"],
+): SimulationState {
+  return {
+    id,
+    status,
+    difficulty: "intermedio",
+    unit_number: 1,
+    unit_name: "Doctrina Policial",
+    question_count: 3,
+    main_answered: status === "completed" ? 3 : 0,
+    progress_label: "Pregunta 1 de 3",
+    session_id: null,
+    questions: [],
+    result: null,
+  };
+}
