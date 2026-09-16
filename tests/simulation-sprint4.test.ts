@@ -46,6 +46,27 @@ describe("Sprint 4 simulacro oral inteligente", () => {
     expect(result.needsFollowUp).toBe(true);
   });
 
+  it("CASO C2: no acepta fases ajenas al compendio como correctas", () => {
+    const result = oralExamTestUtils.heuristicEvaluateAnswer(
+      "¿Cuáles son las fases del ciclo de la doctrina?",
+      "Las fases son introducción, desarrollo y desenlace.",
+      [
+        "Creación o Actualización",
+        "Difusión",
+        "Internalización",
+        "Aplicación",
+      ],
+    );
+
+    expect(result.score.total).toBeLessThan(30);
+    expect(result.missingConcepts).toContain("Creación o Actualización");
+    expect(result.missingConcepts).toContain("Difusión");
+    expect(result.misconceptions.join(" ")).toContain(
+      "no corresponde con los elementos del compendio",
+    );
+    expect(result.correctAnswer).toContain("Creación o Actualización");
+  });
+
   it("CASO D: respuesta muy breve se maneja sin romper el flujo", () => {
     const result = oralExamTestUtils.heuristicEvaluateAnswer(
       question,

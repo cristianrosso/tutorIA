@@ -517,6 +517,8 @@ Evalua la respuesta del estudiante contra el contexto del compendio. No evalues 
 Devuelve JSON estricto con esta forma:
 {"score":{"conceptual":0,"application":0,"terminology":0,"argumentation":0,"clarity":0},"strengths":[],"missingConcepts":[],"misconceptions":[],"improvements":[],"needsFollowUp":true,"followUpReason":"","feedback":"","correctAnswer":"","didacticExplanation":"","didacticExample":"","policeApplication":"","modelAnswer":""}
 Maximos: conceptual 30, application 20, terminology 20, argumentation 20, clarity 10.
+Si la pregunta pide enumerar fases, principios, valores, caracteristicas, elementos o clasificaciones, compara cada item con el contexto recuperado. No marques como correcto un listado distinto aunque use palabras generales como "fases", "ciclo", "doctrina" o "gestión".
+Ejemplo de criterio: si el compendio indica Creación o Actualización, Difusión, Internalización y Aplicación, una respuesta como "introducción, desarrollo y desenlace" es incorrecta o insuficiente.
 Genera retroalimentacion pedagogica que razone la respuesta:
 - correctAnswer: respuesta correcta orientativa directamente relacionada con la pregunta, usando solo informacion respaldada por el contexto recuperado.
 - didacticExplanation: explicacion sencilla del mismo punto, sin cambiar el significado academico.
@@ -695,30 +697,44 @@ function heuristicEvaluateAnswer(
   const expected = expectedConcepts.length
     ? expectedConcepts
     : questionConcepts(question);
-  const hits = expected.filter((concept) =>
-    concept
-      .split(/\s+/)
-      .some((part) => normalized.includes(removeAccents(part.toLowerCase()))),
-  );
+  const hits = expected.filter((concept) => conceptMatchesAnswer(concept, normalized));
+  const wrongEnumeration = detectsWrongEnumeration(question, normalized, hits);
   const ratio = expected.length ? hits.length / expected.length : 0.45;
-  const veryShort = words.length < 8 || /no se|no sé|nose/.test(normalized);
+  const veryShort =
+    words.length < 8 || /no se|no sé|nose/.test(normalized) || wrongEnumeration;
   const score = makeScore({
-    conceptual: veryShort ? 4 : Math.round(12 + ratio * 18),
+    conceptual: veryShort ? (wrongEnumeration ? 6 : 4) : Math.round(12 + ratio * 18),
     application: veryShort
-      ? 2
+      ? wrongEnumeration
+        ? 3
+        : 2
       : Math.min(
           20,
           Math.round((normalized.includes("policial") ? 8 : 5) + ratio * 10),
         ),
-    terminology: veryShort ? 2 : Math.round(7 + ratio * 13),
+    terminology: veryShort ? (wrongEnumeration ? 3 : 2) : Math.round(7 + ratio * 13),
     argumentation: veryShort
-      ? 2
+      ? wrongEnumeration
+        ? 4
+        : 2
       : Math.min(20, Math.round(Math.min(words.length, 60) / 4)),
     clarity: veryShort
-      ? 2
+      ? wrongEnumeration
+        ? 5
+        : 2
       : Math.min(10, Math.round(Math.min(words.length, 50) / 5)),
   });
   const missing = expected.filter((concept) => !hits.includes(concept));
+  const misconceptions = [
+    ...(wrongEnumeration
+      ? [
+          "La enumeración entregada no corresponde con los elementos del compendio para esta pregunta.",
+        ]
+      : []),
+    ...(veryShort && !wrongEnumeration
+      ? ["Respuesta insuficiente para valorar dominio conceptual."]
+      : []),
+  ];
   const primaryConcept =
     hits[0] || expected[0] || questionConcepts(question)[0] || "el concepto";
   const missingText = missing.slice(0, 3).join(", ");
@@ -737,9 +753,7 @@ function heuristicEvaluateAnswer(
       ? [`Identificó ${hits.slice(0, 2).join(" y ")}.`]
       : [],
     missingConcepts: missing,
-    misconceptions: veryShort
-      ? ["Respuesta insuficiente para valorar dominio conceptual."]
-      : [],
+    misconceptions,
     improvements: missing.length
       ? [`Debe incorporar ${missing.slice(0, 3).join(", ")}.`]
       : ["Puede profundizar con aplicación a la función policial."],
@@ -757,6 +771,58 @@ function heuristicEvaluateAnswer(
     policeApplication: `Aplicación policial: ${primaryConcept} sirve para orientar decisiones, conducta institucional y cumplimiento responsable del servicio, especialmente cuando el policía debe justificar por qué actúa de una manera ordenada y conforme a la institución.`,
     modelAnswer: `Para examen oral: "${correctAnswer} En la práctica policial, esto permite actuar con criterio institucional, disciplina y orientación al servicio."`,
   };
+}
+
+const weakConceptWords = new Set([
+  "fase",
+  "fases",
+  "ciclo",
+  "gestion",
+  "concepto",
+  "elemento",
+  "elementos",
+  "tema",
+  "contenido",
+  "unidad",
+]);
+
+function conceptMatchesAnswer(concept: string, normalizedAnswer: string) {
+  const significant = removeAccents(concept.toLowerCase())
+    .split(/[^a-z0-9]+/)
+    .filter((word) => word.length >= 4 && !weakConceptWords.has(word));
+  if (conceptAliasMatches(concept, normalizedAnswer)) return true;
+  if (!significant.length) return false;
+  const required = significant.length === 1 ? 1 : Math.ceil(significant.length * 0.6);
+  const hits = significant.filter((word) => normalizedAnswer.includes(word));
+  return hits.length >= required;
+}
+
+function conceptAliasMatches(concept: string, normalizedAnswer: string) {
+  const normalizedConcept = removeAccents(concept.toLowerCase());
+  const aliases: Array<[RegExp, RegExp]> = [
+    [/doctrina policial/, /guia institucional|filosofia de vida|lineamiento institucional/],
+    [/conducta institucional/, /actuar.*servidor policial|conducta.*policial|actuacion.*policial/],
+  ];
+  return aliases.some(
+    ([conceptPattern, answerPattern]) =>
+      conceptPattern.test(normalizedConcept) &&
+      answerPattern.test(normalizedAnswer),
+  );
+}
+
+function detectsWrongEnumeration(
+  question: string,
+  normalizedAnswer: string,
+  hits: string[],
+) {
+  const normalizedQuestion = removeAccents(question.toLowerCase());
+  const asksEnumeration =
+    /(fase|fases|enumere|mencione|cuales son|indique|nombre)/.test(
+      normalizedQuestion,
+    ) || hits.length === 0;
+  const schoolStructure =
+    /introduccion|desarrollo|desenlace|conclusion/.test(normalizedAnswer);
+  return asksEnumeration && schoolStructure && hits.length < 2;
 }
 function normalizeEvaluation(
   parsed: Partial<AnswerEvaluation>,
