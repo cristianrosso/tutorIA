@@ -54,8 +54,8 @@ export default function ConfigurationPage() {
             <div>
               <strong>Aplicar el esquema SQL</strong>
               <p>
-                La migración crea las tablas, permisos y las 15 unidades; solo
-                la primera está habilitada.
+                La migración crea las tablas, permisos y las 15 unidades del
+                compendio académico.
               </p>
             </div>
           </li>
