@@ -1,0 +1,49 @@
+{
+  "name": "tutor-ia-fatescipol",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3010",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3010",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:auth": "playwright test --config=playwright.auth.config.ts",
+    "test:e2e:local": "playwright test --config=playwright.local.config.ts",
+    "supabase:start": "node scripts/supabase-local.mjs start",
+    "supabase:stop": "node scripts/supabase-local.mjs stop",
+    "supabase:status": "node scripts/supabase-local.mjs status",
+    "supabase:env": "node scripts/supabase-local.mjs env",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "admin:create": "node --env-file=.env.local scripts/create-admin.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.116.0",
+    "lucide-react": "^0.577.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@playwright/test": "^1.58.2",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.5",
+    "prettier": "^3.8.1",
+    "supabase": "2.117.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

@@ -1,0 +1,598 @@
+PROYECTO: TUTOR IA FATESCIPOL – EXAMEN DE GRADO 2026
+
+Actúa como arquitecto de software senior y desarrollador full-stack especializado
+en Next.js, TypeScript, PostgreSQL/Supabase, RAG, OpenAI API y aplicaciones
+conversacionales por voz.
+
+Debes construir una aplicación web responsive denominada:
+
+"TUTOR IA FATESCIPOL – EXAMEN DE GRADO 2026"
+
+CONTEXTO
+
+La aplicación está destinada inicialmente a estudiantes de Segundo Año de la
+Facultad Técnica Superior en Ciencias Policiales – El Alto (FATESCIPOL).
+
+El objetivo es ayudar a los estudiantes a prepararse para su examen de grado
+mediante un tutor inteligente capaz de:
+
+1. Explicar contenidos.
+2. Responder preguntas.
+3. Simplificar conceptos difíciles.
+4. Proporcionar ejemplos didácticos.
+5. Relacionar conceptos con situaciones de aplicación policial cuando el
+   material permita establecer dicha relación.
+6. Realizar preguntas de comprobación.
+7. Realizar simulaciones de examen oral.
+8. Formular repreguntas.
+9. Evaluar las respuestas del estudiante.
+10. Identificar contenidos que necesita reforzar.
+
+FUENTE ACADÉMICA
+
+Existe un COMPENDIO PARA EXAMEN DE GRADO 2026 que contiene 15 unidades
+temáticas.
+
+El compendio será la FUENTE ACADÉMICA PRINCIPAL Y AUTORITATIVA del tutor.
+
+La IA no debe inventar artículos, procedimientos, normas, definiciones,
+fechas o información que no pueda sustentarse en el material proporcionado.
+
+Cuando genere ejemplos didácticos propios deberá diferenciarlos del contenido
+textual del compendio.
+
+ARQUITECTURA
+
+Frontend:
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Responsive/mobile first
+
+Backend:
+- Next.js server routes inicialmente.
+- PostgreSQL/Supabase.
+- Supabase Auth.
+- OpenAI API.
+
+La arquitectura debe permitir escalar posteriormente a aproximadamente
+300 estudiantes.
+
+Nunca exponer claves API en frontend.
+
+Crear archivo:
+
+.env.example
+
+pero nunca almacenar claves reales en Git.
+
+ROLES
+
+Implementar inicialmente:
+
+ADMIN
+ESTUDIANTE
+
+ADMIN puede:
+- crear usuarios;
+- activar/desactivar usuarios;
+- establecer fecha de expiración;
+- restablecer acceso;
+- consultar actividad;
+- consultar consumo de IA;
+- consultar número de conversaciones;
+- consultar uso de voz;
+- gestionar unidades temáticas;
+- gestionar documentos.
+
+ESTUDIANTE puede:
+- iniciar sesión;
+- seleccionar unidad;
+- estudiar con Tutor IA;
+- conversar mediante texto;
+- conversar mediante voz;
+- iniciar simulacro;
+- consultar progreso.
+
+ACCESO
+
+Cada estudiante tendrá:
+- username
+- password
+- nombre
+- estado
+- fecha de inicio
+- fecha de expiración
+
+Preparar arquitectura para limitar posteriormente sesiones simultáneas
+y evitar abuso/compartición de cuentas.
+
+INTERFAZ PRINCIPAL
+
+Después del login mostrar:
+
+"Tutor IA FATESCIPOL"
+
+Mensaje:
+
+"Prepárate para tu Examen de Grado 2026 con tu tutor inteligente."
+
+Tres acciones principales:
+
+[ HABLAR CON MI TUTOR ]
+
+[ SIMULACRO DE EXAMEN ]
+
+[ MIS UNIDADES ]
+
+Para el DEMO solo estará habilitada:
+
+UNIDAD TEMÁTICA 1
+DOCTRINA POLICIAL
+
+Las otras unidades pueden mostrarse como:
+
+"Próximamente"
+
+MODO TUTOR
+
+Crear una interfaz conversacional extremadamente sencilla.
+
+Debe funcionar mediante:
+- texto;
+- micrófono;
+- respuesta escrita;
+- respuesta mediante voz.
+
+El estudiante podrá preguntar libremente.
+
+Ejemplo:
+
+"Explícame qué es la doctrina policial."
+
+La IA debe responder siguiendo esta estructura pedagógica:
+
+1. EXPLICACIÓN SENCILLA
+2. CONCEPTO ACADÉMICO
+3. EJEMPLO O APLICACIÓN
+4. IDEA CLAVE PARA EL EXAMEN
+
+No es necesario mostrar permanentemente estos encabezados si perjudican
+la naturalidad de la conversación.
+
+El tutor debe adaptar la extensión de la explicación a la pregunta.
+
+Si el estudiante dice:
+
+"No entendí."
+
+Debe explicar nuevamente utilizando lenguaje más sencillo y otro ejemplo.
+
+Si dice:
+
+"Dame un ejemplo."
+
+Debe generar un ejemplo didáctico coherente con el material.
+
+Si dice:
+
+"Explícamelo para mi examen."
+
+Debe generar una respuesta oral clara, estructurada y defendible.
+
+PERSONALIDAD DEL TUTOR
+
+El tutor debe ser:
+
+- respetuoso;
+- académico;
+- didáctico;
+- paciente;
+- preciso;
+- profesional;
+- familiarizado con el contexto formativo policial.
+
+No debe ridiculizar respuestas incorrectas.
+
+Debe respetar la terminología institucional y jerárquica contenida en
+el material.
+
+RAG
+
+Implementar Retrieval-Augmented Generation.
+
+NO enviar todo el compendio en cada solicitud.
+
+Pipeline:
+
+Pregunta estudiante
+      ↓
+identificar unidad
+      ↓
+recuperar fragmentos relevantes
+      ↓
+construir contexto
+      ↓
+OpenAI
+      ↓
+respuesta
+      ↓
+voz opcional
+
+Los documentos deben dividirse en fragmentos semánticos respetando:
+
+Unidad
+Tema
+Subtema
+Numeración
+Título
+Página/origen cuando sea posible
+
+Guardar metadata.
+
+Ejemplo:
+
+unit: 1
+unit_name: "Doctrina Policial"
+section: "1.2.4"
+section_name: "Principios institucionales"
+source: "Compendio FATESCIPOL 2026"
+
+Evitar cortar arbitrariamente artículos o definiciones importantes.
+
+Para el DEMO ingerir solamente la Unidad 1.
+
+ARQUITECTURA RAG
+
+Diseñar una capa desacoplada para poder utilizar inicialmente una solución
+vectorial sencilla y reemplazarla posteriormente sin reconstruir el tutor.
+
+Implementar:
+
+ingestDocument()
+retrieveContext()
+buildTutorContext()
+answerQuestion()
+
+Registrar las fuentes recuperadas para debugging.
+
+MODO VOZ
+
+La interfaz debe permitir:
+
+Pulsar micrófono
+      ↓
+hablar
+      ↓
+transcripción
+      ↓
+RAG
+      ↓
+respuesta IA
+      ↓
+reproducción de voz
+
+Prioridades:
+
+1. latencia baja;
+2. conversación natural;
+3. costo controlado;
+4. posibilidad de interrumpir/detener reproducción;
+5. indicador visual cuando escucha;
+6. indicador cuando procesa;
+7. indicador cuando responde.
+
+Preparar abstracción para poder comparar posteriormente:
+
+A) STT + LLM + TTS
+
+B) OpenAI Realtime
+
+No acoplar toda la aplicación exclusivamente a una modalidad.
+
+SIMULACRO DE EXAMEN
+
+Crear segundo modo:
+
+"SIMULACRO DE EXAMEN ORAL"
+
+La IA adopta temporalmente el rol de evaluador.
+
+Flujo:
+
+Seleccionar Unidad
+      ↓
+Iniciar simulacro
+      ↓
+IA formula pregunta
+      ↓
+Estudiante responde por voz
+      ↓
+IA analiza
+      ↓
+IA formula repregunta
+      ↓
+Estudiante responde
+      ↓
+Evaluación final
+
+Para el DEMO:
+
+Unidad 1 – Doctrina Policial.
+
+Las preguntas deben derivarse del contenido recuperado del compendio.
+
+No generar preguntas sobre contenidos inexistentes.
+
+TIPOS DE PREGUNTA
+
+Utilizar combinación de:
+
+- conceptual;
+- comprensión;
+- comparación;
+- explicación;
+- aplicación.
+
+Ejemplo:
+
+Pregunta inicial:
+"Explique qué se entiende por doctrina de la Policía Boliviana."
+
+Después de la respuesta:
+
+"¿Cómo se refleja esa doctrina en la actuación cotidiana de un servidor
+policial?"
+
+EVALUACIÓN
+
+Al terminar mostrar:
+
+RESULTADO DEL SIMULACRO
+
+Calificación: XX/100
+
+Evaluar:
+
+Dominio conceptual       30
+Precisión terminológica  20
+Aplicación                20
+Argumentación             20
+Claridad                   10
+
+TOTAL                    100
+
+Mostrar además:
+
+FORTALEZAS
+
+ASPECTOS A MEJORAR
+
+RESPUESTA SUGERIDA
+
+TEMAS QUE DEBE REPASAR
+
+No penalizar acento, velocidad del habla ni características personales.
+
+Evaluar contenido académico.
+
+PROMPT BASE DEL TUTOR
+
+Crear:
+
+/prompts/tutor-system.ts
+
+Reglas fundamentales:
+
+"Eres el Tutor Inteligente de preparación para el Examen de Grado 2026
+de FATESCIPOL El Alto.
+
+Tu fuente académica principal es el contexto recuperado del compendio.
+
+Debes ayudar al estudiante a comprender y defender oralmente los contenidos.
+
+No inventes información presentada como perteneciente al compendio.
+
+Cuando el contexto no permita responder con suficiente certeza, indícalo.
+
+Diferencia entre:
+- información proveniente del compendio;
+- explicación pedagógica;
+- ejemplo didáctico.
+
+Explica primero de manera comprensible y posteriormente utiliza la
+terminología académica apropiada.
+
+Cuando sea pertinente, ayuda al estudiante a relacionar los conceptos
+con la función policial.
+
+Tu finalidad no es solamente proporcionar respuestas, sino conseguir
+que el estudiante comprenda el contenido y pueda explicarlo durante
+su examen de grado."
+
+BASE DE DATOS
+
+Crear inicialmente:
+
+profiles
+units
+documents
+study_sessions
+messages
+simulations
+simulation_questions
+simulation_results
+usage_events
+
+usage_events debe permitir registrar:
+
+user_id
+model
+input_tokens
+output_tokens
+audio_input
+audio_output
+estimated_cost
+created_at
+
+Esto es MUY IMPORTANTE.
+
+Necesitamos conocer el costo real por estudiante.
+
+DASHBOARD ADMIN
+
+Mostrar:
+
+Usuarios registrados
+Usuarios activos
+Conversaciones
+Simulacros realizados
+Tokens consumidos
+Uso de voz
+Costo estimado API
+Costo promedio por estudiante
+
+Preparar filtros por:
+
+día
+semana
+mes
+usuario
+
+SEGURIDAD
+
+Implementar:
+
+Supabase Auth
+Row Level Security
+roles
+validación server-side
+rate limiting
+variables de entorno
+protección de rutas admin
+logs básicos
+
+Nunca enviar OPENAI_API_KEY al navegador.
+
+DISEÑO
+
+La interfaz debe transmitir:
+
+institucionalidad
+tecnología
+seriedad
+formación policial
+
+Mobile-first.
+
+Muchos estudiantes accederán desde teléfono.
+
+Evitar interfaces complejas.
+
+El botón de conversación debe ser grande.
+
+En móvil la experiencia principal debe sentirse similar a conversar
+con un asistente de voz.
+
+FASE ACTUAL
+
+NO desarrollar todavía las 15 unidades.
+
+SPRINT DEMO:
+
+1. Inicializar proyecto.
+2. Configurar Supabase.
+3. Crear esquema SQL.
+4. Crear autenticación.
+5. Crear roles.
+6. Crear dashboard estudiante.
+7. Crear dashboard admin mínimo.
+8. Crear pantalla Tutor.
+9. Crear infraestructura RAG.
+10. Preparar ingestión Unidad 1.
+11. Integrar OpenAI.
+12. Implementar chat textual.
+13. Implementar voz.
+14. Crear simulacro Unidad 1.
+15. Registrar consumo.
+16. Testing.
+17. Deploy demo.
+
+CRITERIO DE ÉXITO DEL DEMO
+
+El demo está aprobado cuando:
+
+1. Un estudiante inicia sesión.
+
+2. Ingresa a:
+   Unidad 1 – Doctrina Policial.
+
+3. Pregunta mediante voz:
+   "¿Qué es la doctrina policial?"
+
+4. El sistema encuentra contenido correcto del compendio.
+
+5. Responde didácticamente.
+
+6. El estudiante puede hacer una repregunta.
+
+7. El contexto conversacional se conserva.
+
+8. Puede entrar a Simulacro.
+
+9. La IA realiza una pregunta basada en Unidad 1.
+
+10. El estudiante responde oralmente.
+
+11. La IA realiza al menos una repregunta.
+
+12. Finalmente recibe evaluación y retroalimentación.
+
+13. El administrador puede observar el consumo generado por esa sesión.
+
+FORMA DE TRABAJO
+
+No intentes implementar todo simultáneamente.
+
+Trabaja incrementalmente.
+
+Antes de escribir código:
+
+1. analiza este PRD;
+2. propone estructura de carpetas;
+3. propone esquema de base de datos;
+4. identifica dependencias;
+5. identifica riesgos técnicos;
+6. crea plan de implementación.
+
+Después comienza únicamente con:
+
+SPRINT 1
+- inicialización;
+- Supabase;
+- autenticación;
+- roles;
+- esquema de base de datos;
+- dashboard básico.
+
+No avances al siguiente sprint hasta verificar que el anterior compila,
+ejecuta correctamente y supera sus pruebas.
+
+Utiliza código limpio, tipado y modular.
+
+Crea README.md con instrucciones de instalación.
+
+Crea .env.example.
+
+No inventes credenciales.
+
+No almacenes secretos en Git.
+
+Al terminar cada sprint informa:
+
+- archivos creados/modificados;
+- funcionalidades implementadas;
+- pruebas ejecutadas;
+- errores pendientes;
+- siguiente paso recomendado.

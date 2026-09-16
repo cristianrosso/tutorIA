@@ -1,0 +1,11 @@
+node_modules
+.next
+package-lock.json
+artifacts
+playwright-report
+test-results
+*.tsbuildinfo
+supabase/migrations
+.env*
+next-env.d.ts
+.local
