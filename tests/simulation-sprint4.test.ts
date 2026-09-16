@@ -67,6 +67,29 @@ describe("Sprint 4 simulacro oral inteligente", () => {
     expect(result.correctAnswer).toContain("Creación o Actualización");
   });
 
+  it("CASO C3: corrige aplicación de la doctrina con contenido del compendio", () => {
+    const result = oralExamTestUtils.heuristicEvaluateAnswer(
+      "Explique la Aplicación de la doctrina policial.",
+      "Su aporte a la gestión es el aporte de los valores a la gestión institucional.",
+      [
+        "Aplicación de la doctrina policial",
+        "Puesta en práctica en la vida personal y profesional",
+        "Resultados positivos que fortalezcan la imagen institucional",
+      ],
+      [
+        {
+          content:
+            "1.2.11.4 Aplicación: La aplicación es la puesta en práctica de la doctrina policial en la vida personal y profesional del personal policial, buscando obtener resultados positivos que fortalezcan la imagen institucional.",
+        },
+      ],
+    );
+
+    expect(result.correctAnswer).toContain("puesta en práctica");
+    expect(result.correctAnswer).toContain("vida personal y profesional");
+    expect(result.didacticExplanation).toContain("conducta diaria");
+    expect(result.policeApplication).toContain("actuación concreta");
+  });
+
   it("CASO D: respuesta muy breve se maneja sin romper el flujo", () => {
     const result = oralExamTestUtils.heuristicEvaluateAnswer(
       question,

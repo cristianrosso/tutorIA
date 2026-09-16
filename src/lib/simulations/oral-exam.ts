@@ -508,6 +508,7 @@ export async function evaluateStudentAnswer(input: {
     input.question.question,
     input.studentAnswer,
     input.question.expected_concepts,
+    input.retrievedContext,
   );
   try {
     const completion = await generateTutorText({
@@ -526,6 +527,7 @@ Genera retroalimentacion pedagogica que razone la respuesta:
 - policeApplication: aplicacion coherente a la funcion policial cuando corresponda.
 - modelAnswer: respuesta oral breve y defendible para practicar ante tribunal.
 Evita frases genericas como "define el concepto"; escribe el contenido que el estudiante debio decir.
+No repitas el nombre del tema como si fuera explicación. Por ejemplo, para "Aplicación de la doctrina" debes explicar que es la puesta en práctica de la doctrina policial en la vida personal y profesional del personal policial, buscando resultados positivos que fortalezcan la imagen institucional.
 Si el estudiante se equivoca o responde poco, explica que faltaba y luego ofrece una forma correcta de responder.
 
 Pregunta:
@@ -540,7 +542,7 @@ ${input.studentAnswer}
 Contexto recuperado:
 ${sourceBlock(input.retrievedContext)}
 `.trim(),
-      maxOutputTokens: 620,
+      maxOutputTokens: 900,
     });
     return normalizeEvaluation(
       parseJsonObject<Partial<AnswerEvaluation>>(completion.text),
@@ -691,6 +693,7 @@ function heuristicEvaluateAnswer(
   question: string,
   answer: string,
   expectedConcepts: string[],
+  retrievedContext: Array<Pick<RetrievedSource, "content">> = [],
 ): AnswerEvaluation {
   const normalized = removeAccents(answer.toLowerCase());
   const words = normalized.split(/\s+/).filter(Boolean);
@@ -739,14 +742,22 @@ function heuristicEvaluateAnswer(
     hits[0] || expected[0] || questionConcepts(question)[0] || "el concepto";
   const missingText = missing.slice(0, 3).join(", ");
   const expectedText = expected.slice(0, 4).join(", ");
+  const grounded = buildGroundedFeedback({
+    question,
+    expected,
+    primaryConcept,
+    retrievedContext,
+  });
   const correctAnswer =
-    expectedText.length > 0
+    grounded.correctAnswer ||
+    (expectedText.length > 0
       ? `Una respuesta correcta debe explicar ${primaryConcept} y relacionarlo con ${expectedText}, mostrando cómo orienta la conducta y el servicio policial.`
-      : `Una respuesta correcta debe responder directamente la pregunta, explicar el concepto central y vincularlo con la función policial.`;
+      : `Una respuesta correcta debe responder directamente la pregunta, explicar el concepto central y vincularlo con la función policial.`);
   const didacticExplanation =
-    missing.length > 0
+    grounded.didacticExplanation ||
+    (missing.length > 0
       ? `En palabras sencillas, tu respuesta debe mostrar qué significa ${primaryConcept}, qué elementos lo componen y por qué ${missingText} también es parte de la idea evaluada.`
-      : `En palabras sencillas, ${primaryConcept} debe entenderse como una guía para ordenar la actuación policial con sentido institucional.`;
+      : `En palabras sencillas, ${primaryConcept} debe entenderse como una guía para ordenar la actuación policial con sentido institucional.`);
   return {
     score,
     strengths: hits.length
@@ -767,8 +778,12 @@ function heuristicEvaluateAnswer(
         : "Retroalimentación: la respuesta identifica la idea central; puede mejorar si ordena concepto, explicación y aplicación policial.",
     correctAnswer,
     didacticExplanation,
-    didacticExample: `Ejemplo didáctico generado: si un estudiante explica ${primaryConcept}, puede mencionar una situación hipotética de servicio donde un efectivo debe actuar de acuerdo con los principios institucionales, manteniendo disciplina, respeto a la jerarquía y orientación al servicio.`,
-    policeApplication: `Aplicación policial: ${primaryConcept} sirve para orientar decisiones, conducta institucional y cumplimiento responsable del servicio, especialmente cuando el policía debe justificar por qué actúa de una manera ordenada y conforme a la institución.`,
+    didacticExample:
+      grounded.didacticExample ||
+      `Ejemplo didáctico generado: si un estudiante explica ${primaryConcept}, puede mencionar una situación hipotética de servicio donde un efectivo debe actuar de acuerdo con los principios institucionales, manteniendo disciplina, respeto a la jerarquía y orientación al servicio.`,
+    policeApplication:
+      grounded.policeApplication ||
+      `Aplicación policial: ${primaryConcept} sirve para orientar decisiones, conducta institucional y cumplimiento responsable del servicio, especialmente cuando el policía debe justificar por qué actúa de una manera ordenada y conforme a la institución.`,
     modelAnswer: `Para examen oral: "${correctAnswer} En la práctica policial, esto permite actuar con criterio institucional, disciplina y orientación al servicio."`,
   };
 }
@@ -808,6 +823,104 @@ function conceptAliasMatches(concept: string, normalizedAnswer: string) {
       conceptPattern.test(normalizedConcept) &&
       answerPattern.test(normalizedAnswer),
   );
+}
+
+function buildGroundedFeedback(input: {
+  question: string;
+  expected: string[];
+  primaryConcept: string;
+  retrievedContext: Array<Pick<RetrievedSource, "content">>;
+}) {
+  const context = cleanContext(
+    input.retrievedContext.map((source) => source.content).join("\n"),
+  );
+  const expectedText = input.expected.slice(0, 6).join(", ");
+  const normalizedQuestion = removeAccents(input.question.toLowerCase());
+  const normalizedExpected = removeAccents(expectedText.toLowerCase());
+  const asksCycle =
+    /ciclo.*doctrina|fases.*doctrina|creacion|difusion|internalizacion/.test(
+      `${normalizedQuestion} ${normalizedExpected}`,
+    );
+  if (asksCycle && /creacion o actualizacion/i.test(context)) {
+    return {
+      correctAnswer:
+        "Según el compendio, el ciclo de la doctrina articula cuatro fases esenciales: Creación o Actualización, Difusión, Internalización y Aplicación. Estas fases buscan asegurar la efectividad y pertinencia de la doctrina en la Policía Boliviana.",
+      didacticExplanation:
+        "En sencillo: primero se crea o actualiza la doctrina; luego se difunde; después el personal la interioriza; finalmente se aplica en la vida personal y profesional del servidor policial.",
+      didacticExample:
+        "Ejemplo didáctico generado: si se actualiza un lineamiento doctrinal, primero se investiga y formula, luego se comunica mediante capacitación, después el personal lo asume como parte de su conducta y finalmente lo usa en el servicio.",
+      policeApplication:
+        "Aplicación policial: este ciclo permite que la doctrina no quede solo escrita, sino que oriente la formación, la conducta institucional y el servicio cotidiano.",
+    };
+  }
+  const applicationSentence = extractApplicationSentence(context);
+  const asksApplication =
+    /aplicacion/.test(`${normalizedQuestion} ${normalizedExpected}`) &&
+    applicationSentence;
+  if (asksApplication) {
+    return {
+      correctAnswer: `Según el compendio, ${applicationSentence}`,
+      didacticExplanation:
+        "En sencillo: aplicar la doctrina significa llevarla a la conducta diaria del policía, tanto fuera como dentro del servicio, para que sus actos reflejen la identidad y la imagen institucional.",
+      didacticExample:
+        "Ejemplo didáctico generado: un servidor policial que conoce la doctrina no solo la menciona en un examen; la demuestra cuando actúa con disciplina, respeto, responsabilidad y vocación de servicio en una intervención real.",
+      policeApplication:
+        "Aplicación policial: la doctrina se verifica en la actuación concreta del personal policial; por eso debe expresarse en decisiones, trato al ciudadano y comportamiento profesional que fortalezcan la imagen institucional.",
+    };
+  }
+  const directSentence = extractBestSentence(context, input.expected);
+  if (!directSentence) return {};
+  return {
+    correctAnswer: `Según el compendio, ${directSentence}`,
+    didacticExplanation: `En sencillo: ${simplifySentence(directSentence)}`,
+    didacticExample: `Ejemplo didáctico generado: el estudiante puede explicar ${input.primaryConcept} con una situación policial concreta, cuidando no presentarla como una cita del compendio.`,
+    policeApplication:
+      "Aplicación policial: ese contenido debe conectarse con la conducta institucional, el servicio y la forma correcta de actuar del personal policial.",
+  };
+}
+
+function cleanContext(value: string) {
+  return value
+    .replace(/\[Fuente:[^\]]+\]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractApplicationSentence(context: string) {
+  const match = context.match(
+    /La aplicación es la puesta en práctica de la doctrina policial[^.]+\./i,
+  );
+  return match?.[0].trim() || "";
+}
+
+function extractBestSentence(context: string, expected: string[]) {
+  const sentences = context
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence.length > 40 && sentence.length < 420);
+  const expectedTokens = expected.flatMap((concept) =>
+    removeAccents(concept.toLowerCase())
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length >= 5 && !weakConceptWords.has(token)),
+  );
+  return (
+    sentences
+      .map((sentence) => ({
+        sentence,
+        score: expectedTokens.filter((token) =>
+          removeAccents(sentence.toLowerCase()).includes(token),
+        ).length,
+      }))
+      .sort((a, b) => b.score - a.score)
+      .find((item) => item.score > 0)?.sentence || ""
+  );
+}
+
+function simplifySentence(sentence: string) {
+  return sentence
+    .replace(/^La aplicación es/i, "la aplicación significa")
+    .replace(/^La doctrina de la Policía Boliviana se concibe como/i, "la doctrina policial es")
+    .trim();
 }
 
 function detectsWrongEnumeration(
