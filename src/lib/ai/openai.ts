@@ -44,7 +44,7 @@ export async function generateTutorText(input: {
     }),
   });
   if (!response.ok)
-    throw new Error(`OpenAI respondió con estado ${response.status}.`);
+    throw new Error(await openAIError("OpenAI texto", response));
   const body = (await response.json()) as ResponsesApiBody;
   const text =
     body.output_text ||
@@ -105,7 +105,7 @@ export async function transcribeAudio(input: {
     },
   );
   if (!response.ok)
-    throw new Error(`OpenAI STT respondió con estado ${response.status}.`);
+    throw new Error(await openAIError("OpenAI STT", response));
   const body = (await response.json()) as TranscriptionBody;
   const text = body.text?.trim();
   if (!text) throw new Error("OpenAI no devolvió transcripción utilizable.");
@@ -141,7 +141,7 @@ export async function synthesizeSpeech(input: {
     }),
   });
   if (!response.ok)
-    throw new Error(`OpenAI TTS respondió con estado ${response.status}.`);
+    throw new Error(await openAIError("OpenAI TTS", response));
   return {
     audio: await response.arrayBuffer(),
     contentType: response.headers.get("content-type") || "audio/mpeg",
@@ -157,4 +157,14 @@ export function estimateTokens(text: string) {
     1,
     Math.ceil(text.trim().split(/\s+/).filter(Boolean).length * 1.35),
   );
+}
+
+async function openAIError(scope: string, response: Response) {
+  const text = await response.text().catch(() => "");
+  let detail = text.slice(0, 240);
+  try {
+    const parsed = JSON.parse(text) as { error?: { message?: string } };
+    detail = parsed.error?.message || detail;
+  } catch {}
+  return `${scope} respondió con estado ${response.status}${detail ? `: ${detail}` : ""}`;
 }

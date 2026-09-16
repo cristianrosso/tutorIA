@@ -59,7 +59,21 @@ export async function POST(request: Request) {
       },
       usage: { audioInputSeconds: 0 },
     });
-  } catch {
-    return fail("No se pudo procesar la transcripción del navegador.", 500);
+  } catch (error) {
+    console.error("voice-text failed", error);
+    return fail(voiceErrorMessage(error), 500);
   }
+}
+
+function voiceErrorMessage(error: unknown) {
+  const message = error instanceof Error ? error.message : "";
+  if (/OPENAI_API_KEY/.test(message))
+    return "La clave de OpenAI no está configurada en el servidor.";
+  if (/OpenAI.*estado 401|OpenAI.*estado 403/.test(message))
+    return "OpenAI rechazó la clave configurada en el servidor.";
+  if (/OpenAI.*estado 429|quota|billing|insufficient/i.test(message))
+    return "OpenAI rechazó la solicitud por límite, cuota o facturación.";
+  if (/No se encontró la unidad|sesión|conversación/i.test(message))
+    return message;
+  return "No se pudo consultar el tutor con la transcripción del navegador. Intenta por texto o avísame para revisar logs.";
 }

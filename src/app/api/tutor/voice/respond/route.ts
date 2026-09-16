@@ -116,10 +116,20 @@ export async function POST(request: Request) {
       },
     });
   } catch (error) {
-    const message =
-      error instanceof Error && /OPENAI_API_KEY/.test(error.message)
-        ? "La clave de OpenAI no está configurada en el servidor."
-        : "No se pudo procesar el audio. Verifica tu conexión e inténtalo nuevamente.";
-    return fail(message, 500);
+    console.error("voice-audio failed", error);
+    return fail(voiceErrorMessage(error), 500);
   }
+}
+
+function voiceErrorMessage(error: unknown) {
+  const message = error instanceof Error ? error.message : "";
+  if (/OPENAI_API_KEY/.test(message))
+    return "La clave de OpenAI no está configurada en el servidor.";
+  if (/OpenAI.*estado 401|OpenAI.*estado 403/.test(message))
+    return "OpenAI rechazó la clave configurada en el servidor.";
+  if (/OpenAI.*estado 429|quota|billing|insufficient/i.test(message))
+    return "OpenAI rechazó la solicitud por límite, cuota o facturación.";
+  if (/OpenAI STT/.test(message))
+    return "No se pudo transcribir el audio con OpenAI. Intenta hablar más cerca del micrófono o prueba por texto.";
+  return "No se pudo procesar el audio. Verifica tu conexión e inténtalo nuevamente.";
 }
