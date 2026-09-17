@@ -59,15 +59,13 @@ export function TutorForm({
   const [status, setStatus] = useState<VoiceStatus>("ready");
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const [voice, setVoice] = useState<VoiceResponse | null>(null);
-  const [recordingStartedAt, setRecordingStartedAt] = useState<number | null>(
-    null,
-  );
   const [playbackUrl, setPlaybackUrl] = useState<string | null>(null);
   const [audioSeconds, setAudioSeconds] = useState<number | null>(null);
   const [ttsModel, setTtsModel] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
+  const recordingStartedAtRef = useRef(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const cacheRef = useRef<Map<string, string>>(new Map());
@@ -133,7 +131,7 @@ export function TutorForm({
         void submitRecording();
       };
       mediaRecorderRef.current = recorder;
-      setRecordingStartedAt(Date.now());
+      recordingStartedAtRef.current = Date.now();
       setStatus("listening");
       recorder.start(250);
       window.setTimeout(() => {
@@ -159,6 +157,7 @@ export function TutorForm({
   function cancelRecording() {
     abortRef.current?.abort();
     chunksRef.current = [];
+    recordingStartedAtRef.current = 0;
     speechTranscriptRef.current = "";
     if (mediaRecorderRef.current?.state === "recording") {
       mediaRecorderRef.current.onstop = null;
@@ -172,9 +171,11 @@ export function TutorForm({
   }
 
   async function submitRecording() {
-    const durationMs = recordingStartedAt ? Date.now() - recordingStartedAt : 0;
-    setRecordingStartedAt(null);
-    if (durationMs < minRecordingMs || chunksRef.current.length === 0) {
+    const durationMs = recordingStartedAtRef.current
+      ? Date.now() - recordingStartedAtRef.current
+      : 0;
+    recordingStartedAtRef.current = 0;
+    if (chunksRef.current.length === 0) {
       const fallback = speechTranscriptRef.current.trim();
       if (fallback.length >= 3) {
         await submitBrowserTranscript(fallback, durationMs);
@@ -188,6 +189,18 @@ export function TutorForm({
     }
     const blob = new Blob(chunksRef.current, { type: pickMimeType() });
     chunksRef.current = [];
+    if (durationMs < minRecordingMs && blob.size < 900) {
+      const fallback = speechTranscriptRef.current.trim();
+      if (fallback.length >= 3) {
+        await submitBrowserTranscript(fallback, durationMs);
+        return;
+      }
+      setStatus("ready");
+      setVoiceError(
+        "La grabación fue demasiado breve. Espera que diga ESCUCHANDO y habla al menos 3 segundos.",
+      );
+      return;
+    }
     if (blob.size < 900) {
       const fallback = speechTranscriptRef.current.trim();
       if (fallback.length >= 3) {
