@@ -124,3 +124,22 @@ Sprint 4 deja listo el demo central: estudiante autenticado, Unidad 1 cargada, t
 - [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Autenticación en Next.js](https://nextjs.org/docs/app/guides/authentication)
 - [Proxy en Next.js](https://nextjs.org/docs/app/getting-started/proxy)
+
+
+## Sprint 5B · Motor RAG académico MKF-1
+
+El motor RAG académico está documentado en [`docs/RAG_ARCHITECTURE.md`](docs/RAG_ARCHITECTURE.md). Incluye embeddings persistidos, búsqueda semántica con pgvector, búsqueda textual, score académico, reranking, expansión parent-child, expansión de relaciones MKF-1 y una pantalla administrativa de diagnóstico en `/admin/knowledge/search`.
+
+Comando de indexación:
+
+```powershell
+npm run knowledge:index
+```
+
+Variables nuevas opcionales:
+
+```env
+OPENAI_EMBEDDING_MODEL=text-embedding-3-small
+OPENAI_EMBEDDING_DIMENSIONS=1536
+RAG_DEBUG=false
+```

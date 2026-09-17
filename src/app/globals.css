@@ -1226,6 +1226,54 @@ p {
   white-space: nowrap;
 }
 
+
+.knowledge-search-panel {
+  display: grid;
+  gap: 22px;
+}
+.checkbox-label {
+  display: flex !important;
+  align-items: center;
+  flex-direction: row !important;
+  gap: 10px;
+  margin-top: 22px;
+}
+.checkbox-label input {
+  width: auto;
+}
+.knowledge-results {
+  display: grid;
+  gap: 18px;
+}
+.compact-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.knowledge-result-list {
+  display: grid;
+  gap: 12px;
+}
+.knowledge-result-list article {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 16px;
+  background: #fbfcfa;
+  display: grid;
+  gap: 7px;
+}
+.knowledge-result-list strong {
+  color: var(--ink);
+}
+.knowledge-result-list span,
+.knowledge-result-list small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.knowledge-result-list p {
+  color: #5f6f66;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
 /* Administración */
 .filter-bar {
   display: flex;
@@ -2019,6 +2067,10 @@ input[type="hidden"] {
   }
 }
 @media (max-width: 640px) {
+
+  .compact-metrics {
+    grid-template-columns: 1fr;
+  }
 
   .topic-item {
     align-items: flex-start;

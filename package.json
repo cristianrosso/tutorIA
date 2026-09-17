@@ -20,7 +20,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "admin:create": "node --env-file=.env.local scripts/create-admin.mjs",
-    "mkf1:report": "node scripts/mkf1-generate.mjs"
+    "mkf1:report": "node scripts/mkf1-generate.mjs",
+    "knowledge:index": "node scripts/knowledge-index.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
