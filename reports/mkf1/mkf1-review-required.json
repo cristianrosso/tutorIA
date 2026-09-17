@@ -1,0 +1,6226 @@
+[
+  {
+    "knowledge_id": "U01-POLICIA-DURANTE-LA-COLONIA-FE780D30",
+    "unit": 1,
+    "title": "Policía durante la colonia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DISCIPLINA-CD633788",
+    "unit": 1,
+    "title": "Disciplina",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-LEGALIDAD-9E145CBC",
+    "unit": 1,
+    "title": "Legalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-JUSTICIA-C87FF467",
+    "unit": 1,
+    "title": "Justicia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-EXCELENCIA-25219F99",
+    "unit": 1,
+    "title": "Excelencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-RESILIENCIA-16F33F78",
+    "unit": 1,
+    "title": "Resiliencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-HONOR-515C07AE",
+    "unit": 1,
+    "title": "Honor",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-OBEDIENTE-0A2F2143",
+    "unit": 1,
+    "title": "Obediente",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-NO-DELIBERANTE-D9F4CF91",
+    "unit": 1,
+    "title": "No deliberante",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-FUERZA-PUBLICA-662001BA",
+    "unit": 1,
+    "title": "Fuerza pública",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-UNIFORMADA-0824A62B",
+    "unit": 1,
+    "title": "Uniformada",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-ARMADA-A8339AF1",
+    "unit": 1,
+    "title": "Armada",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DEBER-CON-LA-PATRIA-C284F180",
+    "unit": 1,
+    "title": "Deber con la Patria",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DEBER-DE-CAMARADERIA-D79466CB",
+    "unit": 1,
+    "title": "Deber de Camaradería",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DEBER-CON-LA-FAMILIA-158C7A7E",
+    "unit": 1,
+    "title": "Deber con la Familia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DEBER-CON-LA-MADRE-TIERRA-D665718A",
+    "unit": 1,
+    "title": "Deber con la Madre Tierra",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DEBER-EN-EL-SERVICIO-POLICIAL-F018F245",
+    "unit": 1,
+    "title": "Deber en el Servicio Policial",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-CREACION-O-ACTUALIZACION-882717E7",
+    "unit": 1,
+    "title": "Creación o Actualización",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-DIFUSION-340F7CEC",
+    "unit": 1,
+    "title": "Difusión",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-INTERNALIZACION-7DD894F2",
+    "unit": 1,
+    "title": "Internalización",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-PLANIFICAR-DB782522",
+    "unit": 1,
+    "title": "Planificar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-HACER-964F9FCF",
+    "unit": 1,
+    "title": "Hacer",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-VERIFICAR-792C5DC9",
+    "unit": 1,
+    "title": "Verificar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U01-ACTUAR-77A87B96",
+    "unit": 1,
+    "title": "Actuar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-IMPORTANCIA-DEL-PATRULLAJE-8CC0F1FA",
+    "unit": 2,
+    "title": "Importancia del patrullaje",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-ORGANIZACION-Y-PLANIFICACION-DEL-SERVICIO-DE-CFC97A2D",
+    "unit": 2,
+    "title": "ORGANIZACIÓN Y PLANIFICACIÓN DEL SERVICIO DE PATRULLAJE",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-MODELO-DE-PLANEACION-Y-EJECUCION-10BA24B8",
+    "unit": 2,
+    "title": "Modelo de planeación y ejecución",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PRIORIZACION-D460112E",
+    "unit": 2,
+    "title": "Priorización",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-FORMULACION-EEC5756B",
+    "unit": 2,
+    "title": "Formulación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PLAN-DE-ACCION-030DF292",
+    "unit": 2,
+    "title": "Plan de acción",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-OBJETIVOS-GENERALES-74CE344E",
+    "unit": 2,
+    "title": "Objetivos generales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-URBANO-RURAL-MOTORIZADO-A-PIE-Y-E-8F68C90B",
+    "unit": 2,
+    "title": "PATRULLAJE URBANO, RURAL, MOTORIZADO, A PIE Y ESPECIALIZADO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-RURAL-Y-FRONTERIZO-BA7F004D",
+    "unit": 2,
+    "title": "Patrullaje rural y fronterizo",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-EN-MOTOCICLETA-18D5AEB8",
+    "unit": 2,
+    "title": "Patrullaje en motocicleta",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-A-PIE-1B2238F5",
+    "unit": 2,
+    "title": "Patrullaje a pie",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-EN-BICICLETA-9F676401",
+    "unit": 2,
+    "title": "Patrullaje en bicicleta",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PATRULLAJE-VIRTUAL-32A8D1F4",
+    "unit": 2,
+    "title": "Patrullaje virtual",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-RADIO-PATRULLA-110-3687F51A",
+    "unit": 2,
+    "title": "Radio Patrulla 110",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-CLAVES-POLICIALES-4AEAE269",
+    "unit": 2,
+    "title": "Claves policiales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-PREVENCION-DEL-DELITO-C7B54022",
+    "unit": 2,
+    "title": "Prevención del delito",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-EMPLEO-DE-ARMAS-DE-FUEGO-24E661BA",
+    "unit": 2,
+    "title": "Empleo de armas de fuego",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-ACCION-DIRECTA-876814C2",
+    "unit": 2,
+    "title": "Acción directa",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-IMPORTANCIA-8DBB7E76",
+    "unit": 2,
+    "title": "Importancia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U02-ELABORACION-DE-INFORMES-Y-DOCUMENTACION-POLI-CD2AA18D",
+    "unit": 2,
+    "title": "ELABORACIÓN DE INFORMES Y DOCUMENTACION POLICIAL",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PILARES-FUNDAMENTALES-DE-LA-SEGURIDAD-58B50F7E",
+    "unit": 3,
+    "title": "PILARES FUNDAMENTALES DE LA SEGURIDAD",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MEDIOS-TECNICOS-DE-PROTECCION-BBDBCF18",
+    "unit": 3,
+    "title": "Medios Técnicos de Protección",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-SISTEMA-DE-SEGURIDAD-INTEGRAL-008DE468",
+    "unit": 3,
+    "title": "Sistema de Seguridad Integral",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MEDIOS-HUMANOS-AF611B94",
+    "unit": 3,
+    "title": "MEDIOS HUMANOS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MEDIOS-TECNICOS-DE-PROTECCION-D165D89D",
+    "unit": 3,
+    "title": "MEDIOS TÉCNICOS DE PROTECCIÓN",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CLASIFICACION-DE-LOS-MEDIOS-TECNICOS-DE-PROT-D2B3F124",
+    "unit": 3,
+    "title": "Clasificación de los medios técnicos de protección",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MEDIOS-TECNICOS-ACTIVOS-DE-PROTECCION-ELECTR-CA8EA5DD",
+    "unit": 3,
+    "title": "Medios técnicos activos de protección electrónicos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-DETECTORES-52C24B50",
+    "unit": 3,
+    "title": "Detectores",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CONTACTOS-MAGNETICOS-60294D7C",
+    "unit": 3,
+    "title": "Contactos magnéticos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ALFOMBRAS-DE-PRESION-05C49851",
+    "unit": 3,
+    "title": "Alfombras de presión",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-SISTEMAS-DE-ALARMA-D68FD081",
+    "unit": 3,
+    "title": "Sistemas de alarma",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-SISTEMA-DE-PROTECCION-PERIMETRAL-ELECTRONICA-479A9DC8",
+    "unit": 3,
+    "title": "SISTEMA DE PROTECCIÓN PERIMETRAL ELECTRÓNICA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CIRCUITO-CERRADO-DE-TELEVISION-C-C-T-V-71CF97EA",
+    "unit": 3,
+    "title": "Circuito cerrado de televisión \"C. C. T. V. \"",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FUNCIONES-DE-SEGURIDAD-PERIMETRAL-854F8B84",
+    "unit": 3,
+    "title": "FUNCIONES DE SEGURIDAD PERIMETRAL",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-EL-DESCUBRIMIENTO-27A159E9",
+    "unit": 3,
+    "title": "El descubrimiento",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-LA-DEMORA-993FA457",
+    "unit": 3,
+    "title": "La Demora",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MEDIOS-TECNICOS-PASIVOS-DE-PROTECCION-FISICO-9303633F",
+    "unit": 3,
+    "title": "MEDIOS TÉCNICOS PASIVOS DE PROTECCIÓN (FÍSICOS)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-LOS-MEDIOS-PASIVOS-FISICOS-FA35E230",
+    "unit": 3,
+    "title": "Los medios pasivos físicos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-LAS-BARRERAS-PROTECTORAS-ESTRUCTURALES-FA9052F3",
+    "unit": 3,
+    "title": "Las barreras protectoras estructurales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-BARRERAS-MECANICAS-9012A81B",
+    "unit": 3,
+    "title": "Barreras Mecánicas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-LAS-CERCAS-DE-SEGURIDAD-92F92A01",
+    "unit": 3,
+    "title": "Las cercas de seguridad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CERCAS-DE-SEGURIDAD-MULTIPLES-EDC5F0F6",
+    "unit": 3,
+    "title": "Cercas de seguridad múltiples",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-LAS-PUERTAS-0C6A6D3F",
+    "unit": 3,
+    "title": "Las puertas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PUERTAS-DE-SEGURIDAD-71414D4D",
+    "unit": 3,
+    "title": "Puertas de seguridad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PUERTAS-ACORAZADAS-BE830B55",
+    "unit": 3,
+    "title": "Puertas Acorazadas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PUERTAS-ANTIBALAS-6BB27BC5",
+    "unit": 3,
+    "title": "Puertas antibalas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-VENTANAS-F0FAFDBA",
+    "unit": 3,
+    "title": "Ventanas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ZOCALOS-340ED861",
+    "unit": 3,
+    "title": "Zócalos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CLARABOYAS-B5A8DCEA",
+    "unit": 3,
+    "title": "Claraboyas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CERRADURAS-Y-LLAVES-327D53F1",
+    "unit": 3,
+    "title": "Cerraduras y llaves",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ADMINISTRACION-O-GESTION-DE-RIESGOS-2B15F898",
+    "unit": 3,
+    "title": "Administración o gestión de riesgos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RIESGOS-NATURALES-0C1C14D6",
+    "unit": 3,
+    "title": "Riesgos naturales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RIESGOS-TECNOLOGICOS-211FDD31",
+    "unit": 3,
+    "title": "Riesgos tecnológicos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RIESGOS-SOCIALES-EF4EFA95",
+    "unit": 3,
+    "title": "Riesgos sociales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-GESTION-DE-RIESGO-ACCIONES-INTEGRALES-PARA-M-00366968",
+    "unit": 3,
+    "title": "GESTIÓN DE RIESGO: ACCIONES INTEGRALES PARA MODIFICARLO, DISMINUIRLO O ELIMINARLO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-IDENTIFICACION-DE-RIESGOS-CBD6C3F5",
+    "unit": 3,
+    "title": "Identificación de riesgos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-TRATAMIENTO-DE-RIESGOS-B4E7CD1F",
+    "unit": 3,
+    "title": "Tratamiento de riesgos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-TRANSFERENCIA-DEL-RIESGO-DC1CF06F",
+    "unit": 3,
+    "title": "Transferencia del riesgo",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PLANIFICACION-DE-CONTINGENCIA-6CB5D93A",
+    "unit": 3,
+    "title": "Planificación de contingencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PROTOCOLO-PARA-PLAN-DE-CONTINGENCIA-168555E6",
+    "unit": 3,
+    "title": "PROTOCOLO PARA PLAN DE CONTINGENCIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-DESARROLLO-OPERATIVO-DEL-PROTOCOLO-POR-FASES-5BE8D936",
+    "unit": 3,
+    "title": "Desarrollo Operativo del Protocolo por Fases",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FUNCION-GENERAL-DE-SEGURIDAD-EN-ENTIDADES-FI-9B3A0AA6",
+    "unit": 3,
+    "title": "FUNCIÓN GENERAL DE SEGURIDAD EN ENTIDADES FINANCIERAS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PROTECCION-DE-LA-IMAGEN-E-INTEGRIDAD-INSTITU-D4547908",
+    "unit": 3,
+    "title": "Protección de la Imagen e Integridad Institucional",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MIRAR-VS-OBSERVAR-LA-CONCIENCIA-SITUACIONAL--78C8DE35",
+    "unit": 3,
+    "title": "Mirar vs. Observar: La Conciencia Situacional en el Puesto de Guardia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-AREA-PUBLICA-ZONA-EXTERIOR-E-INTERMEDIA-7088039C",
+    "unit": 3,
+    "title": "Área Pública (Zona Exterior e Intermedia)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-AREA-RESTRINGIDA-O-OPERATIVA-ZONA-INTERMEDIA-DCD45E22",
+    "unit": 3,
+    "title": "Área Restringida o Operativa (Zona Intermedia Interior)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-INSPECCION-DE-CONTRA-VIGILANCIA-EXTERIOR-EL--2796FC7F",
+    "unit": 3,
+    "title": "Inspección de Contra-Vigilancia Exterior: El efectivo policial o personal de vigilancia realiza un recorrido perimetral ",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-REVISION-DEL-ESTADO-FISICO-DEL-ACCESO-EB4C6B4D",
+    "unit": 3,
+    "title": "Revisión del Estado Físico del Acceso",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CONTROL-DE-ESCLUSA-EN-DOBLE-PUERTA-FUNCIONAM-24378600",
+    "unit": 3,
+    "title": "Control de esclusa en doble puerta (funcionamiento y obligatoriedad)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-EL-CLIENTE-INGRESA-AL-HABITACULO-DE-LA-ESCLU-F4010EBC",
+    "unit": 3,
+    "title": "El cliente ingresa al habitáculo de la esclusa. La Puerta A se cierra mecánicamente mediante un cierrapuertas hidráulico",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CABINA-DE-ESCLUSA-CON-ARCO-DETECTOR-DE-METAL-27A62EDA",
+    "unit": 3,
+    "title": "Cabina de Esclusa con Arco Detector de Metales (ADM)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-AJUSTES-TACTICOS-Y-FALSOS-POSITIVOS-6908202B",
+    "unit": 3,
+    "title": "Ajustes Tácticos y Falsos Positivos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-VERIFICACION-TACTICA-FINAL-091C4A1D",
+    "unit": 3,
+    "title": "Verificación Táctica Final",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-SISTEMA-OPERATIVO-N-I-A-NUMERO-DE-IDENTIFICA-C010C8F0",
+    "unit": 3,
+    "title": "Sistema Operativo N. I. A. (Número de Identificación por Área)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ARQUITECTURA-DE-ZONIFICACION-N-I-A-AE4C5576",
+    "unit": 3,
+    "title": "Arquitectura de Zonificación N. I. A",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-GESTION-TACTICA-DE-CREDENCIALES-N-I-A-14B43DE6",
+    "unit": 3,
+    "title": "Gestión Táctica de Credenciales N. I. A",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-INSPECCION-DE-OBJETOS-MALETINES-Y-PAQUETES-83CCC645",
+    "unit": 3,
+    "title": "Inspección de Objetos, Maletines y Paquetes",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-METODOLOGIAS-Y-TECNOLOGIAS-DE-INSPECCION-8E55FFEA",
+    "unit": 3,
+    "title": "Metodologías y Tecnologías de Inspección",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ESPECTROMETRIA-DE-MOVILIDAD-DE-IONES-IMS-ION-2AC69C8E",
+    "unit": 3,
+    "title": "Espectrometría de Movilidad de Iones (IMS - Ion Mobility Spectrometry)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PROTOCOLO-MANUAL-DE-SEGURIDAD-PARA-LA-INSPEC-74C3C1CB",
+    "unit": 3,
+    "title": "Protocolo Manual de Seguridad para la Inspección de Paquetes y Correspondencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-CHAPEO-ELECTROMECANICO-ELECTRO-PESTILLOS-Y-C-5F31EA7A",
+    "unit": 3,
+    "title": "Chapeo Electromecánico (Electro-Pestillos y Chapas de Embutir)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-TECNOLOGIAS-DE-IDENTIFICACION-0E2DC926",
+    "unit": 3,
+    "title": "Tecnologías de Identificación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-TECNOLOGIAS-DE-IDENTIFICACION-POR-RADIOFRECU-76FA0769",
+    "unit": 3,
+    "title": "Tecnologías de Identificación por Radiofrecuencia (RFID / Tarjetas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-TECNOLOGIAS-BIOMETRICAS-ALTA-SEGURIDAD-DEDA605B",
+    "unit": 3,
+    "title": "Tecnologías Biométricas (Alta Seguridad)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ETAPAS-DE-LA-CRISIS-MARDI-J-HOROWITZ-90157A88",
+    "unit": 3,
+    "title": "Etapas de la Crisis (Mardi J. Horowitz)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FASE-1-IMPACTO-CLAMOR-3A68B16B",
+    "unit": 3,
+    "title": "Fase 1: Impacto / Clamor",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FASE-2-NEGACION-29A86B3C",
+    "unit": 3,
+    "title": "Fase 2: Negación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FASE-3-INTRUSION-099B0398",
+    "unit": 3,
+    "title": "Fase 3: Intrusión",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FASE-4-TRABAJO-A-TRAVES-DE-D6FF5BEA",
+    "unit": 3,
+    "title": "Fase 4: Trabajo a través de…",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-FASE-5-RESOLUCION-307193B8",
+    "unit": 3,
+    "title": "Fase 5: Resolución",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RASGOS-DESCRIPTIVOS-DE-UN-POSIBLE-ATRACADOR-BA773A11",
+    "unit": 3,
+    "title": "Rasgos descriptivos de un posible atracador",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-INDICADORES-FISICOS-Y-LENGUAJE-CORPORAL-ESTR-F086BDDA",
+    "unit": 3,
+    "title": "Indicadores Físicos y Lenguaje Corporal (Estrés Involuntario)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-INDICADORES-DE-VESTIMENTA-Y-EQUIPAMIENTO-04575742",
+    "unit": 3,
+    "title": "Indicadores de Vestimenta y Equipamiento",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RUTINA-DIARIA-DE-SEGURIDAD-389263AA",
+    "unit": 3,
+    "title": "RUTINA DIARIA DE SEGURIDAD",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-RECEPCION-DEL-PUESTO-DE-GUARDIA-BRIEFING-DE--8E55FDF7",
+    "unit": 3,
+    "title": "Recepción del Puesto de Guardia (Briefing de Novedades)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-ACCIONES-DURANTE-LA-EJECUCION-DEL-SERVICIO-7E89D422",
+    "unit": 3,
+    "title": "Acciones Durante la Ejecución del Servicio",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-PATRULLAJE-DINAMICO-Y-CONTRA-VIGILANCIA-PERI-E87197E7",
+    "unit": 3,
+    "title": "Patrullaje Dinámico y Contra-Vigilancia Perimetral",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U03-MANTENIMIENTO-DEL-ENTORNO-FISICO-DE-SEGURIDA-927B9652",
+    "unit": 3,
+    "title": "Mantenimiento del Entorno Físico de Seguridad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-UNIDAD-TEMATICA-4-FC700A99",
+    "unit": 4,
+    "title": "UNIDAD TEMÁTICA 4",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-FUNCIONES-DEL-MINISTERIO-PUBLICO-Y-DE-LA-POL-D96653DB",
+    "unit": 4,
+    "title": "Funciones del Ministerio Público y de la Policía Boliviana",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-PROTECCION-DE-DERECHOS-Y-GARANTIAS-CONSTITUC-B890EEDD",
+    "unit": 4,
+    "title": "Protección de Derechos y Garantías Constitucionales en el Proceso Penal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-ESTRATEGIAS-DE-PLANIFICACION-Y-COORDINACION-35BABCD9",
+    "unit": 4,
+    "title": "Estrategias de Planificación y Coordinación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-EL-CUADERNO-DE-INVESTIGACIONES-C09C2ECB",
+    "unit": 4,
+    "title": "El cuaderno de investigaciones",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-ACTOS-INICIALES-E6C1B949",
+    "unit": 4,
+    "title": "Actos Iniciales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-DENUNCIA-86F8C3B1",
+    "unit": 4,
+    "title": "Denuncia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-REACTIVOS-Y-SOLUCIONES-PARA-EL-PROCESAMIENTO-08A6A82D",
+    "unit": 4,
+    "title": "Reactivos y Soluciones para el procesamiento de huellas papilares",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-REVELADORES-QUIMICOS-9B7CC7CA",
+    "unit": 4,
+    "title": "Reveladores químicos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-REVELADORES-LIQUIDOS-8BE56277",
+    "unit": 4,
+    "title": "Reveladores líquidos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-LA-EVIDENCIA-DIRECTA-O-TESTIFICAL-6F222F79",
+    "unit": 4,
+    "title": "La evidencia directa o testifical",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-LA-EVIDENCIA-REAL-FISICA-O-MATERIAL-A8B993D6",
+    "unit": 4,
+    "title": "La evidencia real, física o material",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-VARIEDAD-INFINITA-UNIVERSALIDAD-547378A4",
+    "unit": 4,
+    "title": "Variedad infinita - universalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-PALAMETOSCOPIA-QUEILOSCOPIA-DB04E2F1",
+    "unit": 4,
+    "title": "Palametoscopia - queiloscopia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-POROSCOPIA-F564275B",
+    "unit": 4,
+    "title": "Poroscopia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-IMPRESION-PAPILAR-8F5CFCB2",
+    "unit": 4,
+    "title": "Impresión Papilar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-DACTILOSCOPIA-563F81D6",
+    "unit": 4,
+    "title": "Dactiloscopia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-GRUPOS-FUNDAMENTALES-79C24335",
+    "unit": 4,
+    "title": "Grupos fundamentales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-VERTICILO-POSEE-DOS-O-MAS-DELTAS-Y-FIGURAS-C-683F27F1",
+    "unit": 4,
+    "title": "Verticilo: Posee dos o más deltas y figuras concéntricas, espirales o en forma de bolsa",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-SECCION-CLASIFICACION-ASIGNADA-A-LOS-CUATRO--2502AEE7",
+    "unit": 4,
+    "title": "Sección: Clasificación asignada a los cuatro dedos restantes (índice, medio, anular y meñique)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-TERATOLOGIA-DACTILAR-730D319F",
+    "unit": 4,
+    "title": "Teratología Dactilar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-SINDACTILIA-UNION-CONGENITA-O-MEMBRANA-ENTRE-832B7B79",
+    "unit": 4,
+    "title": "Sindactilia: Unión congénita o membrana entre dos o más dedos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-ANOMALIAS-ADQUIRIDAS-CF011381",
+    "unit": 4,
+    "title": "Anomalías Adquiridas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-CADENA-DE-CUSTODIA-A6AF9718",
+    "unit": 4,
+    "title": "Cadena de Custodia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-REGLAS-QUE-DEBE-CUMPLIR-EL-SISTEMA-DE-CADENA-ECC84FCF",
+    "unit": 4,
+    "title": "Reglas que debe cumplir el sistema de cadena de custodia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-INDIVIDUALIZACION-Y-CODIFICACION-FE1C380E",
+    "unit": 4,
+    "title": "Individualización y codificación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-CUIDADOS-DURANTE-EL-TRANSPORTE-C25ADB87",
+    "unit": 4,
+    "title": "Cuidados durante el transporte",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-TERCERA-FASE-EL-ANALISIS-12B89F43",
+    "unit": 4,
+    "title": "Tercera fase: el análisis",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-EXAMEN-INTERNO-O-AUTOPSIA-PROPIAMENTE-DICHA-3A02AC95",
+    "unit": 4,
+    "title": "Examen interno o autopsia propiamente dicha",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-COORDINACION-INTERINSTITUCIONAL-EN-LA-INVEST-9148787A",
+    "unit": 4,
+    "title": "Coordinación interinstitucional en la investigación penal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-CONTENIDO-0F97C19C",
+    "unit": 4,
+    "title": "Contenido",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-ELABORACION-DEL-INFORME-CONCLUSIVO-75646162",
+    "unit": 4,
+    "title": "Elaboración del Informe Conclusivo",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U04-DECLARACION-EN-JUICIO-ORAL-D73A3B5C",
+    "unit": 4,
+    "title": "Declaración en Juicio Oral",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-UNIDAD-TEMATICA-5-36F5BE80",
+    "unit": 5,
+    "title": "UNIDAD TEMÁTICA 5",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DIFERENCIA-ENTRE-JURISDICCION-Y-COMPETENCIA-2EE3B835",
+    "unit": 5,
+    "title": "DIFERENCIA ENTRE JURISDICCIÓN Y COMPETENCIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CIRCULACION-DENTRO-DEL-RADIO-URBANO-0740B2D8",
+    "unit": 5,
+    "title": "CIRCULACIÓN DENTRO DEL RADIO URBANO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ADELANTAMIENTO-76153CED",
+    "unit": 5,
+    "title": "ADELANTAMIENTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-NORMAS-PARA-ADELANTAMIENTO-ART-1-RCNT-F003D990",
+    "unit": 5,
+    "title": "NORMAS PARA ADELANTAMIENTO. - ( Art. \\1 RCNT )",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ESTACIONAMIENTO-PARADA-Y-DETENCION-1CEC98F5",
+    "unit": 5,
+    "title": "ESTACIONAMIENTO, PARADA Y DETENCIÓN. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-NORMAS-PARA-ESTACIONAR-2443889E",
+    "unit": 5,
+    "title": "NORMAS PARA ESTACIONAR. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-EFECTUAR-EL-ESTACIONAMIENTO-EN-LUGAR-AUTORIZ-9117F828",
+    "unit": 5,
+    "title": "Efectuar el estacionamiento en lugar autorizado",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-VELOCIDADES-EN-EL-AREA-RURAL-ART-1-C-N-T-6EAEE6D9",
+    "unit": 5,
+    "title": "VELOCIDADES EN EL ÁREA RURAL. - ( Art. \\1 C. N. T. )",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DESEMPENAR-UNA-FUNCION-NECESARIA-0C65D261",
+    "unit": 5,
+    "title": "Desempeñar una función necesaria",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CARRETERA-PANAMERICANA-PAISES-SE-IDENTIFICAN-138B2B81",
+    "unit": 5,
+    "title": "Carretera Panamericana. - ( Países) Se identifican los caminos que pertenecen al sistema panamericano",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-OTRAS-SENALES-BOCINAS-PITOS-MANUALES-8AF26942",
+    "unit": 5,
+    "title": "OTRAS SEÑALES, BOCINAS, PITOS, MANUALES. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-SISTEMA-ACTUAL-DE-SANCIONES-F254A316",
+    "unit": 5,
+    "title": "SISTEMA ACTUAL DE SANCIONES. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DEFINICION-DE-HECHO-DE-TRANSITO-0862BA6E",
+    "unit": 5,
+    "title": "DEFINICION DE HECHO DE TRANSITO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CLASES-DE-ACCIDENTE-A5CDEF15",
+    "unit": 5,
+    "title": "CLASES DE ACCIDENTE",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-SEGUN-EL-CODIGO-DE-TRANSITO-09D3E018",
+    "unit": 5,
+    "title": "SEGÚN EL CÓDIGO DE TRÁNSITO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-SEGUN-CRITERIO-TECNICO-6981292B",
+    "unit": 5,
+    "title": "SEGÚN CRITERIO TÉCNICO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-TERMINOLOGIA-DEL-ACCIDENTE-7BCDEAC2",
+    "unit": 5,
+    "title": "TERMINOLOGIA DEL ACCIDENTE. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CHOQUE-F56A4B18",
+    "unit": 5,
+    "title": "CHOQUE. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ATRICCIONAMIENTO-4C01A40A",
+    "unit": 5,
+    "title": "ATRICCIONAMIENTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-VUELCO-D8B6D24E",
+    "unit": 5,
+    "title": "VUELCO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-EMBARRANCAMIENTO-3CBEDB68",
+    "unit": 5,
+    "title": "EMBARRANCAMIENTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ENCUNETAMIENTO-0D57D09F",
+    "unit": 5,
+    "title": "ENCUNETAMIENTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-AVERIGUACION-DE-LOS-HECHOS-6F79CEA8",
+    "unit": 5,
+    "title": "AVERIGUACIÓN DE LOS HECHOS. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ENTREVISTA-DE-LOS-PROTAGONISTAS-TESTIGOS-ETC-65E8E425",
+    "unit": 5,
+    "title": "ENTREVISTA DE LOS PROTAGONISTAS, TESTIGOS, ETC",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-COMPROBACION-DE-LAS-CONDICIONES-DEL-VEHICULO-617BA0FC",
+    "unit": 5,
+    "title": "COMPROBACIÓN DE LAS CONDICIONES DEL VEHÍCULO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-COMPROBACION-DE-DANOS-FISICOS-Y-MATERIALES-36754E07",
+    "unit": 5,
+    "title": "COMPROBACIÓN DE DAÑOS FÍSICOS Y MATERIALES",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ANALISIS-DE-LOS-HECHOS-94A083B9",
+    "unit": 5,
+    "title": "ANÁLISIS DE LOS HECHOS. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CAUSAS-REMOTAS-F29C9D68",
+    "unit": 5,
+    "title": "CAUSAS REMOTAS. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ELABORACION-DE-INFORME-1D304E5B",
+    "unit": 5,
+    "title": "ELABORACIÓN DE INFORME. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PUNTO-DE-SORPRESA-56831AA1",
+    "unit": 5,
+    "title": "PUNTO DE SORPRESA. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PUNTO-DE-NO-ESCAPE-0A97CA77",
+    "unit": 5,
+    "title": "PUNTO DE NO ESCAPE. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PUNTO-DE-ACONTECIMIENTO-LLAVE-O-CLAVE-O-PUNT-7AD28895",
+    "unit": 5,
+    "title": "PUNTO DE ACONTECIMIENTO LLAVE O CLAVE O PUNTO DE CONTACTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PUNTO-DE-MAYOR-CONTACTO-E317D17B",
+    "unit": 5,
+    "title": "PUNTO DE MAYOR CONTACTO. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DEFICIENCIAS-MENTALES-Y-NERVIOSAS-QUE-PRIVAN-E28D5D27",
+    "unit": 5,
+    "title": "Deficiencias mentales y nerviosas. - Que privan al conductor de la compresión de peligros, y adoptar decisiones pertenen",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DEFICIENCIAS-SENSORIALES-C0536455",
+    "unit": 5,
+    "title": "DEFICIENCIAS SENSORIALES. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-APTITUDES-TECNICAS-CFD0DC05",
+    "unit": 5,
+    "title": "APTITUDES TÉCNICAS. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-OBSERVACION-FA9E7E87",
+    "unit": 5,
+    "title": "OBSERVACIÓN. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PERICIA-0748682D",
+    "unit": 5,
+    "title": "PERICIA. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-CONDICIONES-DEL-VEHICULO-FFE24E92",
+    "unit": 5,
+    "title": "CONDICIONES DEL VEHICULO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PARTES-DEL-VEHICULO-QUE-SON-MAS-PROPENSO-A-C-26249DA0",
+    "unit": 5,
+    "title": "PARTES DEL VEHICULO QUE SON MAS PROPENSO A CONTRIBUIR A LOS ACCIDENTES. -",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-PREPARATIVOS-60981B8A",
+    "unit": 5,
+    "title": "PREPARATIVOS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ACCION-DIRECTA-01376E76",
+    "unit": 5,
+    "title": "ACCIÓN DIRECTA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-ANALISIS-DEL-LUGAR-DEL-HECHO-CEA7E3DF",
+    "unit": 5,
+    "title": "ANÁLISIS DEL LUGAR DEL HECHO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DESCRIPCION-ESCRITA-96EF7CD0",
+    "unit": 5,
+    "title": "DESCRIPCIÓN ESCRITA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DESCRIPCION-GRAFICA-8D0BCFD6",
+    "unit": 5,
+    "title": "DESCRIPCIÓN GRÁFICA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-IDENTIFICACION-E46EC62F",
+    "unit": 5,
+    "title": "IDENTIFICACIÓN",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U05-DESCRIPCION-DE-LOS-DANOS-9FDA3925",
+    "unit": 5,
+    "title": "DESCRIPCIÓN DE LOS DAÑOS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-MANTENIMIENTO-Y-RESTABLECIMIENTO-DEL-ORDEN-P-607667F1",
+    "unit": 6,
+    "title": "MANTENIMIENTO Y RESTABLECIMIENTO DEL ORDEN PÚBLICO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-LA-PIRAMIDE-O-MODELO-PROGRESIVO-Y-DIFERENCIA-81925E90",
+    "unit": 6,
+    "title": "LA PIRÁMIDE O MODELO PROGRESIVO Y DIFERENCIADO DEL USO DE LA FUERZA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-TECNICAS-DE-VERBALIZACION-Y-NEGOCIACION-COMO-574F9C16",
+    "unit": 6,
+    "title": "TÉCNICAS DE VERBALIZACIÓN Y NEGOCIACIÓN COMO HERRAMIENTAS PRIORITARIAS DE DISUASIÓN",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-ARTICULO-293-DEL-CPP-DILIGENCIAS-PRELIMINARE-C32C137E",
+    "unit": 6,
+    "title": "ARTÍCULO 293 DEL CPP -- DILIGENCIAS PRELIMINARES",
+    "content_type": "ARTICLE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.82,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-ARTICULO-295-DEL-CPP-FACULTADES-56856DDE",
+    "unit": 6,
+    "title": "ARTÍCULO 295 DEL CPP -- FACULTADES",
+    "content_type": "ARTICLE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.82,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-FINALIDAD-PROTECTORA-RESGUARDAR-LA-VIDA-E-IN-559825A8",
+    "unit": 6,
+    "title": "Finalidad protectora: Resguardar la vida e integridad de las personas",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-FINALIDAD-PREVENTIVA-EVITAR-LA-CONTINUACION--85A1FD01",
+    "unit": 6,
+    "title": "Finalidad preventiva: Evitar la continuación del hecho o nuevos riesgos",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-FINALIDAD-INVESTIGATIVA-PRESERVAR-INFORMACIO-6BE87303",
+    "unit": 6,
+    "title": "Finalidad investigativa: Preservar información e indicios útiles para la investigación",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-FINALIDAD-CAUTELAR-EVITAR-LA-FUGA-DE-PERSONA-0953FEF9",
+    "unit": 6,
+    "title": "Finalidad cautelar: Evitar la fuga de personas cuando exista fundamento legal para su aprehensión",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-PRESERVACION-Y-ACORDONAMIENTO-DEL-LUGAR-DEL--CB0B6763",
+    "unit": 6,
+    "title": "PRESERVACIÓN Y ACORDONAMIENTO DEL LUGAR DEL HECHO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-ESTRUCTURA-REDACCION-TECNICA-Y-VALIDEZ-JURID-2AB25C87",
+    "unit": 6,
+    "title": "ESTRUCTURA, REDACCIÓN TÉCNICA Y VALIDEZ JURÍDICA DEL ACTA DE ACCIÓN DIRECTA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-POLICIA-BOLIVIANA-35B8163D",
+    "unit": 6,
+    "title": "POLICÍA BOLIVIANA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-BOMBERIA-Y-SALVATAJE-78697E41",
+    "unit": 6,
+    "title": "BOMBERÍA Y SALVATAJE",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-INTELIGENCIA-BASICA-POLICIAL-3D20D3B4",
+    "unit": 6,
+    "title": "INTELIGENCIA BÁSICA POLICIAL",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-CONCEPTOS-BASICOS-DE-INTELIGENCIA-F8DA7D20",
+    "unit": 6,
+    "title": "CONCEPTOS BÁSICOS DE INTELIGENCIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-CICLO-DE-PRODUCCION-DE-LA-INTELIGENCIA-2DD11AB2",
+    "unit": 6,
+    "title": "CICLO DE PRODUCCIÓN DE LA INTELIGENCIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-IMPORTANCIA-DE-LAS-OPERACIONES-POLICIALES-72E259B8",
+    "unit": 6,
+    "title": "IMPORTANCIA DE LAS OPERACIONES POLICIALES",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-LAS-OPERACIONES-POLICIALES-CONSTITUYEN-UN-CO-09F71321",
+    "unit": 6,
+    "title": "Las operaciones policiales constituyen un componente fundamental de la función policial porque permiten convertir los co",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-UNA-OPERACION-POLICIAL-LEGITIMA-DEBE-COMBINA-B06F79C5",
+    "unit": 6,
+    "title": "Una operación policial legítima debe combinar planificación, prevención, comunicación, coordinación, disciplina, respeto",
+    "content_type": "NORMATIVE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.8,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-LA-EFICACIA-POLICIAL-NO-DEBE-MEDIRSE-UNICAME-A254274B",
+    "unit": 6,
+    "title": "La eficacia policial no debe medirse únicamente por los resultados obtenidos, sino también por la forma legal, profesion",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-CONCLUSIONES-AFB25B04",
+    "unit": 6,
+    "title": "CONCLUSIONES",
+    "content_type": "PRINCIPLE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.73,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U06-RECOMENDACIONES-CD235F82",
+    "unit": 6,
+    "title": "RECOMENDACIONES",
+    "content_type": "NORMATIVE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.8,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-AE97AD6A",
+    "unit": 7,
+    "title": "Constitución Política del Estado",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-FINES-ESENCIALES-DEL-ESTADO-4B3208DB",
+    "unit": 7,
+    "title": "Fines esenciales del Estado",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-GARANTIZAR-EL-BIENESTAR-EL-DESARROLLO-INTEGR-4D1BBEB5",
+    "unit": 7,
+    "title": "Garantizar el bienestar, el desarrollo integral, la igualdad real y la justicia social para todos sus habitantes",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-RECONOCER-RESPETAR-Y-PROTEGER-LA-DIVERSIDAD--95F37F17",
+    "unit": 7,
+    "title": "Reconocer, respetar y proteger la diversidad cultural, social y política del país",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-PROMOVER-UN-DESARROLLO-ECONOMICO-JUSTO-EQUIL-E516CEA4",
+    "unit": 7,
+    "title": "Promover un desarrollo económico justo, equilibrado y sostenible",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-GARANTIZAR-EL-CUMPLIMIENTO-DE-LOS-DERECHOS-D-5D7714FC",
+    "unit": 7,
+    "title": "Garantizar el cumplimiento de los derechos, deberes y garantías establecidos en la Constitución",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-MANTENER-LA-SEGURIDAD-INTERNA-EL-ORDEN-PUBLI-211AD7CC",
+    "unit": 7,
+    "title": "Mantener la seguridad interna, el orden público y la paz social en todo el territorio nacional",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-DERECHOS-CIVILES-7FAE4089",
+    "unit": 7,
+    "title": "Derechos civiles",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-DERECHOS-SOCIALES-70055463",
+    "unit": 7,
+    "title": "Derechos sociales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-GARANTIAS-CONSTITUCIONALES-2F37296B",
+    "unit": 7,
+    "title": "Garantías constitucionales",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-FINALIDAD-5E836399",
+    "unit": 7,
+    "title": "Finalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-CLASIFICACION-5822DBF4",
+    "unit": 7,
+    "title": "Clasificación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-BLOQUE-DE-CONSTITUCIONALIDAD-Y-TRATADOS-INTE-5DDFF05F",
+    "unit": 7,
+    "title": "BLOQUE DE CONSTITUCIONALIDAD Y TRATADOS INTERNACIONALES APLICABLES",
+    "content_type": "NORMATIVE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.8,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-CONTROL-DE-CONSTITUCIONALIDAD-87945541",
+    "unit": 7,
+    "title": "Control de constitucionalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-ACTO-JURIDICO-Y-HECHO-JURIDICO-466C0CBB",
+    "unit": 7,
+    "title": "Acto Jurídico y Hecho Jurídico",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-EJEMPLOS-ACTO-FIRMAR-UN-CONTRATO-HECHO-CUMPL-2D54DAE5",
+    "unit": 7,
+    "title": "Ejemplos: Acto = firmar un contrato; Hecho = cumplir la mayoría de edad o un accidente de tránsito",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-RENDICION-DE-CUENTAS-F3AE1AEA",
+    "unit": 7,
+    "title": "Rendición de cuentas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-DEBER-DE-OBEDIENCIA-CUMPLIR-LAS-ORDENES-DE-L-8B6B0FC4",
+    "unit": 7,
+    "title": "Deber de obediencia: Cumplir las órdenes de los superiores cuando estén dentro de la ley y de sus atribuciones",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-JERARQUIA-POLICIAL-RECONOCER-LA-AUTORIDAD-DE-3B006AA4",
+    "unit": 7,
+    "title": "Jerarquía policial: Reconocer la autoridad determinada por el grado o por el cargo que legalmente se desempeña",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U07-PARTICIPACION-CIUDADANA-8AD7255B",
+    "unit": 7,
+    "title": "Participación ciudadana",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-EN-PROGRESO-CUARTA-Y-QUINTA-GENERACION-8A039364",
+    "unit": 8,
+    "title": "En Progreso (Cuarta y Quinta Generación)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-SISTEMAS-INTERNACIONALES-CE09D0D3",
+    "unit": 8,
+    "title": "SISTEMAS INTERNACIONALES",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-LINEA-DE-GRADUACION-PROHIBIDA-E852FB07",
+    "unit": 8,
+    "title": "LÍNEA DE GRADUACIÓN PROHIBIDA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-RESULTADO-JURIDICO-NULIDAD-DE-ACTOS-Y-PROCES-1DFB9B5B",
+    "unit": 8,
+    "title": "RESULTADO JURÍDICO: NULIDAD DE ACTOS Y PROCESAMIENTO PENAL AL POLICÍA",
+    "content_type": "NORMATIVE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.8,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-GARANTIAS-INMEDIATAS-DE-REGISTRO-DESDE-EL-PR-A1C6F4AB",
+    "unit": 8,
+    "title": "Garantías Inmediatas de Registro: Desde el primer minuto de la detención, se debe registrar el nombre, hora exacta de in",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-CONDICIONES-AMBIENTALES-MINIMAS-LAS-CELDAS-P-891BDFD1",
+    "unit": 8,
+    "title": "Condiciones Ambientales Mínimas: Las celdas policiales deben contar con ventilación adecuada, luz natural o artificial s",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-SEPARACION-CATEGORICA-QUEDA-ESTRICTAMENTE-PR-50DB4F9A",
+    "unit": 8,
+    "title": "Separación Categórica: Queda estrictamente prohibido mantener en una misma celda a hombres y mujeres, o a mayores de eda",
+    "content_type": "ENUMERATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.74,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-MARCO-ETICO-Y-NORMATIVO-POLICIAL-94251A6B",
+    "unit": 8,
+    "title": "MARCO ÉTICO Y NORMATIVO POLICIAL",
+    "content_type": "PRINCIPLE",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.73,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-PRESENCIA-POLICIAL-EL-UNIFORME-EL-PORTE-POLI-05AD2A6C",
+    "unit": 8,
+    "title": "Presencia Policial: El uniforme, el porte policial y el vehículo oficial son el primer nivel coercitivo sicológico preve",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U08-CONTROL-DE-CONTACTO-FISICO-PASIVO-TECNICAS-S-9F9288D6",
+    "unit": 8,
+    "title": "Control de Contacto / Físico Pasivo: Técnicas suaves de guía o sujeción ante personas que muestran resistencia pasiva",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-PRESUNCION-DE-INOCENCIA-C3770039",
+    "unit": 9,
+    "title": "Presunción de inocencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-DEBIDO-PROCESO-27BE1DC9",
+    "unit": 9,
+    "title": "Debido proceso",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-OBJETIVIDAD-E-IMPARCIALIDAD-ABEFB9A3",
+    "unit": 9,
+    "title": "Objetividad e imparcialidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-PROPORCIONALIDAD-E-INTERVENCION-MINIMA-80A982A0",
+    "unit": 9,
+    "title": "Proporcionalidad e intervención mínima",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-LA-POLICIA-BOLIVIANA-COMO-ORGANO-AUXILIAR-DE-FA050186",
+    "unit": 9,
+    "title": "La Policía Boliviana como órgano auxiliar del Ministerio Público",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-PREVENCION-DEL-DELITO-Y-PROTECCION-DE-VICTIM-E5E4E7EC",
+    "unit": 9,
+    "title": "Prevención del delito y protección de víctimas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-CONSERVACION-DEL-LUGAR-DEL-HECHO-Y-RECOLECCI-86931550",
+    "unit": 9,
+    "title": "Conservación del lugar del hecho y recolección de indicios",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-IDENTIFICACION-DE-AUTORES-Y-PARTICIPES-A32AB136",
+    "unit": 9,
+    "title": "Identificación de autores y partícipes",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-APREHENSION-EN-FLAGRANCIA-7253B78F",
+    "unit": 9,
+    "title": "Aprehensión en flagrancia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-EJECUCION-DE-ACTOS-INVESTIGATIVOS-ORDENADOS--AFF79A3E",
+    "unit": 9,
+    "title": "Ejecución de actos investigativos ordenados por el Fiscal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-ELABORACION-DE-INFORMES-TECNICOS-Y-CUSTODIA--2BF31C32",
+    "unit": 9,
+    "title": "Elaboración de informes técnicos y custodia de evidencias",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-INVESTIGACION-PRELIMINAR-6919EC79",
+    "unit": 9,
+    "title": "Investigación preliminar",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-REQUISA-PERSONAL-Y-DE-VEHICULOS-762532C7",
+    "unit": 9,
+    "title": "Requisa personal y de vehículos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-ACTUACIONES-FUNDAMENTADAS-A144C858",
+    "unit": 9,
+    "title": "Actuaciones fundamentadas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-COORDINACION-CON-EL-INSTITUTO-DE-INVESTIGACI-987CF7B1",
+    "unit": 9,
+    "title": "Coordinación con el Instituto de Investigaciones Forenses (IDIF)",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-JURISDICCION-PENAL-E6420696",
+    "unit": 9,
+    "title": "Jurisdicción penal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-ACCION-PENAL-PRIVADA-EBBAB719",
+    "unit": 9,
+    "title": "Acción penal privada",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-DERECHOS-DEL-IMPUTADO-4015822D",
+    "unit": 9,
+    "title": "Derechos del imputado",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-DERECHO-A-LA-DEFENSA-Y-A-GUARDAR-SILENCIO-6199E005",
+    "unit": 9,
+    "title": "Derecho a la defensa y a guardar silencio",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-ANTIJURIDICIDAD-670B1781",
+    "unit": 9,
+    "title": "Antijuridicidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-AUTORIA-Y-PARTICIPACION-A2AE7EA2",
+    "unit": 9,
+    "title": "Autoría y participación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-IDEACION-E0A5E9F7",
+    "unit": 9,
+    "title": "Ideación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-ARRESTO-APREHENSION-Y-DETENCION-EN-FLAGRANCI-63ED4027",
+    "unit": 9,
+    "title": "Arresto, aprehensión y detención en flagrancia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-PRESERVACION-DE-EVIDENCIAS-C2433DE5",
+    "unit": 9,
+    "title": "Preservación de evidencias",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-EL-POLICIA-COMO-TESTIGO-6245347C",
+    "unit": 9,
+    "title": "El policía como testigo",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-CUSTODIA-DE-EVIDENCIAS-A2A711A7",
+    "unit": 9,
+    "title": "Custodia de evidencias",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U09-FACULTAD-TECNICA-SUPERIOR-EN-CIENCIAS-POLICI-B0359AB6",
+    "unit": 9,
+    "title": "FACULTAD TECNICA SUPERIOR EN CIENCIAS POLICIALES",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U10-UNIDAD-TEMATICA-10-FD08D6DA",
+    "unit": 10,
+    "title": "UNIDAD TEMÁTICA 10",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U10-MARCO-JURIDICO-INTERNACIONAL-7CDC5072",
+    "unit": 10,
+    "title": "MARCO JURÍDICO INTERNACIONAL",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U10-RECEPCION-DE-LA-DENUNCIA-F289F9F0",
+    "unit": 10,
+    "title": "RECEPCIÓN DE LA DENUNCIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U11-UNIDAD-TEMATICA-11-6495CD29",
+    "unit": 11,
+    "title": "UNIDAD TEMÁTICA 11",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U11-CONTROL-INTERNO-7890D2EF",
+    "unit": 11,
+    "title": "Control Interno",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U11-PROCESO-INTERNO-A3C1661E",
+    "unit": 11,
+    "title": "Proceso interno",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U11-CUADRO-GENERAL-DE-PRESCRIPCION-CFC91E4D",
+    "unit": 11,
+    "title": "Cuadro General de Prescripción",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-CUMPLIR-Y-HACER-CUMPLIR-LAS-LEYES-PROTEGER-L-56FA6EC9",
+    "unit": 12,
+    "title": "Cumplir y hacer cumplir las leyes, proteger la vida, la libertad y la propiedad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-USAR-EL-ARMA-DE-FUEGO-UNICAMENTE-EN-LEGITIMA-9CFD1EE9",
+    "unit": 12,
+    "title": "Usar el arma de fuego únicamente en legítima defensa o estado de necesidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-DEFINICION-OPERATIVA-DE-LIDERAZGO-POLICIAL-M-5F0116D2",
+    "unit": 12,
+    "title": "Definición operativa de liderazgo policial, mando y subordinación voluntaria",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-EL-LIDERAZGO-DEMOCRATICO-APLICABILIDAD-EN-LA-5977D5E2",
+    "unit": 12,
+    "title": "El liderazgo democrático: aplicabilidad en la planificación de proyectos preventivos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-CLASIFICACION-DE-LA-CORRESPONDENCIA-A3640520",
+    "unit": 12,
+    "title": "Clasificación de la correspondencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-CLASIFICACION-POR-NIVEL-DE-CONFIDENCIALIDAD-0E085A10",
+    "unit": 12,
+    "title": "Clasificación por nivel de confidencialidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-IMPORTANCIA-DE-LA-CORRESPONDENCIA-3D5C6611",
+    "unit": 12,
+    "title": "Importancia de la correspondencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-DOCUMENTACION-POLICIAL-449F9F1B",
+    "unit": 12,
+    "title": "Documentación policial",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-CONCEPTUALIZACION-OBJETIVO-E-IMPORTANCIA-DE--670F30DA",
+    "unit": 12,
+    "title": "Conceptualización, objetivo e importancia de las relaciones humanas, públicas y trato social",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-RELACIONES-PUBLICAS-Y-TRATO-SOCIAL-C3561F48",
+    "unit": 12,
+    "title": "Relaciones públicas y trato social",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-NORMAS-DE-TRATO-SOCIAL-3018FE39",
+    "unit": 12,
+    "title": "Normas de trato social",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-RELACIONAMIENTO-CON-EL-PUBLICO-302123FB",
+    "unit": 12,
+    "title": "Relacionamiento con el público",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-CODIGO-DE-CONDUCTA-FD25B4DF",
+    "unit": 12,
+    "title": "Código de conducta",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-LA-IMPORTANCIA-DEL-CUIDADO-DE-LA-IMAGEN-CORP-8ADB8CC3",
+    "unit": 12,
+    "title": "La importancia del cuidado de la imagen corporativa e institucional",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-LIDERAZGO-Y-RELACIONES-HUMANAS-INTERNAS-66CF4437",
+    "unit": 12,
+    "title": "Liderazgo y relaciones humanas internas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-LIDERES-Y-JEFES-DISTINCION-CONCEPTUAL-112B677F",
+    "unit": 12,
+    "title": "Líderes y jefes: distinción conceptual",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-LA-COMUNICACION-74248E46",
+    "unit": 12,
+    "title": "La comunicación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-EL-LENGUAJE-Y-LA-GRAMATICA-91A09F14",
+    "unit": 12,
+    "title": "El lenguaje y la gramática",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-ORATORIA-Y-EL-DISCURSO-F75293E4",
+    "unit": 12,
+    "title": "Oratoria y el discurso",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-OBJETIVO-DEL-DISCURSO-72F8DB61",
+    "unit": 12,
+    "title": "Objetivo del discurso",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-MIEDO-ESCENICO-10B37CDA",
+    "unit": 12,
+    "title": "Miedo escénico",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-ESTRUCTURA-DEL-DISCURSO-7FC69FB3",
+    "unit": 12,
+    "title": "Estructura del discurso",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U12-LENGUAJE-Y-VOZ-B8BBF289",
+    "unit": 12,
+    "title": "Lenguaje y voz",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-UNIDAD-TEMATICA-13-D9110E68",
+    "unit": 13,
+    "title": "UNIDAD TEMÁTICA 13",
+    "content_type": "CHARACTERISTIC",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.72,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PERCEPCION-14E5D851",
+    "unit": 13,
+    "title": "Percepción",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-ATENCION-A33E89AB",
+    "unit": 13,
+    "title": "Atención",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-APRENDIZAJE-00933DDB",
+    "unit": 13,
+    "title": "Aprendizaje",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-MOTIVACION-Y-EMOCION-567BD26D",
+    "unit": 13,
+    "title": "Motivación y emoción",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-ENTREVISTA-A-UNA-PERSONA-SOSPECHOSA-AA665D89",
+    "unit": 13,
+    "title": "Entrevista a una persona sospechosa",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-INTERFERENCIAS-EN-LA-PERCEPCION-DE-UN-ACONTE-FF728000",
+    "unit": 13,
+    "title": "Interferencias en la percepción de un acontecimiento",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PAUTAS-PARA-ENTREVISTAR-TESTIGOS-EB3DF3F3",
+    "unit": 13,
+    "title": "Pautas para entrevistar testigos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-UTILIZAR-PREGUNTAS-ABIERTAS-E4489F3F",
+    "unit": 13,
+    "title": "Utilizar preguntas abiertas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-REACCIONES-FISIOLOGICAS-7AE64B62",
+    "unit": 13,
+    "title": "Reacciones fisiológicas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-SIMULACION-DISIMULACION-Y-SOBRESIMULACION-0DE384F9",
+    "unit": 13,
+    "title": "Simulación, disimulación y sobresimulación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-DEFINICION-DE-PERSONALIDAD-85F1B034",
+    "unit": 13,
+    "title": "Definición de personalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-FACTORES-QUE-INFLUYEN-EN-LA-PERSONALIDAD-A61D1591",
+    "unit": 13,
+    "title": "Factores que influyen en la personalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PERSONALIDAD-Y-CONDUCTA-DELICTIVA-DE55BD2D",
+    "unit": 13,
+    "title": "PERSONALIDAD Y CONDUCTA DELICTIVA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PSICOLOGIA-FORENSE-Y-PSIQUIATRIA-FORENSE-2B391ED8",
+    "unit": 13,
+    "title": "Psicología forense y psiquiatría forense",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PERSONALIDAD-Y-CRIMINALIDAD-1F7D5A00",
+    "unit": 13,
+    "title": "Personalidad y criminalidad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-AGRESIVIDAD-ABBE3558",
+    "unit": 13,
+    "title": "Agresividad",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-VIOLENCIA-D0501743",
+    "unit": 13,
+    "title": "Violencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-TIPOS-DE-VIOLENCIA-8D73C568",
+    "unit": 13,
+    "title": "Tipos de violencia",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-INTRODUCCION-A-LA-PSICOLOGIA-FORENSE-735885E8",
+    "unit": 13,
+    "title": "INTRODUCCIÓN A LA PSICOLOGÍA FORENSE",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-CAMPO-DE-LA-PSICOLOGIA-FORENSE-0B2ED6EB",
+    "unit": 13,
+    "title": "Campo de la psicología forense",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-CIENCIAS-AFINES-B26AD1BD",
+    "unit": 13,
+    "title": "Ciencias afines",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PSICOLOGIA-CRIMINAL-3AB90CB5",
+    "unit": 13,
+    "title": "Psicología criminal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PSICOLOGIA-CRIMINALISTICA-B74C48C6",
+    "unit": 13,
+    "title": "Psicología criminalística",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PSICOLOGIA-PENITENCIARIA-BBC46390",
+    "unit": 13,
+    "title": "Psicología penitenciaria",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PRIMEROS-AUXILIOS-PSICOLOGICOS-C28A75B1",
+    "unit": 13,
+    "title": "PRIMEROS AUXILIOS PSICOLÓGICOS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-CONTENCION-EMOCIONAL-6BB0872C",
+    "unit": 13,
+    "title": "Contención emocional",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-COMPONENTES-DE-LOS-PAP-961F36AD",
+    "unit": 13,
+    "title": "Componentes de los PAP",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-DESENCADENANTES-DE-LAS-CRISIS-PSICOLOGICAS-C1EE5955",
+    "unit": 13,
+    "title": "Desencadenantes de las crisis psicológicas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-UTILIZAR-LENGUAJE-CLARO-8130A4CA",
+    "unit": 13,
+    "title": "Utilizar lenguaje claro",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-SINDROME-DE-BURNOUT-33A5D24D",
+    "unit": 13,
+    "title": "Síndrome de burnout",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PREVENCION-Y-AUTOCUIDADO-DEL-FUNCIONARIO-POL-1C91DD30",
+    "unit": 13,
+    "title": "Prevención y autocuidado del funcionario policial",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-RELACION-CON-LA-CONDUCTA-DELICTIVA-29CD184D",
+    "unit": 13,
+    "title": "Relación con la conducta delictiva",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-CONDUCTAS-DE-MANIPULACION-Y-ENGANO-341EA6BE",
+    "unit": 13,
+    "title": "Conductas de manipulación y engaño",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-COMPORTAMIENTO-EN-INSTITUCIONES-PENITENCIARI-5E9A359D",
+    "unit": 13,
+    "title": "Comportamiento en instituciones penitenciarias",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-TRASTORNOS-PARAFILICOS-B988441E",
+    "unit": 13,
+    "title": "Trastornos parafílicos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-VIOLENCIA-SEXUAL-F4991453",
+    "unit": 13,
+    "title": "Violencia sexual",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-INCESTO-52D263B6",
+    "unit": 13,
+    "title": "Incesto",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-ACTUACION-POLICIAL-Y-PREVENCION-DE-LA-REVICT-D4CF9A5E",
+    "unit": 13,
+    "title": "Actuación policial y prevención de la revictimización",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-CONCLUSIONES-38F7A143",
+    "unit": 13,
+    "title": "CONCLUSIONES",
+    "content_type": "APPLICATION",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.7,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-RECOMENDACIONES-EB8064E3",
+    "unit": 13,
+    "title": "RECOMENDACIONES",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-PROMOVER-LA-FORMACION-EN-PRIMEROS-AUXILIOS-P-9949C5A8",
+    "unit": 13,
+    "title": "Promover la formación en Primeros Auxilios Psicológicos para mejorar la atención inicial durante situaciones de crisis",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-EVITAR-EL-USO-DE-ETIQUETAS-PSICOLOGICAS-PARA-EF021D71",
+    "unit": 13,
+    "title": "Evitar el uso de etiquetas psicológicas para determinar culpabilidad, peligrosidad o responsabilidad jurídica",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U13-APLICAR-LOS-CONOCIMIENTOS-PSICOLOGICOS-SIEMP-A0A42265",
+    "unit": 13,
+    "title": "Aplicar los conocimientos psicológicos siempre dentro del marco legal, ético y de respeto a los derechos humanos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-UNIDAD-TEMATICA-14-9EAE3223",
+    "unit": 14,
+    "title": "UNIDAD TEMÁTICA 14",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-SIGNOS-Y-SINTOMAS-F6165749",
+    "unit": 14,
+    "title": "SIGNOS Y SÍNTOMAS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-LA-SANGRE-VOLUMENES-Y-PERDIDAS-RIESGOSAS-4D3947BC",
+    "unit": 14,
+    "title": "LA SANGRE: VOLÚMENES Y PÉRDIDAS RIESGOSAS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-CAPILAR-47223294",
+    "unit": 14,
+    "title": "CAPILAR",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-VENOSA-D773B5EC",
+    "unit": 14,
+    "title": "VENOSA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-ARTERIAL-90B8531C",
+    "unit": 14,
+    "title": "ARTERIAL",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-AGENTE-HEMOSTATICO-50ED2A4D",
+    "unit": 14,
+    "title": "AGENTE HEMOSTÁTICO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-TIPOS-PRINCIPALES-SHOCK-HIPOVOLEMICO-NEUROGE-444C28D0",
+    "unit": 14,
+    "title": "TIPOS PRINCIPALES: SHOCK HIPOVOLÉMICO, NEUROGÉNICO",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-MANEJO-POSICION-DE-SHOCK-CONTROL-DE-HEMORRAG-9C1CADF1",
+    "unit": 14,
+    "title": "MANEJO: POSICIÓN DE SHOCK, CONTROL DE HEMORRAGIA, EVITAR HIPOTERMIA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-OBJETIVOS-DEL-TRATAMIENTO-DE-LAS-HEMORRAGIAS-07E0029D",
+    "unit": 14,
+    "title": "OBJETIVOS DEL TRATAMIENTO DE LAS HEMORRAGIAS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-HEMORRAGIAS-INTERNA-Y-EXTERNA-15BBEF87",
+    "unit": 14,
+    "title": "HEMORRAGIAS INTERNA Y EXTERNA",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-CLASIFICACION-DE-HERIDAS-FDA18704",
+    "unit": 14,
+    "title": "CLASIFICACIÓN DE HERIDAS",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-OBJETOS-EMPALADOS-NO-RETIRAR-8FCFDB7B",
+    "unit": 14,
+    "title": "OBJETOS EMPALADOS: NO RETIRAR",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-TECNICAS-DE-RESPIRACION-3C1044B4",
+    "unit": 14,
+    "title": "TÉCNICAS DE RESPIRACIÓN",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-INSPECCIONE-LA-ESCENA-Y-A-LA-VICTIMA-GARANTI-7DCF65B8",
+    "unit": 14,
+    "title": "Inspeccione la escena y a la víctima: garantice su seguridad y confirme si no responde o si presenta respiración anormal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-ABRA-LAS-VIAS-RESPIRATORIAS-UTILICE-EL-METOD-43B20ABF",
+    "unit": 14,
+    "title": "Abra las vías respiratorias: utilice el método de inclinación de la cabeza y elevación del mentón",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-CREE-UN-SELLADO-HERMETICO-UTILICE-LA-PINZA-E-9A143B7D",
+    "unit": 14,
+    "title": "Cree un sellado hermético: utilice la pinza EC para sujetar la mascarilla y levantar la mandíbula",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U14-OBSERVA-SI-EL-PECHO-SE-ELEVA-ESTO-CONFIRMA-U-45378F29",
+    "unit": 14,
+    "title": "Observa si el pecho se eleva: esto confirma una ventilación adecuada",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-UNIDAD-TEMATICA-15-1D5D0423",
+    "unit": 15,
+    "title": "UNIDAD TEMÁTICA 15",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.64,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-DESCRIPCION-DEL-PROBLEMA-0FC8114C",
+    "unit": 15,
+    "title": "Descripción del problema",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-PREGUNTA-DE-INVESTIGACION-392A669A",
+    "unit": 15,
+    "title": "Pregunta de investigación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-JUSTIFICACION-5E598311",
+    "unit": 15,
+    "title": "Justificación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-DELIMITACION-DE-LA-INVESTIGACION-6247D6BD",
+    "unit": 15,
+    "title": "Delimitación de la investigación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-SUSTENTO-TEORICO-80A48BC0",
+    "unit": 15,
+    "title": "Sustento teórico",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-MARCO-CONCEPTUAL-54AC5519",
+    "unit": 15,
+    "title": "Marco conceptual",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-MARCO-LEGAL-E2DF67BD",
+    "unit": 15,
+    "title": "Marco legal",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-METODOLOGIA-GENERAL-58D3C972",
+    "unit": 15,
+    "title": "Metodología general",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-TIPO-Y-DISENO-DE-INVESTIGACION-F53B0143",
+    "unit": 15,
+    "title": "Tipo y diseño de investigación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-TECNICAS-E-INSTRUMENTOS-DE-INVESTIGACION-16EE3B71",
+    "unit": 15,
+    "title": "Técnicas e instrumentos de investigación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-ANALISIS-E-INTERPRETACION-DE-DATOS-A708467D",
+    "unit": 15,
+    "title": "Análisis e interpretación de datos",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-PROPUESTA-DE-INVESTIGACION-2520BC2D",
+    "unit": 15,
+    "title": "Propuesta de investigación",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-CONCLUSIONES-Y-RECOMENDACIONES-E8DD2458",
+    "unit": 15,
+    "title": "Conclusiones y recomendaciones",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  },
+  {
+    "knowledge_id": "U15-REFERENCIAS-BIBLIOGRAFICAS-135A29EB",
+    "unit": 15,
+    "title": "Referencias bibliográficas",
+    "content_type": "OTHER",
+    "validation": {
+      "structure_valid": true,
+      "source_preserved": true,
+      "classification_confidence": 0.55,
+      "hierarchy_confidence": 0.82,
+      "requires_review": true,
+      "warnings": [
+        "Clasificación o jerarquía con confianza baja."
+      ]
+    }
+  }
+]

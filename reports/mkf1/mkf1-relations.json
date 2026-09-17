@@ -1,0 +1,3505 @@
+{
+  "total": 1040,
+  "sample": [
+    {
+      "from_id": "U02-IMPORTANCIA-DEL-PATRULLAJE-8CC0F1FA",
+      "to_id": "U02-DISUADIR-A-PERSONAS-QUE-PRETENDAN-COMETER-HE-21761AFE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISUADIR-A-PERSONAS-QUE-PRETENDAN-COMETER-HE-21761AFE",
+      "to_id": "U02-IMPORTANCIA-DEL-PATRULLAJE-8CC0F1FA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISUADIR-A-PERSONAS-QUE-PRETENDAN-COMETER-HE-21761AFE",
+      "to_id": "U02-GENERAR-CONFIANZA-Y-SENSACION-DE-SEGURIDAD-D078CCCF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GENERAR-CONFIANZA-Y-SENSACION-DE-SEGURIDAD-D078CCCF",
+      "to_id": "U02-DISUADIR-A-PERSONAS-QUE-PRETENDAN-COMETER-HE-21761AFE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PRIORIZACION-D460112E",
+      "to_id": "U02-POSIBILIDAD-DE-QUE-GENERE-UN-PROBLEMA-MAYOR-FED5594B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-POSIBILIDAD-DE-QUE-GENERE-UN-PROBLEMA-MAYOR-FED5594B",
+      "to_id": "U02-PRIORIZACION-D460112E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-POSIBILIDAD-DE-QUE-GENERE-UN-PROBLEMA-MAYOR-FED5594B",
+      "to_id": "U02-POLITICAS-GUBERNAMENTALES-O-INSTITUCIONALES-82336C01",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-POLITICAS-GUBERNAMENTALES-O-INSTITUCIONALES-82336C01",
+      "to_id": "U02-POSIBILIDAD-DE-QUE-GENERE-UN-PROBLEMA-MAYOR-FED5594B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-FORMULACION-EEC5756B",
+      "to_id": "U02-DISENO-DE-PLANES-DE-PATRULLAJE-IDENTIFICAR-C-1EB4D807",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISENO-DE-PLANES-DE-PATRULLAJE-IDENTIFICAR-C-1EB4D807",
+      "to_id": "U02-FORMULACION-EEC5756B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISENO-DE-PLANES-DE-PATRULLAJE-IDENTIFICAR-C-1EB4D807",
+      "to_id": "U02-GESTION-COMUNITARIA-INVOLUCRAR-A-LOS-VECINOS-828AF6B2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GESTION-COMUNITARIA-INVOLUCRAR-A-LOS-VECINOS-828AF6B2",
+      "to_id": "U02-DISENO-DE-PLANES-DE-PATRULLAJE-IDENTIFICAR-C-1EB4D807",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GESTION-COMUNITARIA-INVOLUCRAR-A-LOS-VECINOS-828AF6B2",
+      "to_id": "U02-GESTION-INTERINSTITUCIONAL-COORDINAR-CON-AUT-05909F9E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GESTION-INTERINSTITUCIONAL-COORDINAR-CON-AUT-05909F9E",
+      "to_id": "U02-GESTION-COMUNITARIA-INVOLUCRAR-A-LOS-VECINOS-828AF6B2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GESTION-INTERINSTITUCIONAL-COORDINAR-CON-AUT-05909F9E",
+      "to_id": "U02-EDUCACION-CIUDADANA-PROMOVER-CULTURA-DE-SEGU-7DE3C30C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-EDUCACION-CIUDADANA-PROMOVER-CULTURA-DE-SEGU-7DE3C30C",
+      "to_id": "U02-GESTION-INTERINSTITUCIONAL-COORDINAR-CON-AUT-05909F9E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-EDUCACION-CIUDADANA-PROMOVER-CULTURA-DE-SEGU-7DE3C30C",
+      "to_id": "U02-TRATAMIENTO-DE-CONFLICTOS-RESOLVER-O-DERIVAR-008C4B3D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-TRATAMIENTO-DE-CONFLICTOS-RESOLVER-O-DERIVAR-008C4B3D",
+      "to_id": "U02-EDUCACION-CIUDADANA-PROMOVER-CULTURA-DE-SEGU-7DE3C30C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-TRATAMIENTO-DE-CONFLICTOS-RESOLVER-O-DERIVAR-008C4B3D",
+      "to_id": "U02-DISUASION-DE-INFRACCIONES-UTILIZAR-PRESENCIA-3EBDB00D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISUASION-DE-INFRACCIONES-UTILIZAR-PRESENCIA-3EBDB00D",
+      "to_id": "U02-TRATAMIENTO-DE-CONFLICTOS-RESOLVER-O-DERIVAR-008C4B3D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-DISUASION-DE-INFRACCIONES-UTILIZAR-PRESENCIA-3EBDB00D",
+      "to_id": "U02-ATENCION-DE-QUEJAS-RECLAMOS-Y-SUGERENCIAS-ES-DD2D8B2B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-ATENCION-DE-QUEJAS-RECLAMOS-Y-SUGERENCIAS-ES-DD2D8B2B",
+      "to_id": "U02-DISUASION-DE-INFRACCIONES-UTILIZAR-PRESENCIA-3EBDB00D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-OBJETIVOS-GENERALES-74CE344E",
+      "to_id": "U02-GENERAR-SEGURIDAD-Y-CONFIANZA-EN-LA-POBLACIO-E0607A63",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-GENERAR-SEGURIDAD-Y-CONFIANZA-EN-LA-POBLACIO-E0607A63",
+      "to_id": "U02-OBJETIVOS-GENERALES-74CE344E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-CLASIFICACION-MODALIDADES-Y-TECNICAS-DEL-PAT-5850CD3C",
+      "to_id": "U02-SECTORIZADO-CUBRIR-UN-AREA-DETERMINADA-3EA146A4",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-SECTORIZADO-CUBRIR-UN-AREA-DETERMINADA-3EA146A4",
+      "to_id": "U02-CLASIFICACION-MODALIDADES-Y-TECNICAS-DEL-PAT-5850CD3C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-SECTORIZADO-CUBRIR-UN-AREA-DETERMINADA-3EA146A4",
+      "to_id": "U02-PERMANENTE-ORGANIZARSE-SEGUN-LAS-NECESIDADES-0D2F6528",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PERMANENTE-ORGANIZARSE-SEGUN-LAS-NECESIDADES-0D2F6528",
+      "to_id": "U02-SECTORIZADO-CUBRIR-UN-AREA-DETERMINADA-3EA146A4",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PERMANENTE-ORGANIZARSE-SEGUN-LAS-NECESIDADES-0D2F6528",
+      "to_id": "U02-SEGURO-PROTEGER-LA-INTEGRIDAD-DE-LOS-FUNCION-632322F4",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-SEGURO-PROTEGER-LA-INTEGRIDAD-DE-LOS-FUNCION-632322F4",
+      "to_id": "U02-PERMANENTE-ORGANIZARSE-SEGUN-LAS-NECESIDADES-0D2F6528",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-CONCEPTO-240B7B15",
+      "to_id": "U02-PARTICIPACION-DE-LA-COMUNIDAD-Y-AUTORIDADES-05855FB9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PARTICIPACION-DE-LA-COMUNIDAD-Y-AUTORIDADES-05855FB9",
+      "to_id": "U02-CONCEPTO-240B7B15",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PARTICIPACION-DE-LA-COMUNIDAD-Y-AUTORIDADES-05855FB9",
+      "to_id": "U02-PERMANENCIA-Y-CONTINUIDAD-DEL-TRABAJO-POLICI-4D50CDE5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PERMANENCIA-Y-CONTINUIDAD-DEL-TRABAJO-POLICI-4D50CDE5",
+      "to_id": "U02-PARTICIPACION-DE-LA-COMUNIDAD-Y-AUTORIDADES-05855FB9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-MISION-F4F7ABE8",
+      "to_id": "U02-COORDINACION-CON-OTRAS-UNIDADES-POLICIALES-09325E00",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-COORDINACION-CON-OTRAS-UNIDADES-POLICIALES-09325E00",
+      "to_id": "U02-MISION-F4F7ABE8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-COORDINACION-CON-OTRAS-UNIDADES-POLICIALES-09325E00",
+      "to_id": "U02-AUTONOMIA-PARA-APLICAR-PROCESOS-SEGUN-LA-PRO-23922104",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-AUTONOMIA-PARA-APLICAR-PROCESOS-SEGUN-LA-PRO-23922104",
+      "to_id": "U02-COORDINACION-CON-OTRAS-UNIDADES-POLICIALES-09325E00",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-AUTONOMIA-PARA-APLICAR-PROCESOS-SEGUN-LA-PRO-23922104",
+      "to_id": "U02-COMUNICACION-PERMANENTE-CON-LA-COMUNIDAD-4D40018C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-COMUNICACION-PERMANENTE-CON-LA-COMUNIDAD-4D40018C",
+      "to_id": "U02-AUTONOMIA-PARA-APLICAR-PROCESOS-SEGUN-LA-PRO-23922104",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-RADIO-PATRULLA-110-3687F51A",
+      "to_id": "U02-COORDINAR-CON-OTRAS-UNIDADES-POLICIALES-E3A046AC",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-COORDINAR-CON-OTRAS-UNIDADES-POLICIALES-E3A046AC",
+      "to_id": "U02-RADIO-PATRULLA-110-3687F51A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-ADMINISTRATIVA-SE-PRODUCE-POR-INCUMPLIR-NORM-BA182DEF",
+      "to_id": "U02-EJECUTIVA-SE-PRESENTA-POR-DEFICIENCIAS-GRAVE-4BD6F86A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-EJECUTIVA-SE-PRESENTA-POR-DEFICIENCIAS-GRAVE-4BD6F86A",
+      "to_id": "U02-ADMINISTRATIVA-SE-PRODUCE-POR-INCUMPLIR-NORM-BA182DEF",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-EJECUTIVA-SE-PRESENTA-POR-DEFICIENCIAS-GRAVE-4BD6F86A",
+      "to_id": "U02-CIVIL-SURGE-CUANDO-UNA-ACCION-U-OMISION-CAUS-294E979C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-CIVIL-SURGE-CUANDO-UNA-ACCION-U-OMISION-CAUS-294E979C",
+      "to_id": "U02-EJECUTIVA-SE-PRESENTA-POR-DEFICIENCIAS-GRAVE-4BD6F86A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-CIVIL-SURGE-CUANDO-UNA-ACCION-U-OMISION-CAUS-294E979C",
+      "to_id": "U02-PENAL-SE-PRESENTA-CUANDO-LA-CONDUCTA-DEL-POL-892CFAB8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U02-PENAL-SE-PRESENTA-CUANDO-LA-CONDUCTA-DEL-POL-892CFAB8",
+      "to_id": "U02-CIVIL-SURGE-CUANDO-UNA-ACCION-U-OMISION-CAUS-294E979C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PILARES-FUNDAMENTALES-DE-LA-SEGURIDAD-58B50F7E",
+      "to_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "to_id": "U03-PILARES-FUNDAMENTALES-DE-LA-SEGURIDAD-58B50F7E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "to_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "to_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "to_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "to_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "to_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "to_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "to_id": "U03-ELEMENTOS-DE-TRANSPORTE-PARA-DAR-UNA-RAPIDA--4C335C92",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-TRANSPORTE-PARA-DAR-UNA-RAPIDA--4C335C92",
+      "to_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-DE-PROTECCION-BBDBCF18",
+      "to_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "to_id": "U03-MEDIOS-TECNICOS-DE-PROTECCION-BBDBCF18",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "to_id": "U03-MEDIOS-TECNICOS-PASIVOS-SEGURIDAD-FISICA-55E95F12",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-PASIVOS-SEGURIDAD-FISICA-55E95F12",
+      "to_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-ORGANIZATIVOS-A40A6A2D",
+      "to_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "to_id": "U03-MEDIOS-ORGANIZATIVOS-A40A6A2D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "to_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "to_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "to_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "to_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "to_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "to_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-HUMANOS-AF611B94",
+      "to_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "to_id": "U03-MEDIOS-HUMANOS-AF611B94",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "to_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "to_id": "U03-CENTROS-DE-CONTROL-ETC-299FCE48",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "to_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "to_id": "U03-ELEMENTOS-DE-COMUNICACION-TRANSMISIONES-TELE-A025EB5D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "to_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "to_id": "U03-EQUIPOS-ELECTRONICOS-INFORMATICOS-DE-SEGURID-A25AC7CE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "to_id": "U03-ELEMENTOS-DE-TRANSPORTE-PARA-DAR-UNA-RAPIDA--4C335C92",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ELEMENTOS-DE-TRANSPORTE-PARA-DAR-UNA-RAPIDA--4C335C92",
+      "to_id": "U03-EQUIPOS-ESPECIALIZADOS-DE-DETECCION-ESCANER--0108DC45",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CLASIFICACION-DE-LOS-MEDIOS-TECNICOS-DE-PROT-D2B3F124",
+      "to_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "to_id": "U03-CLASIFICACION-DE-LOS-MEDIOS-TECNICOS-DE-PROT-D2B3F124",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "to_id": "U03-MEDIOS-TECNICOS-PASIVOS-SEGURIDAD-FISICA-55E95F12",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-PASIVOS-SEGURIDAD-FISICA-55E95F12",
+      "to_id": "U03-MEDIOS-TECNICOS-ACTIVOS-SEGURIDAD-ELECTRONIC-C6483BA1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-TECNICOS-ACTIVOS-DE-PROTECCION-ELECTR-CA8EA5DD",
+      "to_id": "U03-ALERTAR-LOCAL-O-REMOTAMENTE-DE-UN-INTENTO-DE-FF24443A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ALERTAR-LOCAL-O-REMOTAMENTE-DE-UN-INTENTO-DE-FF24443A",
+      "to_id": "U03-MEDIOS-TECNICOS-ACTIVOS-DE-PROTECCION-ELECTR-CA8EA5DD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ALERTAR-LOCAL-O-REMOTAMENTE-DE-UN-INTENTO-DE-FF24443A",
+      "to_id": "U03-DETECTAR-INTRUSOS-EN-EL-INTERIOR-DE-LA-INSTA-A5A541D1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-DETECTAR-INTRUSOS-EN-EL-INTERIOR-DE-LA-INSTA-A5A541D1",
+      "to_id": "U03-ALERTAR-LOCAL-O-REMOTAMENTE-DE-UN-INTENTO-DE-FF24443A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-DETECTAR-INTRUSOS-EN-EL-INTERIOR-DE-LA-INSTA-A5A541D1",
+      "to_id": "U03-CONTROL-DE-ACCESOS-Y-TRAFICO-DE-PERSONAS-PAQ-5656FDA6",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROL-DE-ACCESOS-Y-TRAFICO-DE-PERSONAS-PAQ-5656FDA6",
+      "to_id": "U03-DETECTAR-INTRUSOS-EN-EL-INTERIOR-DE-LA-INSTA-A5A541D1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROL-DE-ACCESOS-Y-TRAFICO-DE-PERSONAS-PAQ-5656FDA6",
+      "to_id": "U03-VIGILANCIA-OPTICA-POR-CIRCUITO-CERRADO-DE-TE-B7F3E31C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-VIGILANCIA-OPTICA-POR-CIRCUITO-CERRADO-DE-TE-B7F3E31C",
+      "to_id": "U03-CONTROL-DE-ACCESOS-Y-TRAFICO-DE-PERSONAS-PAQ-5656FDA6",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SISTEMAS-DE-ALARMA-D68FD081",
+      "to_id": "U03-CUALQUIER-SITUACION-QUE-SEA-ANORMAL-PARA-EL--442754EA",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALQUIER-SITUACION-QUE-SEA-ANORMAL-PARA-EL--442754EA",
+      "to_id": "U03-SISTEMAS-DE-ALARMA-D68FD081",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALQUIER-SITUACION-QUE-SEA-ANORMAL-PARA-EL--442754EA",
+      "to_id": "U03-OBLEAS-CINTAS-DE-SENALIZACION-Y-ALFOMBRAS-DE-B9A118E5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-OBLEAS-CINTAS-DE-SENALIZACION-Y-ALFOMBRAS-DE-B9A118E5",
+      "to_id": "U03-CUALQUIER-SITUACION-QUE-SEA-ANORMAL-PARA-EL--442754EA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-OBLEAS-CINTAS-DE-SENALIZACION-Y-ALFOMBRAS-DE-B9A118E5",
+      "to_id": "U03-FOTOELECTRICO-B507285D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-FOTOELECTRICO-B507285D",
+      "to_id": "U03-OBLEAS-CINTAS-DE-SENALIZACION-Y-ALFOMBRAS-DE-B9A118E5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIOS-ORGANIZATIVOS-46070810",
+      "to_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "to_id": "U03-MEDIOS-ORGANIZATIVOS-46070810",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "to_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "to_id": "U03-PLAN-DEL-DIRECTOR-DE-SEGURIDAD-CON-LOS-ESTAN-3B440B58",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "to_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "to_id": "U03-ESTUDIO-DE-SEGURIDAD-FISICA-PARA-CADA-INSTAL-CF71AF0F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "to_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "to_id": "U03-PLAN-DE-PROCEDIMIENTOS-OPERATIVOS-DE-SEGURID-D8810BC9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "to_id": "U03-ORDENES-DE-PUESTO-863ED669",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ORDENES-DE-PUESTO-863ED669",
+      "to_id": "U03-MANUAL-DE-PROCEDIMIENTOS-Y-PROTOCOLOS-DE-EME-4C1B2CA9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SISTEMA-DE-PROTECCION-PERIMETRAL-ELECTRONICA-479A9DC8",
+      "to_id": "U03-EL-INGRESO-DE-ELEMENTOS-TOXICOS-EXPLOSIVOS-I-9D342FD9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-INGRESO-DE-ELEMENTOS-TOXICOS-EXPLOSIVOS-I-9D342FD9",
+      "to_id": "U03-SISTEMA-DE-PROTECCION-PERIMETRAL-ELECTRONICA-479A9DC8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-INGRESO-DE-ELEMENTOS-TOXICOS-EXPLOSIVOS-I-9D342FD9",
+      "to_id": "U03-EL-ACCESO-A-LA-INFORMACION-MEDIANTE-LA-OBSER-FD850DFD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-ACCESO-A-LA-INFORMACION-MEDIANTE-LA-OBSER-FD850DFD",
+      "to_id": "U03-EL-INGRESO-DE-ELEMENTOS-TOXICOS-EXPLOSIVOS-I-9D342FD9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-ACCESO-A-LA-INFORMACION-MEDIANTE-LA-OBSER-FD850DFD",
+      "to_id": "U03-EL-INGRESO-DE-EQUIPOS-Y-MAQUINARIAS-TIPO-ROB-CD8E48FE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-INGRESO-DE-EQUIPOS-Y-MAQUINARIAS-TIPO-ROB-CD8E48FE",
+      "to_id": "U03-EL-ACCESO-A-LA-INFORMACION-MEDIANTE-LA-OBSER-FD850DFD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LOS-MEDIOS-PASIVOS-FISICOS-FA35E230",
+      "to_id": "U03-CONVERTIRSE-EN-UN-ELEMENTO-DE-DISUASION-PSIC-2FC7FFF0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONVERTIRSE-EN-UN-ELEMENTO-DE-DISUASION-PSIC-2FC7FFF0",
+      "to_id": "U03-LOS-MEDIOS-PASIVOS-FISICOS-FA35E230",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONVERTIRSE-EN-UN-ELEMENTO-DE-DISUASION-PSIC-2FC7FFF0",
+      "to_id": "U03-SUPLEMENTAR-Y-O-COMPLEMENTAR-NECESIDADES-DEL-C59BC1CB",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SUPLEMENTAR-Y-O-COMPLEMENTAR-NECESIDADES-DEL-C59BC1CB",
+      "to_id": "U03-CONVERTIRSE-EN-UN-ELEMENTO-DE-DISUASION-PSIC-2FC7FFF0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SUPLEMENTAR-Y-O-COMPLEMENTAR-NECESIDADES-DEL-C59BC1CB",
+      "to_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-6E6ED7FF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-6E6ED7FF",
+      "to_id": "U03-SUPLEMENTAR-Y-O-COMPLEMENTAR-NECESIDADES-DEL-C59BC1CB",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-6E6ED7FF",
+      "to_id": "U03-VERIFICAR-LA-IDENTIFICACION-DE-LOS-VISITANTE-E59FDFE6",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-VERIFICAR-LA-IDENTIFICACION-DE-LOS-VISITANTE-E59FDFE6",
+      "to_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-6E6ED7FF",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LAS-BARRERAS-PROTECTORAS-ESTRUCTURALES-FA9052F3",
+      "to_id": "U03-CREAN-UN-FACTOR-DISUASIVO-PSICOLOGICO-PARA-C-524C999A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CREAN-UN-FACTOR-DISUASIVO-PSICOLOGICO-PARA-C-524C999A",
+      "to_id": "U03-LAS-BARRERAS-PROTECTORAS-ESTRUCTURALES-FA9052F3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CREAN-UN-FACTOR-DISUASIVO-PSICOLOGICO-PARA-C-524C999A",
+      "to_id": "U03-TIENEN-LA-CAPACIDAD-DE-RETARDAR-O-INCLUSO-PR-85C0676E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-TIENEN-LA-CAPACIDAD-DE-RETARDAR-O-INCLUSO-PR-85C0676E",
+      "to_id": "U03-CREAN-UN-FACTOR-DISUASIVO-PSICOLOGICO-PARA-C-524C999A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-TIENEN-LA-CAPACIDAD-DE-RETARDAR-O-INCLUSO-PR-85C0676E",
+      "to_id": "U03-CAUSAN-UN-IMPACTO-DIRECTO-EN-EL-NUMERO-DE-PU-775B6EDE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CAUSAN-UN-IMPACTO-DIRECTO-EN-EL-NUMERO-DE-PU-775B6EDE",
+      "to_id": "U03-TIENEN-LA-CAPACIDAD-DE-RETARDAR-O-INCLUSO-PR-85C0676E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CAUSAN-UN-IMPACTO-DIRECTO-EN-EL-NUMERO-DE-PU-775B6EDE",
+      "to_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-F2AB4E40",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-F2AB4E40",
+      "to_id": "U03-CAUSAN-UN-IMPACTO-DIRECTO-EN-EL-NUMERO-DE-PU-775B6EDE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-F2AB4E40",
+      "to_id": "U03-PROPORCIONAR-PUNTOS-DE-ENTRADA-CONTROLADA-DO-AE929E99",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PROPORCIONAR-PUNTOS-DE-ENTRADA-CONTROLADA-DO-AE929E99",
+      "to_id": "U03-CONTROLAR-EL-FLUJO-DE-TRAFICO-VEHICULAR-Y-PE-F2AB4E40",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PROPORCIONAR-PUNTOS-DE-ENTRADA-CONTROLADA-DO-AE929E99",
+      "to_id": "U03-DEFINIR-UNA-ZONA-DE-VALLAS-PARA-LAS-AREAS-AL-B7263BF5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-DEFINIR-UNA-ZONA-DE-VALLAS-PARA-LAS-AREAS-AL-B7263BF5",
+      "to_id": "U03-PROPORCIONAR-PUNTOS-DE-ENTRADA-CONTROLADA-DO-AE929E99",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-DEFINIR-UNA-ZONA-DE-VALLAS-PARA-LAS-AREAS-AL-B7263BF5",
+      "to_id": "U03-PREVENIR-UN-COMPROMISO-VISUAL-POR-INDIVIDUOS-368CE886",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PREVENIR-UN-COMPROMISO-VISUAL-POR-INDIVIDUOS-368CE886",
+      "to_id": "U03-DEFINIR-UNA-ZONA-DE-VALLAS-PARA-LAS-AREAS-AL-B7263BF5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LAS-CERCAS-DE-SEGURIDAD-92F92A01",
+      "to_id": "U03-CONCERTINA-ALAMBRE-DE-NAVAJAS-DE-ALTA-SEGURI-1C4200C5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CONCERTINA-ALAMBRE-DE-NAVAJAS-DE-ALTA-SEGURI-1C4200C5",
+      "to_id": "U03-LAS-CERCAS-DE-SEGURIDAD-92F92A01",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CERCAS-ELECTRICAS-DE-SEGURIDAD-B992C51F",
+      "to_id": "U03-LA-DISUASION-EFECTO-PSICOLOGICO-QUE-PRODUCE--706B832C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-DISUASION-EFECTO-PSICOLOGICO-QUE-PRODUCE--706B832C",
+      "to_id": "U03-CERCAS-ELECTRICAS-DE-SEGURIDAD-B992C51F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-DISUASION-EFECTO-PSICOLOGICO-QUE-PRODUCE--706B832C",
+      "to_id": "U03-LA-DETECCION-EN-CASO-DE-EXISTIR-ALGUN-INTENT-37021A37",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-DETECCION-EN-CASO-DE-EXISTIR-ALGUN-INTENT-37021A37",
+      "to_id": "U03-LA-DISUASION-EFECTO-PSICOLOGICO-QUE-PRODUCE--706B832C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-DETECCION-EN-CASO-DE-EXISTIR-ALGUN-INTENT-37021A37",
+      "to_id": "U03-LA-EFECTIVIDAD-EL-SISTEMA-ES-MUY-SENCILLO-Y--943FCCC0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-EFECTIVIDAD-EL-SISTEMA-ES-MUY-SENCILLO-Y--943FCCC0",
+      "to_id": "U03-LA-DETECCION-EN-CASO-DE-EXISTIR-ALGUN-INTENT-37021A37",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-LA-EFECTIVIDAD-EL-SISTEMA-ES-MUY-SENCILLO-Y--943FCCC0",
+      "to_id": "U03-ESTETICA-EL-CERCO-ELECTRICO-DE-SEGURIDAD-NO--1574C104",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ESTETICA-EL-CERCO-ELECTRICO-DE-SEGURIDAD-NO--1574C104",
+      "to_id": "U03-LA-EFECTIVIDAD-EL-SISTEMA-ES-MUY-SENCILLO-Y--943FCCC0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PUERTAS-ACORAZADAS-BE830B55",
+      "to_id": "U03-NIVELES-IV-Y-V-PORTAN-DOS-CERRADURAS-DE-CLAS-4DFEDE4F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-NIVELES-IV-Y-V-PORTAN-DOS-CERRADURAS-DE-CLAS-4DFEDE4F",
+      "to_id": "U03-PUERTAS-ACORAZADAS-BE830B55",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-NIVELES-IV-Y-V-PORTAN-DOS-CERRADURAS-DE-CLAS-4DFEDE4F",
+      "to_id": "U03-NIVELES-VII-VIII-IX-Y-X-PORTAN-DOBLE-CERRADU-DE67F0EA",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-NIVELES-VII-VIII-IX-Y-X-PORTAN-DOBLE-CERRADU-DE67F0EA",
+      "to_id": "U03-NIVELES-IV-Y-V-PORTAN-DOS-CERRADURAS-DE-CLAS-4DFEDE4F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ZOCALOS-340ED861",
+      "to_id": "U03-ZOCALOS-PARA-LA-PARTE-INFERIOR-DE-LA-HOJA-2BB72ECA",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ZOCALOS-PARA-LA-PARTE-INFERIOR-DE-LA-HOJA-2BB72ECA",
+      "to_id": "U03-ZOCALOS-340ED861",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ZOCALOS-PARA-LA-PARTE-INFERIOR-DE-LA-HOJA-2BB72ECA",
+      "to_id": "U03-ZOCALOS-ESPECIALES-DE-MEDIA-HOJA-9341C1EA",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ZOCALOS-ESPECIALES-DE-MEDIA-HOJA-9341C1EA",
+      "to_id": "U03-ZOCALOS-PARA-LA-PARTE-INFERIOR-DE-LA-HOJA-2BB72ECA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CLARABOYAS-B5A8DCEA",
+      "to_id": "U03-REJILLAS-Y-O-EMPARRILLADOS-8B9B2B6C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-REJILLAS-Y-O-EMPARRILLADOS-8B9B2B6C",
+      "to_id": "U03-CLARABOYAS-B5A8DCEA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-FORMULA-DEL-RIESGO-RIESGO-AMENAZA-VULNERABIL-E51E9E20",
+      "to_id": "U03-RIESGO-A-LA-PROPIEDAD-PERTENECIENTE-A-BIENES-C7182B49",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-A-LA-PROPIEDAD-PERTENECIENTE-A-BIENES-C7182B49",
+      "to_id": "U03-FORMULA-DEL-RIESGO-RIESGO-AMENAZA-VULNERABIL-E51E9E20",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-A-LA-PROPIEDAD-PERTENECIENTE-A-BIENES-C7182B49",
+      "to_id": "U03-RIESGO-DE-RESPONSABILIDAD-PERTENECIENTE-A-LE-31B92E52",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-DE-RESPONSABILIDAD-PERTENECIENTE-A-LE-31B92E52",
+      "to_id": "U03-RIESGO-A-LA-PROPIEDAD-PERTENECIENTE-A-BIENES-C7182B49",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-DE-RESPONSABILIDAD-PERTENECIENTE-A-LE-31B92E52",
+      "to_id": "U03-RIESGO-ESPECULATIVO-ES-AQUEL-EN-EL-CUAL-EXIS-3AB47B02",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-ESPECULATIVO-ES-AQUEL-EN-EL-CUAL-EXIS-3AB47B02",
+      "to_id": "U03-RIESGO-DE-RESPONSABILIDAD-PERTENECIENTE-A-LE-31B92E52",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-ESPECULATIVO-ES-AQUEL-EN-EL-CUAL-EXIS-3AB47B02",
+      "to_id": "U03-RIESGO-PURO-ES-EL-QUE-SE-DA-EN-LA-INSTITUCIO-EFBCDDB4",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-RIESGO-PURO-ES-EL-QUE-SE-DA-EN-LA-INSTITUCIO-EFBCDDB4",
+      "to_id": "U03-RIESGO-ESPECULATIVO-ES-AQUEL-EN-EL-CUAL-EXIS-3AB47B02",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ANALISIS-Y-EVALUACION-DE-RIESGOS-C2A0B1A0",
+      "to_id": "U03-CUALES-SON-LOS-ACTIVOS-EN-LA-INSTALACION-A-S-AFD958DE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALES-SON-LOS-ACTIVOS-EN-LA-INSTALACION-A-S-AFD958DE",
+      "to_id": "U03-ANALISIS-Y-EVALUACION-DE-RIESGOS-C2A0B1A0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALES-SON-LOS-ACTIVOS-EN-LA-INSTALACION-A-S-AFD958DE",
+      "to_id": "U03-CUALES-SON-LOS-RIESGOS-A-SER-CONTROLADOS-3494A59E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALES-SON-LOS-RIESGOS-A-SER-CONTROLADOS-3494A59E",
+      "to_id": "U03-CUALES-SON-LOS-ACTIVOS-EN-LA-INSTALACION-A-S-AFD958DE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUALES-SON-LOS-RIESGOS-A-SER-CONTROLADOS-3494A59E",
+      "to_id": "U03-CUAL-ES-LA-PROBABILIDAD-DE-QUE-EL-RIESGO-OCU-A34B60D7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUAL-ES-LA-PROBABILIDAD-DE-QUE-EL-RIESGO-OCU-A34B60D7",
+      "to_id": "U03-CUALES-SON-LOS-RIESGOS-A-SER-CONTROLADOS-3494A59E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUAL-ES-LA-PROBABILIDAD-DE-QUE-EL-RIESGO-OCU-A34B60D7",
+      "to_id": "U03-CUAL-SERA-EL-IMPACTO-O-EFECTO-DE-SU-OCURRENC-48048F8B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUAL-SERA-EL-IMPACTO-O-EFECTO-DE-SU-OCURRENC-48048F8B",
+      "to_id": "U03-CUAL-ES-LA-PROBABILIDAD-DE-QUE-EL-RIESGO-OCU-A34B60D7",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUAL-SERA-EL-IMPACTO-O-EFECTO-DE-SU-OCURRENC-48048F8B",
+      "to_id": "U03-CUAL-ES-EL-ESTADO-ACTUAL-DE-LA-SEGURIDAD-EN--ABE8D6F9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CUAL-ES-EL-ESTADO-ACTUAL-DE-LA-SEGURIDAD-EN--ABE8D6F9",
+      "to_id": "U03-CUAL-SERA-EL-IMPACTO-O-EFECTO-DE-SU-OCURRENC-48048F8B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-TRATAMIENTO-DE-RIESGOS-B4E7CD1F",
+      "to_id": "U03-MEDIDAS-DE-PREVENCION-ORIENTADAS-A-EVITAR-QU-C8153B96",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIDAS-DE-PREVENCION-ORIENTADAS-A-EVITAR-QU-C8153B96",
+      "to_id": "U03-TRATAMIENTO-DE-RIESGOS-B4E7CD1F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIDAS-DE-PREVENCION-ORIENTADAS-A-EVITAR-QU-C8153B96",
+      "to_id": "U03-MEDIDAS-DE-PROTECCION-ORIENTADAS-A-REDUCIR-E-B3492244",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIDAS-DE-PROTECCION-ORIENTADAS-A-REDUCIR-E-B3492244",
+      "to_id": "U03-MEDIDAS-DE-PREVENCION-ORIENTADAS-A-EVITAR-QU-C8153B96",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIDAS-DE-PROTECCION-ORIENTADAS-A-REDUCIR-E-B3492244",
+      "to_id": "U03-MEDIDAS-DE-MITIGACION-ORIENTADAS-A-REDUCIR-L-5B7797CB",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-MEDIDAS-DE-MITIGACION-ORIENTADAS-A-REDUCIR-L-5B7797CB",
+      "to_id": "U03-MEDIDAS-DE-PROTECCION-ORIENTADAS-A-REDUCIR-E-B3492244",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-REVISION-DEL-ESTADO-FISICO-DEL-ACCESO-EB4C6B4D",
+      "to_id": "U03-SENALES-DE-SEGURIDAD-CONVENIDAS-SE-UTILIZA-U-25DBB081",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SENALES-DE-SEGURIDAD-CONVENIDAS-SE-UTILIZA-U-25DBB081",
+      "to_id": "U03-REVISION-DEL-ESTADO-FISICO-DEL-ACCESO-EB4C6B4D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SENALES-DE-SEGURIDAD-CONVENIDAS-SE-UTILIZA-U-25DBB081",
+      "to_id": "U03-VERIFICACION-ELECTRONICA-INTERNA-UNA-VEZ-ASE-DB359A15",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-VERIFICACION-ELECTRONICA-INTERNA-UNA-VEZ-ASE-DB359A15",
+      "to_id": "U03-SENALES-DE-SEGURIDAD-CONVENIDAS-SE-UTILIZA-U-25DBB081",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PRINCIPIO-DE-FUNCIONAMIENTO-DE-ENCLAVAMIENTO-67A41689",
+      "to_id": "U03-SI-LA-PUERTA-B-INTERIOR-ESTA-CERRADA-Y-ASEGU-E276A41D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SI-LA-PUERTA-B-INTERIOR-ESTA-CERRADA-Y-ASEGU-E276A41D",
+      "to_id": "U03-PRINCIPIO-DE-FUNCIONAMIENTO-DE-ENCLAVAMIENTO-67A41689",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EL-CLIENTE-INGRESA-AL-HABITACULO-DE-LA-ESCLU-F4010EBC",
+      "to_id": "U03-UNICAMENTE-CUANDO-LOS-SENSORES-MAGNETICOS-CO-4AABB188",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-UNICAMENTE-CUANDO-LOS-SENSORES-MAGNETICOS-CO-4AABB188",
+      "to_id": "U03-EL-CLIENTE-INGRESA-AL-HABITACULO-DE-LA-ESCLU-F4010EBC",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PROCEDIMIENTOS-DE-CIERRE-OFICINA-PRINCIPAL-Y-13B95A58",
+      "to_id": "U03-HORA-LIMITE-DE-ATENCION-EN-EL-HORARIO-NORMAD-EF508B42",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-HORA-LIMITE-DE-ATENCION-EN-EL-HORARIO-NORMAD-EF508B42",
+      "to_id": "U03-PROCEDIMIENTOS-DE-CIERRE-OFICINA-PRINCIPAL-Y-13B95A58",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-HORA-LIMITE-DE-ATENCION-EN-EL-HORARIO-NORMAD-EF508B42",
+      "to_id": "U03-EVACUACION-GUIADA-Y-CONTROLADA-LA-SALIDA-DE--81D9B3D5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EVACUACION-GUIADA-Y-CONTROLADA-LA-SALIDA-DE--81D9B3D5",
+      "to_id": "U03-HORA-LIMITE-DE-ATENCION-EN-EL-HORARIO-NORMAD-EF508B42",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EVACUACION-GUIADA-Y-CONTROLADA-LA-SALIDA-DE--81D9B3D5",
+      "to_id": "U03-BLOQUEO-RIGIDO-DE-PERIMETRO-UNA-VEZ-DESPACHA-8FBE2843",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-BLOQUEO-RIGIDO-DE-PERIMETRO-UNA-VEZ-DESPACHA-8FBE2843",
+      "to_id": "U03-EVACUACION-GUIADA-Y-CONTROLADA-LA-SALIDA-DE--81D9B3D5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-SISTEMAS-DE-CONTROL-DE-ACCESOS-APLICADOS-A-S-94EFC1CD",
+      "to_id": "U03-PRINCIPIO-DEL-MENOR-PRIVILEGIO-LEAST-PRIVILE-D4C4C097",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PRINCIPIO-DEL-MENOR-PRIVILEGIO-LEAST-PRIVILE-D4C4C097",
+      "to_id": "U03-SISTEMAS-DE-CONTROL-DE-ACCESOS-APLICADOS-A-S-94EFC1CD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-PRINCIPIO-DEL-MENOR-PRIVILEGIO-LEAST-PRIVILE-D4C4C097",
+      "to_id": "U03-AUDITORIA-E-TRAZABILIDAD-COMPLETA-TODO-EVENT-82E4550C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-AUDITORIA-E-TRAZABILIDAD-COMPLETA-TODO-EVENT-82E4550C",
+      "to_id": "U03-PRINCIPIO-DEL-MENOR-PRIVILEGIO-LEAST-PRIVILE-D4C4C097",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-AUDITORIA-E-TRAZABILIDAD-COMPLETA-TODO-EVENT-82E4550C",
+      "to_id": "U03-FALLO-SEGURO-FALLO-SEGURO-DE-ACCESO-FAIL-SAF-3CF45E5C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-FALLO-SEGURO-FALLO-SEGURO-DE-ACCESO-FAIL-SAF-3CF45E5C",
+      "to_id": "U03-AUDITORIA-E-TRAZABILIDAD-COMPLETA-TODO-EVENT-82E4550C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-REGISTRO-DE-NOVEDADES-EN-ACTA-7585C919",
+      "to_id": "U03-FASE-OPERATIVA-B54EB324",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-FASE-OPERATIVA-B54EB324",
+      "to_id": "U03-REGISTRO-DE-NOVEDADES-EN-ACTA-7585C919",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-FASE-OPERATIVA-B54EB324",
+      "to_id": "U03-EFICIENCIA-EN-EL-USO-DE-ENERGETICOS-Y-CONSUM-93B9A21B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EFICIENCIA-EN-EL-USO-DE-ENERGETICOS-Y-CONSUM-93B9A21B",
+      "to_id": "U03-FASE-OPERATIVA-B54EB324",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EFICIENCIA-EN-EL-USO-DE-ENERGETICOS-Y-CONSUM-93B9A21B",
+      "to_id": "U03-ADAPTABILIDAD-A-UN-BAJO-COSTO-A-LOS-CONTINUO-C747B82A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ADAPTABILIDAD-A-UN-BAJO-COSTO-A-LOS-CONTINUO-C747B82A",
+      "to_id": "U03-EFICIENCIA-EN-EL-USO-DE-ENERGETICOS-Y-CONSUM-93B9A21B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-ADAPTABILIDAD-A-UN-BAJO-COSTO-A-LOS-CONTINUO-C747B82A",
+      "to_id": "U03-CAPACIDAD-DE-PROVEER-UN-ENTORNO-ECOLOGICO-IN-01B71E0C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CAPACIDAD-DE-PROVEER-UN-ENTORNO-ECOLOGICO-IN-01B71E0C",
+      "to_id": "U03-ADAPTABILIDAD-A-UN-BAJO-COSTO-A-LOS-CONTINUO-C747B82A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-CAPACIDAD-DE-PROVEER-UN-ENTORNO-ECOLOGICO-IN-01B71E0C",
+      "to_id": "U03-EFICAZMENTE-COMUNICATIVO-EN-SU-OPERACION-Y-M-0A6236E3",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EFICAZMENTE-COMUNICATIVO-EN-SU-OPERACION-Y-M-0A6236E3",
+      "to_id": "U03-CAPACIDAD-DE-PROVEER-UN-ENTORNO-ECOLOGICO-IN-01B71E0C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-EFICAZMENTE-COMUNICATIVO-EN-SU-OPERACION-Y-M-0A6236E3",
+      "to_id": "U03-OPERADO-Y-MANTENIDO-BAJO-ESTRICTOS-METODOS-D-DC0E71FE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U03-OPERADO-Y-MANTENIDO-BAJO-ESTRICTOS-METODOS-D-DC0E71FE",
+      "to_id": "U03-EFICAZMENTE-COMUNICATIVO-EN-SU-OPERACION-Y-M-0A6236E3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ADELANTAMIENTO-76153CED",
+      "to_id": "U05-PRIMERA-FASE-CORRESPONDE-A-LAS-ACTIVIDADES-Y-C0F50326",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PRIMERA-FASE-CORRESPONDE-A-LAS-ACTIVIDADES-Y-C0F50326",
+      "to_id": "U05-ADELANTAMIENTO-76153CED",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PRIMERA-FASE-CORRESPONDE-A-LAS-ACTIVIDADES-Y-C0F50326",
+      "to_id": "U05-SEGUNDA-FASE-INVOLUCRA-LAS-ACCIONES-Y-OBLIGA-FE6382F5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-SEGUNDA-FASE-INVOLUCRA-LAS-ACCIONES-Y-OBLIGA-FE6382F5",
+      "to_id": "U05-PRIMERA-FASE-CORRESPONDE-A-LAS-ACTIVIDADES-Y-C0F50326",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-SEGUNDA-FASE-INVOLUCRA-LAS-ACCIONES-Y-OBLIGA-FE6382F5",
+      "to_id": "U05-TERCERA-FASE-INVOLUCRAN-LAS-ACCIONES-Y-OBLIG-5033F71E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-TERCERA-FASE-INVOLUCRAN-LAS-ACCIONES-Y-OBLIG-5033F71E",
+      "to_id": "U05-SEGUNDA-FASE-INVOLUCRA-LAS-ACCIONES-Y-OBLIGA-FE6382F5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-EFECTUAR-EL-ESTACIONAMIENTO-EN-LUGAR-AUTORIZ-9117F828",
+      "to_id": "U05-ENGANCHAR-LA-CAJA-DE-VELOCIDADES-EN-PRIMERA--5BA42B29",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ENGANCHAR-LA-CAJA-DE-VELOCIDADES-EN-PRIMERA--5BA42B29",
+      "to_id": "U05-EFECTUAR-EL-ESTACIONAMIENTO-EN-LUGAR-AUTORIZ-9117F828",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CARRETERA-PANAMERICANA-PAISES-SE-IDENTIFICAN-138B2B81",
+      "to_id": "U05-RED-FUNDAMENTAL-DEPARTAMENTALES-IDENTIFICAN--4EEBA182",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-RED-FUNDAMENTAL-DEPARTAMENTALES-IDENTIFICAN--4EEBA182",
+      "to_id": "U05-CARRETERA-PANAMERICANA-PAISES-SE-IDENTIFICAN-138B2B81",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PUNTO-DE-SORPRESA-56831AA1",
+      "to_id": "U05-ACTIVAS-CD2C5118",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ACTIVAS-CD2C5118",
+      "to_id": "U05-PUNTO-DE-SORPRESA-56831AA1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ACTIVAS-CD2C5118",
+      "to_id": "U05-DAR-DESTELLOS-DE-LUZ-CAMBIO-DE-BAJA-O-ALTA-O-391377F0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DAR-DESTELLOS-DE-LUZ-CAMBIO-DE-BAJA-O-ALTA-O-391377F0",
+      "to_id": "U05-ACTIVAS-CD2C5118",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DAR-DESTELLOS-DE-LUZ-CAMBIO-DE-BAJA-O-ALTA-O-391377F0",
+      "to_id": "U05-DISMINUIR-LA-VELOCIDAD-SI-NO-CONSIGUE-EVITAR-555669F5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUIR-LA-VELOCIDAD-SI-NO-CONSIGUE-EVITAR-555669F5",
+      "to_id": "U05-DAR-DESTELLOS-DE-LUZ-CAMBIO-DE-BAJA-O-ALTA-O-391377F0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUIR-LA-VELOCIDAD-SI-NO-CONSIGUE-EVITAR-555669F5",
+      "to_id": "U05-AUMENTAR-LA-VELOCIDAD-EN-OCACIONES-RESULTA-U-C169D3F8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-AUMENTAR-LA-VELOCIDAD-EN-OCACIONES-RESULTA-U-C169D3F8",
+      "to_id": "U05-DISMINUIR-LA-VELOCIDAD-SI-NO-CONSIGUE-EVITAR-555669F5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-AUMENTAR-LA-VELOCIDAD-EN-OCACIONES-RESULTA-U-C169D3F8",
+      "to_id": "U05-GIROS-DERECHA-IZQUIERDA-EL-GIRO-VIOLENTO-O-P-4E0953C5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-GIROS-DERECHA-IZQUIERDA-EL-GIRO-VIOLENTO-O-P-4E0953C5",
+      "to_id": "U05-AUMENTAR-LA-VELOCIDAD-EN-OCACIONES-RESULTA-U-C169D3F8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-GIROS-DERECHA-IZQUIERDA-EL-GIRO-VIOLENTO-O-P-4E0953C5",
+      "to_id": "U05-ESTANDO-PARADO-EL-VEHICULO-DAR-MARCHA-ATRAS--2B6E6354",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ESTANDO-PARADO-EL-VEHICULO-DAR-MARCHA-ATRAS--2B6E6354",
+      "to_id": "U05-GIROS-DERECHA-IZQUIERDA-EL-GIRO-VIOLENTO-O-P-4E0953C5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ESTANDO-PARADO-EL-VEHICULO-DAR-MARCHA-ATRAS--2B6E6354",
+      "to_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-TOQUE-DE-LA-BO-DC2534E8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-TOQUE-DE-LA-BO-DC2534E8",
+      "to_id": "U05-ESTANDO-PARADO-EL-VEHICULO-DAR-MARCHA-ATRAS--2B6E6354",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-TOQUE-DE-LA-BO-DC2534E8",
+      "to_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-DESTELLO-LUMIN-5C1217C8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-DESTELLO-LUMIN-5C1217C8",
+      "to_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-TOQUE-DE-LA-BO-DC2534E8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-DESTELLO-LUMIN-5C1217C8",
+      "to_id": "U05-GIRO-Y-TOQUE-DE-LA-BOCINA-0B74D529",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-GIRO-Y-TOQUE-DE-LA-BOCINA-0B74D529",
+      "to_id": "U05-DISMINUCION-DE-LA-VELOCIDAD-Y-DESTELLO-LUMIN-5C1217C8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CONDICIONES-DEL-CONDUCTOR-C48AC90E",
+      "to_id": "U05-DEFICIENCIAS-SENSORIALES-Y-PERCEPTIVAS-ESPEC-27DE3CFD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DEFICIENCIAS-SENSORIALES-Y-PERCEPTIVAS-ESPEC-27DE3CFD",
+      "to_id": "U05-CONDICIONES-DEL-CONDUCTOR-C48AC90E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DEFICIENCIAS-SENSORIALES-C0536455",
+      "to_id": "U05-CEGUERA-NOCTURNA-ES-LA-INCAPACIDAD-DE-VER-LO-9D1E6221",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CEGUERA-NOCTURNA-ES-LA-INCAPACIDAD-DE-VER-LO-9D1E6221",
+      "to_id": "U05-DEFICIENCIAS-SENSORIALES-C0536455",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CEGUERA-NOCTURNA-ES-LA-INCAPACIDAD-DE-VER-LO-9D1E6221",
+      "to_id": "U05-CEGUERA-POR-RESPLANDOR-LA-CEGUERA-POR-RESPLA-83190FB2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CEGUERA-POR-RESPLANDOR-LA-CEGUERA-POR-RESPLA-83190FB2",
+      "to_id": "U05-CEGUERA-NOCTURNA-ES-LA-INCAPACIDAD-DE-VER-LO-9D1E6221",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CEGUERA-POR-RESPLANDOR-LA-CEGUERA-POR-RESPLA-83190FB2",
+      "to_id": "U05-SE-DEBE-SOSPECHAR-DE-CEGUERA-POR-RESPLANDOR--B2FA4690",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-SE-DEBE-SOSPECHAR-DE-CEGUERA-POR-RESPLANDOR--B2FA4690",
+      "to_id": "U05-CEGUERA-POR-RESPLANDOR-LA-CEGUERA-POR-RESPLA-83190FB2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-SE-DEBE-SOSPECHAR-DE-CEGUERA-POR-RESPLANDOR--B2FA4690",
+      "to_id": "U05-CAMPO-VISUAL-ESTRECHO-CAMPO-DE-VISION-ES-LA--BC6E16A4",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CAMPO-VISUAL-ESTRECHO-CAMPO-DE-VISION-ES-LA--BC6E16A4",
+      "to_id": "U05-SE-DEBE-SOSPECHAR-DE-CEGUERA-POR-RESPLANDOR--B2FA4690",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CAMPO-VISUAL-ESTRECHO-CAMPO-DE-VISION-ES-LA--BC6E16A4",
+      "to_id": "U05-PERCEPCION-EN-FROFUNDIDAD-ES-LA-CAPACIDAD-DE-87E3FD13",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PERCEPCION-EN-FROFUNDIDAD-ES-LA-CAPACIDAD-DE-87E3FD13",
+      "to_id": "U05-CAMPO-VISUAL-ESTRECHO-CAMPO-DE-VISION-ES-LA--BC6E16A4",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PERCEPCION-EN-FROFUNDIDAD-ES-LA-CAPACIDAD-DE-87E3FD13",
+      "to_id": "U05-DALTONISMO-EL-DALTONISMO-O-DEFECTO-DE-LA-VIS-15011E6E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DALTONISMO-EL-DALTONISMO-O-DEFECTO-DE-LA-VIS-15011E6E",
+      "to_id": "U05-PERCEPCION-EN-FROFUNDIDAD-ES-LA-CAPACIDAD-DE-87E3FD13",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-CONDICIONES-DEL-VEHICULO-FFE24E92",
+      "to_id": "U05-DANOS-QUE-PRESENTA-FF84E1EE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-FF84E1EE",
+      "to_id": "U05-CONDICIONES-DEL-VEHICULO-FFE24E92",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-FF84E1EE",
+      "to_id": "U05-DANOS-QUE-PRESENTA-EEC4E75B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-EEC4E75B",
+      "to_id": "U05-DANOS-QUE-PRESENTA-FF84E1EE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-EEC4E75B",
+      "to_id": "U05-DANOS-QUE-PRESENTA-0FD875F3",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-0FD875F3",
+      "to_id": "U05-DANOS-QUE-PRESENTA-EEC4E75B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-0FD875F3",
+      "to_id": "U05-DANOS-QUE-PRESENTAN-2DA75CEF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTAN-2DA75CEF",
+      "to_id": "U05-DANOS-QUE-PRESENTA-0FD875F3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTAN-2DA75CEF",
+      "to_id": "U05-TIPO-DE-DIRECCION-HIDRAULICA-MECANICA-9592BD5A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-TIPO-DE-DIRECCION-HIDRAULICA-MECANICA-9592BD5A",
+      "to_id": "U05-DANOS-QUE-PRESENTAN-2DA75CEF",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-TIPO-DE-DIRECCION-HIDRAULICA-MECANICA-9592BD5A",
+      "to_id": "U05-DANOS-QUE-PRESENTA-20C7CFC1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-20C7CFC1",
+      "to_id": "U05-TIPO-DE-DIRECCION-HIDRAULICA-MECANICA-9592BD5A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-20C7CFC1",
+      "to_id": "U05-FRENO-PRINCIPAL-TIPO-HIDRAULICA-MECANICA-E0955526",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-FRENO-PRINCIPAL-TIPO-HIDRAULICA-MECANICA-E0955526",
+      "to_id": "U05-DANOS-QUE-PRESENTA-20C7CFC1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-FRENO-PRINCIPAL-TIPO-HIDRAULICA-MECANICA-E0955526",
+      "to_id": "U05-DANOS-QUE-PRESENTA-E7F0343D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DANOS-QUE-PRESENTA-E7F0343D",
+      "to_id": "U05-FRENO-PRINCIPAL-TIPO-HIDRAULICA-MECANICA-E0955526",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-PARTES-DEL-VEHICULO-QUE-SON-MAS-PROPENSO-A-C-26249DA0",
+      "to_id": "U05-DIFICULTANDO-LA-VISION-DEL-CONDUCTOR-A-TRAVE-D03FE212",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DIFICULTANDO-LA-VISION-DEL-CONDUCTOR-A-TRAVE-D03FE212",
+      "to_id": "U05-PARTES-DEL-VEHICULO-QUE-SON-MAS-PROPENSO-A-C-26249DA0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DIFICULTANDO-LA-VISION-DEL-CONDUCTOR-A-TRAVE-D03FE212",
+      "to_id": "U05-INTERFERIRSE-CON-EL-CONDUCTOR-DE-ORDINARIO-A-1063BCD1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-INTERFERIRSE-CON-EL-CONDUCTOR-DE-ORDINARIO-A-1063BCD1",
+      "to_id": "U05-DIFICULTANDO-LA-VISION-DEL-CONDUCTOR-A-TRAVE-D03FE212",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-INTERFERIRSE-CON-EL-CONDUCTOR-DE-ORDINARIO-A-1063BCD1",
+      "to_id": "U05-DISTRAYENDO-AL-CONDUCTOR-LOS-NINOS-ESTAN-PAR-A6F99760",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISTRAYENDO-AL-CONDUCTOR-LOS-NINOS-ESTAN-PAR-A6F99760",
+      "to_id": "U05-INTERFERIRSE-CON-EL-CONDUCTOR-DE-ORDINARIO-A-1063BCD1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-DISTRAYENDO-AL-CONDUCTOR-LOS-NINOS-ESTAN-PAR-A6F99760",
+      "to_id": "U05-ACCIONES-DIVERSAS-TALES-COMO-ABRIR-PUERTAS-E-5D074BE1",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U05-ACCIONES-DIVERSAS-TALES-COMO-ABRIR-PUERTAS-E-5D074BE1",
+      "to_id": "U05-DISTRAYENDO-AL-CONDUCTOR-LOS-NINOS-ESTAN-PAR-A6F99760",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-UNIDAD-TEMATICA-6-BDC68435",
+      "to_id": "U06-CONDUCTA-COOPERATIVA-PRESENCIA-POLICIAL-AF6199D8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONDUCTA-COOPERATIVA-PRESENCIA-POLICIAL-AF6199D8",
+      "to_id": "U06-UNIDAD-TEMATICA-6-BDC68435",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONDUCTA-COOPERATIVA-PRESENCIA-POLICIAL-AF6199D8",
+      "to_id": "U06-FALTA-DE-COOPERACION-VERBALIZACION-Y-PERSUAS-3DA2C422",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FALTA-DE-COOPERACION-VERBALIZACION-Y-PERSUAS-3DA2C422",
+      "to_id": "U06-CONDUCTA-COOPERATIVA-PRESENCIA-POLICIAL-AF6199D8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FALTA-DE-COOPERACION-VERBALIZACION-Y-PERSUAS-3DA2C422",
+      "to_id": "U06-RESISTENCIA-PASIVA-TECNICAS-DE-CONTROL-Y-CON-EC22E604",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RESISTENCIA-PASIVA-TECNICAS-DE-CONTROL-Y-CON-EC22E604",
+      "to_id": "U06-FALTA-DE-COOPERACION-VERBALIZACION-Y-PERSUAS-3DA2C422",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RESISTENCIA-PASIVA-TECNICAS-DE-CONTROL-Y-CON-EC22E604",
+      "to_id": "U06-RESISTENCIA-ACTIVA-TECNICAS-DE-CONTROL-FISIC-ADF04472",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RESISTENCIA-ACTIVA-TECNICAS-DE-CONTROL-FISIC-ADF04472",
+      "to_id": "U06-RESISTENCIA-PASIVA-TECNICAS-DE-CONTROL-Y-CON-EC22E604",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RESISTENCIA-ACTIVA-TECNICAS-DE-CONTROL-FISIC-ADF04472",
+      "to_id": "U06-AGRESION-O-RIESGO-GRAVE-MEDIDAS-POLICIALES-A-8DA0D6BC",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-AGRESION-O-RIESGO-GRAVE-MEDIDAS-POLICIALES-A-8DA0D6BC",
+      "to_id": "U06-RESISTENCIA-ACTIVA-TECNICAS-DE-CONTROL-FISIC-ADF04472",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-MANTENIMIENTO-Y-RESTABLECIMIENTO-DEL-ORDEN-P-607667F1",
+      "to_id": "U06-EL-ARTICULO-251-I-DETERMINA-LA-MISION-ESPECI-BAA62A91",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-251-I-DETERMINA-LA-MISION-ESPECI-BAA62A91",
+      "to_id": "U06-MANTENIMIENTO-Y-RESTABLECIMIENTO-DEL-ORDEN-P-607667F1",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-251-I-DETERMINA-LA-MISION-ESPECI-BAA62A91",
+      "to_id": "U06-EL-ARTICULO-21-RECONOCE-ENTRE-OTROS-DERECHOS-6F680F35",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-21-RECONOCE-ENTRE-OTROS-DERECHOS-6F680F35",
+      "to_id": "U06-EL-ARTICULO-251-I-DETERMINA-LA-MISION-ESPECI-BAA62A91",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-21-RECONOCE-ENTRE-OTROS-DERECHOS-6F680F35",
+      "to_id": "U06-EL-ARTICULO-22-ESTABLECE-QUE-LA-DIGNIDAD-Y-L-B15000AD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-22-ESTABLECE-QUE-LA-DIGNIDAD-Y-L-B15000AD",
+      "to_id": "U06-EL-ARTICULO-21-RECONOCE-ENTRE-OTROS-DERECHOS-6F680F35",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-22-ESTABLECE-QUE-LA-DIGNIDAD-Y-L-B15000AD",
+      "to_id": "U06-EL-ARTICULO-25-PROTEGE-LA-INVIOLABILIDAD-DEL-88832475",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-25-PROTEGE-LA-INVIOLABILIDAD-DEL-88832475",
+      "to_id": "U06-EL-ARTICULO-22-ESTABLECE-QUE-LA-DIGNIDAD-Y-L-B15000AD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EL-ARTICULO-25-PROTEGE-LA-INVIOLABILIDAD-DEL-88832475",
+      "to_id": "U06-DECLARACION-UNIVERSAL-DE-DERECHOS-HUMANOS-89608F16",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DECLARACION-UNIVERSAL-DE-DERECHOS-HUMANOS-89608F16",
+      "to_id": "U06-EL-ARTICULO-25-PROTEGE-LA-INVIOLABILIDAD-DEL-88832475",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DECLARACION-UNIVERSAL-DE-DERECHOS-HUMANOS-89608F16",
+      "to_id": "U06-PACTO-INTERNACIONAL-DE-DERECHOS-CIVILES-Y-PO-4C1F937A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PACTO-INTERNACIONAL-DE-DERECHOS-CIVILES-Y-PO-4C1F937A",
+      "to_id": "U06-DECLARACION-UNIVERSAL-DE-DERECHOS-HUMANOS-89608F16",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PACTO-INTERNACIONAL-DE-DERECHOS-CIVILES-Y-PO-4C1F937A",
+      "to_id": "U06-CONVENCION-AMERICANA-SOBRE-DERECHOS-HUMANOS-EEB116A0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONVENCION-AMERICANA-SOBRE-DERECHOS-HUMANOS-EEB116A0",
+      "to_id": "U06-PACTO-INTERNACIONAL-DE-DERECHOS-CIVILES-Y-PO-4C1F937A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONVENCION-AMERICANA-SOBRE-DERECHOS-HUMANOS-EEB116A0",
+      "to_id": "U06-CODIGO-DE-CONDUCTA-PARA-FUNCIONARIOS-ENCARGA-2C921674",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CODIGO-DE-CONDUCTA-PARA-FUNCIONARIOS-ENCARGA-2C921674",
+      "to_id": "U06-CONVENCION-AMERICANA-SOBRE-DERECHOS-HUMANOS-EEB116A0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CODIGO-DE-CONDUCTA-PARA-FUNCIONARIOS-ENCARGA-2C921674",
+      "to_id": "U06-PRINCIPIOS-BASICOS-SOBRE-EL-EMPLEO-DE-LA-FUE-26706DFF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PRINCIPIOS-BASICOS-SOBRE-EL-EMPLEO-DE-LA-FUE-26706DFF",
+      "to_id": "U06-CODIGO-DE-CONDUCTA-PARA-FUNCIONARIOS-ENCARGA-2C921674",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONVENIOS-INTERNACIONALES-Y-EL-CODIGO-DE-CON-4218DEBB",
+      "to_id": "U06-ARTICULO-1-CUMPLIMIENTO-DEL-DEBER-LOS-FUNCIO-5F7765E0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-1-CUMPLIMIENTO-DEL-DEBER-LOS-FUNCIO-5F7765E0",
+      "to_id": "U06-CONVENIOS-INTERNACIONALES-Y-EL-CODIGO-DE-CON-4218DEBB",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-1-CUMPLIMIENTO-DEL-DEBER-LOS-FUNCIO-5F7765E0",
+      "to_id": "U06-ARTICULO-2-DERECHOS-HUMANOS-DEBEN-RESPETAR-Y-3736D7AD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-2-DERECHOS-HUMANOS-DEBEN-RESPETAR-Y-3736D7AD",
+      "to_id": "U06-ARTICULO-1-CUMPLIMIENTO-DEL-DEBER-LOS-FUNCIO-5F7765E0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-2-DERECHOS-HUMANOS-DEBEN-RESPETAR-Y-3736D7AD",
+      "to_id": "U06-ARTICULO-3-USO-DE-LA-FUERZA-LA-FUERZA-DEBE-U-8C390009",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-3-USO-DE-LA-FUERZA-LA-FUERZA-DEBE-U-8C390009",
+      "to_id": "U06-ARTICULO-2-DERECHOS-HUMANOS-DEBEN-RESPETAR-Y-3736D7AD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-3-USO-DE-LA-FUERZA-LA-FUERZA-DEBE-U-8C390009",
+      "to_id": "U06-ARTICULO-4-CONFIDENCIALIDAD-LA-INFORMACION-O-43272167",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-4-CONFIDENCIALIDAD-LA-INFORMACION-O-43272167",
+      "to_id": "U06-ARTICULO-3-USO-DE-LA-FUERZA-LA-FUERZA-DEBE-U-8C390009",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-4-CONFIDENCIALIDAD-LA-INFORMACION-O-43272167",
+      "to_id": "U06-ARTICULO-5-PROHIBICION-DE-LA-TORTURA-NINGUN--21A9E7BD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-5-PROHIBICION-DE-LA-TORTURA-NINGUN--21A9E7BD",
+      "to_id": "U06-ARTICULO-4-CONFIDENCIALIDAD-LA-INFORMACION-O-43272167",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-5-PROHIBICION-DE-LA-TORTURA-NINGUN--21A9E7BD",
+      "to_id": "U06-ARTICULO-6-ATENCION-MEDICA-DEBE-GARANTIZARSE-E14DDDB2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-6-ATENCION-MEDICA-DEBE-GARANTIZARSE-E14DDDB2",
+      "to_id": "U06-ARTICULO-5-PROHIBICION-DE-LA-TORTURA-NINGUN--21A9E7BD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-6-ATENCION-MEDICA-DEBE-GARANTIZARSE-E14DDDB2",
+      "to_id": "U06-ARTICULO-7-ANTICORRUPCION-LOS-FUNCIONARIOS-N-5DDAD9F5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-7-ANTICORRUPCION-LOS-FUNCIONARIOS-N-5DDAD9F5",
+      "to_id": "U06-ARTICULO-6-ATENCION-MEDICA-DEBE-GARANTIZARSE-E14DDDB2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-7-ANTICORRUPCION-LOS-FUNCIONARIOS-N-5DDAD9F5",
+      "to_id": "U06-ARTICULO-8-CUMPLIMIENTO-DE-LA-LEY-DEBEN-RESP-17CFBE5E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ARTICULO-8-CUMPLIMIENTO-DE-LA-LEY-DEBEN-RESP-17CFBE5E",
+      "to_id": "U06-ARTICULO-7-ANTICORRUPCION-LOS-FUNCIONARIOS-N-5DDAD9F5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-LA-PIRAMIDE-O-MODELO-PROGRESIVO-Y-DIFERENCIA-81925E90",
+      "to_id": "U06-NIVEL-1-CONDUCTA-COOPERATIVA-PRESENCIA-POLIC-4F53DAC2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-1-CONDUCTA-COOPERATIVA-PRESENCIA-POLIC-4F53DAC2",
+      "to_id": "U06-LA-PIRAMIDE-O-MODELO-PROGRESIVO-Y-DIFERENCIA-81925E90",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-1-CONDUCTA-COOPERATIVA-PRESENCIA-POLIC-4F53DAC2",
+      "to_id": "U06-NIVEL-2-FALTA-DE-COOPERACION-VERBALIZACION-E-FB4BC3AF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-2-FALTA-DE-COOPERACION-VERBALIZACION-E-FB4BC3AF",
+      "to_id": "U06-NIVEL-1-CONDUCTA-COOPERATIVA-PRESENCIA-POLIC-4F53DAC2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-2-FALTA-DE-COOPERACION-VERBALIZACION-E-FB4BC3AF",
+      "to_id": "U06-NIVEL-3-RESISTENCIA-PASIVA-TECNICAS-PROFESIO-86E5C503",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-3-RESISTENCIA-PASIVA-TECNICAS-PROFESIO-86E5C503",
+      "to_id": "U06-NIVEL-2-FALTA-DE-COOPERACION-VERBALIZACION-E-FB4BC3AF",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-3-RESISTENCIA-PASIVA-TECNICAS-PROFESIO-86E5C503",
+      "to_id": "U06-NIVEL-4-RESISTENCIA-ACTIVA-TECNICAS-AUTORIZA-8DA66F0C",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-4-RESISTENCIA-ACTIVA-TECNICAS-AUTORIZA-8DA66F0C",
+      "to_id": "U06-NIVEL-3-RESISTENCIA-PASIVA-TECNICAS-PROFESIO-86E5C503",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-4-RESISTENCIA-ACTIVA-TECNICAS-AUTORIZA-8DA66F0C",
+      "to_id": "U06-NIVEL-5-AGRESION-O-AMENAZA-GRAVE-INTERVENCIO-F5C9DB08",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-5-AGRESION-O-AMENAZA-GRAVE-INTERVENCIO-F5C9DB08",
+      "to_id": "U06-NIVEL-4-RESISTENCIA-ACTIVA-TECNICAS-AUTORIZA-8DA66F0C",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-NIVEL-5-AGRESION-O-AMENAZA-GRAVE-INTERVENCIO-F5C9DB08",
+      "to_id": "U06-DINAMISMO-LA-RESPUESTA-PUEDE-AUMENTAR-O-DISM-8E8F9D76",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DINAMISMO-LA-RESPUESTA-PUEDE-AUMENTAR-O-DISM-8E8F9D76",
+      "to_id": "U06-NIVEL-5-AGRESION-O-AMENAZA-GRAVE-INTERVENCIO-F5C9DB08",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DINAMISMO-LA-RESPUESTA-PUEDE-AUMENTAR-O-DISM-8E8F9D76",
+      "to_id": "U06-PROGRESIVIDAD-LA-INTERVENCION-DEBE-PROCURAR--30F18EF0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROGRESIVIDAD-LA-INTERVENCION-DEBE-PROCURAR--30F18EF0",
+      "to_id": "U06-DINAMISMO-LA-RESPUESTA-PUEDE-AUMENTAR-O-DISM-8E8F9D76",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROGRESIVIDAD-LA-INTERVENCION-DEBE-PROCURAR--30F18EF0",
+      "to_id": "U06-DIFERENCIACION-NO-TODAS-LAS-SITUACIONES-REQU-45FF5746",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DIFERENCIACION-NO-TODAS-LAS-SITUACIONES-REQU-45FF5746",
+      "to_id": "U06-PROGRESIVIDAD-LA-INTERVENCION-DEBE-PROCURAR--30F18EF0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DIFERENCIACION-NO-TODAS-LAS-SITUACIONES-REQU-45FF5746",
+      "to_id": "U06-REVERSIBILIDAD-CUANDO-DISMINUYE-EL-RIESGO-TA-A0AA586D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-REVERSIBILIDAD-CUANDO-DISMINUYE-EL-RIESGO-TA-A0AA586D",
+      "to_id": "U06-DIFERENCIACION-NO-TODAS-LAS-SITUACIONES-REQU-45FF5746",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TECNICAS-DE-VERBALIZACION-Y-NEGOCIACION-COMO-574F9C16",
+      "to_id": "U06-IDENTIFICACION-DEL-FUNCIONARIO-CUANDO-CORRES-2FF9A4B8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-IDENTIFICACION-DEL-FUNCIONARIO-CUANDO-CORRES-2FF9A4B8",
+      "to_id": "U06-TECNICAS-DE-VERBALIZACION-Y-NEGOCIACION-COMO-574F9C16",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-IDENTIFICACION-DEL-FUNCIONARIO-CUANDO-CORRES-2FF9A4B8",
+      "to_id": "U06-EXPLICACION-DEL-MOTIVO-DE-LA-INTERVENCION-18CD673F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EXPLICACION-DEL-MOTIVO-DE-LA-INTERVENCION-18CD673F",
+      "to_id": "U06-IDENTIFICACION-DEL-FUNCIONARIO-CUANDO-CORRES-2FF9A4B8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EXPLICACION-DEL-MOTIVO-DE-LA-INTERVENCION-18CD673F",
+      "to_id": "U06-EVITACION-DE-INSULTOS-AMENAZAS-O-PROVOCACION-ADB1D529",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EVITACION-DE-INSULTOS-AMENAZAS-O-PROVOCACION-ADB1D529",
+      "to_id": "U06-EXPLICACION-DEL-MOTIVO-DE-LA-INTERVENCION-18CD673F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EVITACION-DE-INSULTOS-AMENAZAS-O-PROVOCACION-ADB1D529",
+      "to_id": "U06-PROTECCION-DE-LAS-PERSONAS-INVOLUCRADAS-DFE01D47",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROTECCION-DE-LAS-PERSONAS-INVOLUCRADAS-DFE01D47",
+      "to_id": "U06-EVITACION-DE-INSULTOS-AMENAZAS-O-PROVOCACION-ADB1D529",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-PROTECTORA-RESGUARDAR-LA-VIDA-E-IN-559825A8",
+      "to_id": "U06-FINALIDAD-PREVENTIVA-EVITAR-LA-CONTINUACION--85A1FD01",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-PREVENTIVA-EVITAR-LA-CONTINUACION--85A1FD01",
+      "to_id": "U06-FINALIDAD-PROTECTORA-RESGUARDAR-LA-VIDA-E-IN-559825A8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-PREVENTIVA-EVITAR-LA-CONTINUACION--85A1FD01",
+      "to_id": "U06-FINALIDAD-INVESTIGATIVA-PRESERVAR-INFORMACIO-6BE87303",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-INVESTIGATIVA-PRESERVAR-INFORMACIO-6BE87303",
+      "to_id": "U06-FINALIDAD-PREVENTIVA-EVITAR-LA-CONTINUACION--85A1FD01",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-INVESTIGATIVA-PRESERVAR-INFORMACIO-6BE87303",
+      "to_id": "U06-FINALIDAD-CAUTELAR-EVITAR-LA-FUGA-DE-PERSONA-0953FEF9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FINALIDAD-CAUTELAR-EVITAR-LA-FUGA-DE-PERSONA-0953FEF9",
+      "to_id": "U06-FINALIDAD-INVESTIGATIVA-PRESERVAR-INFORMACIO-6BE87303",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROTOCOLO-DE-ATENCION-INMEDIATA-A-LA-VICTIMA-249AF597",
+      "to_id": "U06-PRIMERO-EVALUAR-LA-SEGURIDAD-DEL-LUGAR-46C850C2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PRIMERO-EVALUAR-LA-SEGURIDAD-DEL-LUGAR-46C850C2",
+      "to_id": "U06-PROTOCOLO-DE-ATENCION-INMEDIATA-A-LA-VICTIMA-249AF597",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PRIMERO-EVALUAR-LA-SEGURIDAD-DEL-LUGAR-46C850C2",
+      "to_id": "U06-SEGUNDO-IDENTIFICAR-PERSONAS-HERIDAS-O-EN-SI-68AAADA9",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEGUNDO-IDENTIFICAR-PERSONAS-HERIDAS-O-EN-SI-68AAADA9",
+      "to_id": "U06-PRIMERO-EVALUAR-LA-SEGURIDAD-DEL-LUGAR-46C850C2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEGUNDO-IDENTIFICAR-PERSONAS-HERIDAS-O-EN-SI-68AAADA9",
+      "to_id": "U06-TERCERO-SOLICITAR-ASISTENCIA-MEDICA-CUANDO-C-C93310E3",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TERCERO-SOLICITAR-ASISTENCIA-MEDICA-CUANDO-C-C93310E3",
+      "to_id": "U06-SEGUNDO-IDENTIFICAR-PERSONAS-HERIDAS-O-EN-SI-68AAADA9",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TERCERO-SOLICITAR-ASISTENCIA-MEDICA-CUANDO-C-C93310E3",
+      "to_id": "U06-CUARTO-PROPORCIONAR-AUXILIO-DENTRO-DE-LAS-CA-10D0660D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CUARTO-PROPORCIONAR-AUXILIO-DENTRO-DE-LAS-CA-10D0660D",
+      "to_id": "U06-TERCERO-SOLICITAR-ASISTENCIA-MEDICA-CUANDO-C-C93310E3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CUARTO-PROPORCIONAR-AUXILIO-DENTRO-DE-LAS-CA-10D0660D",
+      "to_id": "U06-QUINTO-EVITAR-MOVIMIENTOS-INNECESARIOS-DE-UN-2E12AF24",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-QUINTO-EVITAR-MOVIMIENTOS-INNECESARIOS-DE-UN-2E12AF24",
+      "to_id": "U06-CUARTO-PROPORCIONAR-AUXILIO-DENTRO-DE-LAS-CA-10D0660D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-QUINTO-EVITAR-MOVIMIENTOS-INNECESARIOS-DE-UN-2E12AF24",
+      "to_id": "U06-SEXTO-REGISTRAR-LAS-ACTUACIONES-REALIZADAS-815BDCC7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEXTO-REGISTRAR-LAS-ACTUACIONES-REALIZADAS-815BDCC7",
+      "to_id": "U06-QUINTO-EVITAR-MOVIMIENTOS-INNECESARIOS-DE-UN-2E12AF24",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEXTO-REGISTRAR-LAS-ACTUACIONES-REALIZADAS-815BDCC7",
+      "to_id": "U06-SEPTIMO-FACILITAR-LA-INTERVENCION-DEL-PERSON-9307A793",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEPTIMO-FACILITAR-LA-INTERVENCION-DEL-PERSON-9307A793",
+      "to_id": "U06-SEXTO-REGISTRAR-LAS-ACTUACIONES-REALIZADAS-815BDCC7",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PRESERVACION-Y-ACORDONAMIENTO-DEL-LUGAR-DEL--CB0B6763",
+      "to_id": "U06-EVITAR-PERDIDA-O-DESTRUCCION-DE-INDICIOS-A45F27FD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EVITAR-PERDIDA-O-DESTRUCCION-DE-INDICIOS-A45F27FD",
+      "to_id": "U06-PRESERVACION-Y-ACORDONAMIENTO-DEL-LUGAR-DEL--CB0B6763",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EVITAR-PERDIDA-O-DESTRUCCION-DE-INDICIOS-A45F27FD",
+      "to_id": "U06-FACILITAR-EL-TRABAJO-DE-INVESTIGADORES-Y-PER-30B7F1DF",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FACILITAR-EL-TRABAJO-DE-INVESTIGADORES-Y-PER-30B7F1DF",
+      "to_id": "U06-EVITAR-PERDIDA-O-DESTRUCCION-DE-INDICIOS-A45F27FD",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FACILITAR-EL-TRABAJO-DE-INVESTIGADORES-Y-PER-30B7F1DF",
+      "to_id": "U06-MANTENER-UNA-DOCUMENTACION-ADECUADA-DEL-LUGA-BA50AF27",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-MANTENER-UNA-DOCUMENTACION-ADECUADA-DEL-LUGA-BA50AF27",
+      "to_id": "U06-FACILITAR-EL-TRABAJO-DE-INVESTIGADORES-Y-PER-30B7F1DF",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ESTRUCTURA-REDACCION-TECNICA-Y-VALIDEZ-JURID-2AB25C87",
+      "to_id": "U06-SECCION-B-FUNCIONARIOS-INTERVINIENTES-148F3409",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-B-FUNCIONARIOS-INTERVINIENTES-148F3409",
+      "to_id": "U06-ESTRUCTURA-REDACCION-TECNICA-Y-VALIDEZ-JURID-2AB25C87",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-B-FUNCIONARIOS-INTERVINIENTES-148F3409",
+      "to_id": "U06-SECCION-C-RELACION-CIRCUNSTANCIADA-DE-LOS-HE-C851F638",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-C-RELACION-CIRCUNSTANCIADA-DE-LOS-HE-C851F638",
+      "to_id": "U06-SECCION-B-FUNCIONARIOS-INTERVINIENTES-148F3409",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-C-RELACION-CIRCUNSTANCIADA-DE-LOS-HE-C851F638",
+      "to_id": "U06-SECCION-F-INDICIOS-O-ELEMENTOS-ENTREGADOS-A--048CCFB0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-F-INDICIOS-O-ELEMENTOS-ENTREGADOS-A--048CCFB0",
+      "to_id": "U06-SECCION-C-RELACION-CIRCUNSTANCIADA-DE-LOS-HE-C851F638",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-F-INDICIOS-O-ELEMENTOS-ENTREGADOS-A--048CCFB0",
+      "to_id": "U06-SECCION-H-FIRMAS-CORRESPONDIENTES-3786B8CA",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-H-FIRMAS-CORRESPONDIENTES-3786B8CA",
+      "to_id": "U06-SECCION-F-INDICIOS-O-ELEMENTOS-ENTREGADOS-A--048CCFB0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SECCION-H-FIRMAS-CORRESPONDIENTES-3786B8CA",
+      "to_id": "U06-SIN-EXPRESIONES-OFENSIVAS-C58EC1F5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SIN-EXPRESIONES-OFENSIVAS-C58EC1F5",
+      "to_id": "U06-SECCION-H-FIRMAS-CORRESPONDIENTES-3786B8CA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEGURIDAD-DE-PERSONAS-IMPORTANTES-01DF4433",
+      "to_id": "U06-PREVENCION-ANTICIPAR-Y-REDUCIR-RIESGOS-6B3E72B8",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PREVENCION-ANTICIPAR-Y-REDUCIR-RIESGOS-6B3E72B8",
+      "to_id": "U06-SEGURIDAD-DE-PERSONAS-IMPORTANTES-01DF4433",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PREVENCION-ANTICIPAR-Y-REDUCIR-RIESGOS-6B3E72B8",
+      "to_id": "U06-CONFIDENCIALIDAD-PROTEGER-LA-INFORMACION-SEN-5BBD538D",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONFIDENCIALIDAD-PROTEGER-LA-INFORMACION-SEN-5BBD538D",
+      "to_id": "U06-PREVENCION-ANTICIPAR-Y-REDUCIR-RIESGOS-6B3E72B8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CONFIDENCIALIDAD-PROTEGER-LA-INFORMACION-SEN-5BBD538D",
+      "to_id": "U06-COORDINACION-COORDINAR-LAS-ACCIONES-ENTRE-LA-507616CC",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-COORDINACION-COORDINAR-LAS-ACCIONES-ENTRE-LA-507616CC",
+      "to_id": "U06-CONFIDENCIALIDAD-PROTEGER-LA-INFORMACION-SEN-5BBD538D",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-COORDINACION-COORDINAR-LAS-ACCIONES-ENTRE-LA-507616CC",
+      "to_id": "U06-FLEXIBILIDAD-ADAPTAR-LAS-MEDIDAS-A-LAS-CIRCU-A871E8E3",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FLEXIBILIDAD-ADAPTAR-LAS-MEDIDAS-A-LAS-CIRCU-A871E8E3",
+      "to_id": "U06-COORDINACION-COORDINAR-LAS-ACCIONES-ENTRE-LA-507616CC",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FLEXIBILIDAD-ADAPTAR-LAS-MEDIDAS-A-LAS-CIRCU-A871E8E3",
+      "to_id": "U06-PROTECCION-INTEGRAL-CONSIDERAR-LOS-RIESGOS-D-3769EB52",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROTECCION-INTEGRAL-CONSIDERAR-LOS-RIESGOS-D-3769EB52",
+      "to_id": "U06-FLEXIBILIDAD-ADAPTAR-LAS-MEDIDAS-A-LAS-CIRCU-A871E8E3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROTECCION-INTEGRAL-CONSIDERAR-LOS-RIESGOS-D-3769EB52",
+      "to_id": "U06-PLANIFICACION-EVALUACION-DE-RIESGOS-Y-COORDI-072C5BF6",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PLANIFICACION-EVALUACION-DE-RIESGOS-Y-COORDI-072C5BF6",
+      "to_id": "U06-PROTECCION-INTEGRAL-CONSIDERAR-LOS-RIESGOS-D-3769EB52",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PLANIFICACION-EVALUACION-DE-RIESGOS-Y-COORDI-072C5BF6",
+      "to_id": "U06-RECONOCIMIENTO-ANALISIS-GENERAL-DE-LOS-LUGAR-43A62F26",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RECONOCIMIENTO-ANALISIS-GENERAL-DE-LOS-LUGAR-43A62F26",
+      "to_id": "U06-PLANIFICACION-EVALUACION-DE-RIESGOS-Y-COORDI-072C5BF6",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-RECONOCIMIENTO-ANALISIS-GENERAL-DE-LOS-LUGAR-43A62F26",
+      "to_id": "U06-DESPLAZAMIENTO-COORDINACION-DE-TRANSPORTE-Y--4CAF7A31",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DESPLAZAMIENTO-COORDINACION-DE-TRANSPORTE-Y--4CAF7A31",
+      "to_id": "U06-RECONOCIMIENTO-ANALISIS-GENERAL-DE-LOS-LUGAR-43A62F26",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-DESPLAZAMIENTO-COORDINACION-DE-TRANSPORTE-Y--4CAF7A31",
+      "to_id": "U06-ACTIVIDAD-PUBLICA-CONTROL-GENERAL-DE-ACCESOS-C0008C51",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ACTIVIDAD-PUBLICA-CONTROL-GENERAL-DE-ACCESOS-C0008C51",
+      "to_id": "U06-DESPLAZAMIENTO-COORDINACION-DE-TRANSPORTE-Y--4CAF7A31",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ACTIVIDAD-PUBLICA-CONTROL-GENERAL-DE-ACCESOS-C0008C51",
+      "to_id": "U06-EMERGENCIA-APLICACION-DEL-PLAN-DE-CONTINGENC-10140CCD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-EMERGENCIA-APLICACION-DEL-PLAN-DE-CONTINGENC-10140CCD",
+      "to_id": "U06-ACTIVIDAD-PUBLICA-CONTROL-GENERAL-DE-ACCESOS-C0008C51",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SEGURIDAD-PENITENCIARIA-93033DEE",
+      "to_id": "U06-PROHIBICION-DE-TORTURA-Y-MALOS-TRATOS-59AE0DF7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROHIBICION-DE-TORTURA-Y-MALOS-TRATOS-59AE0DF7",
+      "to_id": "U06-SEGURIDAD-PENITENCIARIA-93033DEE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-BOMBERIA-Y-SALVATAJE-78697E41",
+      "to_id": "U06-ATENCION-DE-MATERIALES-PELIGROSOS-MEDIANTE-P-A90A6268",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ATENCION-DE-MATERIALES-PELIGROSOS-MEDIANTE-P-A90A6268",
+      "to_id": "U06-BOMBERIA-Y-SALVATAJE-78697E41",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTERVENCION-POLICIAL-EN-ALLANAMIENTOS-923390D0",
+      "to_id": "U06-FIRMAS-CORRESPONDIENTES-723217C5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-FIRMAS-CORRESPONDIENTES-723217C5",
+      "to_id": "U06-INTERVENCION-POLICIAL-EN-ALLANAMIENTOS-923390D0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-BASICA-POLICIAL-3D20D3B4",
+      "to_id": "U06-ESTRATEGICA-ORIENTADA-A-DECISIONES-INSTITUCI-93FD5834",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ESTRATEGICA-ORIENTADA-A-DECISIONES-INSTITUCI-93FD5834",
+      "to_id": "U06-INTELIGENCIA-BASICA-POLICIAL-3D20D3B4",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-ESTRATEGICA-ORIENTADA-A-DECISIONES-INSTITUCI-93FD5834",
+      "to_id": "U06-TACTICA-U-OPERATIVA-ORIENTADA-A-SITUACIONES--E47A7F75",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TACTICA-U-OPERATIVA-ORIENTADA-A-SITUACIONES--E47A7F75",
+      "to_id": "U06-ESTRATEGICA-ORIENTADA-A-DECISIONES-INSTITUCI-93FD5834",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TACTICA-U-OPERATIVA-ORIENTADA-A-SITUACIONES--E47A7F75",
+      "to_id": "U06-PROSPECTIVA-BUSCA-ANTICIPAR-POSIBLES-ESCENAR-DB8AAE86",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-PROSPECTIVA-BUSCA-ANTICIPAR-POSIBLES-ESCENAR-DB8AAE86",
+      "to_id": "U06-TACTICA-U-OPERATIVA-ORIENTADA-A-SITUACIONES--E47A7F75",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-CLASIFICACION-GENERAL-DE-LA-INTELIGENCIA-B6F659BA",
+      "to_id": "U06-HUMINT-INTELIGENCIA-PROVENIENTE-DE-FUENTES-H-8D574D60",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-HUMINT-INTELIGENCIA-PROVENIENTE-DE-FUENTES-H-8D574D60",
+      "to_id": "U06-CLASIFICACION-GENERAL-DE-LA-INTELIGENCIA-B6F659BA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-HUMINT-INTELIGENCIA-PROVENIENTE-DE-FUENTES-H-8D574D60",
+      "to_id": "U06-OSINT-INFORMACION-OBTENIDA-DE-FUENTES-PUBLIC-27A75C92",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-OSINT-INFORMACION-OBTENIDA-DE-FUENTES-PUBLIC-27A75C92",
+      "to_id": "U06-HUMINT-INTELIGENCIA-PROVENIENTE-DE-FUENTES-H-8D574D60",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-OSINT-INFORMACION-OBTENIDA-DE-FUENTES-PUBLIC-27A75C92",
+      "to_id": "U06-GEOINT-INFORMACION-RELACIONADA-CON-EL-ESPACI-52D28171",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-GEOINT-INFORMACION-RELACIONADA-CON-EL-ESPACI-52D28171",
+      "to_id": "U06-OSINT-INFORMACION-OBTENIDA-DE-FUENTES-PUBLIC-27A75C92",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-GEOINT-INFORMACION-RELACIONADA-CON-EL-ESPACI-52D28171",
+      "to_id": "U06-SIGINT-INFORMACION-RELACIONADA-CON-SENALES-Y-4934FE28",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SIGINT-INFORMACION-RELACIONADA-CON-SENALES-Y-4934FE28",
+      "to_id": "U06-GEOINT-INFORMACION-RELACIONADA-CON-EL-ESPACI-52D28171",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-SIGINT-INFORMACION-RELACIONADA-CON-SENALES-Y-4934FE28",
+      "to_id": "U06-TECHINT-INFORMACION-TECNICA-SOBRE-EQUIPOS-SI-3E80FDEB",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TECHINT-INFORMACION-TECNICA-SOBRE-EQUIPOS-SI-3E80FDEB",
+      "to_id": "U06-SIGINT-INFORMACION-RELACIONADA-CON-SENALES-Y-4934FE28",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-TECHINT-INFORMACION-TECNICA-SOBRE-EQUIPOS-SI-3E80FDEB",
+      "to_id": "U06-INTELIGENCIA-BASICA-CONOCIMIENTO-PERMANENTE--EC871D98",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-BASICA-CONOCIMIENTO-PERMANENTE--EC871D98",
+      "to_id": "U06-TECHINT-INFORMACION-TECNICA-SOBRE-EQUIPOS-SI-3E80FDEB",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-BASICA-CONOCIMIENTO-PERMANENTE--EC871D98",
+      "to_id": "U06-INTELIGENCIA-ACTUAL-INFORMACION-RELACIONADA--3F2A049B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-ACTUAL-INFORMACION-RELACIONADA--3F2A049B",
+      "to_id": "U06-INTELIGENCIA-BASICA-CONOCIMIENTO-PERMANENTE--EC871D98",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-ACTUAL-INFORMACION-RELACIONADA--3F2A049B",
+      "to_id": "U06-INTELIGENCIA-ESTIMATIVA-EVALUACION-DE-ESCENA-1B156952",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-INTELIGENCIA-ESTIMATIVA-EVALUACION-DE-ESCENA-1B156952",
+      "to_id": "U06-INTELIGENCIA-ACTUAL-INFORMACION-RELACIONADA--3F2A049B",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-IMPORTANCIA-DE-LAS-OPERACIONES-POLICIALES-72E259B8",
+      "to_id": "U06-LAS-OPERACIONES-POLICIALES-CONSTITUYEN-UN-CO-09F71321",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-LAS-OPERACIONES-POLICIALES-CONSTITUYEN-UN-CO-09F71321",
+      "to_id": "U06-IMPORTANCIA-DE-LAS-OPERACIONES-POLICIALES-72E259B8",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-LAS-OPERACIONES-POLICIALES-CONSTITUYEN-UN-CO-09F71321",
+      "to_id": "U06-UNA-OPERACION-POLICIAL-LEGITIMA-DEBE-COMBINA-B06F79C5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-UNA-OPERACION-POLICIAL-LEGITIMA-DEBE-COMBINA-B06F79C5",
+      "to_id": "U06-LAS-OPERACIONES-POLICIALES-CONSTITUYEN-UN-CO-09F71321",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-UNA-OPERACION-POLICIAL-LEGITIMA-DEBE-COMBINA-B06F79C5",
+      "to_id": "U06-LA-EFICACIA-POLICIAL-NO-DEBE-MEDIRSE-UNICAME-A254274B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U06-LA-EFICACIA-POLICIAL-NO-DEBE-MEDIRSE-UNICAME-A254274B",
+      "to_id": "U06-UNA-OPERACION-POLICIAL-LEGITIMA-DEBE-COMBINA-B06F79C5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-LIMITACION-DEL-PODER-POR-LA-CONSTITUCION-NIN-A776ED45",
+      "to_id": "U07-DIVISION-DE-PODERES-EL-PODER-DEL-ESTADO-NO-S-8D5309D2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DIVISION-DE-PODERES-EL-PODER-DEL-ESTADO-NO-S-8D5309D2",
+      "to_id": "U07-LIMITACION-DEL-PODER-POR-LA-CONSTITUCION-NIN-A776ED45",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DIVISION-DE-PODERES-EL-PODER-DEL-ESTADO-NO-S-8D5309D2",
+      "to_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--EFB5C611",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--EFB5C611",
+      "to_id": "U07-DIVISION-DE-PODERES-EL-PODER-DEL-ESTADO-NO-S-8D5309D2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--EFB5C611",
+      "to_id": "U07-PRINCIPIO-DE-LEGALIDAD-TODA-ACCION-DEL-ESTAD-6DB7B31A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-LEGALIDAD-TODA-ACCION-DEL-ESTAD-6DB7B31A",
+      "to_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--EFB5C611",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-LEGALIDAD-TODA-ACCION-DEL-ESTAD-6DB7B31A",
+      "to_id": "U07-PROTECCION-DE-LOS-DERECHOS-FUNDAMENTALES-LA--F8E2BDB4",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PROTECCION-DE-LOS-DERECHOS-FUNDAMENTALES-LA--F8E2BDB4",
+      "to_id": "U07-PRINCIPIO-DE-LEGALIDAD-TODA-ACCION-DEL-ESTAD-6DB7B31A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-LEGALIDAD-SE-RESUME-EN-LA-FRASE-5F3B96BA",
+      "to_id": "U07-PRINCIPIO-DE-IGUALDAD-Y-NO-DISCRIMINACION-TO-DF5758D7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-IGUALDAD-Y-NO-DISCRIMINACION-TO-DF5758D7",
+      "to_id": "U07-PRINCIPIO-DE-LEGALIDAD-SE-RESUME-EN-LA-FRASE-5F3B96BA",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-IGUALDAD-Y-NO-DISCRIMINACION-TO-DF5758D7",
+      "to_id": "U07-PRINCIPIO-DE-JERARQUIA-NORMATIVA-LAS-LEYES-T-F13F8AB0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-JERARQUIA-NORMATIVA-LAS-LEYES-T-F13F8AB0",
+      "to_id": "U07-PRINCIPIO-DE-IGUALDAD-Y-NO-DISCRIMINACION-TO-DF5758D7",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-JERARQUIA-NORMATIVA-LAS-LEYES-T-F13F8AB0",
+      "to_id": "U07-PRINCIPIO-DE-IRRETROACTIVIDAD-LA-LEY-SE-APLI-1784505F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-IRRETROACTIVIDAD-LA-LEY-SE-APLI-1784505F",
+      "to_id": "U07-PRINCIPIO-DE-JERARQUIA-NORMATIVA-LAS-LEYES-T-F13F8AB0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-IRRETROACTIVIDAD-LA-LEY-SE-APLI-1784505F",
+      "to_id": "U07-PRINCIPIO-DE-CONTROL-CONSTITUCIONAL-EXISTEN--B149DCD7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIO-DE-CONTROL-CONSTITUCIONAL-EXISTEN--B149DCD7",
+      "to_id": "U07-PRINCIPIO-DE-IRRETROACTIVIDAD-LA-LEY-SE-APLI-1784505F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-AE97AD6A",
+      "to_id": "U07-PREAMBULO-ES-LA-INTRODUCCION-DONDE-SE-NARRA--BB4D3EAB",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PREAMBULO-ES-LA-INTRODUCCION-DONDE-SE-NARRA--BB4D3EAB",
+      "to_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-AE97AD6A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PREAMBULO-ES-LA-INTRODUCCION-DONDE-SE-NARRA--BB4D3EAB",
+      "to_id": "U07-PARTE-PRIMERA-SE-ESTABLECEN-LAS-BASES-DEL-ES-CA73A654",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-PRIMERA-SE-ESTABLECEN-LAS-BASES-DEL-ES-CA73A654",
+      "to_id": "U07-PREAMBULO-ES-LA-INTRODUCCION-DONDE-SE-NARRA--BB4D3EAB",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-PRIMERA-SE-ESTABLECEN-LAS-BASES-DEL-ES-CA73A654",
+      "to_id": "U07-PARTE-SEGUNDA-DESCRIBE-LA-ESTRUCTURA-Y-LA-OR-C486B5F0",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-SEGUNDA-DESCRIBE-LA-ESTRUCTURA-Y-LA-OR-C486B5F0",
+      "to_id": "U07-PARTE-PRIMERA-SE-ESTABLECEN-LAS-BASES-DEL-ES-CA73A654",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-SEGUNDA-DESCRIBE-LA-ESTRUCTURA-Y-LA-OR-C486B5F0",
+      "to_id": "U07-PARTE-TERCERA-EXPLICA-LA-ORGANIZACION-ORGANI-DE920085",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-TERCERA-EXPLICA-LA-ORGANIZACION-ORGANI-DE920085",
+      "to_id": "U07-PARTE-SEGUNDA-DESCRIBE-LA-ESTRUCTURA-Y-LA-OR-C486B5F0",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-TERCERA-EXPLICA-LA-ORGANIZACION-ORGANI-DE920085",
+      "to_id": "U07-PARTE-CUARTA-CONTIENE-LAS-NORMAS-SOBRE-LA-RE-60F05905",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PARTE-CUARTA-CONTIENE-LAS-NORMAS-SOBRE-LA-RE-60F05905",
+      "to_id": "U07-PARTE-TERCERA-EXPLICA-LA-ORGANIZACION-ORGANI-DE920085",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PRINCIPIOS-CD1C23E3",
+      "to_id": "U07-SOBERANIA-EL-PODER-NO-VIENE-DE-LOS-GOBERNANT-6C915270",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-SOBERANIA-EL-PODER-NO-VIENE-DE-LOS-GOBERNANT-6C915270",
+      "to_id": "U07-PRINCIPIOS-CD1C23E3",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-SOBERANIA-EL-PODER-NO-VIENE-DE-LOS-GOBERNANT-6C915270",
+      "to_id": "U07-INDEPENDENCIA-Y-LIBERTAD-BOLIVIA-ES-UN-PAIS--08A8931E",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-INDEPENDENCIA-Y-LIBERTAD-BOLIVIA-ES-UN-PAIS--08A8931E",
+      "to_id": "U07-SOBERANIA-EL-PODER-NO-VIENE-DE-LOS-GOBERNANT-6C915270",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-INDEPENDENCIA-Y-LIBERTAD-BOLIVIA-ES-UN-PAIS--08A8931E",
+      "to_id": "U07-UNIDAD-EL-ESTADO-ES-UNO-E-INDIVISIBLE-A-PESA-B7BECC84",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-UNIDAD-EL-ESTADO-ES-UNO-E-INDIVISIBLE-A-PESA-B7BECC84",
+      "to_id": "U07-INDEPENDENCIA-Y-LIBERTAD-BOLIVIA-ES-UN-PAIS--08A8931E",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-UNIDAD-EL-ESTADO-ES-UNO-E-INDIVISIBLE-A-PESA-B7BECC84",
+      "to_id": "U07-PLURINACIONALIDAD-SE-RECONOCE-QUE-BOLIVIA-ES-9E4C38E2",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PLURINACIONALIDAD-SE-RECONOCE-QUE-BOLIVIA-ES-9E4C38E2",
+      "to_id": "U07-UNIDAD-EL-ESTADO-ES-UNO-E-INDIVISIBLE-A-PESA-B7BECC84",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PLURINACIONALIDAD-SE-RECONOCE-QUE-BOLIVIA-ES-9E4C38E2",
+      "to_id": "U07-TODO-PODER-ESTA-LIMITADO-POR-LA-CONSTITUCION-3F066CE7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-TODO-PODER-ESTA-LIMITADO-POR-LA-CONSTITUCION-3F066CE7",
+      "to_id": "U07-PLURINACIONALIDAD-SE-RECONOCE-QUE-BOLIVIA-ES-9E4C38E2",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-TODO-PODER-ESTA-LIMITADO-POR-LA-CONSTITUCION-3F066CE7",
+      "to_id": "U07-DIVISION-DE-PODERES-EL-PODER-NO-SE-CONCENTRA-7BF1A374",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DIVISION-DE-PODERES-EL-PODER-NO-SE-CONCENTRA-7BF1A374",
+      "to_id": "U07-TODO-PODER-ESTA-LIMITADO-POR-LA-CONSTITUCION-3F066CE7",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DIVISION-DE-PODERES-EL-PODER-NO-SE-CONCENTRA-7BF1A374",
+      "to_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--4494456A",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--4494456A",
+      "to_id": "U07-DIVISION-DE-PODERES-EL-PODER-NO-SE-CONCENTRA-7BF1A374",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--4494456A",
+      "to_id": "U07-LEGALIDAD-TODA-ACCION-DEL-ESTADO-DEBE-ESTAR--2D9AFBBE",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-LEGALIDAD-TODA-ACCION-DEL-ESTADO-DEBE-ESTAR--2D9AFBBE",
+      "to_id": "U07-IGUALDAD-ANTE-LA-LEY-LA-LEY-SE-APLICA-DE-LA--4494456A",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-LEGALIDAD-TODA-ACCION-DEL-ESTADO-DEBE-ESTAR--2D9AFBBE",
+      "to_id": "U07-PROTECCION-DE-DERECHOS-LA-CONSTITUCION-GARAN-74ACC6A3",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-PROTECCION-DE-DERECHOS-LA-CONSTITUCION-GARAN-74ACC6A3",
+      "to_id": "U07-LEGALIDAD-TODA-ACCION-DEL-ESTADO-DEBE-ESTAR--2D9AFBBE",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONCEPTO-09B91F99",
+      "to_id": "U07-LOS-CIUDADANOS-DENTRO-DE-LA-SOCIEDAD-3106B81B",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-LOS-CIUDADANOS-DENTRO-DE-LA-SOCIEDAD-3106B81B",
+      "to_id": "U07-CONCEPTO-09B91F99",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CLASIFICACION-5822DBF4",
+      "to_id": "U07-DERECHO-TRIBUTARIO-7D8A04D5",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DERECHO-TRIBUTARIO-7D8A04D5",
+      "to_id": "U07-CLASIFICACION-5822DBF4",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DERECHO-TRIBUTARIO-7D8A04D5",
+      "to_id": "U07-DERECHO-INTERNACIONAL-PRIVADO-5B6A5037",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DERECHO-INTERNACIONAL-PRIVADO-5B6A5037",
+      "to_id": "U07-DERECHO-TRIBUTARIO-7D8A04D5",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DERECHO-INTERNACIONAL-PRIVADO-5B6A5037",
+      "to_id": "U07-DERECHO-DE-FAMILIA-EF1526BD",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DERECHO-DE-FAMILIA-EF1526BD",
+      "to_id": "U07-DERECHO-INTERNACIONAL-PRIVADO-5B6A5037",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-JERARQUIA-NORMATIVA-1360A8C6",
+      "to_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-EDC69D21",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-EDC69D21",
+      "to_id": "U07-JERARQUIA-NORMATIVA-1360A8C6",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-EDC69D21",
+      "to_id": "U07-DECRETOS-SUPREMOS-B85C11A7",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-DECRETOS-SUPREMOS-B85C11A7",
+      "to_id": "U07-CONSTITUCION-POLITICA-DEL-ESTADO-EDC69D21",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONTROL-DE-CONSTITUCIONALIDAD-87945541",
+      "to_id": "U07-RESOLVER-CONFLICTOS-RELACIONADOS-CON-NORMAS--5CC34E47",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-RESOLVER-CONFLICTOS-RELACIONADOS-CON-NORMAS--5CC34E47",
+      "to_id": "U07-CONTROL-DE-CONSTITUCIONALIDAD-87945541",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-RESOLVER-CONFLICTOS-RELACIONADOS-CON-NORMAS--5CC34E47",
+      "to_id": "U07-CONTROLAR-LA-CONSTITUCIONALIDAD-DE-DETERMINA-E712116F",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONTROLAR-LA-CONSTITUCIONALIDAD-DE-DETERMINA-E712116F",
+      "to_id": "U07-RESOLVER-CONFLICTOS-RELACIONADOS-CON-NORMAS--5CC34E47",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-CONTROLAR-LA-CONSTITUCIONALIDAD-DE-DETERMINA-E712116F",
+      "to_id": "U07-RESOLVER-ACCIONES-Y-CONSULTAS-CONSTITUCIONAL-EE4F3854",
+      "relation_type": "PRECEDES",
+      "confidence": 0.72,
+      "generated_metadata": true
+    },
+    {
+      "from_id": "U07-RESOLVER-ACCIONES-Y-CONSULTAS-CONSTITUCIONAL-EE4F3854",
+      "to_id": "U07-CONTROLAR-LA-CONSTITUCIONALIDAD-DE-DETERMINA-E712116F",
+      "relation_type": "FOLLOWS",
+      "confidence": 0.72,
+      "generated_metadata": true
+    }
+  ]
+}

@@ -118,7 +118,7 @@ describe("Migración PostgreSQL y RLS real (auth.uid simulado)", () => {
     const result = await db.query<{ relrowsecurity: boolean }>(
       "select relrowsecurity from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relkind='r'",
     );
-    expect(result.rows).toHaveLength(14);
+    expect(result.rows.length).toBeGreaterThanOrEqual(21);
     expect(result.rows.every((r) => r.relrowsecurity)).toBe(true);
   });
   it("un estudiante solo puede leer su perfil", async () => {

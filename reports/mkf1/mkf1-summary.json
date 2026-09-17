@@ -1,0 +1,28 @@
+{
+  "schema_version": "MKF-1.0",
+  "document_processed": "COMPENDIO_FATESCIPOL_EL_ALTO_2026_CORREGIDO_SIN_CAPITULOS.docx",
+  "generated_at": "2026-09-17T02:25:19.399Z",
+  "expected_units": 15,
+  "detected_units": 15,
+  "topics_detected": 735,
+  "knowledge_objects": 1255,
+  "knowledge_types": {
+    "APPLICATION": 36,
+    "ENUMERATION": 442,
+    "OTHER": 370,
+    "ARTICLE": 70,
+    "NORMATIVE": 103,
+    "PRINCIPLE": 70,
+    "CHARACTERISTIC": 32,
+    "DEFINITION": 23,
+    "PROCEDURE": 79,
+    "EXAMPLE": 19,
+    "VALUE": 10,
+    "GENERAL_ACADEMIC_KNOWLEDGE": 1
+  },
+  "review_required": 389,
+  "objects_without_source": 0,
+  "relations": 1040,
+  "errors": [],
+  "note": "Sprint 5A no genera embeddings ni reemplaza el RAG existente."
+}

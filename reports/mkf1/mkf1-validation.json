@@ -1,0 +1,133 @@
+{
+  "source_preserved_samples": [
+    {
+      "knowledge_id": "U01-UNIDAD-TEMATICA-1-82D127FA",
+      "source_hash": "82d127fac431fff7729e1d46e5a3697971e11beea618dec3360ffc26e897cf09",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-ANTECEDENTES-HISTORICOS-FUNDACION-Y-PRIMER-M-17C36AFF",
+      "source_hash": "17c36aff6e4a27da4afaf1472843e22ece8678a51136d9c89b633f2a9125ce56",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-POLICIA-DURANTE-LA-COLONIA-FE780D30",
+      "source_hash": "fe780d308ca7a5b04dfd98a52c2ff1084d75703191a3070c7eaaf43f42f61fcc",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-FUNDACION-DE-LA-POLICIA-BOLIVIANA-CON-LA-LEY-F064BDCD",
+      "source_hash": "f064bdcda814f7406c8d642dfb694a63b5f3d16c856533cd68d3bbda63398523",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DE-LOS-INTENDENTES-AE825CFF",
+      "source_hash": "ae825cff72ea513d76455d806a8a16101bf91bf198abb14f2558e91bd5f0faed",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DE-LOS-COMISARIOS-DE-POLICIA-50533072",
+      "source_hash": "505330729b396be4b5f3b76166ddd7f54cd11d2ce8d4e39c28104e28a45d2825",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-EVOLUCION-INSTITUCIONAL-Y-REFORMAS-POLICIALE-ECFF868C",
+      "source_hash": "ecff868c19f5fc48601d5958113d5c578f73e558872adfaab8e95cb0523ed836",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DOCTRINA-INSTITUCIONAL-343D304D",
+      "source_hash": "343d304dffd8f48cf7de45460d37cd5b21cb93d494f06bc99e209d069e49c748",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DIMENSION-DE-LA-POLICIA-BOLIVIANA-025CE264",
+      "source_hash": "025ce2640fefb53b59ebb59fa5fd68f99103247c499901f3428522bd9c367b90",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-ETIMOLOGIA-DE-LA-DOCTRINA-6E6F4EA2",
+      "source_hash": "6e6f4ea2070d836d7cdb5017dfc491d8f25509e43577cd69c909450a207e2472",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DEFINICION-DE-LA-DOCTRINA-DE-LA-POLICIA-BOLI-8EAFA1E3",
+      "source_hash": "8eafa1e314b785982599229db13bd6f2442bd11ec89ac178264aed8dec47eac8",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-PRINCIPIOS-INSTITUCIONALES-E6136F2D",
+      "source_hash": "e6136f2d55a264eb26f58ea4d09e76652e50290a176a6c25fe8ea54a9b33d1e1",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-DISCIPLINA-CD633788",
+      "source_hash": "cd633788fa13671000a8a0b002b0617a798f1528d280475d8fa5faf27a8215b5",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-LEGALIDAD-9E145CBC",
+      "source_hash": "9e145cbc937794e20c38d727675037b33e86bcc57ad8260d9cbda2b70b257127",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-JUSTICIA-C87FF467",
+      "source_hash": "c87ff467a17c57953460d09aedc8764d7de5ced1683d092b4eed10ce72616f90",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-EXCELENCIA-25219F99",
+      "source_hash": "25219f9926091ea7527ba27df530458e785198d3a0f8214fa793ac7ecc11edc3",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-INSTITUCIONALIDAD-4F5F421E",
+      "source_hash": "4f5f421eef39534700ecb39758d95eefe8178ac110741ee00a60e9507d2c1299",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-RESILIENCIA-16F33F78",
+      "source_hash": "16f33f78063a05a5affb46ee2a3791ef24b5415a3bfe19761b87b58c80ee06ed",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-VALORES-INSTITUCIONALES-56483458",
+      "source_hash": "5648345800f782cadd607e6f51b2332e30ba57e5ffe1bc999a715c83997ab9ba",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-VALENTIA-8319C214",
+      "source_hash": "8319c21408e168ea3b5102d9c774b8b7e623092480aadbd7b225049b5041aa4a",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-HONOR-515C07AE",
+      "source_hash": "515c07ae3b716c31a4721feaba6589edab93f8f1b28678e1961faaab439afdca",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-LIDERAZGO-E86EB3F3",
+      "source_hash": "e86eb3f32ad66ad5fc45253ad90b8f6af142c0da178af9cb181de1dec19c16ff",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-VOCACION-DE-SERVICIO-2A1B7373",
+      "source_hash": "2a1b7373a6d5d08c51e5482b2d28b743f701d98b96c68d0557be322985402e9e",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-OBEDIENTE-0A2F2143",
+      "source_hash": "0a2f2143c34db70ccb52957abfeaa58ac48b8f4bb1e383eff7e7e883ff73c0d0",
+      "preserved": true
+    },
+    {
+      "knowledge_id": "U01-NO-DELIBERANTE-D9F4CF91",
+      "source_hash": "d9f4cf91a1cc53af143a098eb0f4ff5687e4c839f3488389b1f0d981b6ce7a9d",
+      "preserved": true
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "389 objetos requieren revisión humana."
+  ]
+}
