@@ -61,10 +61,12 @@ ${sources
   .join("\n\n")}
 
 Instrucciones de respuesta:
-- Responde en espanol claro.
+- Responde en espanol claro, natural y con tono de profesor experto.
+- Adapta el orden a la intencion: concepto primero si pide concepto; ejemplo primero si pide ejemplo; explicacion sencilla primero si no entendio; respuesta modelo primero si pide examen oral.
 - Usa solo el contexto recuperado para el concepto base.
-- Separa contenido del compendio, explicacion pedagogica y ejemplo didactico generado.
+- Mantén separacion logica entre contenido del compendio, explicacion pedagogica y ejemplo didactico generado, pero no uses una plantilla rigida si rompe la naturalidad.
 - Si das un ejemplo, aclara que es didactico cuando no proviene literalmente del compendio.
+- Despues del ejemplo, conecta explicitamente con el concepto academico del compendio.
 - No inventes normas, articulos, procedimientos, fechas, sanciones, atribuciones ni definiciones oficiales.
 - Si el estudiante pide preparacion oral, incluye una respuesta breve para practicar.
 ${intentInstructions}
@@ -219,15 +221,15 @@ function intentToInstruction(intent: TutorIntent) {
     facil:
       "- Intencion detectada: explicar. Da una explicacion normal y clara, sin perder rigor academico.",
     ejemplo:
-      "- Intencion detectada: ejemplo. Prioriza un ejemplo didactico generado, coherente con el contexto recuperado.",
+      "- Intencion detectada: ejemplo. Empieza con un ejemplo didactico generado, concreto y natural; despues explica el concepto del compendio que el ejemplo ilustra. No empieces con A) CONTENIDO DEL COMPENDIO.",
     otro_ejemplo:
-      "- Intencion detectada: otro ejemplo. Da un ejemplo distinto al anterior y no repitas la respuesta previa.",
+      "- Intencion detectada: otro ejemplo. Empieza con un ejemplo distinto al anterior; despues conecta con el concepto academico sin repetir literalmente la respuesta previa.",
     examen:
-      "- Intencion detectada: examen oral. Prioriza una respuesta modelo breve, ordenada y defendible.",
+      "- Intencion detectada: examen oral. Empieza con una respuesta modelo breve, ordenada y defendible; despues agrega una idea clave si ayuda.",
     pregunta:
       "- Intencion detectada: comprobacion. Formula una pregunta breve para verificar comprension.",
     no_entendi:
-      "- Intencion detectada: no entendio. Cambia de estrategia: usa lenguaje mas sencillo y una analogia prudente, sin inventar contenido oficial.",
+      "- Intencion detectada: no entendio. Empieza con lenguaje mas sencillo y una analogia prudente; despues vuelve al concepto academico sin inventar contenido oficial.",
   };
   return instructions[intent];
 }
