@@ -1348,6 +1348,11 @@ input[type="hidden"] {
 .admin-section {
   margin-top: 25px;
 }
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

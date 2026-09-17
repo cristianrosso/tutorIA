@@ -1,6 +1,7 @@
 import {
   AudioLines,
   Coins,
+  SearchCheck,
   GraduationCap,
   MessageSquare,
   Users,
@@ -8,6 +9,7 @@ import {
   Zap,
   Wallet,
 } from "lucide-react";
+import Link from "next/link";
 import { z } from "zod";
 import { AppShell } from "@/components/app-shell";
 import {
@@ -157,6 +159,12 @@ export default async function AdminPage({
           La ingesta del compendio FATESCIPOL 2026 está disponible para las 15
           unidades y el tutor filtra las fuentes según la unidad seleccionada.
         </p>
+        <div className="admin-actions">
+          <Link className="button primary" href="/admin/knowledge/search">
+            <SearchCheck size={18} />
+            Probar búsqueda académica RAG
+          </Link>
+        </div>
         {data.ingestionReport != null && (
           <details className="ingestion-report">
             <summary>Ver informe de ingesta</summary>
