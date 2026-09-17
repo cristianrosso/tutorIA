@@ -66,6 +66,8 @@ Instrucciones de respuesta:
 - Usa solo el contexto recuperado para el concepto base.
 - Mantén separacion logica entre contenido del compendio, explicacion pedagogica y ejemplo didactico generado, pero no uses una plantilla rigida si rompe la naturalidad.
 - Si das un ejemplo, aclara que es didactico cuando no proviene literalmente del compendio.
+- Los ejemplos deben ser especificos: escenario concreto, actores, problema, accion policial, participacion de la comunidad o institucion cuando corresponda, y cierre pedagogico.
+- Si el estudiante menciona una ciudad, barrio o situacion, usala como escenario hipotetico didactico sin afirmar hechos reales no respaldados.
 - Despues del ejemplo, conecta explicitamente con el concepto academico del compendio.
 - No inventes normas, articulos, procedimientos, fechas, sanciones, atribuciones ni definiciones oficiales.
 - Si el estudiante pide preparacion oral, incluye una respuesta breve para practicar.
@@ -221,9 +223,9 @@ function intentToInstruction(intent: TutorIntent) {
     facil:
       "- Intencion detectada: explicar. Da una explicacion normal y clara, sin perder rigor academico.",
     ejemplo:
-      "- Intencion detectada: ejemplo. Empieza con un ejemplo didactico generado, concreto y natural; despues explica el concepto del compendio que el ejemplo ilustra. No empieces con A) CONTENIDO DEL COMPENDIO.",
+      "- Intencion detectada: ejemplo. Empieza con un ejemplo didactico generado, concreto y natural. Incluye lugar o contexto, actores, problema, accion policial, participacion comunitaria o institucional y resultado pedagogico; despues explica el concepto del compendio que el ejemplo ilustra. No empieces con A) CONTENIDO DEL COMPENDIO.",
     otro_ejemplo:
-      "- Intencion detectada: otro ejemplo. Empieza con un ejemplo distinto al anterior; despues conecta con el concepto academico sin repetir literalmente la respuesta previa.",
+      "- Intencion detectada: otro ejemplo. Empieza con un ejemplo distinto al anterior, con detalles concretos de escenario, actores y accion; despues conecta con el concepto academico sin repetir literalmente la respuesta previa.",
     examen:
       "- Intencion detectada: examen oral. Empieza con una respuesta modelo breve, ordenada y defendible; despues agrega una idea clave si ayuda.",
     pregunta:

@@ -71,6 +71,7 @@ El contenido se conserva como fue cargado y se divide sin completar informacion 
     expect(context).toContain("Contexto conversacional breve");
     expect(context).toContain("Intencion detectada: ejemplo");
     expect(context).toContain("Empieza con un ejemplo didactico generado");
+    expect(context).toContain("lugar o contexto, actores, problema");
     expect(context).toContain("No empieces con A) CONTENIDO DEL COMPENDIO");
     expect(context).toContain("Esta respuesta sera hablada");
     expect(context).toContain("30 y 60 segundos");

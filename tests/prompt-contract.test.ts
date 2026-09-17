@@ -10,7 +10,8 @@ describe("contrato pedagogico del tutor", () => {
 
   it("adapta el orden de respuesta a la intencion del estudiante", () => {
     expect(TUTOR_SYSTEM_PROMPT).toContain("Si pide un ejemplo");
-    expect(TUTOR_SYSTEM_PROMPT).toContain("empieza con un ejemplo didactico claro");
+    expect(TUTOR_SYSTEM_PROMPT).toContain("empieza con un ejemplo didactico claro, especifico y situado");
+    expect(TUTOR_SYSTEM_PROMPT).toContain("lugar o contexto, actores, problema");
     expect(TUTOR_SYSTEM_PROMPT).toContain("No obligues siempre el orden A-B-C");
   });
 
