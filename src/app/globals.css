@@ -1171,6 +1171,61 @@ p {
 .empty-state .button {
   margin-top: 7px;
 }
+
+.topic-list {
+  display: grid;
+  gap: 10px;
+}
+.topic-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fbfcfa;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.topic-item:hover {
+  border-color: #a9c9b2;
+  background: #f3f8f1;
+  transform: translateY(-1px);
+}
+.topic-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.topic-number {
+  flex: 0 0 auto;
+  min-width: 42px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #edf5ee;
+  color: #287565;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+.topic-title {
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.topic-list small {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
 /* Administración */
 .filter-bar {
   display: flex;
@@ -1964,6 +2019,27 @@ input[type="hidden"] {
   }
 }
 @media (max-width: 640px) {
+
+  .topic-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 13px 14px;
+  }
+  .topic-main {
+    width: 100%;
+  }
+  .topic-number {
+    min-width: 38px;
+    font-size: 10px;
+  }
+  .topic-title {
+    font-size: 14px;
+  }
+  .topic-list small {
+    white-space: normal;
+    padding-left: 50px;
+  }
   .login-page {
     display: block;
   }

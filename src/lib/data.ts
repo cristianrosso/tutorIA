@@ -89,30 +89,98 @@ export async function getUnitsWithProgress(): Promise<UnitProgressSummary[]> {
   });
 }
 
-export async function getUnitTopics(unitNumber: number) {
+type UnitTopicRow = {
+  topic: string | null;
+  section_name: string | null;
+  section_title: string | null;
+  section: string | null;
+  content: string | null;
+};
+
+export type UnitTopicSummary = {
+  section: string | null;
+  name: string;
+  count: number;
+};
+
+function normalizeTopicText(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isUnitHeadingTopic(name: string) {
+  const normalized = normalizeTopicText(name).toLowerCase();
+  return /^unidad\s+tematica\b/.test(normalized);
+}
+
+function sectionSortParts(value: string | null) {
+  const match = String(value || "").match(/\d+(?:\.\d+)*/);
+  if (!match) return [];
+  return match[0].split(".").map((part) => Number(part));
+}
+
+function compareSections(a: string | null, b: string | null) {
+  const aParts = sectionSortParts(a);
+  const bParts = sectionSortParts(b);
+  if (!aParts.length && !bParts.length) return 0;
+  if (!aParts.length) return 1;
+  if (!bParts.length) return -1;
+  const length = Math.max(aParts.length, bParts.length);
+  for (let index = 0; index < length; index += 1) {
+    const diff = (aParts[index] || 0) - (bParts[index] || 0);
+    if (diff) return diff;
+  }
+  return 0;
+}
+
+function getTopicName(chunk: UnitTopicRow) {
+  return String(
+    chunk.section_title ||
+      chunk.section_name ||
+      chunk.topic ||
+      chunk.content?.split("\n").find((line) => line.trim().length > 3) ||
+      "Tema sin título",
+  )
+    .replace(/^\d+(?:\.\d+)*\s*[.-]?\s*/, "")
+    .trim();
+}
+
+export async function getUnitTopics(
+  unitNumber: number,
+): Promise<UnitTopicSummary[]> {
   await requireProfile();
   const db = await createSupabaseServer();
   const { data, error } = await db
     .from("document_chunks")
-    .select("topic,section_name,section_title,section,content,unit_number")
+    .select("topic,section_name,section_title,section,content")
     .eq("unit_number", unitNumber)
-    .limit(500);
+    .limit(1500);
   if (error) throw new Error("No se pudieron cargar los temas.");
-  const counts = new Map<string, number>();
-  for (const chunk of data || []) {
-    const name = String(
-      chunk.topic ||
-        chunk.section_title ||
-        chunk.section_name ||
-        "Tema sin título",
-    ).trim();
-    if (!name || name.length < 4) continue;
-    counts.set(name, (counts.get(name) || 0) + 1);
+
+  const topics = new Map<string, UnitTopicSummary>();
+  for (const chunk of (data || []) as UnitTopicRow[]) {
+    const name = getTopicName(chunk);
+    if (!name || name.length < 4 || isUnitHeadingTopic(name)) continue;
+    const section = String(chunk.section || "").trim() || null;
+    const key = `${section || "sin-seccion"}::${normalizeTopicText(name).toLowerCase()}`;
+    const current = topics.get(key);
+    if (current) {
+      current.count += 1;
+      continue;
+    }
+    topics.set(key, { section, name, count: 1 });
   }
-  return [...counts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 30)
-    .map(([name, count]) => ({ name, count }));
+
+  return [...topics.values()]
+    .sort(
+      (a, b) =>
+        compareSections(a.section, b.section) ||
+        a.name.localeCompare(b.name, "es", { numeric: true }),
+    )
+    .slice(0, 120);
 }
 
 export async function getWeakTopics(userId?: string) {

@@ -63,14 +63,21 @@ export default async function UnitDetailPage({
           <h2>Temas y subtemas disponibles</h2>
           <span>Provienen de la ingesta del compendio</span>
         </div>
-        <div className="topic-list">
+        <div className="topic-list" role="list">
           {topics.length ? (
             topics.map((topic) => (
               <Link
-                key={topic.name}
+                className="topic-item"
+                key={`${topic.section || "tema"}-${topic.name}`}
                 href={`/tutor?unit=${unit.number}&section=${encodeURIComponent(topic.name)}`}
+                role="listitem"
               >
-                <span>▸ {topic.name}</span>
+                <span className="topic-main">
+                  {topic.section ? (
+                    <span className="topic-number">{topic.section}</span>
+                  ) : null}
+                  <span className="topic-title">{topic.name}</span>
+                </span>
                 <small>{topic.count} fragmentos</small>
               </Link>
             ))
