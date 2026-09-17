@@ -143,3 +143,15 @@ OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 OPENAI_EMBEDDING_DIMENSIONS=1536
 RAG_DEBUG=false
 ```
+
+## Sprint 5C · Tutor conversacional pedagógico
+
+El tutor textual de `/tutor` usa el motor RAG académico MKF-1 mediante `POST /api/tutor/chat`. Guarda conversaciones, mensajes, fuentes, modelo, tokens, costo estimado y feedback del estudiante. La arquitectura está documentada en [`docs/TUTOR_CONVERSATIONAL_ARCHITECTURE.md`](docs/TUTOR_CONVERSATIONAL_ARCHITECTURE.md).
+
+Variables opcionales nuevas:
+
+```env
+OPENAI_FAST_MODEL=gpt-5.6-luna
+TUTOR_MAX_HISTORY_MESSAGES=8
+TUTOR_MAX_HISTORY_TOKENS=900
+```

@@ -24,10 +24,11 @@ export async function generateTutorText(input: {
   system: string;
   user: string;
   maxOutputTokens?: number;
+  model?: string;
 }): Promise<OpenAITextResult> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
-  const model = process.env.OPENAI_MODEL || "gpt-5.6-terra";
+  const model = input.model || process.env.OPENAI_MODEL || "gpt-5.6-terra";
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {

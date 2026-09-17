@@ -1,18 +1,15 @@
 "use client";
-import { useActionState, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BookOpen,
   Loader2,
-  MessageSquareText,
   Mic,
   PauseCircle,
-  Send,
-  Sparkles,
   Square,
   Volume2,
   X,
 } from "lucide-react";
-import { askTutor, type TutorActionState } from "@/app/actions/tutor";
+import { TutorChat } from "@/components/tutor/tutor-chat";
 
 type VoiceStatus = "ready" | "listening" | "processing" | "speaking";
 
@@ -48,14 +45,24 @@ const minRecordingMs = 900;
 export function TutorForm({
   unit,
   section,
+  initialConversationId,
+  initialMessages,
 }: {
   unit: { number: number; name: string };
   section?: string;
+  initialConversationId?: string;
+  initialMessages?: Array<{
+    id: string;
+    role: "user" | "assistant";
+    content: string;
+    usage?: {
+      model: string;
+      inputTokens: number;
+      outputTokens: number;
+      estimatedCost: number;
+    };
+  }>;
 }) {
-  const [textState, textAction, textPending] = useActionState<
-    TutorActionState,
-    FormData
-  >(askTutor, {});
   const [status, setStatus] = useState<VoiceStatus>("ready");
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const [voice, setVoice] = useState<VoiceResponse | null>(null);
@@ -87,9 +94,9 @@ export function TutorForm({
   }, []);
 
   const active = status !== "ready";
-  const answer = voice?.answer || textState.answer;
-  const question = voice?.transcript || textState.question;
-  const sources = voice?.sources || textState.sources;
+  const answer = voice?.answer;
+  const question = voice?.transcript;
+  const sources = voice?.sources;
   const currentStatus = useMemo(() => statusLabel[status], [status]);
 
   async function startRecording() {
@@ -464,50 +471,6 @@ export function TutorForm({
         )}
       </section>
 
-      <form action={textAction} className="tutor-question-form">
-        <label>
-          Pregunta sobre Unidad {unit.number}
-          <input type="hidden" name="unitNumber" value={unit.number} />
-          {section && <input type="hidden" name="section" value={section} />}
-          <textarea
-            name="question"
-            required
-            minLength={5}
-            maxLength={1000}
-            rows={4}
-            placeholder={`Ej. Explícame un concepto de ${unit.name} para mi examen oral.`}
-          />
-        </label>
-        <div className="quick-intent-grid">
-          {[
-            ["facil", "Explícame"],
-            ["no_entendi", "Explícame más fácil"],
-            ["ejemplo", "Dame un ejemplo"],
-            ["pregunta", "Pregúntame"],
-            ["examen", "Respuesta para examen"],
-          ].map(([intent, label]) => (
-            <button
-              className="button secondary"
-              name="intent"
-              value={intent}
-              key={intent}
-              disabled={textPending}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <button className="button primary" disabled={textPending}>
-          <Send size={17} />
-          {textPending ? "Consultando compendio…" : "Preguntar por texto"}
-        </button>
-      </form>
-
-      {textState.error && (
-        <p className="notice error" role="alert">
-          {textState.error}
-        </p>
-      )}
       {answer ? (
         <section className="tutor-answer" aria-live="polite">
           <div className="chat-bubble user">
@@ -515,26 +478,18 @@ export function TutorForm({
             <p>{question}</p>
           </div>
           <article className="chat-bubble assistant">
-            <span className="eyebrow">
-              <Sparkles size={14} /> RESPUESTA DIDÁCTICA
-            </span>
+            <span className="eyebrow">RESPUESTA DIDÁCTICA POR VOZ</span>
             <div className="answer-text">{answer}</div>
           </article>
           <SourceList sources={sources || []} />
         </section>
-      ) : (
-        <section className="panel tutor-guidance">
-          <MessageSquareText size={23} />
-          <div>
-            <h2>Cómo responderá el tutor</h2>
-            <p>
-              Usará el RAG filtrado de esta unidad para texto y voz, separando
-              concepto del compendio, explicación pedagógica, ejemplo didáctico
-              y preparación oral cuando corresponda.
-            </p>
-          </div>
-        </section>
-      )}
+      ) : null}
+
+      <TutorChat
+        unit={unit}
+        initialConversationId={initialConversationId}
+        initialMessages={initialMessages}
+      />
     </div>
   );
 }
