@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, GraduationCap, Mic } from "lucide-react";
+import { BookOpen, ClipboardCheck, GraduationCap, Mic } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { requireProfile } from "@/lib/auth/session";
 import { getUnitsWithProgress } from "@/lib/data";
@@ -70,8 +70,14 @@ export default async function UnitsPage() {
                 <Mic size={15} /> Hablar
               </Link>
               <Link
-                href={`/simulacro?unit=${unit.number}`}
+                href={`/practica?unit=${unit.number}`}
                 className="button primary"
+              >
+                <ClipboardCheck size={15} /> Práctica
+              </Link>
+              <Link
+                href={`/simulacro?unit=${unit.number}`}
+                className="button secondary"
               >
                 <GraduationCap size={15} /> Simulacro
               </Link>

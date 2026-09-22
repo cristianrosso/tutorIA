@@ -3,6 +3,7 @@ import {
   BookOpen,
   ChartNoAxesCombined,
   CircleHelp,
+  ClipboardCheck,
   GraduationCap,
   House,
   LayoutDashboard,
@@ -20,7 +21,7 @@ export function AppShell({
   children,
 }: {
   profile: Profile;
-  active: "home" | "units" | "progress" | "tutor" | "simulacro" | "admin";
+  active: "home" | "units" | "progress" | "tutor" | "simulacro" | "practice" | "admin";
   children: React.ReactNode;
 }) {
   const nav = [
@@ -31,6 +32,12 @@ export function AppShell({
       label: "Simulacro",
       icon: GraduationCap,
       id: "simulacro",
+    },
+    {
+      href: "/practica",
+      label: "Práctica",
+      icon: ClipboardCheck,
+      id: "practice",
     },
     { href: "/unidades", label: "Mis unidades", icon: BookOpen, id: "units" },
     {
@@ -98,7 +105,9 @@ export function AppShell({
                       ? "Tutor"
                       : active === "simulacro"
                         ? "Simulacro"
-                        : "Inicio"}
+                        : active === "practice"
+                          ? "Práctica"
+                          : "Inicio"}
             </strong>
           </span>
           <div className="header-user">

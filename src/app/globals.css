@@ -2775,3 +2775,166 @@ input[type="hidden"] {
     width: 100%;
   }
 }
+
+/* Sprint 7 · Evaluación formativa */
+.assessment-layout,
+.assessment-history-layout {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 24px;
+  align-items: start;
+}
+.assessment-config {
+  display: grid;
+  gap: 16px;
+}
+.assessment-config label {
+  display: grid;
+  gap: 8px;
+  color: #4d626b;
+  font-size: 11px;
+  font-weight: 700;
+}
+.assessment-config select,
+.assessment-textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  padding: 12px;
+}
+.assessment-room {
+  display: grid;
+  gap: 16px;
+}
+.assessment-question-card {
+  border: 1px solid #dce8df;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fff, #f8fbf8);
+  padding: 22px;
+  display: grid;
+  gap: 16px;
+}
+.assessment-question-card > span {
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.assessment-question-card h3 {
+  font-size: 21px;
+  line-height: 1.45;
+}
+.assessment-options {
+  display: grid;
+  gap: 10px;
+}
+.assessment-options.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.assessment-options label {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  padding: 13px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.assessment-options label.selected {
+  border-color: #95cabb;
+  background: #eef8f4;
+}
+.assessment-options label > span {
+  color: var(--teal);
+  font-weight: 800;
+}
+.assessment-textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.7;
+}
+.assessment-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.assessment-feedback {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+  background: #fff;
+}
+.assessment-feedback.positive {
+  border-color: #cfe7d7;
+  background: #f3faf5;
+}
+.assessment-feedback.negative {
+  border-color: #f0d8cf;
+  background: #fff7f4;
+}
+.assessment-feedback h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--teal);
+  font-size: 16px;
+}
+.assessment-feedback p,
+.assessment-feedback small,
+.assessment-review-list p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.assessment-feedback b,
+.assessment-review-list b {
+  color: var(--ink);
+}
+.spin-icon {
+  animation: spin 0.8s linear infinite;
+}
+.assessment-review-list {
+  display: grid;
+  gap: 12px;
+}
+.assessment-review-list article {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fbfcfb;
+  padding: 15px;
+}
+.assessment-review-list strong {
+  display: block;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+@media (max-width: 900px) {
+  .assessment-layout,
+  .assessment-history-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .assessment-options.two,
+  .assessment-actions {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+  .assessment-actions .button,
+  .assessment-config .button {
+    width: 100%;
+  }
+  .assessment-question-card {
+    padding: 18px;
+  }
+  .assessment-question-card h3 {
+    font-size: 18px;
+  }
+}

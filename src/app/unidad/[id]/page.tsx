@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {
   BookOpen,
+  ClipboardCheck,
   GraduationCap,
   Mic,
   MessageSquareText,
-  PlayCircle,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { requireProfile } from "@/lib/auth/session";
@@ -46,10 +46,10 @@ export default async function UnitDetailPage({
           <Mic size={16} /> Hablar con mi tutor
         </Link>
         <Link
-          className="button secondary"
-          href={`/tutor?unit=${unit.number}&intent=pregunta`}
+          className="button primary"
+          href={`/practica?unit=${unit.number}`}
         >
-          <PlayCircle size={16} /> Practicar
+          <ClipboardCheck size={16} /> Práctica formativa
         </Link>
         <Link
           className="button secondary"

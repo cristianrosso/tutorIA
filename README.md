@@ -179,3 +179,7 @@ OPENAI_TERRA_INPUT_COST_PER_1M=2
 OPENAI_TERRA_OUTPUT_COST_PER_1M=12
 OPENAI_CACHED_INPUT_COST_PER_1M=0
 ```
+
+## Sprint 7 — Evaluación formativa
+
+El proyecto incluye práctica formativa en `/practica`, historial en `/evaluaciones`, generación de preguntas con RAG, corrección en servidor, retroalimentación pedagógica y registro de evidencias de aprendizaje. Ver `docs/SPRINT_7_ASSESSMENT.md`.
