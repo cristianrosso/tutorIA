@@ -32,13 +32,13 @@ export async function POST(request: Request) {
     if (!parsed.success)
       return fail("No se recibió una respuesta válida para reproducir.");
 
-    const { data: session, error: sessionError } = await createSupabaseAdmin()
-      .from("study_sessions")
+    const { data: conversation, error: conversationError } = await createSupabaseAdmin()
+      .from("tutor_conversations")
       .select("id")
       .eq("id", parsed.data.conversationId)
       .eq("user_id", profile.id)
-      .single();
-    if (sessionError || !session)
+      .maybeSingle();
+    if (conversationError || !conversation)
       return fail("No se encontró la conversación activa.", 404);
 
     const speech = await synthesizeSpeech({ text: parsed.data.text });
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       .from("usage_events")
       .insert({
         user_id: profile.id,
-        session_id: parsed.data.conversationId,
+        session_id: null,
         provider: "openai",
         model: speech.model,
         event_type: "tts",
