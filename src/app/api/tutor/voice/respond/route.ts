@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { consumeLimit } from "@/lib/auth/rate-limit";
 import { accessProblem } from "@/lib/auth/rules";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { estimateAudioInputCost } from "@/lib/ai/costs";
-import { transcribeAudio } from "@/lib/ai/openai";
+import {
+  durationFromForm,
+  transcribeStudentAudio,
+} from "@/lib/voice/speech-to-text";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
 import {
   generateTutorResponse,
@@ -13,18 +15,8 @@ import { detectPedagogicalMode } from "@/lib/pedagogy/mode-detector";
 
 export const runtime = "nodejs";
 
-const maxAudioBytes = 8 * 1024 * 1024;
-const maxInputSeconds = 75;
-const minAudioBytes = 250;
-
 function fail(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
-}
-
-function clampDuration(value: FormDataEntryValue | null) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return 0;
-  return Math.max(0, Math.min(maxInputSeconds, number));
 }
 
 export async function POST(request: Request) {
@@ -44,20 +36,15 @@ export async function POST(request: Request) {
       15,
       Math.max(1, Number(form.get("unitNumber")) || 1),
     );
-    const duration = clampDuration(form.get("duration"));
+    const duration = durationFromForm(form.get("duration"));
     if (!(audio instanceof File))
       return fail("No se recibió audio para transcribir.");
-    if (audio.size < minAudioBytes)
-      return fail(
-        `El audio llegó vacío o incompleto (${audio.size} bytes). Revisa el permiso del micrófono e intenta otra vez.`,
-      );
-    if (audio.size > maxAudioBytes || duration >= maxInputSeconds)
-      return fail(
-        "El audio es muy largo. Usa intervenciones de hasta un minuto.",
-      );
-
-    const transcription = await transcribeAudio({ audio, language: "es" });
-    const transcript = transcription.text.trim();
+    const transcription = await transcribeStudentAudio({
+      audio,
+      durationSeconds: duration,
+      language: "es",
+    });
+    const transcript = transcription.transcript.trim();
     if (transcript.length < 3)
       return fail("No pude reconocer una pregunta en el audio.");
 
@@ -72,23 +59,21 @@ export async function POST(request: Request) {
       options: { unitNumber },
     });
 
-    await createSupabaseAdmin()
-      .from("usage_events")
-      .insert({
-        user_id: profile.id,
-        session_id: result.conversationId,
-        provider: "openai",
-        unit_id: null,
-        feature: "tutor_voice",
-        model: transcription.model,
-        event_type: "stt",
-        input_tokens: transcription.inputTokens,
-        output_tokens: transcription.outputTokens,
-        audio_input: duration,
-        audio_output: 0,
-        estimated_cost: estimateAudioInputCost(duration),
-        provider_request_id: transcription.requestId,
-      });
+    await createSupabaseAdmin().from("usage_events").insert({
+      user_id: profile.id,
+      session_id: result.conversationId,
+      provider: "openai",
+      unit_id: null,
+      feature: "tutor_voice",
+      model: transcription.model,
+      event_type: "stt",
+      input_tokens: transcription.inputTokens,
+      output_tokens: transcription.outputTokens,
+      audio_input: duration,
+      audio_output: 0,
+      estimated_cost: transcription.estimatedCost,
+      provider_request_id: transcription.requestId,
+    });
 
     return NextResponse.json({
       conversationId: result.conversationId,

@@ -3282,3 +3282,74 @@ input[type="hidden"] {
   font-size: 12px;
   line-height: 1.5;
 }
+
+.voice-transcript-card,
+.voice-player-controls,
+.voice-recorder {
+  width: 100%;
+  border: 1px solid #dce9df;
+  border-radius: 14px;
+  background: #ffffffd9;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+.voice-transcript-card strong {
+  color: var(--ink);
+}
+.voice-transcript-card p,
+.voice-transcript-card small,
+.voice-player-controls span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.voice-transcript-card textarea {
+  width: 100%;
+  min-height: 90px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  resize: vertical;
+  font: inherit;
+  color: var(--ink);
+}
+.voice-player-controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+.voice-player-controls span {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+.voice-recorder {
+  justify-items: center;
+  text-align: center;
+}
+.voice-recorder .voice-actions {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+.voice-recorder .voice-actions span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.exam-voice-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+.feedback-audio-button {
+  margin-top: 8px;
+}
+@media (max-width: 640px) {
+  .voice-player-controls,
+  .voice-recorder .voice-actions {
+    grid-template-columns: 1fr;
+  }
+  .exam-voice-tools {
+    display: grid;
+  }
+}

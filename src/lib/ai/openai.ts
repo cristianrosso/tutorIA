@@ -88,6 +88,7 @@ type TranscriptionBody = {
 export async function transcribeAudio(input: {
   audio: File;
   language?: string;
+  prompt?: string;
 }): Promise<OpenAITranscriptionResult> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
@@ -97,6 +98,7 @@ export async function transcribeAudio(input: {
   form.set("file", input.audio);
   form.set("response_format", "json");
   if (input.language) form.set("language", input.language);
+  if (input.prompt) form.set("prompt", input.prompt);
   const response = await fetch(
     "https://api.openai.com/v1/audio/transcriptions",
     {
@@ -105,8 +107,7 @@ export async function transcribeAudio(input: {
       body: form,
     },
   );
-  if (!response.ok)
-    throw new Error(await openAIError("OpenAI STT", response));
+  if (!response.ok) throw new Error(await openAIError("OpenAI STT", response));
   const body = (await response.json()) as TranscriptionBody;
   const text = body.text?.trim();
   if (!text) throw new Error("OpenAI no devolvió transcripción utilizable.");
@@ -122,6 +123,8 @@ export async function transcribeAudio(input: {
 export async function synthesizeSpeech(input: {
   text: string;
   voice?: string;
+  format?: string;
+  instructions?: string;
 }): Promise<OpenAIAudioResult & { audio: ArrayBuffer; contentType: string }> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
@@ -136,13 +139,13 @@ export async function synthesizeSpeech(input: {
       model,
       voice: input.voice || process.env.OPENAI_TTS_VOICE || "alloy",
       input: input.text,
-      response_format: "mp3",
+      response_format: input.format || process.env.VOICE_OUTPUT_FORMAT || "mp3",
       instructions:
+        input.instructions ||
         "Voz clara, natural y pausada para un estudiante policial boliviano. Mantén tono docente, breve y seguro.",
     }),
   });
-  if (!response.ok)
-    throw new Error(await openAIError("OpenAI TTS", response));
+  if (!response.ok) throw new Error(await openAIError("OpenAI TTS", response));
   return {
     audio: await response.arrayBuffer(),
     contentType: response.headers.get("content-type") || "audio/mpeg",

@@ -106,7 +106,7 @@ export async function startExam(profile: Profile, examId: string) {
   return getExamSession(profile, examId, { includeFeedback: false });
 }
 
-export async function saveExamAnswer(profile: Profile, input: { examId: string; sessionQuestionId: string; answer: string | boolean }) {
+export async function saveExamAnswer(profile: Profile, input: { examId: string; sessionQuestionId: string; answer: string | boolean; inputMode?: "text" | "voice"; transcriptRaw?: string | null; transcriptEdited?: boolean }) {
   const db = createSupabaseAdmin();
   const exam = await getOwnedExamRow(profile, input.examId);
   if (await isExpired(exam)) {
@@ -126,7 +126,7 @@ export async function saveExamAnswer(profile: Profile, input: { examId: string; 
       exam_session_id: input.examId,
       session_question_id: input.sessionQuestionId,
       user_id: profile.id,
-      answer: { value: input.answer },
+      answer: { value: input.answer, inputMode: input.inputMode || "text", transcriptRaw: input.transcriptRaw || null, transcriptEdited: Boolean(input.transcriptEdited) },
       grading_status: "pending",
       answered_at: new Date().toISOString(),
     },
@@ -355,3 +355,4 @@ function normalizeConfig(config: CreateExamConfig): CreateExamConfig {
 function distributionForConfig(config: CreateExamConfig) {
   return distributeCounts(config.count, config.examMode === "integral" ? config.unitNumbers : [config.unitNumbers[0] || 1]);
 }
+

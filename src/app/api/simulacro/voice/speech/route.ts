@@ -3,8 +3,7 @@ import { z } from "zod";
 import { accessProblem } from "@/lib/auth/rules";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { consumeLimit } from "@/lib/auth/rate-limit";
-import { estimateAudioOutputCost, estimateSpeechSeconds } from "@/lib/ai/costs";
-import { synthesizeSpeech } from "@/lib/ai/openai";
+import { generateSpeechAudio } from "@/lib/voice/text-to-speech";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
@@ -38,8 +37,11 @@ export async function POST(request: Request) {
       .single();
     if (error || !simulation) return fail("No se encontró el simulacro.", 404);
 
-    const speech = await synthesizeSpeech({ text: parsed.data.text });
-    const outputSeconds = estimateSpeechSeconds(parsed.data.text);
+    const speech = await generateSpeechAudio({
+      text: parsed.data.text,
+      style: "tutor",
+    });
+    const outputSeconds = speech.audioOutputSeconds;
     await db.from("usage_events").insert({
       user_id: profile.id,
       session_id: simulation.session_id,
@@ -51,7 +53,7 @@ export async function POST(request: Request) {
       output_tokens: speech.outputTokens,
       audio_input: 0,
       audio_output: outputSeconds,
-      estimated_cost: estimateAudioOutputCost(outputSeconds),
+      estimated_cost: speech.estimatedCost,
       provider_request_id: speech.requestId,
     });
     return new Response(speech.audio, {
