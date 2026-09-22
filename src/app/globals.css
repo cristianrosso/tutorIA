@@ -3353,3 +3353,18 @@ input[type="hidden"] {
     display: grid;
   }
 }
+.voice-mode-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.voice-mode-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--teal);
+}

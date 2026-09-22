@@ -73,6 +73,7 @@ export function TutorForm({
   const [pendingAudioSeconds, setPendingAudioSeconds] = useState(0);
   const [audioSeconds, setAudioSeconds] = useState<number | null>(null);
   const [ttsModel, setTtsModel] = useState<string | null>(null);
+  const [voiceConversationMode, setVoiceConversationMode] = useState(true);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
@@ -191,7 +192,11 @@ export function TutorForm({
     if (chunksRef.current.length === 0) {
       const fallback = speechTranscriptRef.current.trim();
       if (fallback.length >= 3) {
-        prepareTranscript(fallback, durationMs, fallback);
+        if (voiceConversationMode) {
+          await sendTranscriptText(fallback, Math.round(durationMs / 1000));
+        } else {
+          prepareTranscript(fallback, durationMs, fallback);
+        }
         return;
       }
       setStatus("ready");
@@ -205,7 +210,11 @@ export function TutorForm({
     if (durationMs < minRecordingMs && blob.size < 900) {
       const fallback = speechTranscriptRef.current.trim();
       if (fallback.length >= 3) {
-        prepareTranscript(fallback, durationMs, fallback);
+        if (voiceConversationMode) {
+          await sendTranscriptText(fallback, Math.round(durationMs / 1000));
+        } else {
+          prepareTranscript(fallback, durationMs, fallback);
+        }
         return;
       }
       setStatus("ready");
@@ -217,7 +226,11 @@ export function TutorForm({
     if (blob.size < 900) {
       const fallback = speechTranscriptRef.current.trim();
       if (fallback.length >= 3) {
-        prepareTranscript(fallback, durationMs, fallback);
+        if (voiceConversationMode) {
+          await sendTranscriptText(fallback, Math.round(durationMs / 1000));
+        } else {
+          prepareTranscript(fallback, durationMs, fallback);
+        }
         return;
       }
       setStatus("ready");
@@ -251,11 +264,19 @@ export function TutorForm({
         error?: string;
       };
       if (!response.ok) throw new Error(payload.error);
-      prepareTranscript(payload.transcript, durationMs, payload.transcript);
-      setVoiceError(null);
-      console.info(
-        `Transcripción lista en ${((performance.now() - started) / 1000).toFixed(1)}s`,
-      );
+      if (voiceConversationMode) {
+        await sendTranscriptText(
+          payload.transcript,
+          Math.round(durationMs / 1000),
+          started,
+        );
+      } else {
+        prepareTranscript(payload.transcript, durationMs, payload.transcript);
+        setVoiceError(null);
+        console.info(
+          `Transcripción lista en ${((performance.now() - started) / 1000).toFixed(1)}s`,
+        );
+      }
     } catch (error) {
       if ((error as Error).name !== "AbortError") {
         setVoiceError(
@@ -277,8 +298,17 @@ export function TutorForm({
   }
 
   async function sendTranscriptToTutor() {
-    const clean = transcriptDraft.trim();
+    await sendTranscriptText(transcriptDraft, pendingAudioSeconds);
+  }
+
+  async function sendTranscriptText(
+    text: string,
+    durationSeconds: number,
+    started = performance.now(),
+  ) {
+    const clean = text.trim();
     if (clean.length < 3) {
+      setStatus("ready");
       setVoiceError(
         "Corrige o vuelve a grabar: la transcripción es demasiado corta.",
       );
@@ -286,14 +316,14 @@ export function TutorForm({
     }
     try {
       setStatus("processing");
-      const started = performance.now();
+      setVoiceError(null);
       const response = await fetch("/api/tutor/voice/text", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           transcript: clean,
           conversationId: voice?.conversationId,
-          duration: pendingAudioSeconds,
+          duration: durationSeconds,
           unitNumber: unit.number,
           section,
         }),
@@ -305,9 +335,13 @@ export function TutorForm({
       setVoice({ ...payload, transcript: clean });
       setTranscriptDraft("");
       setRawTranscript("");
+      setPendingAudioSeconds(0);
       await playAnswer(payload.answer, payload.conversationId, started);
     } catch (error) {
       setStatus("ready");
+      setTranscriptDraft(clean);
+      setRawTranscript(clean);
+      setPendingAudioSeconds(durationSeconds);
       setVoiceError(
         error instanceof Error && error.message
           ? error.message
@@ -503,9 +537,18 @@ export function TutorForm({
           onStop={() => stopAudio()}
           label="Escuchar respuesta"
         />
+        <label className="voice-mode-toggle">
+          <input
+            type="checkbox"
+            checked={voiceConversationMode}
+            onChange={(event) => setVoiceConversationMode(event.target.checked)}
+          />
+          Conversación fluida por voz
+        </label>
         <p className="voice-help">
-          Habla una intervención breve. El micrófono se apaga al detener y el
-          tutor conserva solo el contexto necesario para repreguntas.
+          {voiceConversationMode
+            ? "Habla, detén el micrófono y el tutor responderá por voz automáticamente. Si necesitas corregir antes de enviar, desactiva este modo."
+            : "Habla una intervención breve. Verás la transcripción para corregirla antes de enviarla al tutor."}
         </p>
         {voiceError && (
           <p className="notice error" role="alert">
