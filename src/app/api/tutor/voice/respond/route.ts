@@ -5,7 +5,11 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { estimateAudioInputCost } from "@/lib/ai/costs";
 import { transcribeAudio } from "@/lib/ai/openai";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
-import { generateTutorResponse, type TutorStructuredSource } from "@/lib/tutor/tutor-service";
+import {
+  generateTutorResponse,
+  type TutorStructuredSource,
+} from "@/lib/tutor/tutor-service";
+import { detectPedagogicalMode } from "@/lib/pedagogy/mode-detector";
 
 export const runtime = "nodejs";
 
@@ -121,18 +125,18 @@ function voiceErrorMessage(error: unknown) {
   return "No se pudo procesar el audio. Verifica tu conexión e inténtalo nuevamente.";
 }
 
-
 function tutorModeFromTranscript(transcript: string) {
-  if (/ejemplo/i.test(transcript)) return "example" as const;
-  if (/examen|oral|respuesta modelo|tribunal/i.test(transcript)) return "review" as const;
-  if (/f[aá]cil|no entend[ií]|expl[ií]came/i.test(transcript)) return "explain" as const;
-  if (/preg[uú]ntame/i.test(transcript)) return "review" as const;
-  return "normal" as const;
+  return detectPedagogicalMode({ message: transcript, requestedMode: "normal" })
+    .mode;
 }
 
 function toVoiceSource(source: TutorStructuredSource) {
   return {
-    title: source.topicName || source.sectionName || source.unitName || "Compendio FATESCIPOL 2026",
+    title:
+      source.topicName ||
+      source.sectionName ||
+      source.unitName ||
+      "Compendio FATESCIPOL 2026",
     source: "Compendio FATESCIPOL 2026",
     unitName: source.unitName,
     section: source.reference,

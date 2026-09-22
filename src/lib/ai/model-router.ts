@@ -1,7 +1,8 @@
 import "server-only";
 import type { AcademicIntent } from "@/lib/knowledge/types";
+import type { TutorMode } from "@/lib/pedagogy/types";
 
-export type TutorMode = "normal" | "quick" | "explain" | "example" | "review";
+export type { TutorMode } from "@/lib/pedagogy/types";
 
 export function selectModel(input: {
   intent: AcademicIntent;
@@ -14,10 +15,18 @@ export function selectModel(input: {
   const complexIntent = ["comparison", "procedure", "explanation"].includes(
     input.intent,
   );
+  const richerMode = [
+    "explain",
+    "simple",
+    "academic",
+    "deep",
+    "review",
+    "comparison",
+    "step_by_step",
+  ].includes(input.mode);
   const needsTerra =
     input.complexity === "HIGH" ||
-    input.mode === "explain" ||
-    input.mode === "review" ||
+    richerMode ||
     input.contextSize > 3000 ||
     complexIntent;
   return needsTerra ? terra : luna;

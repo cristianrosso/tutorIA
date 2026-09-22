@@ -186,3 +186,7 @@ El proyecto incluye práctica formativa en `/practica`, historial en `/evaluacio
 ## Sprint 10 — Plan de estudio inteligente
 
 El proyecto incluye un planificador académico en `/plan-estudio` para crear cronogramas personalizados por fecha de examen, disponibilidad semanal, unidades seleccionadas, progreso real y recomendaciones adaptativas. La documentación técnica está en `docs/SPRINT_10_STUDY_PLANNER.md`.
+
+### Sprint 11 · Tutor pedagógico multinivel
+
+El tutor de `/tutor` ahora incorpora un motor pedagógico multinivel sobre el mismo RAG académico existente. Permite seleccionar modos rápido, sencillo, académico, profundo, ejemplo, repaso, comparación y paso a paso; también detecta esas intenciones por lenguaje natural y registra interacciones pedagógicas para futuras preferencias del estudiante. La arquitectura y la migración están documentadas en [`docs/SPRINT_11_MULTILEVEL_PEDAGOGY.md`](docs/SPRINT_11_MULTILEVEL_PEDAGOGY.md).

@@ -18,15 +18,24 @@ import { buildStudentMemoryContext } from "@/lib/learning/memory-context";
 import { buildAdaptiveTutorContext } from "@/lib/adaptive/recommendation-engine";
 import { buildStudyPlanContext } from "@/lib/study-plan/study-plan-context";
 import type { Profile } from "@/lib/models";
-import {
-  TUTOR_PEDAGOGICAL_SYSTEM_PROMPT,
-  modeInstruction,
-} from "@/lib/tutor/prompts/system-prompt";
+import { TUTOR_PEDAGOGICAL_SYSTEM_PROMPT } from "@/lib/tutor/prompts/system-prompt";
 import { getConversationContext } from "@/lib/tutor/conversation-context";
 import {
   insufficientContextAnswer,
   validateTutorResponse,
 } from "@/lib/tutor/response-validator";
+import { detectPedagogicalMode } from "@/lib/pedagogy/mode-detector";
+import {
+  getPedagogicalPreference,
+  recordPedagogicalInteraction,
+  savePedagogicalPreference,
+} from "@/lib/pedagogy/preferences";
+import {
+  buildMultilevelPedagogicalPrompt,
+  maxTokensForMode,
+} from "@/lib/pedagogy/prompt-builder";
+import { selectPedagogicalStrategy } from "@/lib/pedagogy/strategy-selector";
+import type { PedagogicalStrategy } from "@/lib/pedagogy/types";
 
 export type TutorStructuredSource = {
   knowledgeObjectId: string | null;
@@ -46,6 +55,8 @@ export type TutorResponse = {
   intent: AcademicIntent;
   sources: TutorStructuredSource[];
   suggestedFollowUps: string[];
+  mode: TutorMode;
+  strategy: PedagogicalStrategy;
   usage: {
     model: string;
     inputTokens: number;
@@ -64,13 +75,22 @@ export async function generateTutorResponse(input: {
 }): Promise<TutorResponse> {
   const totalStarted = Date.now();
   const message = sanitizeMessage(input.message);
-  const mode = input.mode || "normal";
+  const requestedMode = input.mode || "normal";
   if (!(await consumeLimit(`tutor-chat:${input.profile.id}`, 18, 60))) {
     throw new Error("RATE_LIMIT");
   }
 
   const db = createSupabaseAdmin();
   await ensureStudentAcademicProfile(input.profile.id);
+  const pedagogicalPreference = await getPedagogicalPreference(
+    input.profile.id,
+  );
+  const modeDetection = detectPedagogicalMode({
+    message,
+    requestedMode,
+    preference: pedagogicalPreference,
+  });
+  const mode = modeDetection.mode;
   const conversation = input.conversationId
     ? await getConversation(input.conversationId, input.profile.id).catch(() =>
         createConversation(input.profile.id, titleFromMessage(message)),
@@ -117,6 +137,15 @@ export async function generateTutorResponse(input: {
     context: academic.context,
   });
 
+  const strategy = selectPedagogicalStrategy({
+    query: message,
+    mode,
+    queryIntent: academic.queryAnalysis.intent,
+    academicMemory: memoryContext,
+    availableSources: academic.sources,
+    reformulationRequested: modeDetection.reformulationRequested,
+  });
+
   const complexity = assessComplexity(
     message,
     academic.context,
@@ -139,22 +168,25 @@ export async function generateTutorResponse(input: {
 
   if (!validation.shouldAbstain && !isPromptInjection(message)) {
     const llmStarted = Date.now();
-    const prompt = buildPedagogicalPrompt({
-      message,
+    const prompt = buildMultilevelPedagogicalPrompt({
+      query: message,
       mode,
-      intent: academic.queryAnalysis.intent,
+      queryIntent: academic.queryAnalysis.intent,
       context: academic.context,
       history: history.summary,
       memoryContext,
       adaptiveContext,
       studyPlanContext,
-      sources: academic.sources,
+      availableSources: academic.sources,
+      academicMemory: memoryContext,
+      strategy,
+      reformulationRequested: modeDetection.reformulationRequested,
     });
     const completion = await generateTutorText({
       system: TUTOR_PEDAGOGICAL_SYSTEM_PROMPT,
       user: prompt,
       model,
-      maxOutputTokens: mode === "quick" ? 420 : 950,
+      maxOutputTokens: maxTokensForMode(mode),
     });
     llmMs = Date.now() - llmStarted;
     const responseValidation = validateTutorResponse({
@@ -191,6 +223,26 @@ export async function generateTutorResponse(input: {
   });
 
   await insertSources(assistantMessage.id, academic.sources);
+  await recordPedagogicalInteraction({
+    userId: input.profile.id,
+    conversationId: conversation.id,
+    messageId: assistantMessage.id,
+    mode,
+    strategy,
+    reformulationRequested: modeDetection.reformulationRequested,
+    metadata: {
+      detectionReason: modeDetection.reason,
+      detectionConfidence: modeDetection.confidence,
+      queryIntent: academic.queryAnalysis.intent,
+    },
+  });
+  if (modeDetection.explicitPreference && mode !== "normal") {
+    await savePedagogicalPreference({
+      userId: input.profile.id,
+      preferredMode: mode,
+      reason: modeDetection.reason,
+    });
+  }
   await db.from("usage_events").insert({
     user_id: input.profile.id,
     provider: "openai",
@@ -231,7 +283,13 @@ export async function generateTutorResponse(input: {
     answer,
     intent: academic.queryAnalysis.intent,
     sources: toStructuredSources(academic.sources),
-    suggestedFollowUps: buildFollowUps(academic.queryAnalysis.intent, mode),
+    suggestedFollowUps: buildFollowUps(
+      academic.queryAnalysis.intent,
+      mode,
+      strategy,
+    ),
+    mode,
+    strategy,
     usage: { model: modelUsed, inputTokens, outputTokens, estimatedCost },
     diagnostics: input.options?.debug
       ? {
@@ -239,7 +297,10 @@ export async function generateTutorResponse(input: {
           memoryContext,
           adaptiveContext,
           studyPlanContext,
+          requestedMode,
           mode,
+          modeDetection,
+          strategy,
           complexity,
           ragMs,
           llmMs,
@@ -250,70 +311,6 @@ export async function generateTutorResponse(input: {
         }
       : undefined,
   };
-}
-
-function buildPedagogicalPrompt(input: {
-  message: string;
-  mode: TutorMode;
-  intent: AcademicIntent;
-  context: string;
-  history: string;
-  memoryContext: string;
-  adaptiveContext: string;
-  studyPlanContext: string;
-  sources: KnowledgeChunkCandidate[];
-}) {
-  const sourceList = input.sources
-    .map((source, index) => {
-      const unit = source.unitNumber
-        ? `Unidad ${source.unitNumber}${source.unitName ? ` - ${source.unitName}` : ""}`
-        : "Unidad no determinada";
-      const topic =
-        source.topicName ||
-        source.sectionName ||
-        source.title ||
-        "Tema recuperado";
-      return `Fuente ${index + 1}: Compendio FATESCIPOL 2026, ${unit}, ${topic}.`;
-    })
-    .join("\n");
-
-  return `
-Modo del tutor: ${input.mode}
-Instrucción del modo: ${modeInstruction(input.mode)}
-Intención académica detectada: ${input.intent}
-
-Historial breve relevante:
-${input.history || "Sin historial previo relevante."}
-
-Memoria académica estructurada del estudiante:
-${input.memoryContext}
-
-Recomendaciones adaptativas calculadas sin IA:
-${input.adaptiveContext}
-
-Plan de estudio real del estudiante:
-${input.studyPlanContext}
-
-Pregunta actual del estudiante:
-${input.message}
-
-Contexto académico recuperado del compendio:
-${input.context}
-
-Fuentes para mostrar de forma sencilla:
-${sourceList || "Sin fuentes suficientes."}
-
-Instrucciones de respuesta:
-- Responde de forma natural, como profesor experto.
-- Usa el contexto académico para el concepto base.
-- Si el estudiante pide un ejemplo, puedes empezar con el ejemplo y luego explicar el concepto.
-- Si el estudiante pide simplificar, usa lenguaje sencillo y conserva el significado académico.
-- Si pide que le preguntes, formula una pregunta corta de comprobación sobre el tema actual.
-- Si el estudiante pregunta qué debe estudiar hoy, qué tiene pendiente, cuánto avanzó o si no pudo estudiar ayer, usa primero el plan de estudio real y no inventes fechas ni actividades.
-- Si el estudiante pregunta qué debe estudiar en general, responde usando primero las recomendaciones adaptativas y explica por qué.
-- Si corresponde, cierra con una pregunta breve de comprobación, pero no lo hagas siempre.
-- Incluye al final una sección corta llamada "Fuente" con Compendio FATESCIPOL, unidad y tema, sin IDs internos.
-`.trim();
 }
 
 async function createConversation(userId: string, title: string) {
@@ -425,7 +422,18 @@ function assessComplexity(
   intent: AcademicIntent,
   mode: TutorMode,
 ) {
-  if (mode === "explain" || mode === "review" || intent === "comparison")
+  if (
+    [
+      "explain",
+      "simple",
+      "academic",
+      "deep",
+      "review",
+      "comparison",
+      "step_by_step",
+    ].includes(mode) ||
+    intent === "comparison"
+  )
     return "HIGH" as const;
   if (message.split(/\s+/).length > 24 || context.length > 2600)
     return "MEDIUM" as const;
@@ -444,7 +452,25 @@ function needsAcademicMemoryForRetrieval(message: string) {
   );
 }
 
-function buildFollowUps(intent: AcademicIntent, mode: TutorMode) {
+function buildFollowUps(
+  intent: AcademicIntent,
+  mode: TutorMode,
+  strategy: PedagogicalStrategy,
+) {
+  if (strategy === "COMPARATIVE_EXPLANATION" || mode === "comparison") {
+    return [
+      "Hazme una tabla comparativa",
+      "Dame un ejemplo comparativo",
+      "Pregúntame la diferencia clave",
+    ];
+  }
+  if (strategy === "PROCEDURAL_EXPLANATION" || mode === "step_by_step") {
+    return [
+      "Ordéname los pasos",
+      "Dame un caso práctico",
+      "Pregúntame la secuencia",
+    ];
+  }
   if (intent === "example" || mode === "example") {
     return [
       "Explícame el concepto",
@@ -466,5 +492,16 @@ function buildFollowUps(intent: AcademicIntent, mode: TutorMode) {
       "Pregúntame sobre el procedimiento",
     ];
   }
-  return ["Explícamelo más fácil", "Dame un ejemplo", "Pregúntame sobre esto"];
+  if (mode === "review")
+    return [
+      "Hazme una pregunta",
+      "Dame una respuesta modelo",
+      "Explícame el error común",
+    ];
+  return [
+    "Explícamelo más fácil",
+    "Dame un ejemplo",
+    "Profundiza un poco más",
+    "Pregúntame sobre esto",
+  ];
 }

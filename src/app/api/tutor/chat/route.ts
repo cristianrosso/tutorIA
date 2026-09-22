@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireStudent } from "@/lib/auth/session";
 import { generateTutorResponse } from "@/lib/tutor/tutor-service";
+import { pedagogicalModes } from "@/lib/pedagogy/types";
 import { createAssessmentSession } from "@/lib/assessment/question-generator";
 import { getAssessmentSession } from "@/lib/assessment/session-service";
 
 const chatSchema = z.object({
   conversationId: z.uuid().optional().nullable(),
   message: z.string().trim().min(3).max(1200),
-  mode: z.enum(["normal", "quick", "explain", "example", "review"]).default("normal"),
+  mode: z.enum(pedagogicalModes).default("normal"),
   unitNumber: z.number().int().min(1).max(15).optional(),
   debug: z.boolean().optional(),
 });
@@ -38,8 +39,19 @@ export async function POST(request: Request) {
         answer: `Preparé una evaluación formativa de ${session.totalQuestions} preguntas. Ábrela en /practica o revisa el historial en /evaluaciones?session=${session.id}.`,
         intent: "exam_question",
         sources: [],
-        suggestedFollowUps: ["Practicar ahora", "Explícame el tema antes", "Ver mi progreso"],
-        usage: { model: "assessment-engine", inputTokens: 0, outputTokens: 0, estimatedCost: 0 },
+        suggestedFollowUps: [
+          "Practicar ahora",
+          "Explícame el tema antes",
+          "Ver mi progreso",
+        ],
+        mode: "review",
+        strategy: "GUIDED_REVIEW",
+        usage: {
+          model: "assessment-engine",
+          inputTokens: 0,
+          outputTokens: 0,
+          estimatedCost: 0,
+        },
       });
     }
     const result = await generateTutorResponse({
@@ -54,20 +66,28 @@ export async function POST(request: Request) {
     });
     return NextResponse.json(result);
   } catch (error) {
-    const message = error instanceof Error && error.message === "RATE_LIMIT"
-      ? "Espera un minuto antes de enviar más preguntas."
-      : "No pude completar la consulta en este momento. Intenta nuevamente.";
-    return NextResponse.json({ error: message }, { status: error instanceof Error && error.message === "RATE_LIMIT" ? 429 : 500 });
+    const message =
+      error instanceof Error && error.message === "RATE_LIMIT"
+        ? "Espera un minuto antes de enviar más preguntas."
+        : "No pude completar la consulta en este momento. Intenta nuevamente.";
+    return NextResponse.json(
+      { error: message },
+      {
+        status:
+          error instanceof Error && error.message === "RATE_LIMIT" ? 429 : 500,
+      },
+    );
   }
 }
 
-
 function isAssessmentRequest(message: string) {
-  return /hazme\s+\d*\s*preguntas|eval[uú]ame|quiero\s+practicar\s+preguntas|pr[áa]ctica\s+formativa/i.test(message);
+  return /hazme\s+\d*\s*preguntas|eval[uú]ame|quiero\s+practicar\s+preguntas|pr[áa]ctica\s+formativa/i.test(
+    message,
+  );
 }
 
 function countFromMessage(message: string) {
-  const numeric = message.match(/(5|10|15|20)/);
+  const numeric = message.match(/\b(5|10|15|20)\b/);
   if (numeric) return Number(numeric[1]);
   if (/cinco/i.test(message)) return 5;
   if (/diez/i.test(message)) return 10;

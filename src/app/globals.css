@@ -1226,7 +1226,6 @@ p {
   white-space: nowrap;
 }
 
-
 .knowledge-search-panel {
   display: grid;
   gap: 22px;
@@ -2072,7 +2071,6 @@ input[type="hidden"] {
   }
 }
 @media (max-width: 640px) {
-
   .compact-metrics {
     grid-template-columns: 1fr;
   }
@@ -3257,4 +3255,30 @@ input[type="hidden"] {
     align-items: stretch;
     flex-direction: column;
   }
+}
+.mode-selector {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+  background: #fbfdfc;
+}
+.mode-selector label {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+.mode-selector select {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: #fff;
+  font-weight: 700;
+}
+.mode-selector span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
