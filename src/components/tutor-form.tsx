@@ -373,7 +373,7 @@ export function TutorForm({
       recognition.onresult = (event) => {
         let text = "";
         for (let index = 0; index < event.results.length; index += 1) {
-          text += event.results[index][0]?.transcript || "";
+          text += event.results[index]?.[0]?.transcript || "";
         }
         speechTranscriptRef.current = text.trim();
       };

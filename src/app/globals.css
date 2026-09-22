@@ -3035,3 +3035,40 @@ input[type="hidden"] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+.fixed-question-type {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #f9fbf9;
+  padding: 12px;
+  display: grid;
+  gap: 5px;
+  min-height: 78px;
+}
+.fixed-question-type span {
+  color: #4d626b;
+  font-size: 11px;
+  font-weight: 700;
+}
+.fixed-question-type strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+.fixed-question-type small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+.exam-answer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.exam-question-nav button:disabled {
+  opacity: 0.45;
+  background: #f5f7f5;
+}
+@media (max-width: 640px) {
+  .exam-answer-actions {
+    grid-template-columns: 1fr;
+  }
+}

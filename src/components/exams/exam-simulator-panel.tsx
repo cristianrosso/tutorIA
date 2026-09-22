@@ -1,12 +1,47 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, CheckCircle2, Clock, FileText, Loader2, RotateCcw, Save, Send, XCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, FileText, Loader2, Mic, RotateCcw, Save, Send, Square, XCircle } from "lucide-react";
 import type { PublicExamQuestion, PublicExamSession } from "@/lib/exams/types";
 
 type UnitOption = { id: string; number: number; name: string };
 type TopicOption = { id: string; unitId: string; number: string | null; name: string };
 type Props = { units: UnitOption[]; topics: TopicOption[]; initialUnit?: number };
+
+type SpeechRecognitionResultLike = {
+  readonly isFinal?: boolean;
+  readonly length: number;
+  [index: number]: { readonly transcript: string } | undefined;
+};
+
+type SpeechRecognitionEventLike = {
+  readonly resultIndex: number;
+  readonly results: {
+    readonly length: number;
+    [index: number]: SpeechRecognitionResultLike | undefined;
+  };
+};
+
+type BrowserSpeechRecognition = {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+  onerror: ((event: { error?: string }) => void) | null;
+  onend: (() => void) | null;
+};
+
+type BrowserSpeechRecognitionConstructor = new () => BrowserSpeechRecognition;
+
+declare global {
+  interface Window {
+    SpeechRecognition?: BrowserSpeechRecognitionConstructor;
+    webkitSpeechRecognition?: BrowserSpeechRecognitionConstructor;
+  }
+}
 
 type Feedback = {
   result?: string;
@@ -27,14 +62,7 @@ const modeLabels: Record<string, string> = {
   integral: "Integral",
   tribunal: "Tribunal escrito",
 };
-const questionTypeLabels: Record<string, string> = {
-  mixed: "Mixta",
-  multiple_choice: "Opción múltiple",
-  true_false: "Verdadero/Falso",
-  short_answer: "Respuesta corta",
-  open_answer: "Pregunta abierta",
-  case_application: "Caso de aplicación",
-};
+const questionTypeLabels: Record<string, string> = { open_answer: "Pregunta abierta de tribunal" };
 const difficultyLabels: Record<string, string> = { mixed: "Mixto", basic: "Básico", intermediate: "Intermedio", advanced: "Avanzado" };
 const durationOptions = [0, 15, 30, 60, 90];
 const countOptions = [3, 5, 10, 15, 20, 30];
@@ -46,7 +74,6 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
   const [unitId, setUnitId] = useState(initial?.id || "");
   const [unitNumbers, setUnitNumbers] = useState<number[]>(initial ? [initial.number] : [1]);
   const [topicId, setTopicId] = useState("");
-  const [questionType, setQuestionType] = useState("open_answer");
   const [difficulty, setDifficulty] = useState("basic");
   const [count, setCount] = useState(3);
   const [durationMinutes, setDurationMinutes] = useState(30);
@@ -57,8 +84,12 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [voiceNotice, setVoiceNotice] = useState("");
+  const [listeningQuestionId, setListeningQuestionId] = useState("");
   const [now, setNow] = useState(() => Date.now());
   const submitOnce = useRef(false);
+  const recognitionRef = useRef<BrowserSpeechRecognition | null>(null);
+  const voiceBaseRef = useRef("");
 
   const selectedUnit = units.find((unit) => unit.id === unitId) || initial || units[0];
   const availableTopics = useMemo(() => topics.filter((topic) => topic.unitId === unitId).slice(0, 220), [topics, unitId]);
@@ -66,6 +97,10 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
   const isActive = session?.status === "in_progress";
   const showResults = Boolean(session && terminalStatuses.has(session.status));
   const remaining = session?.deadlineAt && session.status === "in_progress" ? Math.max(0, Math.ceil((Date.parse(session.deadlineAt) - now) / 1000)) : null;
+
+  useEffect(() => {
+    return () => recognitionRef.current?.abort();
+  }, []);
 
   useEffect(() => {
     if (!session?.deadlineAt || session.status !== "in_progress") return;
@@ -80,6 +115,47 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
       .then((nextSession) => setSession(nextSession))
       .catch((err) => setError(err instanceof Error ? err.message : "No se pudo finalizar el simulacro."));
   }, [remaining, session?.id]);
+
+  function startVoiceAnswer(question: PublicExamQuestion) {
+    if (!isActive) return;
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recognition) {
+      setError("Tu navegador no permite dictado por voz aquí. Puedes responder por texto o probar Chrome/Android con HTTPS.");
+      return;
+    }
+    if (listeningQuestionId === question.id) {
+      recognitionRef.current?.stop();
+      return;
+    }
+    recognitionRef.current?.abort();
+    voiceBaseRef.current = answers[question.id] || "";
+    const recognition = new Recognition();
+    recognition.lang = "es-BO";
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onresult = (event) => {
+      let transcript = "";
+      for (let index = 0; index < event.results.length; index += 1) {
+        const result = event.results[index];
+        if (!result) continue;
+        transcript += `${result[0]?.transcript || ""} `;
+      }
+      const text = `${voiceBaseRef.current} ${transcript}`.replace(/\s+/g, " ").trim();
+      setAnswers((state) => ({ ...state, [question.id]: text }));
+    };
+    recognition.onerror = () => {
+      setError("No se pudo tomar la respuesta por voz. Revisa el permiso del micrófono o responde por texto.");
+    };
+    recognition.onend = () => {
+      setListeningQuestionId("");
+      setVoiceNotice("Dictado detenido. Revisa tu respuesta y presiona Guardar respuesta.");
+    };
+    recognitionRef.current = recognition;
+    setError("");
+    setVoiceNotice("Escuchando tu respuesta. Habla como lo harías ante el tribunal.");
+    setListeningQuestionId(question.id);
+    recognition.start();
+  }
 
   function selectedUnitNumbers() {
     if (examMode === "integral") return unitNumbers.length ? unitNumbers : units.map((unit) => unit.number).slice(0, 5);
@@ -146,6 +222,7 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || "No se pudo guardar la respuesta.");
       setSession(body.session);
+      if (currentIndex < (body.session?.questions?.length || 0) - 1) setCurrentIndex((index) => index + 1);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo guardar la respuesta.");
     } finally {
@@ -172,6 +249,9 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
     setCurrentIndex(0);
     setAnswers({});
     setError("");
+    setVoiceNotice("");
+    recognitionRef.current?.abort();
+    setListeningQuestionId("");
     submitOnce.current = false;
   }
 
@@ -189,7 +269,7 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
         <div className="form-grid compact">
           <label>
             Modalidad
-            <select value={examMode} onChange={(event) => { setExamMode(event.target.value); setQuestionType("open_answer"); setTopicId(""); }} disabled={isActive}>
+            <select value={examMode} onChange={(event) => { setExamMode(event.target.value); setTopicId(""); }} disabled={isActive}>
               {Object.entries(modeLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
             </select>
           </label>
@@ -208,12 +288,11 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
               </select>
             </label>
           ) : null}
-          <label>
-            Tipo de pregunta
-            <select value={questionType} onChange={(event) => setQuestionType(event.target.value)} disabled>
-              <option value="open_answer">Pregunta abierta de tribunal</option>
-            </select>
-          </label>
+          <div className="fixed-question-type" aria-label="Tipo de pregunta">
+            <span>Tipo de pregunta</span>
+            <strong>Pregunta abierta de tribunal</strong>
+            <small>El estudiante responde por voz o texto.</small>
+          </div>
           <label>
             Nivel
             <select value={difficulty} onChange={(event) => setDifficulty(event.target.value)} disabled={isActive}>
@@ -261,7 +340,7 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
             <div className="section-heading exam-status-row">
               <div>
                 <h2>Pregunta {currentIndex + 1} de {session.totalQuestions}</h2>
-                <span>{modeLabels[session.examMode]} · {questionTypeLabels[currentQuestion.questionType] || currentQuestion.questionType} · {difficultyLabels[currentQuestion.difficulty]}</span>
+                <span>El tribunal pregunta y espera tu respuesta · {questionTypeLabels[currentQuestion.questionType] || currentQuestion.questionType} · {difficultyLabels[currentQuestion.difficulty]}</span>
               </div>
               <span className={remaining !== null && remaining <= 300 ? "exam-timer urgent" : "exam-timer"}><Clock size={14} /> {formatRemaining(remaining)}</span>
             </div>
@@ -271,15 +350,21 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
               <h3>{currentQuestion.questionText}</h3>
               {renderAnswerControl(currentQuestion, answers[currentQuestion.id] || "", (value) => setAnswers((state) => ({ ...state, [currentQuestion.id]: value })), !isActive)}
               {isActive ? (
-                <button className="button secondary" onClick={() => saveAnswer(currentQuestion)} disabled={saving === currentQuestion.id || submitting}>
-                  {saving === currentQuestion.id ? <Loader2 size={16} className="spin-icon" /> : <Save size={16} />} Guardar respuesta
-                </button>
+                <div className="exam-answer-actions">
+                  <button className="button secondary" onClick={() => startVoiceAnswer(currentQuestion)} disabled={saving === currentQuestion.id || submitting}>
+                    {listeningQuestionId === currentQuestion.id ? <Square size={16} /> : <Mic size={16} />} {listeningQuestionId === currentQuestion.id ? "Detener voz" : "Responder por voz"}
+                  </button>
+                  <button className="button secondary" onClick={() => saveAnswer(currentQuestion)} disabled={saving === currentQuestion.id || submitting}>
+                    {saving === currentQuestion.id ? <Loader2 size={16} className="spin-icon" /> : <Save size={16} />} Guardar respuesta
+                  </button>
+                </div>
               ) : null}
+              {voiceNotice ? <p className="small muted">{voiceNotice}</p> : null}
             </article>
             {showResults ? <ResultsPanel session={session} /> : <ProgressNotice session={session} />}
             <div className="assessment-actions">
               <button className="button secondary" onClick={() => setCurrentIndex((index) => Math.max(0, index - 1))} disabled={currentIndex === 0}>Anterior</button>
-              <button className="button secondary" onClick={() => setCurrentIndex((index) => Math.min(session.questions.length - 1, index + 1))} disabled={currentIndex >= session.questions.length - 1}>Siguiente</button>
+              <button className="button secondary" onClick={() => setCurrentIndex((index) => Math.min(session.questions.length - 1, index + 1))} disabled={currentIndex >= session.questions.length - 1 || (isActive && !currentQuestion.answered)}>Siguiente</button>
               {isActive ? <button className="button primary" onClick={() => submitExam(true)} disabled={submitting}>{submitting ? <Loader2 size={16} className="spin-icon" /> : <Send size={16} />} Finalizar examen</button> : null}
               {showResults ? <button className="button primary" onClick={resetExam}><RotateCcw size={15} /> Iniciar nuevo simulacro</button> : null}
             </div>
@@ -291,7 +376,10 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
 }
 
 function QuestionNav({ questions, currentIndex, onSelect }: { questions: PublicExamQuestion[]; currentIndex: number; onSelect: (index: number) => void }) {
-  return <div className="exam-question-nav">{questions.map((question, index) => <button key={question.id} className={`${index === currentIndex ? "active" : ""} ${question.answered ? "answered" : ""}`} onClick={() => onSelect(index)} aria-label={`Ir a pregunta ${index + 1}`}>{index + 1}</button>)}</div>;
+  return <div className="exam-question-nav">{questions.map((question, index) => {
+    const locked = index > currentIndex && !questions[currentIndex]?.answered;
+    return <button key={question.id} className={`${index === currentIndex ? "active" : ""} ${question.answered ? "answered" : ""}`} onClick={() => { if (!locked) onSelect(index); }} disabled={locked} aria-label={`Ir a pregunta ${index + 1}`}>{index + 1}</button>;
+  })}</div>;
 }
 
 function ProgressNotice({ session }: { session: PublicExamSession }) {
