@@ -56,7 +56,7 @@ export async function POST(request: Request) {
           : undefined,
       message: transcript,
       mode: tutorModeFromTranscript(transcript),
-      options: { unitNumber },
+      options: { unitNumber, voice: true },
     });
 
     await createSupabaseAdmin().from("usage_events").insert({
@@ -77,9 +77,15 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       conversationId: result.conversationId,
+      messageId: result.messageId,
       transcript,
       answer: result.answer,
-      sources: result.sources.map(toVoiceSource),
+      intent: result.intent,
+      mode: result.mode,
+      strategy: result.strategy,
+      sources: result.sources,
+      voiceSources: result.sources.map(toVoiceSource),
+      suggestedFollowUps: result.suggestedFollowUps,
       models: {
         stt: transcription.model,
         tutor: result.usage.model,

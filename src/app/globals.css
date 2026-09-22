@@ -3410,3 +3410,83 @@ input[type="hidden"] {
     width: 100%;
   }
 }
+
+.classroom-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.35fr);
+  gap: 24px;
+  align-items: start;
+}
+.classroom-config,
+.classroom-room {
+  display: grid;
+  gap: 18px;
+}
+.class-progress {
+  border: 1px solid #dce9df;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 3px;
+  background: #f7fbf8;
+}
+.class-progress strong {
+  color: var(--teal);
+  font-size: 22px;
+}
+.objectives-card {
+  border: 1px solid #dce9df;
+  border-radius: 18px;
+  background: #f7fbf8;
+  padding: 18px;
+}
+.objectives-card ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.class-step-list {
+  display: grid;
+  gap: 16px;
+}
+.class-step-card {
+  border: 1px solid #dfe8e2;
+  border-radius: 18px;
+  padding: 18px;
+  background: #fff;
+  display: grid;
+  gap: 12px;
+}
+.class-step-card h3 {
+  margin: 0;
+  color: var(--ink);
+}
+.class-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.class-answer-box {
+  border: 1px solid #dce9df;
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  background: #fbfdfb;
+}
+.class-answer-box textarea {
+  width: 100%;
+  min-height: 130px;
+  border: 1px solid #d9e2dd;
+  border-radius: 14px;
+  padding: 14px;
+  resize: vertical;
+  font: inherit;
+}
+@media (max-width: 920px) {
+  .classroom-layout {
+    grid-template-columns: 1fr;
+  }
+}

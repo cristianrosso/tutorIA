@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   BookOpen,
+  BookOpenCheck,
   BrainCircuit,
   ChartNoAxesCombined,
   CircleHelp,
@@ -22,6 +23,7 @@ type ActiveSection =
   | "units"
   | "progress"
   | "studyPlan"
+  | "classroom"
   | "recommendations"
   | "tutor"
   | "simulacro"
@@ -45,6 +47,7 @@ export function AppShell({
   }> = [
     { href: "/dashboard", label: "Mi aula", icon: House, id: "home" },
     { href: "/tutor", label: "Tutor", icon: Mic, id: "tutor" },
+    { href: "/clase", label: "Clase", icon: BookOpenCheck, id: "classroom" },
     {
       href: "/simulacro",
       label: "Simulacro",
@@ -57,7 +60,12 @@ export function AppShell({
       icon: ClipboardCheck,
       id: "practice",
     },
-    { href: "/unidades", label: "Mis unidades", icon: BookOpen, id: "units" },
+    {
+      href: "/unidades",
+      label: "Mis unidades",
+      icon: BookOpen,
+      id: "units",
+    },
     {
       href: "/progreso",
       label: "Mi progreso",
@@ -175,6 +183,7 @@ function breadcrumb(active: ActiveSection) {
   if (active === "recommendations") return "Recomendaciones";
   if (active === "studyPlan") return "Plan de estudio";
   if (active === "tutor") return "Tutor";
+  if (active === "classroom") return "Clase";
   if (active === "simulacro") return "Simulacro";
   if (active === "practice") return "Práctica";
   return "Inicio";

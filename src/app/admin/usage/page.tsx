@@ -1,19 +1,22 @@
 import Link from "next/link";
 import { AlertTriangle, BarChart3, Coins } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { EconomicSettingsForm } from "@/components/economic-settings-form";
 import { requireAdmin } from "@/lib/auth/session";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
 import { getStudentUsageSummary } from "@/lib/billing/ai-usage";
+import { getEconomicSettings } from "@/lib/billing/economic-settings";
 
 export default async function AdminUsagePage() {
   const profile = await requireAdmin();
-  const [usage, profilesResult] = await Promise.all([
+  const [usage, profilesResult, settings] = await Promise.all([
     getStudentUsageSummary(),
     createSupabaseAdmin()
       .from("profiles")
       .select("id,username,full_name,status")
       .eq("role", "ESTUDIANTE")
       .order("full_name"),
+    getEconomicSettings(),
   ]);
   const profiles = new Map(
     (profilesResult.data || []).map((item) => [item.id, item]),
@@ -55,7 +58,23 @@ export default async function AdminUsagePage() {
           <strong>Bs {usage.totals.budgetBob}</strong>
           <small>Por estudiante · No es bloqueo automático</small>
         </article>
+        <article className="metric-card">
+          <Coins size={20} />
+          <span>Proyección 400 estudiantes</span>
+          <strong>
+            Bs {usage.totals.projectedMonthlyBudgetBob.toFixed(0)}
+          </strong>
+          <small>{usage.totals.licenseDurationDays} días de acceso</small>
+        </article>
       </div>
+
+      <section className="panel admin-section">
+        <div className="section-heading">
+          <h2>Configuración económica operativa</h2>
+          <span>Aplicable a nuevas operaciones; no modifica históricos</span>
+        </div>
+        <EconomicSettingsForm settings={settings} />
+      </section>
 
       <section className="panel admin-section">
         <div className="section-heading">
@@ -78,15 +97,20 @@ export default async function AdminUsagePage() {
                 <div className="usage-row" key={student.userId}>
                   <span>
                     <strong>{info?.full_name || "Estudiante"}</strong>
-                    <small>@{info?.username || student.userId.slice(0, 8)}</small>
+                    <small>
+                      @{info?.username || student.userId.slice(0, 8)}
+                    </small>
                   </span>
                   <span>{student.operations}</span>
                   <span>{student.inputTokens + student.outputTokens}</span>
                   <span>{student.models.join(", ") || "—"}</span>
-                  <span>Bs {student.costBob.toFixed(2)}</span>
+                  <span>
+                    Bs {student.totalTechnologyCostBob.toFixed(2)}
+                    <small>IA Bs {student.costBob.toFixed(2)}</small>
+                  </span>
                   <span>
                     {student.budgetPercent}%
-                    {student.budgetPercent > 80 ? (
+                    {student.budgetPercent >= 50 ? (
                       <small className="usage-warning">Revisar uso</small>
                     ) : null}
                   </span>
@@ -94,7 +118,9 @@ export default async function AdminUsagePage() {
               );
             })
           ) : (
-            <p className="notice">Aún no hay consumo IA registrado en la tabla detallada.</p>
+            <p className="notice">
+              Aún no hay consumo IA registrado en la tabla detallada.
+            </p>
           )}
         </div>
       </section>

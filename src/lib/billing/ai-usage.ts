@@ -1,19 +1,37 @@
 import "server-only";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
+import { getEconomicSettings } from "@/lib/billing/economic-settings";
 
 const pricingVersion = process.env.AI_PRICING_VERSION || "2026-09-config";
 const usdToBob = Number(process.env.USD_TO_BOB_ACCOUNTING_RATE || "6.96");
-const studentPeriodPriceBob = Number(process.env.STUDENT_PERIOD_PRICE_BOB || "200");
-const studentPeriodBudgetBob = Number(process.env.STUDENT_PERIOD_BUDGET_BOB || "80");
 
-const modelPrices: Record<string, { input: number; output: number; cachedInput?: number }> = {
+const modelPrices: Record<
+  string,
+  { input: number; output: number; cachedInput?: number }
+> = {
   "gpt-5.6-luna": {
-    input: Number(process.env.OPENAI_LUNA_INPUT_COST_PER_1M || process.env.OPENAI_TEXT_INPUT_COST_PER_1M || "0.4"),
-    output: Number(process.env.OPENAI_LUNA_OUTPUT_COST_PER_1M || process.env.OPENAI_TEXT_OUTPUT_COST_PER_1M || "1.6"),
+    input: Number(
+      process.env.OPENAI_LUNA_INPUT_COST_PER_1M ||
+        process.env.OPENAI_TEXT_INPUT_COST_PER_1M ||
+        "0.4",
+    ),
+    output: Number(
+      process.env.OPENAI_LUNA_OUTPUT_COST_PER_1M ||
+        process.env.OPENAI_TEXT_OUTPUT_COST_PER_1M ||
+        "1.6",
+    ),
   },
   "gpt-5.6-terra": {
-    input: Number(process.env.OPENAI_TERRA_INPUT_COST_PER_1M || process.env.OPENAI_TEXT_INPUT_COST_PER_1M || "2"),
-    output: Number(process.env.OPENAI_TERRA_OUTPUT_COST_PER_1M || process.env.OPENAI_TEXT_OUTPUT_COST_PER_1M || "12"),
+    input: Number(
+      process.env.OPENAI_TERRA_INPUT_COST_PER_1M ||
+        process.env.OPENAI_TEXT_INPUT_COST_PER_1M ||
+        "2",
+    ),
+    output: Number(
+      process.env.OPENAI_TERRA_OUTPUT_COST_PER_1M ||
+        process.env.OPENAI_TEXT_OUTPUT_COST_PER_1M ||
+        "12",
+    ),
   },
 };
 
@@ -41,7 +59,16 @@ export async function recordAIUsage(input: {
   userId: string;
   operationId: string;
   conversationId?: string | null;
-  operationType: "tutor_chat" | "embedding" | "evaluation" | "simulation" | "stt" | "tts" | "other";
+  operationType:
+    | "tutor_chat"
+    | "embedding"
+    | "evaluation"
+    | "simulation"
+    | "guided_class"
+    | "guided_class_feedback"
+    | "stt"
+    | "tts"
+    | "other";
   model: string;
   inputTokens: number;
   outputTokens: number;
@@ -50,12 +77,15 @@ export async function recordAIUsage(input: {
   estimatedCostUsd?: number;
   costIsEstimated?: boolean;
 }) {
-  const estimatedCostUsd = input.estimatedCostUsd ?? calculateOperationCost({
-    model: input.model,
-    inputTokens: input.inputTokens,
-    outputTokens: input.outputTokens,
-    cachedInputTokens: input.cachedInputTokens,
-  });
+  const settings = await getEconomicSettings();
+  const estimatedCostUsd =
+    input.estimatedCostUsd ??
+    calculateOperationCost({
+      model: input.model,
+      inputTokens: input.inputTokens,
+      outputTokens: input.outputTokens,
+      cachedInputTokens: input.cachedInputTokens,
+    });
   const { error } = await createSupabaseAdmin()
     .from("ai_usage_events")
     .upsert(
@@ -72,8 +102,9 @@ export async function recordAIUsage(input: {
         estimated_cost_usd: estimatedCostUsd,
         cost_is_estimated: input.costIsEstimated ?? true,
         pricing_version: pricingVersion,
-        accounting_usd_to_bob: usdToBob,
-        estimated_cost_bob: estimatedCostUsd * usdToBob,
+        accounting_usd_to_bob: settings.usdToBobRate || usdToBob,
+        estimated_cost_bob:
+          estimatedCostUsd * (settings.usdToBobRate || usdToBob),
       },
       { onConflict: "operation_id" },
     );
@@ -81,17 +112,31 @@ export async function recordAIUsage(input: {
 }
 
 export async function getStudentUsageSummary(userId?: string) {
+  const settings = await getEconomicSettings();
   const db = createSupabaseAdmin();
   let query = db
     .from("ai_usage_events")
-    .select("user_id,operation_type,model_used,input_tokens,output_tokens,cached_input_tokens,estimated_cost_usd,estimated_cost_bob,created_at")
+    .select(
+      "user_id,operation_type,model_used,input_tokens,output_tokens,cached_input_tokens,estimated_cost_usd,estimated_cost_bob,created_at",
+    )
     .order("created_at", { ascending: false })
     .limit(5000);
   if (userId) query = query.eq("user_id", userId);
   const { data, error } = await query;
   if (error) throw new Error("No se pudo consultar el consumo de IA.");
   const rows = data || [];
-  const byUser = new Map<string, { userId: string; operations: number; inputTokens: number; outputTokens: number; costUsd: number; costBob: number; models: Set<string> }>();
+  const byUser = new Map<
+    string,
+    {
+      userId: string;
+      operations: number;
+      inputTokens: number;
+      outputTokens: number;
+      costUsd: number;
+      costBob: number;
+      models: Set<string>;
+    }
+  >();
   for (const row of rows) {
     const current = byUser.get(row.user_id) || {
       userId: row.user_id,
@@ -113,11 +158,31 @@ export async function getStudentUsageSummary(userId?: string) {
   const students = [...byUser.values()].map((item) => ({
     ...item,
     models: [...item.models],
-    budgetBob: studentPeriodBudgetBob,
-    priceBob: studentPeriodPriceBob,
-    budgetPercent: studentPeriodBudgetBob ? Math.round((item.costBob / studentPeriodBudgetBob) * 100) : 0,
+    budgetBob: settings.monthlyStudentBudgetBob,
+    infrastructureShareBob:
+      settings.expectedStudents > 0
+        ? settings.infrastructureMonthlyBob / settings.expectedStudents
+        : 0,
+    totalTechnologyCostBob:
+      item.costBob +
+      (settings.expectedStudents > 0
+        ? settings.infrastructureMonthlyBob / settings.expectedStudents
+        : 0),
+    budgetPercent: settings.monthlyStudentBudgetBob
+      ? Math.round(
+          ((item.costBob +
+            (settings.expectedStudents > 0
+              ? settings.infrastructureMonthlyBob / settings.expectedStudents
+              : 0)) /
+            settings.monthlyStudentBudgetBob) *
+            100,
+        )
+      : 0,
   }));
-  const totalCostBob = students.reduce((sum, item) => sum + item.costBob, 0);
+  const totalCostBob = students.reduce(
+    (sum, item) => sum + item.totalTechnologyCostBob,
+    0,
+  );
   return {
     students,
     totals: {
@@ -128,9 +193,16 @@ export async function getStudentUsageSummary(userId?: string) {
       costUsd: students.reduce((sum, item) => sum + item.costUsd, 0),
       costBob: totalCostBob,
       averageCostBob: students.length ? totalCostBob / students.length : 0,
-      budgetBob: studentPeriodBudgetBob,
-      priceBob: studentPeriodPriceBob,
-      usdToBob,
+      budgetBob: settings.monthlyStudentBudgetBob,
+      expectedStudents: settings.expectedStudents,
+      projectedMonthlyBudgetBob:
+        settings.expectedStudents * settings.monthlyStudentBudgetBob,
+      infrastructureMonthlyBob: settings.infrastructureMonthlyBob,
+      licenseDurationDays: settings.licenseDurationDays,
+      voiceMonthlyBudgetBob: settings.voiceMonthlyBudgetBob,
+      voiceEnabled: settings.voiceEnabled,
+      alertThresholds: settings.alertThresholds,
+      usdToBob: settings.usdToBobRate || usdToBob,
       pricingVersion,
     },
   };
@@ -148,7 +220,11 @@ export async function getStudentMonthlyCost(userId: string) {
 }
 
 export async function getStudentPeriodCost(userId: string) {
-  return getCostSince(userId, new Date(`${new Date().getFullYear()}-10-01T00:00:00-04:00`));
+  const settings = await getEconomicSettings();
+  return getCostSince(
+    userId,
+    new Date(Date.now() - settings.licenseDurationDays * 24 * 60 * 60 * 1000),
+  );
 }
 
 async function getCostSince(userId: string, since: Date) {
@@ -158,7 +234,10 @@ async function getCostSince(userId: string, since: Date) {
     .eq("user_id", userId)
     .gte("created_at", since.toISOString());
   return (data || []).reduce(
-    (acc, row) => ({ usd: acc.usd + Number(row.estimated_cost_usd || 0), bob: acc.bob + Number(row.estimated_cost_bob || 0) }),
+    (acc, row) => ({
+      usd: acc.usd + Number(row.estimated_cost_usd || 0),
+      bob: acc.bob + Number(row.estimated_cost_bob || 0),
+    }),
     { usd: 0, bob: 0 },
   );
 }

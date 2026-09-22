@@ -69,6 +69,14 @@ type TutorChatResponse = {
   error?: string;
 };
 
+type TutorVoiceResponse = TutorChatResponse & {
+  transcript: string;
+  models?: {
+    stt?: string;
+    tutor?: string;
+  };
+};
+
 type VoiceStatus = "ready" | "listening" | "processing" | "speaking";
 
 const maxRecordingMs = 65_000;
@@ -321,6 +329,42 @@ export function TutorChat({
     );
     form.set("duration", String(Math.round(durationMs / 1000)));
     try {
+      if (voiceConversationMode) {
+        setPending(true);
+        if (conversationId) form.set("conversationId", conversationId);
+        form.set("unitNumber", String(unit.number));
+        const response = await fetch("/api/tutor/voice/respond", {
+          method: "POST",
+          body: form,
+        });
+        const payload = (await response.json()) as TutorVoiceResponse;
+        if (!response.ok || !payload.transcript)
+          throw new Error(payload.error || "No se pudo procesar el audio.");
+        setConversationId(payload.conversationId);
+        localMessageIdRef.current += 1;
+        setMessages((current) => [
+          ...current,
+          {
+            id: `voice-${localMessageIdRef.current}`,
+            role: "user",
+            content: payload.transcript,
+          },
+          {
+            id: payload.messageId,
+            role: "assistant",
+            content: payload.answer,
+            sources: payload.sources,
+            usage: payload.usage,
+            suggestedFollowUps: payload.suggestedFollowUps,
+          },
+        ]);
+        await playAssistantAudio(
+          payload.messageId,
+          payload.answer,
+          payload.conversationId,
+        );
+        return;
+      }
       const response = await fetch("/api/tutor/voice/transcribe", {
         method: "POST",
         body: form,
@@ -331,13 +375,8 @@ export function TutorChat({
       };
       if (!response.ok || !payload.transcript)
         throw new Error(payload.error || "No se pudo transcribir.");
-      if (voiceConversationMode) {
-        const result = await submit(payload.transcript, undefined, true);
-        if (!result) setVoiceStatus("ready");
-      } else {
-        setMessage(payload.transcript);
-        setVoiceStatus("ready");
-      }
+      setMessage(payload.transcript);
+      setVoiceStatus("ready");
     } catch (caught) {
       setVoiceStatus("ready");
       setVoiceError(
@@ -345,6 +384,8 @@ export function TutorChat({
           ? caught.message
           : "No se pudo procesar el audio.",
       );
+    } finally {
+      setPending(false);
     }
   }
 
@@ -354,7 +395,8 @@ export function TutorChat({
     targetConversationId = conversationId,
   ) {
     if (!targetConversationId) return;
-    const cacheKey = `${targetConversationId}:${messageId}:${text}`;
+    const speechText = toSpeechText(text);
+    const cacheKey = `${targetConversationId}:${messageId}:${speechText}`;
     if (playingMessageId === messageId) {
       stopAudio();
       return;
@@ -367,7 +409,10 @@ export function TutorChat({
         const response = await fetch("/api/tutor/voice/speech", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ conversationId: targetConversationId, text }),
+          body: JSON.stringify({
+            conversationId: targetConversationId,
+            text: speechText,
+          }),
         });
         if (!response.ok) throw new Error("No se pudo generar audio.");
         url = URL.createObjectURL(await response.blob());
@@ -713,6 +758,25 @@ function modeForFollowUp(text: string): TutorMode | undefined {
   if (/preg[uú]ntame|examen|respuesta modelo|repaso/i.test(text))
     return "review";
   return undefined;
+}
+
+function toSpeechText(text: string) {
+  const withoutSources = text
+    .replace(/\*\*/g, "")
+    .replace(/[`#>]/g, "")
+    .replace(/https?:\/\/\S+/g, "enlace disponible en pantalla")
+    .replace(/\n\s*Fuente[\s\S]*$/i, "")
+    .replace(/\n{2,}/g, ". ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (withoutSources.length <= 850) return withoutSources;
+  const shortText = withoutSources.slice(0, 850);
+  const sentenceEnd = Math.max(
+    shortText.lastIndexOf(". "),
+    shortText.lastIndexOf("? "),
+    shortText.lastIndexOf("! "),
+  );
+  return `${shortText.slice(0, sentenceEnd > 360 ? sentenceEnd + 1 : 850).trim()} Puedes leer el desarrollo completo en pantalla.`;
 }
 
 function pickMimeType() {

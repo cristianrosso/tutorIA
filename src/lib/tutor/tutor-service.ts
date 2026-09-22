@@ -71,7 +71,7 @@ export async function generateTutorResponse(input: {
   conversationId?: string | null;
   message: string;
   mode?: TutorMode;
-  options?: { unitNumber?: number; debug?: boolean };
+  options?: { unitNumber?: number; debug?: boolean; voice?: boolean };
 }): Promise<TutorResponse> {
   const totalStarted = Date.now();
   const message = sanitizeMessage(input.message);
@@ -126,8 +126,8 @@ export async function generateTutorResponse(input: {
     : history.retrievalQuery;
   const academic = await retrieveAcademicContext(retrievalQuery, {
     unitNumber: input.options?.unitNumber,
-    maxChunks: 8,
-    maxContextTokens: 2600,
+    maxChunks: input.options?.voice ? 5 : 8,
+    maxContextTokens: input.options?.voice ? 1800 : 2600,
     debug: input.options?.debug,
   });
   const ragMs = Date.now() - ragStarted;
@@ -186,7 +186,9 @@ export async function generateTutorResponse(input: {
       system: TUTOR_PEDAGOGICAL_SYSTEM_PROMPT,
       user: prompt,
       model,
-      maxOutputTokens: maxTokensForMode(mode),
+      maxOutputTokens: input.options?.voice
+        ? Math.min(520, maxTokensForMode(mode))
+        : maxTokensForMode(mode),
     });
     llmMs = Date.now() - llmStarted;
     const responseValidation = validateTutorResponse({
@@ -222,60 +224,73 @@ export async function generateTutorResponse(input: {
     estimatedCost,
   });
 
-  await insertSources(assistantMessage.id, academic.sources);
-  await recordPedagogicalInteraction({
-    userId: input.profile.id,
-    conversationId: conversation.id,
-    messageId: assistantMessage.id,
-    mode,
-    strategy,
-    reformulationRequested: modeDetection.reformulationRequested,
-    metadata: {
-      detectionReason: modeDetection.reason,
-      detectionConfidence: modeDetection.confidence,
-      queryIntent: academic.queryAnalysis.intent,
-    },
-  });
-  if (modeDetection.explicitPreference && mode !== "normal") {
-    await savePedagogicalPreference({
+  const postResponseTasks: Array<Promise<unknown>> = [
+    insertSources(assistantMessage.id, academic.sources),
+    recordPedagogicalInteraction({
       userId: input.profile.id,
-      preferredMode: mode,
-      reason: modeDetection.reason,
-    });
+      conversationId: conversation.id,
+      messageId: assistantMessage.id,
+      mode,
+      strategy,
+      reformulationRequested: modeDetection.reformulationRequested,
+      metadata: {
+        detectionReason: modeDetection.reason,
+        detectionConfidence: modeDetection.confidence,
+        queryIntent: academic.queryAnalysis.intent,
+      },
+    }),
+    Promise.resolve(
+      db.from("usage_events").insert({
+        user_id: input.profile.id,
+        provider: "openai",
+        model: modelUsed,
+        event_type: "chat",
+        input_tokens: inputTokens,
+        output_tokens: outputTokens,
+        estimated_cost: estimatedCost,
+        provider_request_id: requestId,
+      }),
+    ),
+    recordAIUsage({
+      userId: input.profile.id,
+      operationId: `tutor-chat:${assistantMessage.id}`,
+      conversationId: conversation.id,
+      operationType: "tutor_chat",
+      model: modelUsed,
+      inputTokens,
+      outputTokens,
+      estimatedCostUsd: estimatedCost,
+      costIsEstimated: inputTokens === 0 && outputTokens === 0,
+    }),
+    recordSourcesAsLearning({
+      userId: input.profile.id,
+      conversationId: conversation.id,
+      messageId: assistantMessage.id,
+      sources: academic.sources,
+      intent: academic.queryAnalysis.intent,
+      tutorMode: mode,
+    }),
+    Promise.resolve(
+      db
+        .from("tutor_conversations")
+        .update({ updated_at: new Date().toISOString() })
+        .eq("id", conversation.id),
+    ),
+  ];
+  if (modeDetection.explicitPreference && mode !== "normal") {
+    postResponseTasks.push(
+      savePedagogicalPreference({
+        userId: input.profile.id,
+        preferredMode: mode,
+        reason: modeDetection.reason,
+      }),
+    );
   }
-  await db.from("usage_events").insert({
-    user_id: input.profile.id,
-    provider: "openai",
-    model: modelUsed,
-    event_type: "chat",
-    input_tokens: inputTokens,
-    output_tokens: outputTokens,
-    estimated_cost: estimatedCost,
-    provider_request_id: requestId,
-  });
-  await recordAIUsage({
-    userId: input.profile.id,
-    operationId: `tutor-chat:${assistantMessage.id}`,
-    conversationId: conversation.id,
-    operationType: "tutor_chat",
-    model: modelUsed,
-    inputTokens,
-    outputTokens,
-    estimatedCostUsd: estimatedCost,
-    costIsEstimated: inputTokens === 0 && outputTokens === 0,
-  });
-  await recordSourcesAsLearning({
-    userId: input.profile.id,
-    conversationId: conversation.id,
-    messageId: assistantMessage.id,
-    sources: academic.sources,
-    intent: academic.queryAnalysis.intent,
-    tutorMode: mode,
-  });
-  await db
-    .from("tutor_conversations")
-    .update({ updated_at: new Date().toISOString() })
-    .eq("id", conversation.id);
+  const postResponseResults = await Promise.allSettled(postResponseTasks);
+  for (const result of postResponseResults) {
+    if (result.status === "rejected")
+      console.error("tutor post-response task failed", result.reason);
+  }
 
   return {
     conversationId: conversation.id,
