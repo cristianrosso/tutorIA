@@ -3,7 +3,7 @@ import { z } from "zod";
 import { accessProblem } from "@/lib/auth/rules";
 import { consumeLimit } from "@/lib/auth/rate-limit";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { answerTutorQuestion, detectTutorIntent } from "@/lib/rag/tutor";
+import { generateTutorResponse, type TutorStructuredSource } from "@/lib/tutor/tutor-service";
 
 export const runtime = "nodejs";
 
@@ -31,33 +31,23 @@ export async function POST(request: Request) {
     const parsed = schema.safeParse(await request.json());
     if (!parsed.success)
       return fail("No se reconoció una pregunta de voz utilizable.");
-    const result = await answerTutorQuestion({
+    const result = await generateTutorResponse({
       profile,
-      question: parsed.data.transcript,
-      unitNumber: parsed.data.unitNumber,
-      section: parsed.data.section,
-      sessionId: parsed.data.conversationId,
-      mode: "voice",
-      intent: detectTutorIntent(parsed.data.transcript),
+      conversationId: parsed.data.conversationId,
+      message: parsed.data.transcript,
+      mode: tutorModeFromTranscript(parsed.data.transcript),
+      options: { unitNumber: parsed.data.unitNumber },
     });
     return NextResponse.json({
-      conversationId: result.sessionId,
+      conversationId: result.conversationId,
       transcript: parsed.data.transcript,
       answer: result.answer,
-      sources: result.sources.map((source) => ({
-        title: source.title,
-        source: source.source,
-        unitName: source.unitName,
-        section: source.section,
-        sectionName: source.sectionName,
-        page: source.page,
-        score: source.score,
-      })),
+      sources: result.sources.map(toVoiceSource),
       models: {
         stt: "browser-web-speech",
-        tutor: process.env.OPENAI_MODEL || "gpt-4.1-mini",
+        tutor: result.usage.model,
       },
-      usage: { audioInputSeconds: 0 },
+      usage: { ...result.usage, audioInputSeconds: 0 },
     });
   } catch (error) {
     console.error("voice-text failed", error);
@@ -76,4 +66,25 @@ function voiceErrorMessage(error: unknown) {
   if (/No se encontró la unidad|sesión|conversación/i.test(message))
     return message;
   return "No se pudo consultar el tutor con la transcripción del navegador. Intenta por texto o avísame para revisar logs.";
+}
+
+
+function tutorModeFromTranscript(transcript: string) {
+  if (/ejemplo/i.test(transcript)) return "example" as const;
+  if (/examen|oral|respuesta modelo|tribunal/i.test(transcript)) return "review" as const;
+  if (/f[aá]cil|no entend[ií]|expl[ií]came/i.test(transcript)) return "explain" as const;
+  if (/preg[uú]ntame/i.test(transcript)) return "review" as const;
+  return "normal" as const;
+}
+
+function toVoiceSource(source: TutorStructuredSource) {
+  return {
+    title: source.topicName || source.sectionName || source.unitName || "Compendio FATESCIPOL 2026",
+    source: "Compendio FATESCIPOL 2026",
+    unitName: source.unitName,
+    section: source.reference,
+    sectionName: source.sectionName || source.topicName,
+    page: null,
+    score: source.score,
+  };
 }

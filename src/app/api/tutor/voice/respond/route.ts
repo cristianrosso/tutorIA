@@ -5,7 +5,7 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { estimateAudioInputCost } from "@/lib/ai/costs";
 import { transcribeAudio } from "@/lib/ai/openai";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
-import { answerTutorQuestion, detectTutorIntent } from "@/lib/rag/tutor";
+import { generateTutorResponse, type TutorStructuredSource } from "@/lib/tutor/tutor-service";
 
 export const runtime = "nodejs";
 
@@ -40,10 +40,6 @@ export async function POST(request: Request) {
       15,
       Math.max(1, Number(form.get("unitNumber")) || 1),
     );
-    const section =
-      typeof form.get("section") === "string"
-        ? String(form.get("section")).slice(0, 180)
-        : undefined;
     const duration = clampDuration(form.get("duration"));
     if (!(audio instanceof File))
       return fail("No se recibió audio para transcribir.");
@@ -61,26 +57,24 @@ export async function POST(request: Request) {
     if (transcript.length < 3)
       return fail("No pude reconocer una pregunta en el audio.");
 
-    const result = await answerTutorQuestion({
+    const result = await generateTutorResponse({
       profile,
-      question: transcript,
-      unitNumber,
-      section,
-      sessionId:
+      conversationId:
         typeof sessionId === "string" && sessionId.length > 20
           ? sessionId
           : undefined,
-      mode: "voice",
-      intent: detectTutorIntent(transcript),
+      message: transcript,
+      mode: tutorModeFromTranscript(transcript),
+      options: { unitNumber },
     });
 
     await createSupabaseAdmin()
       .from("usage_events")
       .insert({
         user_id: profile.id,
-        session_id: result.sessionId,
+        session_id: result.conversationId,
         provider: "openai",
-        unit_id: result.unitId,
+        unit_id: null,
         feature: "tutor_voice",
         model: transcription.model,
         event_type: "stt",
@@ -93,23 +87,16 @@ export async function POST(request: Request) {
       });
 
     return NextResponse.json({
-      conversationId: result.sessionId,
+      conversationId: result.conversationId,
       transcript,
       answer: result.answer,
-      sources: result.sources.map((source) => ({
-        title: source.title,
-        source: source.source,
-        unitName: source.unitName,
-        section: source.section,
-        sectionName: source.sectionName,
-        page: source.page,
-        score: source.score,
-      })),
+      sources: result.sources.map(toVoiceSource),
       models: {
         stt: transcription.model,
-        tutor: process.env.OPENAI_MODEL || "gpt-4.1-mini",
+        tutor: result.usage.model,
       },
       usage: {
+        ...result.usage,
         sttInputTokens: transcription.inputTokens,
         sttOutputTokens: transcription.outputTokens,
         audioInputSeconds: duration,
@@ -132,4 +119,25 @@ function voiceErrorMessage(error: unknown) {
   if (/OpenAI STT/.test(message))
     return "No se pudo transcribir el audio con OpenAI. Intenta hablar más cerca del micrófono o prueba por texto.";
   return "No se pudo procesar el audio. Verifica tu conexión e inténtalo nuevamente.";
+}
+
+
+function tutorModeFromTranscript(transcript: string) {
+  if (/ejemplo/i.test(transcript)) return "example" as const;
+  if (/examen|oral|respuesta modelo|tribunal/i.test(transcript)) return "review" as const;
+  if (/f[aá]cil|no entend[ií]|expl[ií]came/i.test(transcript)) return "explain" as const;
+  if (/preg[uú]ntame/i.test(transcript)) return "review" as const;
+  return "normal" as const;
+}
+
+function toVoiceSource(source: TutorStructuredSource) {
+  return {
+    title: source.topicName || source.sectionName || source.unitName || "Compendio FATESCIPOL 2026",
+    source: "Compendio FATESCIPOL 2026",
+    unitName: source.unitName,
+    section: source.reference,
+    sectionName: source.sectionName || source.topicName,
+    page: null,
+    score: source.score,
+  };
 }

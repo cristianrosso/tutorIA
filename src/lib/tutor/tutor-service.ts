@@ -58,7 +58,9 @@ export async function generateTutorResponse(input: {
   const db = createSupabaseAdmin();
   await ensureStudentAcademicProfile(input.profile.id);
   const conversation = input.conversationId
-    ? await getConversation(input.conversationId, input.profile.id)
+    ? await getConversation(input.conversationId, input.profile.id).catch(() =>
+        createConversation(input.profile.id, titleFromMessage(message)),
+      )
     : await createConversation(input.profile.id, titleFromMessage(message));
 
   const userMessage = await insertMessage({
