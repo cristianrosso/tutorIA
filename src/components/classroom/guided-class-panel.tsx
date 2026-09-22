@@ -70,6 +70,7 @@ export function GuidedClassPanel({
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [voiceBusy, setVoiceBusy] = useState(false);
+  const [activeAudioKey, setActiveAudioKey] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -77,6 +78,7 @@ export function GuidedClassPanel({
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRequestRef = useRef(0);
 
   const unitTopics = useMemo(
     () => topics.filter((topic) => topic.unitNumber === unitNumber),
@@ -186,12 +188,21 @@ export function GuidedClassPanel({
     }
   }
 
-  async function play(text?: string) {
+  async function play(text?: string, audioKey = "current") {
     if (!session || !text) return;
+    if (voiceBusy) {
+      if (activeAudioKey === audioKey) stopAudio();
+      return;
+    }
+    const requestId = audioRequestRef.current + 1;
+    audioRequestRef.current = requestId;
     setVoiceBusy(true);
+    setActiveAudioKey(audioKey);
     setError("");
     try {
       stopAudio();
+      setVoiceBusy(true);
+      setActiveAudioKey(audioKey);
       const response = await fetch(`/api/classes/${session.id}/voice/speech`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -199,35 +210,52 @@ export function GuidedClassPanel({
       });
       if (!response.ok) throw new Error("No se pudo generar audio.");
       const url = URL.createObjectURL(await response.blob());
+      if (audioRequestRef.current !== requestId) {
+        URL.revokeObjectURL(url);
+        return;
+      }
       const audio = new Audio(url);
       audioRef.current = audio;
       audio.onended = () => {
         URL.revokeObjectURL(url);
-        setVoiceBusy(false);
+        if (audioRequestRef.current === requestId) {
+          setVoiceBusy(false);
+          setActiveAudioKey(null);
+          audioRef.current = null;
+        }
       };
       audio.onerror = () => {
         URL.revokeObjectURL(url);
-        setVoiceBusy(false);
-        setError("No se pudo reproducir el audio.");
+        if (audioRequestRef.current === requestId) {
+          setVoiceBusy(false);
+          setActiveAudioKey(null);
+          audioRef.current = null;
+          setError("No se pudo reproducir el audio.");
+        }
       };
       await audio.play();
     } catch (caught) {
-      setVoiceBusy(false);
-      setError(
-        caught instanceof Error
-          ? caught.message
-          : "No se pudo reproducir el audio.",
-      );
+      if (audioRequestRef.current === requestId) {
+        setVoiceBusy(false);
+        setActiveAudioKey(null);
+        setError(
+          caught instanceof Error
+            ? caught.message
+            : "No se pudo reproducir el audio.",
+        );
+      }
     }
   }
 
   function stopAudio() {
+    audioRequestRef.current += 1;
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
     setVoiceBusy(false);
+    setActiveAudioKey(null);
   }
 
   async function recordAnswer() {
@@ -472,37 +500,43 @@ export function GuidedClassPanel({
               </ul>
             </div>
             <div className="class-step-list">
-              {session.steps.map((step) => (
-                <article className="class-step-card" key={step.id}>
-                  <span className="eyebrow">
-                    Paso {step.stepOrder} · {labelForStep(step.stepType)}
-                  </span>
-                  <h3>{step.title}</h3>
-                  <div className="answer-text">{step.content}</div>
-                  {step.checkQuestion ? (
-                    <p className="notice">
-                      <strong>Pregunta:</strong> {step.checkQuestion}
-                    </p>
-                  ) : null}
-                  <button
-                    className="button secondary"
-                    onClick={() =>
-                      voiceBusy
-                        ? stopAudio()
-                        : void play(
-                            `${step.title}. ${step.content} ${step.checkQuestion || ""}`,
-                          )
-                    }
-                  >
-                    {voiceBusy ? (
-                      <PauseCircle size={15} />
-                    ) : (
-                      <Volume2 size={15} />
-                    )}{" "}
-                    {voiceBusy ? "Detener" : "Escuchar"}
-                  </button>
-                </article>
-              ))}
+              {session.steps.map((step) => {
+                const audioKey = `step:${step.id}`;
+                const isStepAudioActive = activeAudioKey === audioKey;
+                return (
+                  <article className="class-step-card" key={step.id}>
+                    <span className="eyebrow">
+                      Paso {step.stepOrder} · {labelForStep(step.stepType)}
+                    </span>
+                    <h3>{step.title}</h3>
+                    <div className="answer-text">{step.content}</div>
+                    {step.checkQuestion ? (
+                      <p className="notice">
+                        <strong>Pregunta:</strong> {step.checkQuestion}
+                      </p>
+                    ) : null}
+                    <button
+                      className="button secondary"
+                      onClick={() =>
+                        isStepAudioActive
+                          ? stopAudio()
+                          : void play(
+                              `${step.title}. ${step.content} ${step.checkQuestion || ""}`,
+                              audioKey,
+                            )
+                      }
+                      disabled={voiceBusy && !isStepAudioActive}
+                    >
+                      {isStepAudioActive ? (
+                        <PauseCircle size={15} />
+                      ) : (
+                        <Volume2 size={15} />
+                      )}{" "}
+                      {isStepAudioActive ? "Detener" : "Escuchar"}
+                    </button>
+                  </article>
+                );
+              })}
             </div>
             {session.feedback ? (
               <article className="assessment-feedback positive">
@@ -555,9 +589,17 @@ export function GuidedClassPanel({
                 <button
                   className="button secondary"
                   onClick={() =>
-                    currentStep ? void play(currentStep.content) : undefined
+                    currentStep
+                      ? void play(
+                          currentStep.content,
+                          `repeat:${currentStep.id}`,
+                        )
+                      : undefined
                   }
-                  disabled={!currentStep}
+                  disabled={
+                    !currentStep ||
+                    (voiceBusy && !activeAudioKey?.startsWith("repeat:"))
+                  }
                 >
                   <Play size={15} /> Repetir explicación
                 </button>
