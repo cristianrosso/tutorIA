@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   BookOpen,
+  BrainCircuit,
   ChartNoAxesCombined,
   CircleHelp,
   ClipboardCheck,
@@ -15,16 +16,31 @@ import { Brand } from "@/components/brand";
 import { logout } from "@/app/actions/auth";
 import type { Profile } from "@/lib/models";
 
+type ActiveSection =
+  | "home"
+  | "units"
+  | "progress"
+  | "recommendations"
+  | "tutor"
+  | "simulacro"
+  | "practice"
+  | "admin";
+
 export function AppShell({
   profile,
   active,
   children,
 }: {
   profile: Profile;
-  active: "home" | "units" | "progress" | "tutor" | "simulacro" | "practice" | "admin";
+  active: ActiveSection;
   children: React.ReactNode;
 }) {
-  const nav = [
+  const nav: Array<{
+    href: string;
+    label: string;
+    icon: typeof House;
+    id: ActiveSection;
+  }> = [
     { href: "/dashboard", label: "Mi aula", icon: House, id: "home" },
     { href: "/tutor", label: "Tutor", icon: Mic, id: "tutor" },
     {
@@ -46,14 +62,21 @@ export function AppShell({
       icon: ChartNoAxesCombined,
       id: "progress",
     },
+    {
+      href: "/recomendaciones",
+      label: "Recomendaciones",
+      icon: BrainCircuit,
+      id: "recommendations",
+    },
   ];
-  if (profile.role === "ADMIN")
+  if (profile.role === "ADMIN") {
     nav.push({
       href: "/admin",
       label: "Administración",
       icon: LayoutDashboard,
       id: "admin",
     });
+  }
   return (
     <div className="app-layout">
       <aside className="sidebar">
@@ -93,22 +116,7 @@ export function AppShell({
       <div className="app-main">
         <header className="app-header">
           <span className="breadcrumb">
-            Aula virtual <span>/</span>{" "}
-            <strong>
-              {active === "admin"
-                ? "Administración"
-                : active === "units"
-                  ? "Mis unidades"
-                  : active === "progress"
-                    ? "Mi progreso"
-                    : active === "tutor"
-                      ? "Tutor"
-                      : active === "simulacro"
-                        ? "Simulacro"
-                        : active === "practice"
-                          ? "Práctica"
-                          : "Inicio"}
-            </strong>
+            Aula virtual <span>/</span> <strong>{breadcrumb(active)}</strong>
           </span>
           <div className="header-user">
             <span className="year-tag">GESTIÓN 2026</span>
@@ -150,4 +158,15 @@ export function AppShell({
       </div>
     </div>
   );
+}
+
+function breadcrumb(active: ActiveSection) {
+  if (active === "admin") return "Administración";
+  if (active === "units") return "Mis unidades";
+  if (active === "progress") return "Mi progreso";
+  if (active === "recommendations") return "Recomendaciones";
+  if (active === "tutor") return "Tutor";
+  if (active === "simulacro") return "Simulacro";
+  if (active === "practice") return "Práctica";
+  return "Inicio";
 }

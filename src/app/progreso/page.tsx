@@ -7,13 +7,15 @@ import {
   getResumeStudySuggestion,
   getStudentLearningSummary,
 } from "@/lib/learning/academic-memory";
+import { generateLearningRecommendations } from "@/lib/adaptive/recommendation-engine";
 
 export default async function ProgressPage() {
   const profile = await requireProfile();
-  const [stats, learning, resume] = await Promise.all([
+  const [stats, learning, resume, adaptiveRecommendations] = await Promise.all([
     getStudentStats(),
     getStudentLearningSummary(profile.id),
     getResumeStudySuggestion(profile.id),
+    generateLearningRecommendations({ userId: profile.id, limit: 3 }),
   ]);
   const currentUnit = Array.isArray(learning.profile?.academic_units)
     ? learning.profile?.academic_units[0]
@@ -99,6 +101,34 @@ export default async function ProgressPage() {
           </Link>
         </div>
       </section>
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Plan recomendado</h2>
+          <span>Motor adaptativo Sprint 9</span>
+        </div>
+        {adaptiveRecommendations.length ? (
+          <div className="learning-memory-card">
+            <Target size={24} />
+            <div>
+              <strong>
+                {adaptiveRecommendations[0].title ||
+                  adaptiveRecommendations[0].topicName ||
+                  "Siguiente paso sugerido"}
+              </strong>
+              <p>{adaptiveRecommendations[0].reason}</p>
+            </div>
+            <Link className="button primary" href="/recomendaciones">
+              Ver recomendaciones <ArrowRight size={16} />
+            </Link>
+          </div>
+        ) : (
+          <p className="notice">
+            Realiza prácticas o simulacros para activar recomendaciones
+            adaptativas.
+          </p>
+        )}
+      </section>
+
       <section className="panel">
         <div className="section-heading">
           <h2>Temas que debes reforzar</h2>

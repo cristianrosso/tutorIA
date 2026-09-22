@@ -3072,3 +3072,54 @@ input[type="hidden"] {
     grid-template-columns: 1fr;
   }
 }
+
+.recommendation-cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.recommendation-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #dce7e1);
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.recommendation-card h3 {
+  margin: 0.35rem 0;
+  color: #0b2b3a;
+}
+
+.recommendation-card p {
+  margin: 0 0 0.5rem;
+  color: #5d7081;
+  line-height: 1.6;
+}
+
+.recommendation-card small {
+  color: #6a7f8f;
+}
+
+.recommendation-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 180px;
+}
+
+.section-heading h2 svg {
+  vertical-align: -4px;
+}
+
+@media (max-width: 760px) {
+  .recommendation-card {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendation-actions {
+    min-width: 0;
+  }
+}

@@ -6,13 +6,26 @@ import { generateTutorText } from "@/lib/ai/openai";
 import { selectModel, type TutorMode } from "@/lib/ai/model-router";
 import { recordAIUsage } from "@/lib/billing/ai-usage";
 import { retrieveAcademicContext } from "@/lib/knowledge/rag";
-import type { AcademicIntent, KnowledgeChunkCandidate } from "@/lib/knowledge/types";
-import { ensureStudentAcademicProfile, recordSourcesAsLearning } from "@/lib/learning/academic-memory";
+import type {
+  AcademicIntent,
+  KnowledgeChunkCandidate,
+} from "@/lib/knowledge/types";
+import {
+  ensureStudentAcademicProfile,
+  recordSourcesAsLearning,
+} from "@/lib/learning/academic-memory";
 import { buildStudentMemoryContext } from "@/lib/learning/memory-context";
+import { buildAdaptiveTutorContext } from "@/lib/adaptive/recommendation-engine";
 import type { Profile } from "@/lib/models";
-import { TUTOR_PEDAGOGICAL_SYSTEM_PROMPT, modeInstruction } from "@/lib/tutor/prompts/system-prompt";
+import {
+  TUTOR_PEDAGOGICAL_SYSTEM_PROMPT,
+  modeInstruction,
+} from "@/lib/tutor/prompts/system-prompt";
 import { getConversationContext } from "@/lib/tutor/conversation-context";
-import { insufficientContextAnswer, validateTutorResponse } from "@/lib/tutor/response-validator";
+import {
+  insufficientContextAnswer,
+  validateTutorResponse,
+} from "@/lib/tutor/response-validator";
 
 export type TutorStructuredSource = {
   knowledgeObjectId: string | null;
@@ -76,11 +89,14 @@ export async function generateTutorResponse(input: {
     userId: input.profile.id,
     currentMessage: message,
   });
-  const memoryContext = await buildStudentMemoryContext({
-    userId: input.profile.id,
-    currentQuery: message,
-    conversationId: conversation.id,
-  });
+  const [memoryContext, adaptiveContext] = await Promise.all([
+    buildStudentMemoryContext({
+      userId: input.profile.id,
+      currentQuery: message,
+      conversationId: conversation.id,
+    }),
+    buildAdaptiveTutorContext({ userId: input.profile.id, limit: 3 }),
+  ]);
 
   const ragStarted = Date.now();
   const retrievalQuery = needsAcademicMemoryForRetrieval(message)
@@ -99,7 +115,12 @@ export async function generateTutorResponse(input: {
     context: academic.context,
   });
 
-  const complexity = assessComplexity(message, academic.context, academic.queryAnalysis.intent, mode);
+  const complexity = assessComplexity(
+    message,
+    academic.context,
+    academic.queryAnalysis.intent,
+    mode,
+  );
   const model = selectModel({
     intent: academic.queryAnalysis.intent,
     complexity,
@@ -123,6 +144,7 @@ export async function generateTutorResponse(input: {
       context: academic.context,
       history: history.summary,
       memoryContext,
+      adaptiveContext,
       sources: academic.sources,
     });
     const completion = await generateTutorText({
@@ -147,7 +169,8 @@ export async function generateTutorResponse(input: {
   }
 
   if (isPromptInjection(message)) {
-    answer = "No puedo revelar instrucciones internas ni modificar las reglas académicas del tutor. Sí puedo ayudarte a estudiar el contenido del compendio con una pregunta concreta.";
+    answer =
+      "No puedo revelar instrucciones internas ni modificar las reglas académicas del tutor. Sí puedo ayudarte a estudiar el contenido del compendio con una pregunta concreta.";
   }
 
   const estimatedCost = estimateTextCost(inputTokens, outputTokens);
@@ -211,6 +234,7 @@ export async function generateTutorResponse(input: {
       ? {
           query: history.retrievalQuery,
           memoryContext,
+          adaptiveContext,
           mode,
           complexity,
           ragMs,
@@ -231,12 +255,19 @@ function buildPedagogicalPrompt(input: {
   context: string;
   history: string;
   memoryContext: string;
+  adaptiveContext: string;
   sources: KnowledgeChunkCandidate[];
 }) {
   const sourceList = input.sources
     .map((source, index) => {
-      const unit = source.unitNumber ? `Unidad ${source.unitNumber}${source.unitName ? ` - ${source.unitName}` : ""}` : "Unidad no determinada";
-      const topic = source.topicName || source.sectionName || source.title || "Tema recuperado";
+      const unit = source.unitNumber
+        ? `Unidad ${source.unitNumber}${source.unitName ? ` - ${source.unitName}` : ""}`
+        : "Unidad no determinada";
+      const topic =
+        source.topicName ||
+        source.sectionName ||
+        source.title ||
+        "Tema recuperado";
       return `Fuente ${index + 1}: Compendio FATESCIPOL 2026, ${unit}, ${topic}.`;
     })
     .join("\n");
@@ -251,6 +282,9 @@ ${input.history || "Sin historial previo relevante."}
 
 Memoria académica estructurada del estudiante:
 ${input.memoryContext}
+
+Recomendaciones adaptativas calculadas sin IA:
+${input.adaptiveContext}
 
 Pregunta actual del estudiante:
 ${input.message}
@@ -267,6 +301,7 @@ Instrucciones de respuesta:
 - Si el estudiante pide un ejemplo, puedes empezar con el ejemplo y luego explicar el concepto.
 - Si el estudiante pide simplificar, usa lenguaje sencillo y conserva el significado académico.
 - Si pide que le preguntes, formula una pregunta corta de comprobación sobre el tema actual.
+- Si el estudiante pregunta qué debe estudiar, responde usando primero las recomendaciones adaptativas y explica por qué.
 - Si corresponde, cierra con una pregunta breve de comprobación, pero no lo hagas siempre.
 - Incluye al final una sección corta llamada "Fuente" con Compendio FATESCIPOL, unidad y tema, sin IDs internos.
 `.trim();
@@ -325,20 +360,28 @@ async function insertMessage(input: {
   return data as { id: string };
 }
 
-async function insertSources(messageId: string, sources: KnowledgeChunkCandidate[]) {
+async function insertSources(
+  messageId: string,
+  sources: KnowledgeChunkCandidate[],
+) {
   if (sources.length === 0) return;
-  await createSupabaseAdmin().from("tutor_message_sources").insert(
-    sources.slice(0, 8).map((source) => ({
-      message_id: messageId,
-      knowledge_object_id: source.knowledgeObjectId,
-      chunk_id: source.chunkId,
-      source_reference: source.sourceReference || source.pageReference || null,
-      relevance_score: source.finalScore,
-    })),
-  );
+  await createSupabaseAdmin()
+    .from("tutor_message_sources")
+    .insert(
+      sources.slice(0, 8).map((source) => ({
+        message_id: messageId,
+        knowledge_object_id: source.knowledgeObjectId,
+        chunk_id: source.chunkId,
+        source_reference:
+          source.sourceReference || source.pageReference || null,
+        relevance_score: source.finalScore,
+      })),
+    );
 }
 
-function toStructuredSources(sources: KnowledgeChunkCandidate[]): TutorStructuredSource[] {
+function toStructuredSources(
+  sources: KnowledgeChunkCandidate[],
+): TutorStructuredSource[] {
   return sources.slice(0, 6).map((source) => ({
     knowledgeObjectId: source.knowledgeObjectId,
     chunkId: source.chunkId,
@@ -352,7 +395,10 @@ function toStructuredSources(sources: KnowledgeChunkCandidate[]): TutorStructure
 }
 
 function sanitizeMessage(message: string) {
-  return message.trim().replace(/[\u0000-\u001f\u007f]/g, " ").slice(0, 1200);
+  return message
+    .trim()
+    .replace(/[\u0000-\u001f\u007f]/g, " ")
+    .slice(0, 1200);
 }
 
 function titleFromMessage(message: string) {
@@ -364,9 +410,16 @@ function titleFromMessage(message: string) {
   return words.length ? words.join(" ") : "Nueva conversación";
 }
 
-function assessComplexity(message: string, context: string, intent: AcademicIntent, mode: TutorMode) {
-  if (mode === "explain" || mode === "review" || intent === "comparison") return "HIGH" as const;
-  if (message.split(/\s+/).length > 24 || context.length > 2600) return "MEDIUM" as const;
+function assessComplexity(
+  message: string,
+  context: string,
+  intent: AcademicIntent,
+  mode: TutorMode,
+) {
+  if (mode === "explain" || mode === "review" || intent === "comparison")
+    return "HIGH" as const;
+  if (message.split(/\s+/).length > 24 || context.length > 2600)
+    return "MEDIUM" as const;
   return "LOW" as const;
 }
 
@@ -384,13 +437,25 @@ function needsAcademicMemoryForRetrieval(message: string) {
 
 function buildFollowUps(intent: AcademicIntent, mode: TutorMode) {
   if (intent === "example" || mode === "example") {
-    return ["Explícame el concepto", "Dame otro ejemplo", "Hazme una pregunta de examen"];
+    return [
+      "Explícame el concepto",
+      "Dame otro ejemplo",
+      "Hazme una pregunta de examen",
+    ];
   }
   if (intent === "definition") {
-    return ["Explícamelo más fácil", "Dame un ejemplo", "¿Cuál es su importancia?"];
+    return [
+      "Explícamelo más fácil",
+      "Dame un ejemplo",
+      "¿Cuál es su importancia?",
+    ];
   }
   if (intent === "procedure") {
-    return ["Ordéname los pasos", "Dame un caso práctico", "Pregúntame sobre el procedimiento"];
+    return [
+      "Ordéname los pasos",
+      "Dame un caso práctico",
+      "Pregúntame sobre el procedimiento",
+    ];
   }
   return ["Explícamelo más fácil", "Dame un ejemplo", "Pregúntame sobre esto"];
 }
