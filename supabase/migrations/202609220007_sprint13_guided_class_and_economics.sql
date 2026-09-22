@@ -99,12 +99,16 @@ create index if not exists guided_class_steps_session_idx on public.guided_class
 create index if not exists guided_class_interactions_session_idx on public.guided_class_interactions(class_session_id, created_at desc);
 create index if not exists guided_class_progress_user_idx on public.guided_class_progress(user_id, last_activity_at desc);
 
+drop trigger if exists economic_settings_updated on public.economic_settings;
 create trigger economic_settings_updated before update on public.economic_settings
   for each row execute function public.touch_updated_at();
+drop trigger if exists guided_class_sessions_updated on public.guided_class_sessions;
 create trigger guided_class_sessions_updated before update on public.guided_class_sessions
   for each row execute function public.touch_updated_at();
+drop trigger if exists guided_class_steps_updated on public.guided_class_steps;
 create trigger guided_class_steps_updated before update on public.guided_class_steps
   for each row execute function public.touch_updated_at();
+drop trigger if exists guided_class_progress_updated on public.guided_class_progress;
 create trigger guided_class_progress_updated before update on public.guided_class_progress
   for each row execute function public.touch_updated_at();
 
