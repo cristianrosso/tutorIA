@@ -2702,3 +2702,76 @@ input[type="hidden"] {
     max-height: none;
   }
 }
+
+/* Sprint 6 · Memoria académica y consumo */
+.learning-memory-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfcfa;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+}
+.learning-memory-card strong {
+  color: var(--ink);
+  display: block;
+  margin-bottom: 5px;
+}
+.learning-memory-card p,
+.progress-summary small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.progress-unit-list small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.usage-table {
+  display: grid;
+  gap: 8px;
+  overflow-x: auto;
+}
+.usage-row {
+  min-width: 880px;
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 0.8fr 1.4fr 0.9fr 0.8fr;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+.usage-row.header {
+  background: #f2f7f4;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.usage-row strong,
+.usage-row small {
+  display: block;
+}
+.usage-row small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.usage-warning {
+  color: #a95b13 !important;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .learning-memory-card {
+    grid-template-columns: 1fr;
+  }
+  .learning-memory-card .button {
+    width: 100%;
+  }
+}

@@ -155,3 +155,27 @@ OPENAI_FAST_MODEL=gpt-5.6-luna
 TUTOR_MAX_HISTORY_MESSAGES=8
 TUTOR_MAX_HISTORY_TOKENS=900
 ```
+
+## Sprint 6 · Memoria de aprendizaje y consumo individual
+
+Sprint 6 agrega perfil académico individual, memoria estructurada, progreso por tema y registro detallado de consumo IA por estudiante. Documentación: [`docs/SPRINT_6_ACADEMIC_MEMORY.md`](docs/SPRINT_6_ACADEMIC_MEMORY.md).
+
+Rutas nuevas o ampliadas:
+
+- `/progreso`: memoria académica, cobertura y continuidad de estudio.
+- `/admin/usage`: consumo IA por estudiante.
+
+Variables opcionales nuevas:
+
+```env
+STUDENT_PERIOD_PRICE_BOB=200
+STUDENT_PERIOD_BUDGET_BOB=80
+USD_TO_BOB_ACCOUNTING_RATE=6.96
+AI_PRICING_VERSION=2026-09-config
+MEMORY_CONTEXT_MAX_TOKENS=420
+OPENAI_LUNA_INPUT_COST_PER_1M=0.4
+OPENAI_LUNA_OUTPUT_COST_PER_1M=1.6
+OPENAI_TERRA_INPUT_COST_PER_1M=2
+OPENAI_TERRA_OUTPUT_COST_PER_1M=12
+OPENAI_CACHED_INPUT_COST_PER_1M=0
+```

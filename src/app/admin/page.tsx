@@ -1,6 +1,7 @@
 import {
   AudioLines,
   Coins,
+  ChartNoAxesCombined,
   SearchCheck,
   GraduationCap,
   MessageSquare,
@@ -163,6 +164,10 @@ export default async function AdminPage({
           <Link className="button primary" href="/admin/knowledge/search">
             <SearchCheck size={18} />
             Probar búsqueda académica RAG
+          </Link>
+          <Link className="button secondary" href="/admin/usage">
+            <ChartNoAxesCombined size={18} />
+            Ver consumo IA por estudiante
           </Link>
         </div>
         {data.ingestionReport != null && (

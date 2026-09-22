@@ -1,26 +1,37 @@
 import Link from "next/link";
-import { Target } from "lucide-react";
+import { ArrowRight, BookOpenCheck, Target } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { requireProfile } from "@/lib/auth/session";
-import { getStudentStats, getUnitsWithProgress } from "@/lib/data";
-
-function statusLabel(status?: string) {
-  const labels: Record<string, string> = {
-    sin_iniciar: "Sin iniciar",
-    en_estudio: "En estudio",
-    practicando: "Practicando",
-    buen_dominio: "Buen dominio",
-    necesita_refuerzo: "Necesita refuerzo",
-  };
-  return labels[status || "sin_iniciar"] || "Sin iniciar";
-}
+import { getStudentStats } from "@/lib/data";
+import {
+  getResumeStudySuggestion,
+  getStudentLearningSummary,
+} from "@/lib/learning/academic-memory";
 
 export default async function ProgressPage() {
   const profile = await requireProfile();
-  const [stats, units] = await Promise.all([
+  const [stats, learning, resume] = await Promise.all([
     getStudentStats(),
-    getUnitsWithProgress(),
+    getStudentLearningSummary(profile.id),
+    getResumeStudySuggestion(profile.id),
   ]);
+  const currentUnit = Array.isArray(learning.profile?.academic_units)
+    ? learning.profile?.academic_units[0]
+    : learning.profile?.academic_units;
+  const currentTopic = Array.isArray(learning.profile?.academic_topics)
+    ? learning.profile?.academic_topics[0]
+    : learning.profile?.academic_topics;
+  const studiedTopics = learning.units.reduce(
+    (sum, unit) => sum + unit.studiedTopics,
+    0,
+  );
+  const totalTopics = learning.units.reduce(
+    (sum, unit) => sum + unit.totalTopics,
+    0,
+  );
+  const academicCoverage = totalTopics
+    ? Math.round((studiedTopics / totalTopics) * 100)
+    : 0;
   return (
     <AppShell profile={profile} active="progress">
       <div className="page-heading">
@@ -36,24 +47,78 @@ export default async function ProgressPage() {
       </div>
       <div className="progress-summary">
         <div className="panel">
-          <span>Unidades estudiadas</span>
-          <strong>{stats.unitsStudied} / 15</strong>
+          <span>Cobertura académica</span>
+          <strong>{academicCoverage}%</strong>
+          <small>
+            {studiedTopics} de {totalTopics} temas trabajados
+          </small>
         </div>
         <div className="panel">
-          <span>Simulacros realizados</span>
-          <strong>{stats.simulations}</strong>
+          <span>Rendimiento observado</span>
+          <strong>
+            {learning.evaluated.observedAccuracy === null
+              ? "Sin evidencia"
+              : `${learning.evaluated.observedAccuracy}%`}
+          </strong>
+          <small>
+            {learning.evaluated.attempts
+              ? `${learning.evaluated.correct} correctas · ${learning.evaluated.incorrect} incorrectas`
+              : "Todavía no existen suficientes actividades evaluativas"}
+          </small>
         </div>
         <div className="panel">
-          <span>Preguntas practicadas</span>
-          <strong>{stats.conversations + stats.practices}</strong>
+          <span>Última actividad</span>
+          <strong>
+            {learning.profile?.last_studied_at
+              ? new Date(learning.profile.last_studied_at).toLocaleDateString(
+                  "es-BO",
+                  { timeZone: "America/La_Paz" },
+                )
+              : "Sin registro"}
+          </strong>
+          <small>{stats.conversations + stats.practices} interacciones</small>
         </div>
       </div>
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Memoria de aprendizaje</h2>
+          <span>Basada en actividades registradas</span>
+        </div>
+        <div className="learning-memory-card">
+          <BookOpenCheck size={24} />
+          <div>
+            <strong>
+              {currentTopic?.topic_name ||
+                currentUnit?.unit_name ||
+                "Aún no hay un tema actual"}
+            </strong>
+            <p>{resume.description}</p>
+          </div>
+          <Link className="button primary" href={resume.href}>
+            {resume.label} <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
       <section className="panel">
         <div className="section-heading">
           <h2>Temas que debes reforzar</h2>
           <span>Máximo 3 recomendaciones</span>
         </div>
-        {stats.weakTopics.length ? (
+        {learning.review.length ? (
+          <ul className="recommendation-list">
+            {learning.review.map((row) => {
+              const topic = Array.isArray(row.academic_topics)
+                ? row.academic_topics[0]
+                : row.academic_topics;
+              return (
+                <li key={row.knowledge_object_id}>
+                  <Target size={15} />{" "}
+                  {topic?.topic_name || row.knowledge_object_id}
+                </li>
+              );
+            })}
+          </ul>
+        ) : stats.weakTopics.length ? (
           <ul className="recommendation-list">
             {stats.weakTopics.map((topic) => (
               <li key={topic}>
@@ -71,20 +136,29 @@ export default async function ProgressPage() {
       <section className="panel">
         <div className="section-heading">
           <h2>Progreso por unidad</h2>
-          <span>{units.length} unidades</span>
+          <span>{learning.units.length} unidades</span>
         </div>
         <div className="progress-unit-list">
-          {units.map((unit) => (
-            <Link href={`/unidad/${unit.number}`} key={unit.id}>
+          {learning.units.map((unit) => (
+            <Link href={`/unidad/${unit.unitNumber}`} key={unit.unitId}>
               <strong>
-                {String(unit.number).padStart(2, "0")} · {unit.name}
+                {String(unit.unitNumber).padStart(2, "0")} · {unit.unitName}
               </strong>
               <span>
-                {statusLabel(unit.status)} · {unit.progress}%
+                {unit.studiedTopics} de {unit.totalTopics} temas · Cobertura{" "}
+                {unit.coveragePercent}%
               </span>
               <div className="progress-bar">
-                <span style={{ width: `${unit.progress}%` }} />
+                <span style={{ width: `${unit.coveragePercent}%` }} />
               </div>
+              <small>
+                Última actividad:{" "}
+                {unit.lastStudiedAt
+                  ? new Date(unit.lastStudiedAt).toLocaleDateString("es-BO", {
+                      timeZone: "America/La_Paz",
+                    })
+                  : "Sin registro"}
+              </small>
             </Link>
           ))}
         </div>

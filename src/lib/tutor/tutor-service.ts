@@ -4,8 +4,11 @@ import { consumeLimit } from "@/lib/auth/rate-limit";
 import { estimateTextCost } from "@/lib/ai/costs";
 import { generateTutorText } from "@/lib/ai/openai";
 import { selectModel, type TutorMode } from "@/lib/ai/model-router";
+import { recordAIUsage } from "@/lib/billing/ai-usage";
 import { retrieveAcademicContext } from "@/lib/knowledge/rag";
 import type { AcademicIntent, KnowledgeChunkCandidate } from "@/lib/knowledge/types";
+import { ensureStudentAcademicProfile, recordSourcesAsLearning } from "@/lib/learning/academic-memory";
+import { buildStudentMemoryContext } from "@/lib/learning/memory-context";
 import type { Profile } from "@/lib/models";
 import { TUTOR_PEDAGOGICAL_SYSTEM_PROMPT, modeInstruction } from "@/lib/tutor/prompts/system-prompt";
 import { getConversationContext } from "@/lib/tutor/conversation-context";
@@ -53,6 +56,7 @@ export async function generateTutorResponse(input: {
   }
 
   const db = createSupabaseAdmin();
+  await ensureStudentAcademicProfile(input.profile.id);
   const conversation = input.conversationId
     ? await getConversation(input.conversationId, input.profile.id)
     : await createConversation(input.profile.id, titleFromMessage(message));
@@ -70,9 +74,17 @@ export async function generateTutorResponse(input: {
     userId: input.profile.id,
     currentMessage: message,
   });
+  const memoryContext = await buildStudentMemoryContext({
+    userId: input.profile.id,
+    currentQuery: message,
+    conversationId: conversation.id,
+  });
 
   const ragStarted = Date.now();
-  const academic = await retrieveAcademicContext(history.retrievalQuery, {
+  const retrievalQuery = needsAcademicMemoryForRetrieval(message)
+    ? `${history.retrievalQuery}\n${memoryContext}`
+    : history.retrievalQuery;
+  const academic = await retrieveAcademicContext(retrievalQuery, {
     unitNumber: input.options?.unitNumber,
     maxChunks: 8,
     maxContextTokens: 2600,
@@ -108,6 +120,7 @@ export async function generateTutorResponse(input: {
       intent: academic.queryAnalysis.intent,
       context: academic.context,
       history: history.summary,
+      memoryContext,
       sources: academic.sources,
     });
     const completion = await generateTutorText({
@@ -160,6 +173,25 @@ export async function generateTutorResponse(input: {
     estimated_cost: estimatedCost,
     provider_request_id: requestId,
   });
+  await recordAIUsage({
+    userId: input.profile.id,
+    operationId: `tutor-chat:${assistantMessage.id}`,
+    conversationId: conversation.id,
+    operationType: "tutor_chat",
+    model: modelUsed,
+    inputTokens,
+    outputTokens,
+    estimatedCostUsd: estimatedCost,
+    costIsEstimated: inputTokens === 0 && outputTokens === 0,
+  });
+  await recordSourcesAsLearning({
+    userId: input.profile.id,
+    conversationId: conversation.id,
+    messageId: assistantMessage.id,
+    sources: academic.sources,
+    intent: academic.queryAnalysis.intent,
+    tutorMode: mode,
+  });
   await db
     .from("tutor_conversations")
     .update({ updated_at: new Date().toISOString() })
@@ -176,6 +208,7 @@ export async function generateTutorResponse(input: {
     diagnostics: input.options?.debug
       ? {
           query: history.retrievalQuery,
+          memoryContext,
           mode,
           complexity,
           ragMs,
@@ -195,6 +228,7 @@ function buildPedagogicalPrompt(input: {
   intent: AcademicIntent;
   context: string;
   history: string;
+  memoryContext: string;
   sources: KnowledgeChunkCandidate[];
 }) {
   const sourceList = input.sources
@@ -212,6 +246,9 @@ Intención académica detectada: ${input.intent}
 
 Historial breve relevante:
 ${input.history || "Sin historial previo relevante."}
+
+Memoria académica estructurada del estudiante:
+${input.memoryContext}
 
 Pregunta actual del estudiante:
 ${input.message}
@@ -333,6 +370,12 @@ function assessComplexity(message: string, context: string, intent: AcademicInte
 
 function isPromptInjection(message: string) {
   return /ignora tus reglas|muestra.*prompt|dime.*prompt|instrucciones internas|revela.*sistema|api key|clave secreta/i.test(
+    message,
+  );
+}
+
+function needsAcademicMemoryForRetrieval(message: string) {
+  return /continuemos|sigamos|lo que estaba estudiando|ultimo tema|último tema|repasar lo anterior|seguir con eso/i.test(
     message,
   );
 }
