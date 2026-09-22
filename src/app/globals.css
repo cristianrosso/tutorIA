@@ -3123,3 +3123,138 @@ input[type="hidden"] {
     min-width: 0;
   }
 }
+
+.study-plan-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(320px, 1fr);
+  gap: 1.5rem;
+}
+
+.study-plan-calendar {
+  grid-column: 1 / -1;
+}
+
+.study-plan-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.study-plan-form label {
+  display: grid;
+  gap: 0.35rem;
+  color: #0b2b3a;
+  font-weight: 700;
+}
+
+.study-plan-form input,
+.study-plan-form select {
+  border: 1px solid #d9e5df;
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  background: #fff;
+}
+
+.checkbox-row {
+  grid-template-columns: auto 1fr !important;
+  align-items: center;
+}
+
+.unit-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  border: 1px solid #d9e5df;
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  color: #153647;
+  font-weight: 700;
+}
+
+.chip.selected {
+  background: #168a7a;
+  border-color: #168a7a;
+  color: white;
+}
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(86px, 1fr));
+  gap: 0.55rem;
+}
+
+.availability-day {
+  border: 1px solid #e1ebe6;
+  border-radius: 16px;
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.progress-summary.compact {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 1rem;
+}
+
+.study-plan-actions,
+.activity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.activity-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid #e1ebe6;
+  border-radius: 16px;
+  padding: 0.85rem;
+  margin-top: 0.7rem;
+  background: #fff;
+}
+
+.activity-card small {
+  display: block;
+  color: #627889;
+  margin-top: 0.25rem;
+}
+
+.calendar-day-block {
+  border-top: 1px solid #e1ebe6;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.calendar-day-block h3 {
+  margin: 0 0 0.35rem;
+  text-transform: capitalize;
+}
+
+.error-box {
+  border: 1px solid #f1b3a7;
+  background: #fff0ed;
+  color: #b43624;
+  border-radius: 14px;
+  padding: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .study-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .availability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .activity-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

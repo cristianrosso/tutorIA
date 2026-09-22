@@ -16,6 +16,7 @@ import {
 } from "@/lib/learning/academic-memory";
 import { buildStudentMemoryContext } from "@/lib/learning/memory-context";
 import { buildAdaptiveTutorContext } from "@/lib/adaptive/recommendation-engine";
+import { buildStudyPlanContext } from "@/lib/study-plan/study-plan-context";
 import type { Profile } from "@/lib/models";
 import {
   TUTOR_PEDAGOGICAL_SYSTEM_PROMPT,
@@ -89,13 +90,14 @@ export async function generateTutorResponse(input: {
     userId: input.profile.id,
     currentMessage: message,
   });
-  const [memoryContext, adaptiveContext] = await Promise.all([
+  const [memoryContext, adaptiveContext, studyPlanContext] = await Promise.all([
     buildStudentMemoryContext({
       userId: input.profile.id,
       currentQuery: message,
       conversationId: conversation.id,
     }),
     buildAdaptiveTutorContext({ userId: input.profile.id, limit: 3 }),
+    buildStudyPlanContext(input.profile.id),
   ]);
 
   const ragStarted = Date.now();
@@ -145,6 +147,7 @@ export async function generateTutorResponse(input: {
       history: history.summary,
       memoryContext,
       adaptiveContext,
+      studyPlanContext,
       sources: academic.sources,
     });
     const completion = await generateTutorText({
@@ -235,6 +238,7 @@ export async function generateTutorResponse(input: {
           query: history.retrievalQuery,
           memoryContext,
           adaptiveContext,
+          studyPlanContext,
           mode,
           complexity,
           ragMs,
@@ -256,6 +260,7 @@ function buildPedagogicalPrompt(input: {
   history: string;
   memoryContext: string;
   adaptiveContext: string;
+  studyPlanContext: string;
   sources: KnowledgeChunkCandidate[];
 }) {
   const sourceList = input.sources
@@ -286,6 +291,9 @@ ${input.memoryContext}
 Recomendaciones adaptativas calculadas sin IA:
 ${input.adaptiveContext}
 
+Plan de estudio real del estudiante:
+${input.studyPlanContext}
+
 Pregunta actual del estudiante:
 ${input.message}
 
@@ -301,7 +309,8 @@ Instrucciones de respuesta:
 - Si el estudiante pide un ejemplo, puedes empezar con el ejemplo y luego explicar el concepto.
 - Si el estudiante pide simplificar, usa lenguaje sencillo y conserva el significado académico.
 - Si pide que le preguntes, formula una pregunta corta de comprobación sobre el tema actual.
-- Si el estudiante pregunta qué debe estudiar, responde usando primero las recomendaciones adaptativas y explica por qué.
+- Si el estudiante pregunta qué debe estudiar hoy, qué tiene pendiente, cuánto avanzó o si no pudo estudiar ayer, usa primero el plan de estudio real y no inventes fechas ni actividades.
+- Si el estudiante pregunta qué debe estudiar en general, responde usando primero las recomendaciones adaptativas y explica por qué.
 - Si corresponde, cierra con una pregunta breve de comprobación, pero no lo hagas siempre.
 - Incluye al final una sección corta llamada "Fuente" con Compendio FATESCIPOL, unidad y tema, sin IDs internos.
 `.trim();

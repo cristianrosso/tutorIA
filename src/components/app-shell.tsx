@@ -5,6 +5,7 @@ import {
   ChartNoAxesCombined,
   CircleHelp,
   ClipboardCheck,
+  CalendarDays,
   GraduationCap,
   House,
   LayoutDashboard,
@@ -20,6 +21,7 @@ type ActiveSection =
   | "home"
   | "units"
   | "progress"
+  | "studyPlan"
   | "recommendations"
   | "tutor"
   | "simulacro"
@@ -67,6 +69,12 @@ export function AppShell({
       label: "Recomendaciones",
       icon: BrainCircuit,
       id: "recommendations",
+    },
+    {
+      href: "/plan-estudio",
+      label: "Plan de estudio",
+      icon: CalendarDays,
+      id: "studyPlan",
     },
   ];
   if (profile.role === "ADMIN") {
@@ -165,6 +173,7 @@ function breadcrumb(active: ActiveSection) {
   if (active === "units") return "Mis unidades";
   if (active === "progress") return "Mi progreso";
   if (active === "recommendations") return "Recomendaciones";
+  if (active === "studyPlan") return "Plan de estudio";
   if (active === "tutor") return "Tutor";
   if (active === "simulacro") return "Simulacro";
   if (active === "practice") return "Práctica";

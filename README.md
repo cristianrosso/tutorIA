@@ -125,7 +125,6 @@ Sprint 4 deja listo el demo central: estudiante autenticado, Unidad 1 cargada, t
 - [Autenticación en Next.js](https://nextjs.org/docs/app/guides/authentication)
 - [Proxy en Next.js](https://nextjs.org/docs/app/getting-started/proxy)
 
-
 ## Sprint 5B · Motor RAG académico MKF-1
 
 El motor RAG académico está documentado en [`docs/RAG_ARCHITECTURE.md`](docs/RAG_ARCHITECTURE.md). Incluye embeddings persistidos, búsqueda semántica con pgvector, búsqueda textual, score académico, reranking, expansión parent-child, expansión de relaciones MKF-1 y una pantalla administrativa de diagnóstico en `/admin/knowledge/search`.
@@ -183,3 +182,7 @@ OPENAI_CACHED_INPUT_COST_PER_1M=0
 ## Sprint 7 — Evaluación formativa
 
 El proyecto incluye práctica formativa en `/practica`, historial en `/evaluaciones`, generación de preguntas con RAG, corrección en servidor, retroalimentación pedagógica y registro de evidencias de aprendizaje. Ver `docs/SPRINT_7_ASSESSMENT.md`.
+
+## Sprint 10 — Plan de estudio inteligente
+
+El proyecto incluye un planificador académico en `/plan-estudio` para crear cronogramas personalizados por fecha de examen, disponibilidad semanal, unidades seleccionadas, progreso real y recomendaciones adaptativas. La documentación técnica está en `docs/SPRINT_10_STUDY_PLANNER.md`.
