@@ -1,43 +1,24 @@
-import { GraduationCap } from "lucide-react";
+import { FileText } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
-import { SimulationPanel } from "@/components/simulation-panel";
+import { ExamSimulatorPanel } from "@/components/exams/exam-simulator-panel";
 import { requireStudent } from "@/lib/auth/session";
-import { getUnitByNumber } from "@/lib/data";
-import { readLatestSimulation } from "@/lib/simulations/oral-exam";
+import { getAssessmentCatalog } from "@/lib/assessment/session-service";
 
-export default async function SimulacroPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ unit?: string }>;
-}) {
+export default async function SimulacroPage({ searchParams }: { searchParams: Promise<{ unit?: string }> }) {
   const profile = await requireStudent();
   const params = await searchParams;
-  const unitNumber = Math.min(15, Math.max(1, Number(params.unit) || 1));
-  const unit = await getUnitByNumber(unitNumber);
-  const simulation = await readLatestSimulation(profile).catch(() => null);
+  const catalog = await getAssessmentCatalog();
   return (
     <AppShell profile={profile} active="simulacro">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">SIMULACRO ORAL POR UNIDAD</span>
-          <h1>
-            Simulacro<span className="heading-dot">.</span>
-          </h1>
-          <p>
-            Practica con preguntas, repreguntas y retroalimentación basadas en
-            Unidad {unit.number}, {unit.name}.
-          </p>
+          <span className="eyebrow">SPRINT 8 · SIMULADOR ESCRITO</span>
+          <h1>Simulacro<span className="heading-dot">.</span></h1>
+          <p>Practica un examen de grado con tiempo, guardado de respuestas y retroalimentación académica al finalizar.</p>
         </div>
-        <span className="badge">
-          <GraduationCap size={15} /> Unidad {unit.number}
-        </span>
+        <span className="badge"><FileText size={15} /> Evaluación integral</span>
       </div>
-      <SimulationPanel
-        initialSimulation={
-          simulation?.unit_number === unit.number ? simulation : null
-        }
-        unit={unit}
-      />
+      <ExamSimulatorPanel units={catalog.units} topics={catalog.topics} initialUnit={Number(params.unit) || 1} />
     </AppShell>
   );
 }

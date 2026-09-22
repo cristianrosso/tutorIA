@@ -2938,3 +2938,100 @@ input[type="hidden"] {
     font-size: 18px;
   }
 }
+
+/* Sprint 8 · Simulador inteligente de examen */
+.exam-layout {
+  grid-template-columns: 0.78fr 1.22fr;
+}
+.unit-check-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.unit-check-grid label {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px;
+  background: #fff;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.unit-check-grid label.selected {
+  color: var(--teal);
+  border-color: #9dccbc;
+  background: #eef8f4;
+}
+.exam-room-panel {
+  min-height: 520px;
+}
+.exam-status-row .exam-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+}
+.exam-status-row .exam-timer.urgent {
+  color: #a44031;
+}
+.exam-question-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.exam-question-nav button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 800;
+}
+.exam-question-nav button.answered {
+  border-color: #bcdace;
+  background: #edf7f2;
+  color: var(--teal);
+}
+.exam-question-nav button.active {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+}
+.exam-results-panel {
+  display: grid;
+  gap: 14px;
+}
+.exam-score-card {
+  border: 1px solid #cfe7d7;
+  border-radius: 14px;
+  padding: 18px;
+  background: #f3faf5;
+  display: grid;
+  gap: 4px;
+}
+.exam-score-card strong {
+  font-size: 36px;
+  line-height: 1;
+  color: var(--teal);
+}
+.exam-score-card span {
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 900px) {
+  .exam-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .unit-check-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
