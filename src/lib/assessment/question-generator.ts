@@ -129,7 +129,7 @@ async function generateQuestions(input: {
   const model = process.env.OPENAI_ASSESSMENT_MODEL || process.env.OPENAI_MODEL || "gpt-5.6-terra";
   const completion = await generateTutorText({
     model,
-    maxOutputTokens: 2600,
+    maxOutputTokens: 4200,
     system: "Eres un evaluador formativo de FATESCIPOL. Generas preguntas solo con base en el contexto del compendio. No inventas normas, artículos, fechas ni definiciones.",
     user: `Genera ${input.count} preguntas formativas en JSON estricto.\nUnidad: ${input.unit.unit_number} - ${input.unit.unit_name}\nTema: ${input.topicName || input.topic?.topic_name || "tema recuperado por RAG"}\nTipos permitidos: ${input.questionTypes.join(", ")}\nDificultad: ${input.difficulty}\n\nReglas:\n- Devuelve solo JSON con forma {"questions":[...]} sin markdown.\n- Cada pregunta debe tener questionType, questionText, options, correctAnswer, expectedAnswer, essentialConcepts, rubric, explanation, difficulty, sourceReferences.\n- multiple_choice: 4 opciones A-D y correctAnswer con la letra correcta.\n- true_false: correctAnswer booleano.\n- short_answer/open_answer/case_application: expectedAnswer y essentialConcepts.\n- Las explicaciones deben corregir con el contenido fuente, no ser genéricas.\n- Para casos, identifica que es caso didáctico generado.\n\nContexto oficial recuperado:\n${input.context}\n\nReferencias disponibles:\n${input.sourceReferences.slice(0, 6).join("\n")}`,
   });
@@ -152,9 +152,119 @@ function parseQuestionJson(text: string): GeneratedAssessmentQuestion[] {
   const start = cleaned.indexOf("{");
   const end = cleaned.lastIndexOf("}");
   if (start < 0 || end < start) throw new Error("El generador no devolvió JSON utilizable.");
-  const parsed = generatedQuestionListSchema.safeParse(JSON.parse(cleaned.slice(start, end + 1)));
-  if (!parsed.success) throw new Error("Las preguntas generadas no tienen estructura válida.");
-  return parsed.data.questions;
+  const raw = JSON.parse(cleaned.slice(start, end + 1));
+  const parsed = generatedQuestionListSchema.safeParse(raw);
+  if (parsed.success) return parsed.data.questions;
+  const repaired = generatedQuestionListSchema.safeParse({
+    questions: normalizeQuestionCandidates(raw),
+  });
+  if (!repaired.success) throw new Error("Las preguntas generadas no tienen estructura válida.");
+  return repaired.data.questions;
+}
+
+function normalizeQuestionCandidates(raw: unknown) {
+  const source = raw as { questions?: unknown } | unknown[];
+  const questions = Array.isArray(source) ? source : Array.isArray(source?.questions) ? source.questions : [];
+  return questions.map((item, index) => normalizeQuestionCandidate(item, index));
+}
+
+function normalizeQuestionCandidate(item: unknown, index: number) {
+  const row = (item || {}) as Record<string, unknown>;
+  const questionType = normalizeQuestionType(row.questionType || row.question_type);
+  const questionText = limitText(String(row.questionText || row.question || row.question_text || `Explique el concepto académico ${index + 1}.`), 850);
+  const essentialConcepts = normalizeStringArray(row.essentialConcepts || row.essential_concepts || row.expectedConcepts).slice(0, 6);
+  const expectedAnswer = limitText(String(row.expectedAnswer || row.expected_answer || row.correctAnswer || row.correct_answer || essentialConcepts.join("; ") || questionText), 1100);
+  const explanation = limitText(String(row.explanation || row.explicacion || expectedAnswer), 1400);
+  const options = normalizeOptions(row.options);
+  const correctAnswer = normalizeCorrectAnswer(questionType, row.correctAnswer ?? row.correct_answer, options);
+  return {
+    questionType,
+    questionText,
+    options: questionType === "multiple_choice" ? options : [],
+    correctAnswer,
+    expectedAnswer: questionType === "multiple_choice" || questionType === "true_false" ? expectedAnswer : expectedAnswer,
+    essentialConcepts: essentialConcepts.length ? essentialConcepts : extractConcepts(expectedAnswer),
+    rubric: normalizeRubricCandidate(row.rubric || row.criteria || essentialConcepts),
+    explanation,
+    difficulty: normalizeDifficulty(row.difficulty),
+    sourceReferences: normalizeStringArray(row.sourceReferences || row.source_references || row.sources).slice(0, 6).map((value) => limitText(value, 280)),
+  };
+}
+
+function normalizeQuestionType(value: unknown): AssessmentQuestionType {
+  const text = String(value || "open_answer");
+  return assessmentQuestionTypes.includes(text as AssessmentQuestionType) ? (text as AssessmentQuestionType) : "open_answer";
+}
+
+function normalizeDifficulty(value: unknown): AssessmentDifficulty {
+  const text = String(value || "basic");
+  return ["basic", "intermediate", "advanced"].includes(text) ? (text as AssessmentDifficulty) : "basic";
+}
+
+function normalizeOptions(value: unknown) {
+  const raw = Array.isArray(value) ? value : [];
+  const options = raw.slice(0, 4).map((option, index) => {
+    if (typeof option === "string") return { id: "ABCD"[index], text: limitText(option, 360) };
+    const row = (option || {}) as Record<string, unknown>;
+    return { id: String(row.id || "ABCD"[index]).slice(0, 1), text: limitText(String(row.text || row.label || row.value || `Opción ${index + 1}`), 360) };
+  });
+  while (options.length < 4) options.push({ id: "ABCD"[options.length], text: `Opción ${options.length + 1}` });
+  return options;
+}
+
+function normalizeCorrectAnswer(questionType: AssessmentQuestionType, value: unknown, options: Array<{ id: string; text: string }>) {
+  if (questionType === "true_false") return value === true || String(value).toLowerCase() === "true";
+  if (questionType === "multiple_choice") {
+    const answer = String(value || options[0]?.id || "A").trim().slice(0, 1).toUpperCase();
+    return options.some((option) => option.id === answer) ? answer : options[0]?.id || "A";
+  }
+  return null;
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map((item) => String(item).trim()).filter(Boolean);
+  if (typeof value === "string" && value.trim()) return value.split(/[;\n]/).map((item) => item.trim()).filter(Boolean);
+  return [];
+}
+
+function normalizeRubricCandidate(value: unknown) {
+  if (Array.isArray(value) && value.length && typeof value[0] === "object") {
+    return value.slice(0, 5).map((item, index) => {
+      const row = (item || {}) as Record<string, unknown>;
+      return {
+        id: String(row.id || `c${index + 1}`).slice(0, 60),
+        criterion: limitText(String(row.criterion || row.criteria || row.expected || `Criterio ${index + 1}`), 260),
+        expected: row.expected ? limitText(String(row.expected), 480) : undefined,
+        weight: normalizeWeight(row.weight, index, value.length),
+      };
+    });
+  }
+  return normalizeStringArray(value).slice(0, 4).map((concept, index, array) => ({
+    id: `c${index + 1}`,
+    criterion: limitText(concept, 260),
+    expected: limitText(concept, 480),
+    weight: normalizeWeight(null, index, array.length),
+  }));
+}
+
+function normalizeWeight(value: unknown, index: number, total: number) {
+  const numeric = Number(value);
+  if (Number.isFinite(numeric) && numeric >= 0 && numeric <= 1) return numeric;
+  if (!total) return 1;
+  return index === total - 1 ? Number((1 - (total - 1) * Number((1 / total).toFixed(2))).toFixed(2)) : Number((1 / total).toFixed(2));
+}
+
+function extractConcepts(text: string) {
+  return text
+    .split(/[.;:]/)
+    .map((item) => item.trim())
+    .filter((item) => item.length > 3)
+    .slice(0, 4);
+}
+
+function limitText(value: string, max: number) {
+  const normalized = value.replace(/\s+/g, " ").trim();
+  return normalized.length > max ? normalized.slice(0, max - 1).trim() : normalized;
 }
 
 function validateGeneratedQuestion(question: GeneratedAssessmentQuestion, allowed: AssessmentQuestionType[], difficulty: AssessmentDifficulty) {

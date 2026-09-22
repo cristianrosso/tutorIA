@@ -42,13 +42,13 @@ const terminalStatuses = new Set(["completed", "expired", "cancelled", "grading_
 
 export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
   const initial = units.find((unit) => unit.number === initialUnit) || units[0];
-  const [examMode, setExamMode] = useState("unit");
+  const [examMode, setExamMode] = useState("tribunal");
   const [unitId, setUnitId] = useState(initial?.id || "");
   const [unitNumbers, setUnitNumbers] = useState<number[]>(initial ? [initial.number] : [1]);
   const [topicId, setTopicId] = useState("");
-  const [questionType, setQuestionType] = useState("mixed");
+  const [questionType, setQuestionType] = useState("open_answer");
   const [difficulty, setDifficulty] = useState("basic");
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(3);
   const [durationMinutes, setDurationMinutes] = useState(30);
   const [session, setSession] = useState<PublicExamSession | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -104,7 +104,7 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
           unitNumbers: selectedUnitNumbers(),
           topicId: examMode === "topic" ? topicId || null : null,
           topicName: examMode === "topic" ? topic?.name || null : null,
-          questionType,
+          questionType: "open_answer",
           difficulty,
           count,
           durationMinutes,
@@ -189,7 +189,7 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
         <div className="form-grid compact">
           <label>
             Modalidad
-            <select value={examMode} onChange={(event) => { setExamMode(event.target.value); setTopicId(""); }} disabled={isActive}>
+            <select value={examMode} onChange={(event) => { setExamMode(event.target.value); setQuestionType("open_answer"); setTopicId(""); }} disabled={isActive}>
               {Object.entries(modeLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
             </select>
           </label>
@@ -210,8 +210,8 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
           ) : null}
           <label>
             Tipo de pregunta
-            <select value={questionType} onChange={(event) => setQuestionType(event.target.value)} disabled={isActive || examMode === "tribunal"}>
-              {Object.entries(questionTypeLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+            <select value={questionType} onChange={(event) => setQuestionType(event.target.value)} disabled>
+              <option value="open_answer">Pregunta abierta de tribunal</option>
             </select>
           </label>
           <label>
@@ -253,8 +253,8 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
       <section className="panel assessment-room exam-room-panel">
         {!session || !currentQuestion ? (
           <div className="chat-empty">
-            <h3>Simulador inteligente de examen de grado</h3>
-            <p>Configura un examen escrito. El sistema guardará tus respuestas y solo mostrará la retroalimentación al finalizar.</p>
+            <h3>Tribunal virtual de práctica</h3>
+            <p>El simulacro formula preguntas abiertas, guarda tus respuestas y al finalizar corrige, explica y te orienta como práctica para tu examen oral.</p>
           </div>
         ) : (
           <>

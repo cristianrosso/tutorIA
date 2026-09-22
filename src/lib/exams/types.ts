@@ -8,11 +8,11 @@ export type ExamMode = (typeof examModes)[number];
 export type ExamStatus = (typeof examStatuses)[number];
 
 export const createExamSchema = z.object({
-  examMode: z.enum(examModes).default("unit"),
+  examMode: z.enum(examModes).default("tribunal"),
   unitNumbers: z.array(z.coerce.number().int().min(1).max(15)).min(1).max(15).default([1]),
   topicId: z.uuid().optional().nullable(),
   topicName: z.string().trim().max(180).optional().nullable(),
-  questionType: z.union([z.enum(assessmentQuestionTypes), z.literal("mixed")]).default("mixed"),
+  questionType: z.union([z.enum(assessmentQuestionTypes), z.literal("mixed")]).default("open_answer"),
   difficulty: z.union([z.enum(assessmentDifficulties), z.literal("mixed")]).default("basic"),
   count: z.coerce.number().int().min(1).max(50).default(5),
   durationMinutes: z.union([z.literal(0), z.literal(15), z.literal(30), z.literal(60), z.literal(90)]).default(0),
