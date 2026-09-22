@@ -161,7 +161,14 @@ export async function startGuidedClass(
     })
     .select("id")
     .single();
-  if (error || !session) throw new Error("No se pudo crear la clase guiada.");
+  if (error || !session) {
+    if (isMissingGuidedClassMigration(error)) {
+      throw new Error(
+        "Falta aplicar la migración de Modo Clase en Supabase. Ejecuta la migración 202609220007_sprint13_guided_class_and_economics.sql.",
+      );
+    }
+    throw new Error("No se pudo crear la clase guiada.");
+  }
   const sessionId = session.id as string;
   await db.from("guided_class_steps").insert({
     class_session_id: sessionId,
@@ -218,6 +225,17 @@ export async function getGuidedClassSession(
     ]);
   if (error || !session) throw new Error("No se encontró la clase guiada.");
   return toSessionView(session, steps || [], progress);
+}
+
+function isMissingGuidedClassMigration(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+  const candidate = error as { code?: string; message?: string };
+  return (
+    candidate.code === "PGRST205" ||
+    /guided_class_|economic_settings|schema cache|does not exist|could not find/i.test(
+      candidate.message || "",
+    )
+  );
 }
 
 export async function advanceGuidedClass(profile: Profile, sessionId: string) {
