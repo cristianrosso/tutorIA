@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth/session";
-import { getAdminLearningAnalytics, type AnalyticsPeriod } from "@/lib/analytics/learning-analytics";
+import { getAdminLearningAnalytics } from "@/lib/analytics/learning-analytics";
+import { parseAnalyticsFilters, secureJsonError } from "@/lib/security/request-guards";
 
 export async function GET(request: NextRequest) {
   await requireAdmin();
-  const analytics = await getAdminLearningAnalytics({ period: (request.nextUrl.searchParams.get("period") || "40d") as AnalyticsPeriod });
-  return NextResponse.json({ assessments: analytics.summary.assessmentsCompleted, accuracy: analytics.summary.assessmentAccuracy, trend: analytics.assessmentTrend });
+  try {
+    const analytics = await getAdminLearningAnalytics(parseAnalyticsFilters(request.nextUrl.searchParams));
+    return NextResponse.json({ assessments: analytics.summary.assessmentsCompleted, accuracy: analytics.summary.assessmentAccuracy, trend: analytics.assessmentTrend });
+  } catch (error) {
+    return secureJsonError(error);
+  }
 }

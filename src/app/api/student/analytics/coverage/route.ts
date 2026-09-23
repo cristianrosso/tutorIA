@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireStudent } from "@/lib/auth/session";
-import { getStudentAnalytics, type AnalyticsPeriod } from "@/lib/analytics/learning-analytics";
+import { getStudentAnalytics } from "@/lib/analytics/learning-analytics";
+import { parseAnalyticsFilters, secureJsonError } from "@/lib/security/request-guards";
 
 export async function GET(request: NextRequest) {
   const profile = await requireStudent();
-  const analytics = await getStudentAnalytics(profile.id, { period: (request.nextUrl.searchParams.get("period") || "40d") as AnalyticsPeriod });
-  return NextResponse.json({ coverage: analytics.coverage, states: analytics.states });
+  try {
+    const analytics = await getStudentAnalytics(profile.id, parseAnalyticsFilters(request.nextUrl.searchParams));
+    return NextResponse.json({ coverage: analytics.coverage, states: analytics.states });
+  } catch (error) {
+    return secureJsonError(error);
+  }
 }

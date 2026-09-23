@@ -2,6 +2,12 @@
 
 Aplicación Next.js para estudiantes de Segundo Año de FATESCIPOL El Alto. **Alcance actual: Sprint 4**, tutor textual/voz y simulacro oral sobre Unidad 1. La planificación completa está en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Sprint 20 — Seguridad y protección de datos
+
+Se reforzó la seguridad operativa de la aplicación conectada: cabeceras HTTP, política de contenido, bloqueo de caché en rutas privadas, validación de filtros de analítica, rate limiting persistente y respuestas de error genéricas para endpoints sensibles. No se cambiaron datos históricos ni se ejecutaron migraciones destructivas.
+
+La documentación completa está en [docs/SPRINT_20_SECURITY.md](docs/SPRINT_20_SECURITY.md).
+
 ## Sprint 19 — Analítica académica
 
 Se agregó analítica académica conectada para estudiantes y administradores. El estudiante puede revisar su seguimiento en [`/analitica`](/analitica), y el administrador puede consultar indicadores agregados en [`/admin/analytics`](/admin/analytics). La implementación reutiliza los registros existentes de memoria académica, evaluaciones, simulacros, modo clase y plan de estudio; no realiza llamadas adicionales a OpenAI para calcular métricas.
