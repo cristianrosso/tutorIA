@@ -194,15 +194,13 @@ export function GuidedClassPanel({
       if (activeAudioKey === audioKey) stopAudio();
       return;
     }
+    stopAudio();
     const requestId = audioRequestRef.current + 1;
     audioRequestRef.current = requestId;
     setVoiceBusy(true);
     setActiveAudioKey(audioKey);
     setError("");
     try {
-      stopAudio();
-      setVoiceBusy(true);
-      setActiveAudioKey(audioKey);
       const response = await fetch(`/api/classes/${session.id}/voice/speech`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
