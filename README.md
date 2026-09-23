@@ -193,3 +193,7 @@ El proyecto incluye un planificador académico en `/plan-estudio` para crear cro
 ### Sprint 11 · Tutor pedagógico multinivel
 
 El tutor de `/tutor` ahora incorpora un motor pedagógico multinivel sobre el mismo RAG académico existente. Permite seleccionar modos rápido, sencillo, académico, profundo, ejemplo, repaso, comparación y paso a paso; también detecta esas intenciones por lenguaje natural y registra interacciones pedagógicas para futuras preferencias del estudiante. La arquitectura y la migración están documentadas en [`docs/SPRINT_11_MULTILEVEL_PEDAGOGY.md`](docs/SPRINT_11_MULTILEVEL_PEDAGOGY.md).
+
+## Sprint 18 · Gestión avanzada del conocimiento académico
+
+El panel administrativo incluye `/admin/knowledge` para cargar, versionar, procesar, publicar y revertir documentos académicos. Antes de usarlo en Supabase, ejecutar `supabase/migrations/202609230003_sprint18_knowledge_management.sql`. Ver detalles en `docs/SPRINT_18_KNOWLEDGE_MANAGEMENT.md`.

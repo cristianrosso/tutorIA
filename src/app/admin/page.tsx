@@ -7,6 +7,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   SearchCheck,
+  Database,
   Settings,
   ShieldCheck,
   Users,
@@ -99,6 +100,12 @@ export default async function AdminPage({
       title: "Seguimiento académico",
       description: "Actividad, prácticas, simulacros y temas de refuerzo.",
       icon: GraduationCap,
+    },
+    {
+      href: "/admin/knowledge",
+      title: "Conocimiento",
+      description: "Cargar, versionar, validar y publicar fuentes académicas.",
+      icon: Database,
     },
     {
       href: "/admin/usage",
@@ -206,7 +213,10 @@ export default async function AdminPage({
           El tutor filtra fuentes según la unidad y el tema seleccionado.
         </p>
         <div className="admin-actions">
-          <Link className="button primary" href="/admin/knowledge/search">
+          <Link className="button primary" href="/admin/knowledge">
+            <Database size={18} /> Gestionar conocimiento
+          </Link>
+          <Link className="button secondary" href="/admin/knowledge/rag-test">
             <SearchCheck size={18} /> Probar búsqueda académica RAG
           </Link>
           <Link className="button secondary" href="/admin/usage">

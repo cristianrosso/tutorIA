@@ -5,6 +5,7 @@ const links = [
   ["/admin/students", "Estudiantes"],
   ["/admin/licenses", "Licencias"],
   ["/admin/academics", "Académico"],
+  ["/admin/knowledge", "Conocimiento"],
   ["/admin/usage", "Consumo"],
   ["/admin/system", "Sistema"],
   ["/admin/settings", "Configuración"],
