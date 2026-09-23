@@ -14,7 +14,7 @@ export type EconomicSettings = {
 
 const fallbackSettings: EconomicSettings = {
   licenseDurationDays: Number(
-    process.env.STUDENT_LICENSE_DURATION_DAYS || "30",
+    process.env.STUDENT_LICENSE_DURATION_DAYS || "40",
   ),
   monthlyStudentBudgetBob: Number(
     process.env.STUDENT_PERIOD_BUDGET_BOB || "40",

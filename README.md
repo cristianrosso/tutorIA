@@ -2,6 +2,12 @@
 
 Aplicación Next.js para estudiantes de Segundo Año de FATESCIPOL El Alto. **Alcance actual: Sprint 4**, tutor textual/voz y simulacro oral sobre Unidad 1. La planificación completa está en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Sprint 21 — Optimización de costos
+
+Se mejoró la medición del consumo tecnológico con tarifas centralizadas, desglose por funcionalidad/modelo/estudiante, costo de voz, proyección del periodo de 40 días y alertas administrativas por presupuesto. Las cifras siguen siendo estimaciones operativas y no reemplazan la factura real del proveedor.
+
+La documentación completa está en [docs/SPRINT_21_COST_OPTIMIZATION.md](docs/SPRINT_21_COST_OPTIMIZATION.md).
+
 ## Sprint 20 — Seguridad y protección de datos
 
 Se reforzó la seguridad operativa de la aplicación conectada: cabeceras HTTP, política de contenido, bloqueo de caché en rutas privadas, validación de filtros de analítica, rate limiting persistente y respuestas de error genéricas para endpoints sensibles. No se cambiaron datos históricos ni se ejecutaron migraciones destructivas.

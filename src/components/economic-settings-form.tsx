@@ -29,7 +29,7 @@ export function EconomicSettingsForm({
           />
         </label>
         <label>
-          Presupuesto objetivo por estudiante (Bs/mes)
+          Presupuesto objetivo por estudiante (Bs/periodo)
           <input
             name="monthlyStudentBudgetBob"
             type="number"
@@ -58,7 +58,7 @@ export function EconomicSettingsForm({
           />
         </label>
         <label>
-          Infraestructura mensual total (Bs)
+          Infraestructura del periodo total (Bs)
           <input
             name="infrastructureMonthlyBob"
             type="number"
@@ -68,7 +68,7 @@ export function EconomicSettingsForm({
           />
         </label>
         <label>
-          Presupuesto mensual de voz (Bs/estudiante)
+          Presupuesto de voz del periodo (Bs/estudiante)
           <input
             name="voiceMonthlyBudgetBob"
             type="number"
@@ -84,7 +84,7 @@ export function EconomicSettingsForm({
           type="checkbox"
           defaultChecked={settings.voiceEnabled}
         />
-        Habilitar funcionalidades de voz dentro del presupuesto disponible
+        Habilitar funcionalidades de voz dentro del presupuesto del periodo
       </label>
       <button className="button primary" disabled={pending}>
         Guardar configuración económica
