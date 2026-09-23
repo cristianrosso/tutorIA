@@ -22,6 +22,7 @@ type ActiveSection =
   | "home"
   | "units"
   | "progress"
+  | "analytics"
   | "studyPlan"
   | "classroom"
   | "recommendations"
@@ -71,6 +72,12 @@ export function AppShell({
       label: "Mi progreso",
       icon: ChartNoAxesCombined,
       id: "progress",
+    },
+    {
+      href: "/analitica",
+      label: "Analítica",
+      icon: ChartNoAxesCombined,
+      id: "analytics",
     },
     {
       href: "/recomendaciones",
@@ -180,6 +187,7 @@ function breadcrumb(active: ActiveSection) {
   if (active === "admin") return "Administración";
   if (active === "units") return "Mis unidades";
   if (active === "progress") return "Mi progreso";
+  if (active === "analytics") return "Analítica";
   if (active === "recommendations") return "Recomendaciones";
   if (active === "studyPlan") return "Plan de estudio";
   if (active === "tutor") return "Tutor";
@@ -188,3 +196,4 @@ function breadcrumb(active: ActiveSection) {
   if (active === "practice") return "Práctica";
   return "Inicio";
 }
+

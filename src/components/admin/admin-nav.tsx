@@ -5,6 +5,7 @@ const links = [
   ["/admin/students", "Estudiantes"],
   ["/admin/licenses", "Licencias"],
   ["/admin/academics", "Académico"],
+  ["/admin/analytics", "Analítica"],
   ["/admin/knowledge", "Conocimiento"],
   ["/admin/usage", "Consumo"],
   ["/admin/system", "Sistema"],
@@ -23,3 +24,4 @@ export function AdminNav() {
     </nav>
   );
 }
+

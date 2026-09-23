@@ -2,6 +2,12 @@
 
 Aplicación Next.js para estudiantes de Segundo Año de FATESCIPOL El Alto. **Alcance actual: Sprint 4**, tutor textual/voz y simulacro oral sobre Unidad 1. La planificación completa está en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Sprint 19 — Analítica académica
+
+Se agregó analítica académica conectada para estudiantes y administradores. El estudiante puede revisar su seguimiento en [`/analitica`](/analitica), y el administrador puede consultar indicadores agregados en [`/admin/analytics`](/admin/analytics). La implementación reutiliza los registros existentes de memoria académica, evaluaciones, simulacros, modo clase y plan de estudio; no realiza llamadas adicionales a OpenAI para calcular métricas.
+
+La documentación completa está en [docs/SPRINT_19_LEARNING_ANALYTICS.md](docs/SPRINT_19_LEARNING_ANALYTICS.md).
+
 ## Lo que funciona en este sprint
 
 - Interfaz responsive en español: login, aula, unidades, progreso y panel administrativo.
