@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireStudent } from "@/lib/auth/session";
 import { generateSpeechAudio } from "@/lib/voice/text-to-speech";
+import {
+  cachedSpeechResponse,
+  cacheKeyForSpeech,
+  getCachedSpeech,
+  rememberSpeech,
+} from "@/lib/voice/speech-cache";
 import { recordAIUsage } from "@/lib/billing/ai-usage";
 
 const schema = z.object({ text: z.string().trim().min(5).max(2200) });
@@ -19,6 +25,15 @@ export async function POST(
         { error: "No hay texto válido para reproducir." },
         { status: 400 },
       );
+    const cacheKey = cacheKeyForSpeech([
+      "guided-class",
+      profile.id,
+      id,
+      parsed.data.text,
+    ]);
+    const cached = getCachedSpeech(cacheKey);
+    if (cached) return cachedSpeechResponse(cached);
+
     const speech = await generateSpeechAudio({
       text: parsed.data.text,
       style: "tutor",
@@ -37,12 +52,21 @@ export async function POST(
       estimatedCostUsd: speech.estimatedCost,
       costIsEstimated: true,
     });
+    rememberSpeech(cacheKey, {
+      audio: speech.audio,
+      contentType: speech.contentType,
+      model: speech.model,
+      outputSeconds: speech.audioOutputSeconds,
+      createdAt: Date.now(),
+    });
+
     return new Response(speech.audio, {
       headers: {
         "Content-Type": speech.contentType,
         "Cache-Control": "private, max-age=900",
         "X-Audio-Seconds": String(speech.audioOutputSeconds),
         "X-OpenAI-Model": speech.model,
+        "X-Voice-Cache": "MISS",
       },
     });
   } catch (error) {

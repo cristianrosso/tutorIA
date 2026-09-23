@@ -5,6 +5,12 @@ import { accessProblem } from "@/lib/auth/rules";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
 import { generateSpeechAudio } from "@/lib/voice/text-to-speech";
+import {
+  cachedSpeechResponse,
+  cacheKeyForSpeech,
+  getCachedSpeech,
+  rememberSpeech,
+} from "@/lib/voice/speech-cache";
 
 export const runtime = "nodejs";
 
@@ -40,6 +46,17 @@ export async function POST(
       .eq("user_id", profile.id)
       .maybeSingle();
     if (error || !exam) return fail("No se encontró el simulacro.", 404);
+    const cacheKey = cacheKeyForSpeech([
+      "exam",
+      profile.id,
+      id,
+      parsed.data.questionId,
+      parsed.data.style,
+      parsed.data.text,
+    ]);
+    const cached = getCachedSpeech(cacheKey);
+    if (cached) return cachedSpeechResponse(cached);
+
     const speech = await generateSpeechAudio({
       text: parsed.data.text,
       style: parsed.data.style,
@@ -56,12 +73,21 @@ export async function POST(
       estimated_cost: speech.estimatedCost,
       provider_request_id: speech.requestId,
     });
+    rememberSpeech(cacheKey, {
+      audio: speech.audio,
+      contentType: speech.contentType,
+      model: speech.model,
+      outputSeconds: speech.audioOutputSeconds,
+      createdAt: Date.now(),
+    });
+
     return new Response(speech.audio, {
       headers: {
         "Content-Type": speech.contentType,
         "Cache-Control": "private, max-age=3600",
         "X-Audio-Seconds": String(speech.audioOutputSeconds),
         "X-OpenAI-Model": speech.model,
+        "X-Voice-Cache": "MISS",
       },
     });
   } catch (error) {

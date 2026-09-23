@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { createHash } from "node:crypto";
 import { z } from "zod";
 import { consumeLimit } from "@/lib/auth/rate-limit";
 import { accessProblem } from "@/lib/auth/rules";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
 import { generateSpeechAudio } from "@/lib/voice/text-to-speech";
+import {
+  cachedSpeechResponse,
+  cacheKeyForSpeech,
+  getCachedSpeech,
+  rememberSpeech,
+} from "@/lib/voice/speech-cache";
 
 export const runtime = "nodejs";
 
@@ -13,19 +18,6 @@ const speechSchema = z.object({
   conversationId: z.string().uuid(),
   text: z.string().trim().min(10).max(4500),
 });
-
-const speechCache = new Map<
-  string,
-  {
-    audio: ArrayBuffer;
-    contentType: string;
-    model: string;
-    outputSeconds: number;
-    createdAt: number;
-  }
->();
-const speechCacheTtlMs = 15 * 60 * 1000;
-const maxCachedSpeechItems = 40;
 
 function fail(message: string, status = 400) {
   return NextResponse.json({ error: message }, { status });
@@ -55,23 +47,14 @@ export async function POST(request: Request) {
     if (conversationError || !conversation)
       return fail("No se encontró la conversación activa.", 404);
 
-    const cacheKey = cacheKeyForSpeech(
+    const cacheKey = cacheKeyForSpeech([
+      "tutor",
       profile.id,
       parsed.data.conversationId,
       parsed.data.text,
-    );
-    const cached = speechCache.get(cacheKey);
-    if (cached && Date.now() - cached.createdAt < speechCacheTtlMs) {
-      return new Response(cached.audio.slice(0), {
-        headers: {
-          "Content-Type": cached.contentType,
-          "Cache-Control": "private, max-age=900",
-          "X-Audio-Seconds": String(cached.outputSeconds),
-          "X-OpenAI-Model": cached.model,
-          "X-Voice-Cache": "HIT",
-        },
-      });
-    }
+    ]);
+    const cached = getCachedSpeech(cacheKey);
+    if (cached) return cachedSpeechResponse(cached);
 
     const speech = await generateSpeechAudio({
       text: parsed.data.text,
@@ -116,31 +99,4 @@ export async function POST(request: Request) {
         : "No se pudo generar el audio de respuesta. Puedes leer la respuesta en pantalla.";
     return fail(message, 500);
   }
-}
-
-function cacheKeyForSpeech(
-  userId: string,
-  conversationId: string,
-  text: string,
-) {
-  return createHash("sha256")
-    .update(`${userId}:${conversationId}:${text}`)
-    .digest("hex");
-}
-
-function rememberSpeech(
-  key: string,
-  value: {
-    audio: ArrayBuffer;
-    contentType: string;
-    model: string;
-    outputSeconds: number;
-    createdAt: number;
-  },
-) {
-  if (speechCache.size >= maxCachedSpeechItems) {
-    const oldestKey = speechCache.keys().next().value;
-    if (oldestKey) speechCache.delete(oldestKey);
-  }
-  speechCache.set(key, value);
 }

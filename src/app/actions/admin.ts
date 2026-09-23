@@ -12,6 +12,7 @@ import { createSupabaseAdmin } from "@/lib/supabase/admin";
 import { consumeLimit } from "@/lib/auth/rate-limit";
 import { ingestDocument } from "@/lib/rag/ingest";
 import type { ActionState } from "@/lib/models";
+import { createLicenseRecord, logAdminAction } from "@/lib/admin/admin-service";
 
 function dateInput(value: FormDataEntryValue | null, endOfDay = false) {
   // Fechas del panel se interpretan explícitamente en Bolivia, UTC−4.
@@ -79,7 +80,28 @@ export async function createStudent(
         user_id: data.user.id,
       }),
     );
+    await createLicenseRecord({
+      userId: data.user.id,
+      actorId: admin.id,
+      activatedAt: starts_at,
+      expiresAt: expires_at,
+      durationDays: Math.max(
+        1,
+        Math.round((Date.parse(expires_at) - Date.parse(starts_at)) / 86400000),
+      ),
+      source: "admin_panel",
+      notes: "Licencia inicial creada con el estudiante.",
+    });
+    await logAdminAction({
+      actorId: admin.id,
+      action: "student_created",
+      resourceType: "profile",
+      resourceId: data.user.id,
+      metadata: { username, expires_at },
+    });
     revalidatePath("/admin");
+    revalidatePath("/admin/students");
+    revalidatePath("/admin/licenses");
     return {
       success: `Cuenta ${username} creada. Entrega sus credenciales por un canal privado.`,
     };
@@ -123,6 +145,12 @@ export async function updateStudent(
           error:
             "No se pudo restablecer la contraseña. Revisa la política de contraseñas de Supabase.",
         };
+      await logAdminAction({
+        actorId: admin.id,
+        action: "student_password_reset",
+        resourceType: "profile",
+        resourceId: id.data,
+      });
     } else {
       const status = z
         .enum(["active", "inactive"])
@@ -140,6 +168,13 @@ export async function updateStudent(
         .eq("id", id.data)
         .eq("role", "ESTUDIANTE");
       if (updateError) return { error: "No se pudo actualizar el acceso." };
+      await logAdminAction({
+        actorId: admin.id,
+        action: "student_access_updated",
+        resourceType: "profile",
+        resourceId: id.data,
+        metadata: { status: status.data, expires_at: expires },
+      });
     }
     console.info(
       JSON.stringify({
@@ -149,6 +184,8 @@ export async function updateStudent(
       }),
     );
     revalidatePath("/admin");
+    revalidatePath("/admin/students");
+    revalidatePath("/admin/licenses");
     return {
       success:
         operation.data === "password"
@@ -157,6 +194,174 @@ export async function updateStudent(
     };
   } catch {
     return { error: "El servicio no está disponible. Vuelve a intentarlo." };
+  }
+}
+
+export async function activateMonthlyLicense(
+  _previous: ActionState,
+  form: FormData,
+): Promise<ActionState> {
+  const admin = await requireAdmin();
+  const id = z.uuid().safeParse(form.get("id"));
+  const start = dateInput(form.get("starts_at"));
+  const duration = z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(365)
+    .safeParse(form.get("duration_days"));
+  if (
+    !id.success ||
+    !z.iso.datetime({ offset: true }).safeParse(start).success ||
+    !duration.success
+  )
+    return { error: "Revisa estudiante, fecha de activación y duración." };
+  try {
+    const db = createSupabaseAdmin();
+    const { data: target, error } = await db
+      .from("profiles")
+      .select("role,expires_at")
+      .eq("id", id.data)
+      .single();
+    if (error || target?.role !== "ESTUDIANTE")
+      return { error: "Solo se pueden activar licencias de estudiantes." };
+    const now = new Date();
+    if (
+      target.expires_at &&
+      Date.parse(target.expires_at) > now.getTime() &&
+      Date.parse(start) <= Date.parse(target.expires_at)
+    )
+      return {
+        error:
+          "Este estudiante ya tiene una licencia vigente. Usa renovar para extenderla.",
+      };
+    const expires = new Date(
+      Date.parse(start) + duration.data * 86400000 - 1000,
+    ).toISOString();
+    const { error: updateError } = await db
+      .from("profiles")
+      .update({ status: "active", starts_at: start, expires_at: expires })
+      .eq("id", id.data)
+      .eq("role", "ESTUDIANTE");
+    if (updateError) return { error: "No se pudo activar la licencia." };
+    await createLicenseRecord({
+      userId: id.data,
+      actorId: admin.id,
+      activatedAt: start,
+      expiresAt: expires,
+      durationDays: duration.data,
+      source: "admin_panel",
+    });
+    await logAdminAction({
+      actorId: admin.id,
+      action: "license_activated",
+      resourceType: "profile",
+      resourceId: id.data,
+      metadata: {
+        starts_at: start,
+        expires_at: expires,
+        duration_days: duration.data,
+      },
+    });
+    revalidatePath("/admin/licenses");
+    revalidatePath("/admin/students");
+    revalidatePath(`/admin/students/${id.data}`);
+    return { success: "Licencia activada correctamente." };
+  } catch {
+    return { error: "No se pudo activar la licencia." };
+  }
+}
+
+export async function renewMonthlyLicense(
+  _previous: ActionState,
+  form: FormData,
+): Promise<ActionState> {
+  const admin = await requireAdmin();
+  const id = z.uuid().safeParse(form.get("id"));
+  const duration = z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(365)
+    .safeParse(form.get("duration_days"));
+  if (!id.success || !duration.success) return { error: "Solicitud inválida." };
+  try {
+    const db = createSupabaseAdmin();
+    const { data: target, error } = await db
+      .from("profiles")
+      .select("role,starts_at,expires_at")
+      .eq("id", id.data)
+      .single();
+    if (error || target?.role !== "ESTUDIANTE")
+      return { error: "Solo se pueden renovar licencias de estudiantes." };
+    const base =
+      target.expires_at && Date.parse(target.expires_at) > Date.now()
+        ? new Date(target.expires_at)
+        : new Date();
+    const expires = new Date(
+      base.getTime() + duration.data * 86400000,
+    ).toISOString();
+    const starts = target.starts_at || new Date().toISOString();
+    const { error: updateError } = await db
+      .from("profiles")
+      .update({ status: "active", starts_at: starts, expires_at: expires })
+      .eq("id", id.data)
+      .eq("role", "ESTUDIANTE");
+    if (updateError) return { error: "No se pudo renovar la licencia." };
+    await createLicenseRecord({
+      userId: id.data,
+      actorId: admin.id,
+      activatedAt: base.toISOString(),
+      expiresAt: expires,
+      durationDays: duration.data,
+      source: "renewal",
+    });
+    await logAdminAction({
+      actorId: admin.id,
+      action: "license_renewed",
+      resourceType: "profile",
+      resourceId: id.data,
+      metadata: {
+        previous_expires_at: target.expires_at,
+        new_expires_at: expires,
+        duration_days: duration.data,
+      },
+    });
+    revalidatePath("/admin/licenses");
+    revalidatePath("/admin/students");
+    revalidatePath(`/admin/students/${id.data}`);
+    return { success: "Licencia renovada correctamente." };
+  } catch {
+    return { error: "No se pudo renovar la licencia." };
+  }
+}
+
+export async function suspendStudentAccess(
+  _previous: ActionState,
+  form: FormData,
+): Promise<ActionState> {
+  const admin = await requireAdmin();
+  const id = z.uuid().safeParse(form.get("id"));
+  if (!id.success) return { error: "Solicitud inválida." };
+  try {
+    const { error } = await createSupabaseAdmin()
+      .from("profiles")
+      .update({ status: "inactive" })
+      .eq("id", id.data)
+      .eq("role", "ESTUDIANTE");
+    if (error) return { error: "No se pudo suspender el acceso." };
+    await logAdminAction({
+      actorId: admin.id,
+      action: "student_access_suspended",
+      resourceType: "profile",
+      resourceId: id.data,
+    });
+    revalidatePath("/admin/licenses");
+    revalidatePath("/admin/students");
+    revalidatePath(`/admin/students/${id.data}`);
+    return { success: "Acceso suspendido." };
+  } catch {
+    return { error: "No se pudo suspender el acceso." };
   }
 }
 

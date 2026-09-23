@@ -2,8 +2,11 @@
 import { useActionState } from "react";
 import { FileText, KeyRound, Plus, Save, Upload } from "lucide-react";
 import {
+  activateMonthlyLicense,
   createStudent,
   ingestUnitOneDocument,
+  renewMonthlyLicense,
+  suspendStudentAccess,
   updateStudent,
 } from "@/app/actions/admin";
 import type { ActionState, Profile } from "@/lib/models";
@@ -144,6 +147,85 @@ export function EditStudentForms({ profile }: { profile: Profile }) {
           {passwordPending ? "Actualizando…" : "Restablecer"}
         </button>
         <Feedback state={passwordState} />
+      </form>
+    </details>
+  );
+}
+
+export function LicenseActions({
+  profile,
+  defaultDurationDays = 30,
+}: {
+  profile: Pick<Profile, "id" | "starts_at" | "expires_at" | "status">;
+  defaultDurationDays?: number;
+}) {
+  const [activateState, activateAction, activatePending] = useActionState(
+    activateMonthlyLicense,
+    {},
+  );
+  const [renewState, renewAction, renewPending] = useActionState(
+    renewMonthlyLicense,
+    {},
+  );
+  const [suspendState, suspendAction, suspendPending] = useActionState(
+    suspendStudentAccess,
+    {},
+  );
+  const today = new Date().toISOString().slice(0, 10);
+  return (
+    <details className="student-details">
+      <summary>Licencia mensual</summary>
+      <form action={activateAction} className="inline-admin-form">
+        <input type="hidden" name="id" value={profile.id} />
+        <label>
+          Activar desde
+          <input name="starts_at" type="date" required defaultValue={today} />
+        </label>
+        <label>
+          Duración
+          <input
+            name="duration_days"
+            type="number"
+            min={1}
+            max={365}
+            required
+            defaultValue={defaultDurationDays}
+          />
+        </label>
+        <button className="button secondary" disabled={activatePending}>
+          <Save size={15} />
+          {activatePending ? "Activando…" : "Activar"}
+        </button>
+        <Feedback state={activateState} />
+      </form>
+      <form action={renewAction} className="inline-admin-form">
+        <input type="hidden" name="id" value={profile.id} />
+        <label>
+          Renovar días
+          <input
+            name="duration_days"
+            type="number"
+            min={1}
+            max={365}
+            required
+            defaultValue={defaultDurationDays}
+          />
+        </label>
+        <button className="button secondary" disabled={renewPending}>
+          <Save size={15} />
+          {renewPending ? "Renovando…" : "Renovar"}
+        </button>
+        <Feedback state={renewState} />
+      </form>
+      <form action={suspendAction} className="inline-admin-form">
+        <input type="hidden" name="id" value={profile.id} />
+        <button
+          className="button secondary danger-button"
+          disabled={suspendPending}
+        >
+          {suspendPending ? "Suspendiendo…" : "Suspender acceso"}
+        </button>
+        <Feedback state={suspendState} />
       </form>
     </details>
   );

@@ -23,7 +23,7 @@ export async function generateSpeechAudio(input: {
   if (!text) throw new Error("No se puede generar audio de un texto vacío.");
   if (text.length > 4096)
     throw new Error(
-      "La respuesta es demasiado larga para reproducirla por voz. Lee el texto completo en pantalla.",
+      "La respuesta es demasiado larga para reproducirla por voz. Divide el contenido en partes para escucharla completa.",
     );
   const speech = await synthesizeSpeech({
     text,
@@ -35,7 +35,11 @@ export async function generateSpeechAudio(input: {
   return {
     ...speech,
     audioOutputSeconds,
-    estimatedCost: estimateAudioOutputCost(audioOutputSeconds),
+    estimatedCost: estimateAudioOutputCost({
+      seconds: audioOutputSeconds,
+      text,
+      model: speech.model,
+    }),
   };
 }
 

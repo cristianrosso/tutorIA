@@ -3490,3 +3490,238 @@ input[type="hidden"] {
     grid-template-columns: 1fr;
   }
 }
+
+.admin-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+}
+
+.admin-subnav a {
+  border: 1px solid rgba(14, 72, 70, 0.12);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.admin-subnav a:hover {
+  background: rgba(23, 132, 118, 0.1);
+  color: var(--accent-strong);
+}
+
+.admin-table {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: grid;
+  overflow: hidden;
+}
+
+.admin-table-row {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns:
+    minmax(180px, 1.5fr) repeat(3, minmax(110px, 1fr))
+    minmax(180px, 1.25fr);
+  padding: 1rem;
+}
+
+.admin-table-row:last-child {
+  border-bottom: 0;
+}
+
+.admin-table-row.header {
+  background: rgba(9, 43, 55, 0.04);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-table-row span {
+  min-width: 0;
+}
+
+.admin-table-row small,
+.mini-row span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.82rem;
+  margin-top: 0.18rem;
+}
+
+.table-actions {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.table-actions .student-details {
+  margin: 0;
+}
+
+.admin-detail-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mini-row {
+  border-bottom: 1px solid var(--line);
+  padding: 0.8rem 0;
+}
+
+.mini-row:last-child {
+  border-bottom: 0;
+}
+
+.pagination-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.button.danger-button,
+.danger-button {
+  border-color: rgba(180, 55, 45, 0.25);
+  color: #b4372d;
+}
+
+.button.danger-button:hover,
+.danger-button:hover {
+  background: rgba(180, 55, 45, 0.08);
+}
+
+.two-col-table .admin-table-row {
+  grid-template-columns: minmax(180px, 0.7fr) minmax(220px, 1.3fr);
+}
+
+.audit-table .admin-table-row {
+  grid-template-columns:
+    minmax(160px, 0.8fr) minmax(180px, 1fr) minmax(170px, 0.8fr)
+    minmax(240px, 1.4fr);
+}
+
+.audit-table code {
+  background: rgba(9, 43, 55, 0.05);
+  border-radius: 10px;
+  display: block;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+  padding: 0.35rem 0.45rem;
+}
+
+@media (max-width: 980px) {
+  .admin-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table-row,
+  .two-col-table .admin-table-row,
+  .audit-table .admin-table-row {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-table-row.header {
+    display: none;
+  }
+}
+
+.admin-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(19, 93, 84, 0.08),
+    rgba(234, 196, 105, 0.08)
+  );
+  border: 1px solid rgba(14, 72, 70, 0.1);
+  border-radius: 28px;
+  padding: 1.4rem;
+}
+
+.admin-filter-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.admin-metrics-grid {
+  margin-bottom: 1rem;
+}
+
+.admin-module-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-module-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  color: inherit;
+  display: grid;
+  gap: 0.5rem;
+  min-height: 160px;
+  padding: 1.1rem;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-module-card:hover {
+  border-color: rgba(23, 132, 118, 0.35);
+  box-shadow: 0 18px 38px rgba(9, 43, 55, 0.08);
+  transform: translateY(-2px);
+}
+
+.admin-module-card svg {
+  color: var(--accent-strong);
+}
+
+.admin-module-card strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.admin-module-card span {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.admin-compact-maintenance details {
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+}
+
+.admin-compact-maintenance summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+@media (max-width: 1100px) {
+  .admin-module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-module-grid {
+    grid-template-columns: 1fr;
+  }
+}

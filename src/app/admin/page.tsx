@@ -1,25 +1,23 @@
 import {
+  Activity,
   AudioLines,
-  Coins,
+  BookOpenCheck,
   ChartNoAxesCombined,
-  SearchCheck,
+  Coins,
   GraduationCap,
-  MessageSquare,
+  LayoutDashboard,
+  SearchCheck,
+  Settings,
+  ShieldCheck,
   Users,
-  UserCheck,
-  Zap,
   Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { z } from "zod";
 import { AppShell } from "@/components/app-shell";
-import {
-  CreateStudentForm,
-  EditStudentForms,
-  IngestDocumentForm,
-} from "@/components/admin-forms";
+import { AdminNav } from "@/components/admin/admin-nav";
+import { IngestDocumentForm } from "@/components/admin-forms";
 import { requireAdmin } from "@/lib/auth/session";
-import { accessProblem } from "@/lib/auth/rules";
 import { getAdminData } from "@/lib/data";
 import { moneyFormat, numberFormat } from "@/lib/metrics";
 
@@ -38,6 +36,7 @@ export default async function AdminPage({
     period,
     userId.success ? userId.data : undefined,
   );
+
   const metrics = [
     {
       label: "Usuarios registrados",
@@ -48,26 +47,20 @@ export default async function AdminPage({
     {
       label: "Usuarios activos",
       value: numberFormat(data.active),
-      icon: UserCheck,
-      note: "Con acceso vigente ahora",
+      icon: ShieldCheck,
+      note: "Con acceso vigente",
     },
     {
       label: "Conversaciones",
       value: numberFormat(data.conversations),
-      icon: MessageSquare,
+      icon: BookOpenCheck,
       note: "Texto y voz en el período",
     },
     {
-      label: "Simulacros realizados",
+      label: "Simulacros",
       value: numberFormat(data.simulations),
       icon: GraduationCap,
       note: "Completados en el período",
-    },
-    {
-      label: "Tokens consumidos",
-      value: numberFormat(data.usage.tokens),
-      icon: Zap,
-      note: "Entrada + salida",
     },
     {
       label: "Uso de voz",
@@ -76,38 +69,78 @@ export default async function AdminPage({
       note: "Entrada + salida de audio",
     },
     {
-      label: "Costo estimado API",
+      label: "Costo API estimado",
       value: data.usage.missingCosts
         ? "Incompleto"
         : moneyFormat(data.usage.knownCost),
       icon: Coins,
       note: data.usage.missingCosts
         ? `${data.usage.missingCosts} eventos sin costo calculado`
-        : "USD · No equivale a facturación",
-    },
-    {
-      label: "Promedio por estudiante",
-      value:
-        data.usage.averageCost === null
-          ? "—"
-          : moneyFormat(data.usage.averageCost),
-      icon: Wallet,
-      note: "USD · Incluye estudiantes sin uso",
+        : "USD estimado",
     },
   ];
+
+  const modules = [
+    {
+      href: "/admin/students",
+      title: "Estudiantes",
+      description:
+        "Crear cuentas, buscar estudiantes y revisar detalle individual.",
+      icon: Users,
+    },
+    {
+      href: "/admin/licenses",
+      title: "Licencias",
+      description: "Activar, renovar o suspender accesos mensuales.",
+      icon: Wallet,
+    },
+    {
+      href: "/admin/academics",
+      title: "Seguimiento académico",
+      description: "Actividad, prácticas, simulacros y temas de refuerzo.",
+      icon: GraduationCap,
+    },
+    {
+      href: "/admin/usage",
+      title: "Consumo IA",
+      description: "Costos, tokens, voz y presupuesto por estudiante.",
+      icon: ChartNoAxesCombined,
+    },
+    {
+      href: "/admin/system",
+      title: "Sistema",
+      description:
+        "Tablas críticas, errores recientes y diagnóstico operativo.",
+      icon: Activity,
+    },
+    {
+      href: "/admin/settings",
+      title: "Configuración",
+      description: "Modelo económico, duración de licencias y tasa USD/BOB.",
+      icon: Settings,
+    },
+  ];
+
   return (
     <AppShell profile={profile} active="admin">
-      <div className="page-heading">
+      <AdminNav />
+      <div className="page-heading admin-hero">
         <div>
-          <span className="eyebrow">GESTIÓN ACADÉMICA</span>
+          <span className="eyebrow">GESTIÓN INTEGRAL</span>
           <h1>
             Panel de administración<span className="heading-dot">.</span>
           </h1>
-          <p>Accesos, actividad y consumo de tu aula virtual.</p>
+          <p>
+            Control operativo del aula: estudiantes, licencias, seguimiento
+            académico, costos y estado del sistema.
+          </p>
         </div>
-        <span className="badge">Administrador</span>
+        <span className="badge">
+          <LayoutDashboard size={15} /> Administrador
+        </span>
       </div>
-      <form className="filter-bar">
+
+      <form className="filter-bar admin-filter-card">
         <label>
           Período
           <select name="period" defaultValue={period}>
@@ -120,20 +153,17 @@ export default async function AdminPage({
           Actividad de
           <select name="user" defaultValue={userId.success ? userId.data : ""}>
             <option value="">Todos los usuarios</option>
-            {data.profiles.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.full_name} (@{p.username})
+            {data.profiles.map((student) => (
+              <option key={student.id} value={student.id}>
+                {student.full_name} (@{student.username})
               </option>
             ))}
           </select>
         </label>
         <button className="button secondary">Aplicar filtros</button>
-        <p>
-          Los filtros se aplican a la actividad y al consumo. Las cuentas
-          muestran el total actual.
-        </p>
       </form>
-      <div className="metrics-grid">
+
+      <div className="metrics-grid compact-metrics admin-metrics-grid">
         {metrics.map((metric) => (
           <article className="metric-card" key={metric.label}>
             <metric.icon size={20} />
@@ -143,31 +173,44 @@ export default async function AdminPage({
           </article>
         ))}
       </div>
-      {data.eventCount === 0 && (
-        <p className="notice">
-          No hay eventos de consumo en este período. La integración de IA y el
-          registro automático se implementarán en un sprint posterior.
-        </p>
-      )}
+
       <section className="panel admin-section">
         <div className="section-heading">
-          <h2>Compendio académico completo</h2>
+          <h2>Módulos administrativos</h2>
+          <span>Accesos principales del administrador</span>
+        </div>
+        <div className="admin-module-grid">
+          {modules.map((module) => (
+            <Link
+              className="admin-module-card"
+              href={module.href}
+              key={module.href}
+            >
+              <module.icon size={22} />
+              <strong>{module.title}</strong>
+              <span>{module.description}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel admin-section">
+        <div className="section-heading">
+          <h2>Compendio y RAG</h2>
           <span>
             {data.unitsReady} unidades listas · {data.chunkCount} fragmentos
           </span>
         </div>
         <p className="notice success">
-          La ingesta del compendio FATESCIPOL 2026 está disponible para las 15
-          unidades y el tutor filtra las fuentes según la unidad seleccionada.
+          El compendio FATESCIPOL 2026 está disponible para consulta académica.
+          El tutor filtra fuentes según la unidad y el tema seleccionado.
         </p>
         <div className="admin-actions">
           <Link className="button primary" href="/admin/knowledge/search">
-            <SearchCheck size={18} />
-            Probar búsqueda académica RAG
+            <SearchCheck size={18} /> Probar búsqueda académica RAG
           </Link>
           <Link className="button secondary" href="/admin/usage">
-            <ChartNoAxesCombined size={18} />
-            Ver consumo IA por estudiante
+            <Coins size={18} /> Revisar costos IA
           </Link>
         </div>
         {data.ingestionReport != null && (
@@ -176,71 +219,17 @@ export default async function AdminPage({
             <pre>{JSON.stringify(data.ingestionReport, null, 2) as string}</pre>
           </details>
         )}
-        <IngestDocumentForm />
-        {data.documents.length > 0 && (
-          <div className="document-list">
-            {data.documents.map((document) => (
-              <article key={document.id}>
-                <strong>{document.title}</strong>
-                <span>
-                  {document.source} · {document.version}
-                </span>
-                <small>{document.status}</small>
-              </article>
-            ))}
-          </div>
-        )}
       </section>
-      <section className="panel admin-section">
+
+      <section className="panel admin-section admin-compact-maintenance">
         <div className="section-heading">
-          <h2>Nuevo estudiante</h2>
-          <span>Acceso personal al aula</span>
+          <h2>Mantenimiento de Unidad 1</h2>
+          <span>Herramienta heredada de carga manual</span>
         </div>
-        <CreateStudentForm />
-      </section>
-      <section className="panel admin-section">
-        <div className="section-heading">
-          <h2>Usuarios del aula</h2>
-          <span>{data.profiles.length} cuentas</span>
-        </div>
-        <div className="users-list">
-          {data.profiles.map((p) => (
-            <article className="user-row" key={p.id}>
-              <div className="user-row-main">
-                <span className="avatar">{p.full_name[0]}</span>
-                <div>
-                  <strong>{p.full_name}</strong>
-                  <span>
-                    @{p.username} ·{" "}
-                    {p.role === "ADMIN" ? "Administrador" : "Estudiante"}
-                  </span>
-                </div>
-                <span className={`badge ${accessProblem(p) ? "neutral" : ""}`}>
-                  {accessProblem(p)
-                    ? p.status === "inactive"
-                      ? "Inactivo"
-                      : Date.parse(p.starts_at) > data.referenceTime
-                        ? "Programado"
-                        : "Expirado"
-                    : "Activo"}
-                </span>
-              </div>
-              <div className="user-dates">
-                Inicio:{" "}
-                {new Date(p.starts_at).toLocaleDateString("es-BO", {
-                  timeZone: "America/La_Paz",
-                })}{" "}
-                · Vence:{" "}
-                {p.expires_at
-                  ? new Date(p.expires_at).toLocaleDateString("es-BO", {
-                      timeZone: "America/La_Paz",
-                    })
-                  : "Sin vencimiento"}
-              </div>
-              {p.role === "ESTUDIANTE" && <EditStudentForms profile={p} />}
-            </article>
-          ))}
-        </div>
+        <details>
+          <summary>Cargar texto oficial de Unidad 1</summary>
+          <IngestDocumentForm />
+        </details>
       </section>
     </AppShell>
   );

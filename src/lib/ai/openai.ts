@@ -128,22 +128,35 @@ export async function synthesizeSpeech(input: {
 }): Promise<OpenAIAudioResult & { audio: ArrayBuffer; contentType: string }> {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
-  const model = process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts";
+  const baseModel = process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts";
+  const longformModel = process.env.OPENAI_TTS_LONGFORM_MODEL;
+  const longformThreshold = Number(
+    process.env.VOICE_LONGFORM_CHAR_THRESHOLD || 1800,
+  );
+  const model =
+    longformModel &&
+    Number.isFinite(longformThreshold) &&
+    input.text.length >= longformThreshold
+      ? longformModel
+      : baseModel;
+  const payload: Record<string, string> = {
+    model,
+    voice: input.voice || process.env.OPENAI_TTS_VOICE || "alloy",
+    input: input.text,
+    response_format: input.format || process.env.VOICE_OUTPUT_FORMAT || "mp3",
+  };
+  if (!model.startsWith("tts-1")) {
+    payload.instructions =
+      input.instructions ||
+      "Voz clara, natural y pausada para un estudiante policial boliviano. Mantén tono docente, breve y seguro.";
+  }
   const response = await fetch("https://api.openai.com/v1/audio/speech", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      model,
-      voice: input.voice || process.env.OPENAI_TTS_VOICE || "alloy",
-      input: input.text,
-      response_format: input.format || process.env.VOICE_OUTPUT_FORMAT || "mp3",
-      instructions:
-        input.instructions ||
-        "Voz clara, natural y pausada para un estudiante policial boliviano. Mantén tono docente, breve y seguro.",
-    }),
+    body: JSON.stringify(payload),
   });
   if (!response.ok) throw new Error(await openAIError("OpenAI TTS", response));
   return {

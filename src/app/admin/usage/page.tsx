@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AlertTriangle, BarChart3, Coins } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { AdminNav } from "@/components/admin/admin-nav";
 import { EconomicSettingsForm } from "@/components/economic-settings-form";
 import { requireAdmin } from "@/lib/auth/session";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
@@ -24,6 +25,7 @@ export default async function AdminUsagePage() {
 
   return (
     <AppShell profile={profile} active="admin">
+      <AdminNav />
       <div className="page-heading">
         <div>
           <span className="eyebrow">CONSUMO IA</span>
