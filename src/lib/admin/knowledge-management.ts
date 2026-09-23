@@ -183,9 +183,7 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
   const db = createSupabaseAdmin();
   const { data, error } = await db
     .from("knowledge_admin_documents")
-    .select(
-      "id,title,description,source_label,document_kind,status,active_version_id,created_at,updated_at,knowledge_document_versions(id,version_label,processing_status,unit_number,topic_number,topic_name,created_at,published_at)",
-    )
+    .select("id,title,description,source_label,document_kind,status,active_version_id,created_at,updated_at")
     .order("updated_at", { ascending: false })
     .limit(50);
 
@@ -202,12 +200,32 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
   }
 
   const documents = (data || []) as Array<Record<string, unknown>>;
+  const documentIds = documents.map((doc) => String(doc.id)).filter(Boolean);
+  const { data: versions, error: versionsError } = documentIds.length
+    ? await db
+        .from("knowledge_document_versions")
+        .select("id,document_id,version_label,processing_status,unit_number,topic_number,topic_name,created_at,published_at")
+        .in("document_id", documentIds)
+        .order("created_at", { ascending: false })
+    : { data: [], error: null };
+  if (versionsError) throw new Error(versionsError.message);
+  const versionsByDocument = new Map<string, Array<Record<string, unknown>>>();
+  for (const version of (versions || []) as Array<Record<string, unknown>>) {
+    const documentId = String(version.document_id || "");
+    const current = versionsByDocument.get(documentId) || [];
+    current.push(version);
+    versionsByDocument.set(documentId, current);
+  }
+  const documentsWithVersions = documents.map((doc) => ({
+    ...doc,
+    knowledge_document_versions: versionsByDocument.get(String(doc.id)) || [],
+  }));
   const versionCount = documents.reduce((sum, doc) => {
-    const versions = doc.knowledge_document_versions;
+    const versions = versionsByDocument.get(String(doc.id)) || [];
     return sum + (Array.isArray(versions) ? versions.length : 0);
   }, 0);
   return {
-    documents,
+    documents: documentsWithVersions,
     totals: {
       documents: documents.length,
       versions: versionCount,
@@ -332,7 +350,7 @@ export async function processKnowledgeVersion(versionId: string, userId: string)
   const db = createSupabaseAdmin();
   const { data: version, error } = await db
     .from("knowledge_document_versions")
-    .select("*,knowledge_admin_documents(id,title,source_label,document_kind)")
+    .select("*")
     .eq("id", versionId)
     .single();
   if (error || !version) throw new Error("No se encontró la versión del documento.");
@@ -428,10 +446,15 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
   const db = createSupabaseAdmin();
   const { data: version, error } = await db
     .from("knowledge_document_versions")
-    .select("*,knowledge_admin_documents(id,title,source_label,document_kind)")
+    .select("*")
     .eq("id", versionId)
     .single();
   if (error || !version) throw new Error("No se encontró la versión.");
+  const { data: document } = await db
+    .from("knowledge_admin_documents")
+    .select("id,title,source_label,document_kind")
+    .eq("id", version.document_id)
+    .maybeSingle();
   const text = normalizeText(String(version.extracted_text || ""));
   if (text.length < 80) throw new Error("Procesa el documento antes de publicarlo.");
 
@@ -440,8 +463,8 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
     const chunks = splitDocument(text);
     if (!chunks.length) throw new Error("No hay fragmentos válidos para publicar.");
     const report = buildValidationReport({ text, chunks, unitNumber: version.unit_number as number | null });
-    const sourceLabel = String((version.knowledge_admin_documents as { source_label?: string })?.source_label || "Documento académico FATESCIPOL");
-    const title = String((version.knowledge_admin_documents as { title?: string })?.title || version.original_filename || "Documento académico");
+    const sourceLabel = String(document?.source_label || "Documento académico FATESCIPOL");
+    const title = String(document?.title || version.original_filename || "Documento académico");
     const { data: academicDocument, error: academicError } = await db
       .from("academic_documents")
       .insert({
