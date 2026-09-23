@@ -43,7 +43,13 @@ beforeEach(() => {
   mocks.configured.mockReturnValue(true);
   mocks.limit.mockResolvedValue(true);
   mocks.signIn.mockResolvedValue({
-    data: { user: { id: "student-id" } },
+    data: {
+      user: { id: "student-id" },
+      session: {
+        access_token:
+          "header.eyJzZXNzaW9uX2lkIjoiMDAwMDAwMDAtMDAwMC00MDAwLWEwMDAtMDAwMDAwMDAwMDAxIn0.signature",
+      },
+    },
     error: null,
   });
   mocks.signOut.mockResolvedValue({ error: null });
@@ -55,6 +61,16 @@ beforeEach(() => {
       starts_at: "2020-01-01T00:00:00Z",
       expires_at: "2099-01-01T00:00:00Z",
     },
+  });
+  mocks.adminClient.mockReturnValue({
+    from: () => ({
+      update: () => ({
+        eq: () => ({
+          is: () => ({ neq: () => Promise.resolve({ error: null }) }),
+        }),
+      }),
+      upsert: () => Promise.resolve({ error: null }),
+    }),
   });
   mocks.server.mockResolvedValue({
     auth: { signInWithPassword: mocks.signIn, signOut: mocks.signOut },

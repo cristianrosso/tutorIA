@@ -113,6 +113,12 @@ export default async function LoginPage({
               habilitar el acceso.
             </p>
           )}
+          {params.estado === "otro-dispositivo" && (
+            <p className="notice error" role="alert">
+              Tu cuenta ya inició sesión en otro dispositivo. Vuelve a ingresar
+              aquí si este será tu dispositivo activo.
+            </p>
+          )}
           <LoginForm configured={configured} />
           <div className="academic-note">
             <BookOpen size={19} />

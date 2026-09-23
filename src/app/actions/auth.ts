@@ -4,6 +4,7 @@ import { isConfigured, usernameDomain } from "@/lib/config";
 import { loginSchema, usernameToEmail, accessProblem } from "@/lib/auth/rules";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { consumeLimit } from "@/lib/auth/rate-limit";
+import { registerSingleDeviceSession } from "@/lib/auth/device-session";
 import type { ActionState, Profile } from "@/lib/models";
 
 export async function login(
@@ -48,6 +49,10 @@ export async function login(
       await supabase.auth.signOut();
       return { error: problem };
     }
+    await registerSingleDeviceSession({
+      profile: profile as Profile,
+      accessToken: data.session?.access_token,
+    });
     destination = profile.role === "ADMIN" ? "/admin" : "/dashboard";
     console.info(
       JSON.stringify({ event: "login_success", user_id: data.user.id }),

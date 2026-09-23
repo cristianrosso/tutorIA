@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { isConfigured } from "@/lib/config";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import { accessProblem } from "@/lib/auth/rules";
+import { isSingleDeviceSessionActive } from "@/lib/auth/device-session";
 import type { Profile } from "@/lib/models";
 
 export const getCurrentProfile = cache(async (): Promise<Profile | null> => {
@@ -20,7 +21,13 @@ export const getCurrentProfile = cache(async (): Promise<Profile | null> => {
     .eq("id", user.id)
     .single();
   if (profileError) return null;
-  return data as Profile;
+  const profile = data as Profile;
+  const { data: sessionData } = await supabase.auth.getSession();
+  const activeDevice = await isSingleDeviceSessionActive({
+    profile,
+    accessToken: sessionData.session?.access_token,
+  });
+  return activeDevice ? profile : null;
 });
 export async function requireProfile() {
   if (!isConfigured()) redirect("/configuracion");
