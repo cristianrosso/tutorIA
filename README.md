@@ -2,6 +2,12 @@
 
 Aplicación Next.js para estudiantes de Segundo Año de FATESCIPOL El Alto. **Alcance actual: Sprint 4**, tutor textual/voz y simulacro oral sobre Unidad 1. La planificación completa está en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Sprint 22 — Rendimiento y escalabilidad
+
+Se preparó la base de pruebas de rendimiento con simulación OpenAI sin costo, control de capacidad antes de llamadas reales, inventario reproducible de endpoints, scripts de carga configurables y reporte de métricas p50/p95/p99. No se ejecutaron pruebas de estrés contra producción ni OpenAI real.
+
+La documentación completa está en [docs/SPRINT_22_PERFORMANCE_SCALABILITY.md](docs/SPRINT_22_PERFORMANCE_SCALABILITY.md).
+
 ## Sprint 21 — Optimización de costos
 
 Se mejoró la medición del consumo tecnológico con tarifas centralizadas, desglose por funcionalidad/modelo/estudiante, costo de voz, proyección del periodo de 40 días y alertas administrativas por presupuesto. Las cifras siguen siendo estimaciones operativas y no reemplazan la factura real del proveedor.

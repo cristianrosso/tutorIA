@@ -1,0 +1,626 @@
+{
+  "generatedAt": "2026-09-24T13:03:41.086Z",
+  "endpoints": [
+    {
+      "route": "/api/adaptive/learning-gaps",
+      "methods": [
+        "GET"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/mastery",
+      "methods": [
+        "GET"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/recommendations",
+      "methods": [
+        "GET"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/recommendations/:id/accept",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/recommendations/:id/complete",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/recommendations/:id/dismiss",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/adaptive/recommendations/:id/postpone",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/academics",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/analytics",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/analytics/assessments",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/analytics/simulations",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/analytics/units",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/audit",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/dashboard",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/licenses",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/students",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/admin/system",
+      "methods": [
+        "GET"
+      ],
+      "category": "admin",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/assessment/answer",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/assessment/create",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/assessment/history",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/assessment/results/:id",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/assessment/session/:id",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/answer",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/complete",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/next",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/pause",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/resume",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/voice/speech",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": false,
+      "usesOpenAI": true,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/:id/voice/transcribe",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/classes/start",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/:id",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/:id/answer",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/:id/results",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/:id/submit",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/:id/voice/speech",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": true,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/exams/:id/voice/transcribe",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/exams/create",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/history",
+      "methods": [
+        "GET"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/exams/start",
+      "methods": [
+        "POST"
+      ],
+      "category": "evaluation",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/knowledge/search",
+      "methods": [
+        "POST"
+      ],
+      "category": "rag_ai",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/performance/simulate",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/simulacro/voice/speech",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": true,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/simulacro/voice/transcribe",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/student/analytics",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/student/analytics/assessments",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/student/analytics/coverage",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/student/analytics/export",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/student/analytics/reinforcement",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/student/analytics/simulations",
+      "methods": [
+        "GET"
+      ],
+      "category": "analytics",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/:id",
+      "methods": [
+        "GET",
+        "PATCH"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/:id/activities",
+      "methods": [
+        "GET"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/:id/activities/:activityId/complete",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/:id/confirm-adjustment",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/:id/reschedule",
+      "methods": [
+        "POST"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/study-plans/current",
+      "methods": [
+        "GET"
+      ],
+      "category": "application",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/tutor/chat",
+      "methods": [
+        "POST"
+      ],
+      "category": "rag_ai",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/tutor/feedback",
+      "methods": [
+        "POST"
+      ],
+      "category": "rag_ai",
+      "hasRateLimit": false,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/tutor/voice/respond",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/tutor/voice/speech",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": true,
+      "usesSupabaseAdmin": true
+    },
+    {
+      "route": "/api/tutor/voice/text",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": false
+    },
+    {
+      "route": "/api/tutor/voice/transcribe",
+      "methods": [
+        "POST"
+      ],
+      "category": "voice",
+      "hasRateLimit": true,
+      "usesOpenAI": false,
+      "usesSupabaseAdmin": true
+    }
+  ]
+}

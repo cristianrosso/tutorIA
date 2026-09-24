@@ -1,4 +1,6 @@
 import "server-only";
+import { assertOpenAICapacity, openAITimeoutMs } from "@/lib/performance/openai-capacity";
+import { isOpenAISimulationEnabled, simulateOpenAISpeech, simulateOpenAIText, simulateOpenAITranscription } from "@/lib/performance/openai-simulator";
 
 export type OpenAITextResult = {
   text: string;
@@ -26,9 +28,18 @@ export async function generateTutorText(input: {
   maxOutputTokens?: number;
   model?: string;
 }): Promise<OpenAITextResult> {
+  const model = input.model || process.env.OPENAI_MODEL || "gpt-5.6-terra";
+  if (isOpenAISimulationEnabled()) {
+    return simulateOpenAIText({
+      prompt: `${input.system}
+${input.user}`,
+      model,
+      maxOutputTokens: input.maxOutputTokens,
+    });
+  }
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
-  const model = input.model || process.env.OPENAI_MODEL || "gpt-5.6-terra";
+  await assertOpenAICapacity({ kind: "text", model });
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
@@ -43,6 +54,7 @@ export async function generateTutorText(input: {
       ],
       max_output_tokens: input.maxOutputTokens ?? 900,
     }),
+    signal: AbortSignal.timeout(openAITimeoutMs("text")),
   });
   if (!response.ok)
     throw new Error(await openAIError("OpenAI texto", response));
@@ -90,9 +102,11 @@ export async function transcribeAudio(input: {
   language?: string;
   prompt?: string;
 }): Promise<OpenAITranscriptionResult> {
+  const model = process.env.OPENAI_STT_MODEL || "gpt-4o-mini-transcribe";
+  if (isOpenAISimulationEnabled()) return simulateOpenAITranscription({ model });
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY no configurada.");
-  const model = process.env.OPENAI_STT_MODEL || "gpt-4o-mini-transcribe";
+  await assertOpenAICapacity({ kind: "stt", model });
   const form = new FormData();
   form.set("model", model);
   form.set("file", input.audio);
@@ -105,6 +119,7 @@ export async function transcribeAudio(input: {
       method: "POST",
       headers: { Authorization: `Bearer ${key}` },
       body: form,
+      signal: AbortSignal.timeout(openAITimeoutMs("stt")),
     },
   );
   if (!response.ok) throw new Error(await openAIError("OpenAI STT", response));
@@ -126,8 +141,6 @@ export async function synthesizeSpeech(input: {
   format?: string;
   instructions?: string;
 }): Promise<OpenAIAudioResult & { audio: ArrayBuffer; contentType: string }> {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) throw new Error("OPENAI_API_KEY no configurada.");
   const baseModel = process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts";
   const longformModel = process.env.OPENAI_TTS_LONGFORM_MODEL;
   const longformThreshold = Number(
@@ -139,6 +152,10 @@ export async function synthesizeSpeech(input: {
     input.text.length >= longformThreshold
       ? longformModel
       : baseModel;
+  if (isOpenAISimulationEnabled()) return simulateOpenAISpeech({ text: input.text, model });
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) throw new Error("OPENAI_API_KEY no configurada.");
+  await assertOpenAICapacity({ kind: "tts", model });
   const payload: Record<string, string> = {
     model,
     voice: input.voice || process.env.OPENAI_TTS_VOICE || "alloy",
@@ -157,6 +174,7 @@ export async function synthesizeSpeech(input: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(openAITimeoutMs("tts")),
   });
   if (!response.ok) throw new Error(await openAIError("OpenAI TTS", response));
   return {

@@ -1,0 +1,25 @@
+{
+  "description": "Escenarios progresivos Sprint 22. Ejecutar solo contra entorno autorizado con PERFORMANCE_TEST_TOKEN.",
+  "levels": [
+    { "name": "nivel-1", "vus": 25, "durationSeconds": 300 },
+    { "name": "nivel-2", "vus": 50, "durationSeconds": 300 },
+    { "name": "nivel-3", "vus": 100, "durationSeconds": 300 },
+    { "name": "nivel-4", "vus": 200, "durationSeconds": 300 },
+    { "name": "nivel-5", "vus": 300, "durationSeconds": 300 },
+    { "name": "nivel-6", "vus": 400, "durationSeconds": 300 }
+  ],
+  "profiles": {
+    "reading": 0.30,
+    "tutor_text": 0.25,
+    "assessment": 0.15,
+    "simulation": 0.10,
+    "voice": 0.10,
+    "mixed": 0.10
+  },
+  "safety": {
+    "defaultMode": "simulated-openai-free",
+    "requiresToken": true,
+    "doNotRunAgainstProductionWithoutAuthorization": true,
+    "doNotUseRealOpenAIWithoutBudgetApproval": true
+  }
+}

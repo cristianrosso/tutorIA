@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-24T12:59:37.578Z",
+  "mode": "simulated-openai-free",
+  "baseUrl": "http://127.0.0.1:3010",
+  "scenario": "local-smoke",
+  "vus": 5,
+  "durationSeconds": 5,
+  "completed": 37,
+  "failed": 0,
+  "errorRate": 0,
+  "requestsPerSecond": 7.0826952526799385,
+  "requestsPerMinute": 424.9617151607963,
+  "maxInFlight": 5,
+  "latencyMs": {
+    "average": 551.8805918918919,
+    "p50": 103.22119999999995,
+    "p95": 3401.2352,
+    "p99": 3423.4351,
+    "min": 96.18229999999949,
+    "max": 3423.4351
+  },
+  "statuses": {
+    "200": 37
+  },
+  "notes": [
+    "Esta prueba usa /api/performance/simulate y no valida calidad académica.",
+    "No consume OpenAI real.",
+    "No debe ejecutarse contra producción sin autorización."
+  ]
+}
