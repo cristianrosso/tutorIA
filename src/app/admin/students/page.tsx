@@ -6,6 +6,7 @@ import { CreateStudentForm, LicenseActions } from "@/components/admin-forms";
 import { requireAdmin } from "@/lib/auth/session";
 import { getAdminStudents } from "@/lib/admin/admin-service";
 import { getEconomicSettings } from "@/lib/billing/economic-settings";
+import { listAcademicProducts } from "@/lib/products/products";
 
 export default async function AdminStudentsPage({
   searchParams,
@@ -14,13 +15,14 @@ export default async function AdminStudentsPage({
 }) {
   const profile = await requireAdmin();
   const params = await searchParams;
-  const [result, settings] = await Promise.all([
+  const [result, settings, products] = await Promise.all([
     getAdminStudents({
       query: params.q,
       status: params.status || "all",
       page: Number(params.page || 1),
     }),
     getEconomicSettings(),
+    listAcademicProducts({ includeInactive: false }),
   ]);
   const totalPages = Math.max(1, Math.ceil(result.total / result.pageSize));
   return (
@@ -44,7 +46,7 @@ export default async function AdminStudentsPage({
           <h2>Registrar estudiante</h2>
           <span>Licencia inicial segura</span>
         </div>
-        <CreateStudentForm />
+        <CreateStudentForm products={products} />
       </section>
       <section className="panel admin-section">
         <form className="filter-bar">
@@ -137,3 +139,4 @@ export default async function AdminStudentsPage({
     </AppShell>
   );
 }
+

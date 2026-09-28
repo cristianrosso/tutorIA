@@ -1,19 +1,25 @@
 import Link from "next/link";
 import {
+  Activity,
   BookOpen,
   BookOpenCheck,
   Boxes,
   BrainCircuit,
+  CalendarDays,
   ChartNoAxesCombined,
   CircleHelp,
   ClipboardCheck,
-  CalendarDays,
+  Coins,
+  Database,
+  FileText,
   GraduationCap,
   House,
   LayoutDashboard,
   LogOut,
   Mic,
   ShieldCheck,
+  Users,
+  Wallet,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { logout } from "@/app/actions/auth";
@@ -42,7 +48,7 @@ export function AppShell({
   active: ActiveSection;
   children: React.ReactNode;
 }) {
-  const nav: Array<{
+  const studentNav: Array<{
     href: string;
     label: string;
     icon: typeof House;
@@ -57,68 +63,43 @@ export function AppShell({
     },
     { href: "/tutor", label: "Tutor", icon: Mic, id: "tutor" },
     { href: "/clase", label: "Clase", icon: BookOpenCheck, id: "classroom" },
-    {
-      href: "/simulacro",
-      label: "Simulacro",
-      icon: GraduationCap,
-      id: "simulacro",
-    },
-    {
-      href: "/practica",
-      label: "Práctica",
-      icon: ClipboardCheck,
-      id: "practice",
-    },
-    {
-      href: "/unidades",
-      label: "Mis unidades",
-      icon: BookOpen,
-      id: "units",
-    },
-    {
-      href: "/progreso",
-      label: "Mi progreso",
-      icon: ChartNoAxesCombined,
-      id: "progress",
-    },
-    {
-      href: "/analitica",
-      label: "Analítica",
-      icon: ChartNoAxesCombined,
-      id: "analytics",
-    },
-    {
-      href: "/recomendaciones",
-      label: "Recomendaciones",
-      icon: BrainCircuit,
-      id: "recommendations",
-    },
-    {
-      href: "/plan-estudio",
-      label: "Plan de estudio",
-      icon: CalendarDays,
-      id: "studyPlan",
-    },
+    { href: "/simulacro", label: "Simulacro", icon: GraduationCap, id: "simulacro" },
+    { href: "/practica", label: "Práctica", icon: ClipboardCheck, id: "practice" },
+    { href: "/unidades", label: "Mis unidades", icon: BookOpen, id: "units" },
+    { href: "/progreso", label: "Mi progreso", icon: ChartNoAxesCombined, id: "progress" },
+    { href: "/analitica", label: "Analítica", icon: ChartNoAxesCombined, id: "analytics" },
+    { href: "/recomendaciones", label: "Recomendaciones", icon: BrainCircuit, id: "recommendations" },
+    { href: "/plan-estudio", label: "Plan de estudio", icon: CalendarDays, id: "studyPlan" },
   ];
-  if (profile.role === "ADMIN") {
-    nav.push({
-      href: "/admin",
-      label: "Administración",
-      icon: LayoutDashboard,
-      id: "admin",
-    });
-  }
+  const adminNav: Array<{
+    href: string;
+    label: string;
+    icon: typeof House;
+    id: ActiveSection;
+  }> = [
+    { href: "/admin", label: "Panel admin", icon: LayoutDashboard, id: "admin" },
+    { href: "/admin/products", label: "Cursos", icon: Boxes, id: "admin" },
+    { href: "/admin/students", label: "Estudiantes", icon: Users, id: "admin" },
+    { href: "/admin/licenses", label: "Licencias", icon: Wallet, id: "admin" },
+    { href: "/admin/knowledge", label: "Materiales", icon: Database, id: "admin" },
+    { href: "/admin/academics", label: "Seguimiento", icon: GraduationCap, id: "admin" },
+    { href: "/admin/analytics", label: "Analítica", icon: ChartNoAxesCombined, id: "admin" },
+    { href: "/admin/usage", label: "Costos IA", icon: Coins, id: "admin" },
+    { href: "/admin/system", label: "Sistema", icon: Activity, id: "admin" },
+    { href: "/admin/audit", label: "Auditoría", icon: FileText, id: "admin" },
+  ];
+  const nav = profile.role === "ADMIN" ? adminNav : studentNav;
   return (
     <div className="app-layout">
       <aside className="sidebar">
         <Link href="/dashboard" aria-label="Tutor IA FATESCIPOL, inicio">
           <Brand compact />
         </Link>
-        <div className="sidebar-label">MI PREPARACIÓN</div>
+        <div className="sidebar-label">{profile.role === "ADMIN" ? "ADMINISTRACIÓN" : "MI PREPARACIÓN"}</div>
         <nav aria-label="Navegación principal">
           {nav.map((item) => (
             <Link
-              key={item.id}
+              key={item.href}
               href={item.href}
               className={`nav-item ${active === item.id ? "active" : ""}`}
               aria-current={active === item.id ? "page" : undefined}
@@ -205,5 +186,6 @@ function breadcrumb(active: ActiveSection) {
   if (active === "practice") return "Práctica";
   return "Inicio";
 }
+
 
 

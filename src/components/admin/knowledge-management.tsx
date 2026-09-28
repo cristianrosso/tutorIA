@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { BookOpen, FileUp, RefreshCcw, Rocket, RotateCcw } from "lucide-react";
+import type { AcademicProduct } from "@/lib/products/products";
 import {
   processKnowledgeVersionAction,
   publishKnowledgeVersionAction,
@@ -12,7 +13,7 @@ import {
 type ActionState = { ok: boolean; message: string; documentId?: string };
 const initialState: ActionState = { ok: false, message: "" };
 
-export function KnowledgeUploadForm() {
+export function KnowledgeUploadForm({ products = [] }: { products?: AcademicProduct[] }) {
   const [state, action, pending] = useActionState(
     uploadKnowledgeDocumentAction as (state: ActionState, form: FormData) => Promise<ActionState>,
     initialState,
@@ -20,6 +21,16 @@ export function KnowledgeUploadForm() {
   return (
     <form className="admin-form knowledge-upload-form" action={action}>
       <div className="form-grid compact">
+        <label>
+          Curso / producto
+          <select name="productId" required defaultValue={products[0]?.id || ""}>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.short_name} · {product.name}
+              </option>
+            ))}
+          </select>
+        </label>
         <label>
           Título académico
           <input name="title" required minLength={3} placeholder="Compendio FATESCIPOL 2026" />
@@ -157,3 +168,4 @@ export function KnowledgeVersionActions({
     </div>
   );
 }
+

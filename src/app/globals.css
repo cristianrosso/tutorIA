@@ -3852,3 +3852,35 @@ input[type="hidden"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* Ajustes administrativos Sprint 22B */
+.sidebar {
+  max-height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.sidebar nav {
+  display: grid;
+  gap: 0.35rem;
+}
+.admin-subnav {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
+  flex-wrap: nowrap;
+}
+.admin-subnav a {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@media (min-width: 900px) {
+  .admin-subnav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    padding-top: 0.25rem;
+  }
+}

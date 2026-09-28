@@ -5,6 +5,7 @@ import { AdminNav } from "@/components/admin/admin-nav";
 import { KnowledgeUploadForm } from "@/components/admin/knowledge-management";
 import { requireAdmin } from "@/lib/auth/session";
 import { listKnowledgeDocuments } from "@/lib/admin/knowledge-management";
+import { listAcademicProducts } from "@/lib/products/products";
 
 function statusLabel(value: unknown) {
   const labels: Record<string, string> = {
@@ -22,7 +23,10 @@ function statusLabel(value: unknown) {
 
 export default async function AdminKnowledgePage() {
   const profile = await requireAdmin();
-  const data = await listKnowledgeDocuments();
+  const [data, products] = await Promise.all([
+    listKnowledgeDocuments(),
+    listAcademicProducts({ includeInactive: false }),
+  ]);
   const modules = [
     {
       href: "/admin/knowledge/documents",
@@ -86,7 +90,7 @@ export default async function AdminKnowledgePage() {
 
       <section className="panel admin-section">
         <div className="section-heading"><h2>Cargar nuevo documento</h2><span>PDF, DOCX o TXT · almacenamiento privado</span></div>
-        <KnowledgeUploadForm />
+        <KnowledgeUploadForm products={products} />
       </section>
 
       <section className="panel admin-section">
@@ -112,3 +116,4 @@ export default async function AdminKnowledgePage() {
     </AppShell>
   );
 }
+

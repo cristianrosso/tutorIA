@@ -36,6 +36,7 @@ export type KnowledgeDocumentDetail = {
 };
 
 const uploadSchema = z.object({
+  productId: z.uuid(),
   title: z.string().trim().min(3).max(180),
   description: z.string().trim().max(800).optional(),
   sourceLabel: z.string().trim().min(3).max(240),
@@ -183,7 +184,7 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
   const db = createSupabaseAdmin();
   const { data, error } = await db
     .from("knowledge_admin_documents")
-    .select("id,title,description,source_label,document_kind,status,active_version_id,created_at,updated_at")
+    .select("id,title,description,source_label,document_kind,status,active_version_id,product_id,created_at,updated_at,academic_products(short_name,name,slug)")
     .order("updated_at", { ascending: false })
     .limit(50);
 
@@ -280,6 +281,7 @@ export async function uploadKnowledgeDocument(form: FormData, userId: string) {
   if (!(file instanceof File)) throw new Error("Selecciona un archivo PDF, DOCX o TXT.");
   assertSupportedFile(file);
   const parsed = uploadSchema.parse({
+    productId: form.get("productId"),
     title: form.get("title"),
     description: form.get("description") || undefined,
     sourceLabel: form.get("sourceLabel") || undefined,
@@ -317,6 +319,7 @@ export async function uploadKnowledgeDocument(form: FormData, userId: string) {
       document_kind: parsed.documentKind,
       status: "uploaded",
       created_by: userId,
+      product_id: parsed.productId,
     })
     .select("id")
     .single();
@@ -337,6 +340,7 @@ export async function uploadKnowledgeDocument(form: FormData, userId: string) {
       topic_number: parsed.topicNumber || null,
       topic_name: parsed.topicName || null,
       created_by: userId,
+      product_id: parsed.productId,
     })
     .select("id")
     .single();
@@ -452,7 +456,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
   if (error || !version) throw new Error("No se encontró la versión.");
   const { data: document } = await db
     .from("knowledge_admin_documents")
-    .select("id,title,source_label,document_kind")
+    .select("id,title,source_label,document_kind,product_id")
     .eq("id", version.document_id)
     .maybeSingle();
   const text = normalizeText(String(version.extracted_text || ""));
@@ -463,6 +467,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
     const chunks = splitDocument(text);
     if (!chunks.length) throw new Error("No hay fragmentos válidos para publicar.");
     const report = buildValidationReport({ text, chunks, unitNumber: version.unit_number as number | null });
+    const productId = String(version.product_id || document?.product_id || "00000000-0000-4000-8000-000000000101");
     const sourceLabel = String(document?.source_label || "Documento académico FATESCIPOL");
     const title = String(document?.title || version.original_filename || "Documento académico");
     const { data: academicDocument, error: academicError } = await db
@@ -476,6 +481,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
         status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
         report,
         active: true,
+        product_id: productId,
       })
       .select("id")
       .single();
@@ -500,6 +506,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
           hierarchy: { unit_number: version.unit_number, unit_name: unitName(version.unit_number as number) },
           validation: report,
           source_hash: sha256(`${version.unit_number}\n${text}`),
+          product_id: productId,
         })
         .select("id")
         .single();
@@ -517,6 +524,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
           hierarchy: { unit_number: null, unit_name: "Documento general" },
           validation: { ...report, requires_review: true },
           source_hash: sha256(text),
+          product_id: productId,
         })
         .select("id")
         .single();
@@ -547,6 +555,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
             },
             validation: { source_preserved: true },
             source_hash: sha256(`${number || ""}\n${name}`),
+            product_id: productId,
           })
           .select("id")
           .single();
@@ -632,6 +641,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
           warnings: chunk.section_name ? [] : ["Clasificación automática básica; requiere revisión académica."],
         },
         source_hash: objectHash,
+        product_id: productId,
       });
       if (objectError) throw new Error(objectError.message);
       const { error: chunkError } = await db.from("knowledge_chunks").insert({
@@ -653,6 +663,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
         embedding_hash: objectHash,
         keywords,
         metadata: hierarchy,
+        product_id: productId,
       });
       if (chunkError) throw new Error(chunkError.message);
     }
@@ -676,6 +687,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
       version_id: versionId,
       academic_document_id: academicDocument.id,
       published_by: userId,
+      product_id: productId,
       notes: "Publicación generada desde Sprint 18 sin modificar el texto fuente.",
     });
     await finishJob(jobId, "completed", { ...report, academic_document_id: academicDocument.id });
@@ -726,3 +738,6 @@ export async function rollbackKnowledgeVersion(versionId: string, userId: string
 export function sprint18MigrationName() {
   return MIGRATION_NAME;
 }
+
+
+

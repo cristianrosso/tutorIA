@@ -10,6 +10,7 @@ import {
   updateStudent,
 } from "@/app/actions/admin";
 import type { ActionState, Profile } from "@/lib/models";
+import type { AcademicProduct } from "@/lib/products/products";
 
 function Feedback({ state }: { state: ActionState }) {
   return (
@@ -27,7 +28,7 @@ function Feedback({ state }: { state: ActionState }) {
     </>
   );
 }
-export function CreateStudentForm() {
+export function CreateStudentForm({ products = [] }: { products?: AcademicProduct[] }) {
   const [state, action, pending] = useActionState(createStudent, {});
   return (
     <form action={action} className="admin-form">
@@ -75,6 +76,16 @@ export function CreateStudentForm() {
         <label>
           Último día de acceso
           <input type="date" name="expires_at" required />
+        </label>
+        <label>
+          Curso asignado
+          <select name="product_id" required defaultValue={products[0]?.id || ""}>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.short_name} · {product.name}
+              </option>
+            ))}
+          </select>
         </label>
       </div>
       <p className="muted small">
@@ -283,3 +294,4 @@ export function IngestDocumentForm() {
     </form>
   );
 }
+

@@ -204,3 +204,31 @@ export async function updateAcademicProduct(id: string, input: Partial<z.infer<t
   const { error } = await createSupabaseAdmin().from("academic_products").update(patch).eq("id", id);
   if (error) throw new Error(error.message);
 }
+
+export async function assignProductLicense(input: {
+  userId: string;
+  productId: string;
+  actorId: string;
+  startsAt: string;
+  expiresAt: string | null;
+  status?: "pending" | "active" | "expired" | "suspended" | "cancelled";
+  source?: string;
+}) {
+  try {
+    const { error } = await createSupabaseAdmin().from("user_product_licenses").insert({
+      user_id: input.userId,
+      product_id: input.productId,
+      status: input.status || "active",
+      starts_at: input.startsAt,
+      expires_at: input.expiresAt,
+      license_type: "monthly",
+      created_by: input.actorId,
+      metadata: { source: input.source || "admin_panel" },
+    });
+    if (error) throw new Error(error.message);
+  } catch (error) {
+    const message = error instanceof Error ? error.message.toLowerCase() : "";
+    if (message.includes("user_product_licenses") || message.includes("product_id")) return;
+    throw error;
+  }
+}

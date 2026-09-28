@@ -13,6 +13,7 @@ import { consumeLimit } from "@/lib/auth/rate-limit";
 import { ingestDocument } from "@/lib/rag/ingest";
 import type { ActionState } from "@/lib/models";
 import { createLicenseRecord, logAdminAction } from "@/lib/admin/admin-service";
+import { DEFAULT_PRODUCT_ID, assignProductLicense } from "@/lib/products/products";
 
 function dateInput(value: FormDataEntryValue | null, endOfDay = false) {
   // Fechas del panel se interpretan explícitamente en Bolivia, UTC−4.
@@ -38,6 +39,7 @@ export async function createStudent(
     const db = createSupabaseAdmin();
     const { username, full_name, password, starts_at, expires_at } =
       parsed.data;
+    const productId = z.uuid().catch(DEFAULT_PRODUCT_ID).parse(form.get("product_id"));
     const { data, error } = await db.auth.admin.createUser({
       email: usernameToEmail(username, usernameDomain()),
       password,
@@ -92,16 +94,25 @@ export async function createStudent(
       source: "admin_panel",
       notes: "Licencia inicial creada con el estudiante.",
     });
+    await assignProductLicense({
+      userId: data.user.id,
+      actorId: admin.id,
+      productId,
+      startsAt: starts_at,
+      expiresAt: expires_at,
+      source: "student_creation",
+    });
     await logAdminAction({
       actorId: admin.id,
       action: "student_created",
       resourceType: "profile",
       resourceId: data.user.id,
-      metadata: { username, expires_at },
+      metadata: { username, expires_at, product_id: productId },
     });
     revalidatePath("/admin");
     revalidatePath("/admin/students");
     revalidatePath("/admin/licenses");
+    revalidatePath("/preparaciones");
     return {
       success: `Cuenta ${username} creada. Entrega sus credenciales por un canal privado.`,
     };
@@ -186,6 +197,7 @@ export async function updateStudent(
     revalidatePath("/admin");
     revalidatePath("/admin/students");
     revalidatePath("/admin/licenses");
+    revalidatePath("/preparaciones");
     return {
       success:
         operation.data === "password"
@@ -264,6 +276,7 @@ export async function activateMonthlyLicense(
       },
     });
     revalidatePath("/admin/licenses");
+    revalidatePath("/preparaciones");
     revalidatePath("/admin/students");
     revalidatePath(`/admin/students/${id.data}`);
     return { success: "Licencia activada correctamente." };
@@ -328,6 +341,7 @@ export async function renewMonthlyLicense(
       },
     });
     revalidatePath("/admin/licenses");
+    revalidatePath("/preparaciones");
     revalidatePath("/admin/students");
     revalidatePath(`/admin/students/${id.data}`);
     return { success: "Licencia renovada correctamente." };
@@ -357,6 +371,7 @@ export async function suspendStudentAccess(
       resourceId: id.data,
     });
     revalidatePath("/admin/licenses");
+    revalidatePath("/preparaciones");
     revalidatePath("/admin/students");
     revalidatePath(`/admin/students/${id.data}`);
     return { success: "Acceso suspendido." };
@@ -412,3 +427,4 @@ export async function ingestUnitOneDocument(
     };
   }
 }
+
