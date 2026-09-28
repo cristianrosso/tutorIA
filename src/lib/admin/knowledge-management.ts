@@ -182,14 +182,26 @@ async function finishJob(
 
 export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
   const db = createSupabaseAdmin();
-  const { data, error } = await db
+  const productAwareQuery = await db
     .from("knowledge_admin_documents")
     .select("id,title,description,source_label,document_kind,status,active_version_id,product_id,created_at,updated_at,academic_products(short_name,name,slug)")
     .order("updated_at", { ascending: false })
     .limit(50);
 
-  if (error) {
-    if (/knowledge_admin_documents/i.test(error.message)) {
+  let rows: Array<Record<string, unknown>> = ((productAwareQuery.data || []) as unknown) as Array<Record<string, unknown>>;
+  let queryError = productAwareQuery.error;
+  if (queryError && /(product_id|academic_products|relationship|schema cache)/i.test(queryError.message)) {
+    const fallback = await db
+      .from("knowledge_admin_documents")
+      .select("id,title,description,source_label,document_kind,status,active_version_id,created_at,updated_at")
+      .order("updated_at", { ascending: false })
+      .limit(50);
+    rows = ((fallback.data || []) as unknown) as Array<Record<string, unknown>>;
+    queryError = fallback.error;
+  }
+
+  if (queryError) {
+    if (/knowledge_admin_documents/i.test(queryError.message)) {
       return {
         documents: [],
         totals: { documents: 0, versions: 0, published: 0, reviewRequired: 0, jobs: 0 },
@@ -197,10 +209,10 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
         migrationName: MIGRATION_NAME,
       };
     }
-    throw new Error(error.message);
+    throw new Error(queryError.message);
   }
 
-  const documents = (data || []) as Array<Record<string, unknown>>;
+  const documents = rows;
   const documentIds = documents.map((doc) => String(doc.id)).filter(Boolean);
   const { data: versions, error: versionsError } = documentIds.length
     ? await db
@@ -738,6 +750,7 @@ export async function rollbackKnowledgeVersion(versionId: string, userId: string
 export function sprint18MigrationName() {
   return MIGRATION_NAME;
 }
+
 
 
 
