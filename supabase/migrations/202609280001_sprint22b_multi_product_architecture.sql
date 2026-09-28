@@ -66,7 +66,7 @@ create table if not exists public.user_product_licenses (
   starts_at timestamptz not null default now(),
   expires_at timestamptz,
   license_type text not null default 'monthly',
-  source_license_id uuid references public.student_licenses(id) on delete set null,
+  source_license_id uuid,
   metadata jsonb not null default '{}'::jsonb,
   created_by uuid references public.profiles(id) on delete set null,
   created_at timestamptz not null default now(),
@@ -336,4 +336,5 @@ comment on table public.academic_products is 'Sprint 22B: catálogo multi-curso/
 comment on column public.knowledge_chunks.product_id is 'Aislamiento RAG por producto académico. Null no debe usarse en nuevas publicaciones.';
 
 commit;
+
 
