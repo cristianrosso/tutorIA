@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   BookOpen,
   BookOpenCheck,
+  Boxes,
   BrainCircuit,
   ChartNoAxesCombined,
   CircleHelp,
@@ -20,6 +21,7 @@ import type { Profile } from "@/lib/models";
 
 type ActiveSection =
   | "home"
+  | "preparations"
   | "units"
   | "progress"
   | "analytics"
@@ -47,6 +49,12 @@ export function AppShell({
     id: ActiveSection;
   }> = [
     { href: "/dashboard", label: "Mi aula", icon: House, id: "home" },
+    {
+      href: "/preparaciones",
+      label: "Mis preparaciones",
+      icon: Boxes,
+      id: "preparations",
+    },
     { href: "/tutor", label: "Tutor", icon: Mic, id: "tutor" },
     { href: "/clase", label: "Clase", icon: BookOpenCheck, id: "classroom" },
     {
@@ -185,6 +193,7 @@ export function AppShell({
 
 function breadcrumb(active: ActiveSection) {
   if (active === "admin") return "Administración";
+  if (active === "preparations") return "Mis preparaciones";
   if (active === "units") return "Mis unidades";
   if (active === "progress") return "Mi progreso";
   if (active === "analytics") return "Analítica";
@@ -196,4 +205,5 @@ function breadcrumb(active: ActiveSection) {
   if (active === "practice") return "Práctica";
   return "Inicio";
 }
+
 

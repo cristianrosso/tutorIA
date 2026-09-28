@@ -4,6 +4,7 @@ const links = [
   ["/admin", "Inicio"],
   ["/admin/students", "Estudiantes"],
   ["/admin/licenses", "Licencias"],
+  ["/admin/products", "Productos"],
   ["/admin/academics", "Académico"],
   ["/admin/analytics", "Analítica"],
   ["/admin/knowledge", "Conocimiento"],
@@ -24,4 +25,5 @@ export function AdminNav() {
     </nav>
   );
 }
+
 

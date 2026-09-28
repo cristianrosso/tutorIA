@@ -55,6 +55,7 @@ export type HybridSearchOptions = {
   lexicalWeight?: number;
   academicWeight?: number;
   debug?: boolean;
+  productId?: string | null;
 };
 
 export type AcademicContextResult = {
@@ -74,3 +75,4 @@ export type KnowledgeObjectLike = Pick<
   KnowledgeObject,
   "knowledge_id" | "hierarchy" | "knowledge" | "retrieval" | "provenance"
 >;
+

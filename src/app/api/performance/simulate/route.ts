@@ -6,6 +6,8 @@ const bodySchema = z.object({
   delayMs: z.coerce.number().int().min(0).max(15000).default(250),
   status: z.coerce.number().int().min(200).max(599).default(200),
   payloadKb: z.coerce.number().int().min(0).max(128).default(1),
+  productId: z.uuid().nullable().optional(),
+  productSlug: z.string().trim().max(80).optional(),
 });
 
 function enabledToken() {
@@ -24,6 +26,8 @@ export async function POST(request: Request) {
   }
   const parsed = bodySchema.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) return NextResponse.json({ error: "Parámetros inválidos." }, { status: 400 });
+  const productSlug = request.headers.get("x-academic-product-slug") || parsed.data.productSlug || "fatescipol-grado";
+  const productId = request.headers.get("x-academic-product-id") || parsed.data.productId || null;
   const started = Date.now();
   await sleep(parsed.data.delayMs);
   const payload = "x".repeat(parsed.data.payloadKb * 1024);
@@ -31,6 +35,8 @@ export async function POST(request: Request) {
     {
       ok: parsed.data.status < 400,
       scenario: parsed.data.scenario,
+      productSlug,
+      productId,
       simulated: true,
       delayMs: parsed.data.delayMs,
       serverMs: Date.now() - started,

@@ -622,5 +622,15 @@
       "usesOpenAI": false,
       "usesSupabaseAdmin": true
     }
-  ]
+  ],
+  "productAwareLoadTest": {
+    "defaultProductSlug": "fatescipol-grado",
+    "supportedInputs": [
+      "X-Academic-Product-Slug",
+      "X-Academic-Product-Id",
+      "--product-slug",
+      "--product-id"
+    ],
+    "note": "Sprint 22B: los escenarios de concurrencia pueden ejecutarse por producto para medir aislamiento y costo."
+  }
 }

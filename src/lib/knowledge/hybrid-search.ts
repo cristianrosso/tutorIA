@@ -16,6 +16,7 @@ type DbKnowledgeChunk = {
   source_reference: string | null;
   page_reference: string | null;
   keywords: string[] | null;
+  product_id?: string | null;
   metadata: Record<string, unknown> | null;
   knowledge_objects?:
     | {
@@ -137,13 +138,24 @@ export async function hybridSearch(
   const debug: Record<string, unknown> = { semantic: [], lexical: [] };
 
   if (embedding?.length) {
-    const { data, error } = await db.rpc("match_knowledge_chunks", {
-      query_embedding: embedding,
-      match_threshold: options.matchThreshold ?? 0.15,
-      match_count: options.matchCount ?? 20,
-      filter_unit_number: options.unitNumber || analysis.probableUnitNumber || null,
-      filter_topic_id: options.topicId || null,
-    });
+    const semanticRpc = options.productId ? "match_knowledge_chunks_by_product" : "match_knowledge_chunks";
+    const semanticArgs = options.productId
+      ? {
+          query_embedding: embedding,
+          match_threshold: options.matchThreshold ?? 0.15,
+          match_count: options.matchCount ?? 20,
+          filter_unit_number: options.unitNumber || analysis.probableUnitNumber || null,
+          filter_topic_id: options.topicId || null,
+          filter_product_id: options.productId,
+        }
+      : {
+          query_embedding: embedding,
+          match_threshold: options.matchThreshold ?? 0.15,
+          match_count: options.matchCount ?? 20,
+          filter_unit_number: options.unitNumber || analysis.probableUnitNumber || null,
+          filter_topic_id: options.topicId || null,
+        };
+    const { data, error } = await db.rpc(semanticRpc, semanticArgs);
     if (!error && Array.isArray(data)) {
       debug.semantic = data;
       for (const item of data as Array<DbKnowledgeChunk & { similarity?: number }>) {
@@ -157,11 +169,12 @@ export async function hybridSearch(
   let query = db
     .from("knowledge_chunks")
     .select(
-      "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
+      "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,product_id,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
     )
     .limit(1500);
   const unitFilter = options.unitNumber || analysis.probableUnitNumber;
   if (unitFilter) query = query.contains("metadata", { unit_number: unitFilter });
+  if (options.productId) query = query.eq("product_id", options.productId);
   const { data: lexicalRows, error: lexicalError } = await query;
   if (!lexicalError && lexicalRows) {
     for (const row of lexicalRows as unknown as DbKnowledgeChunk[]) {
@@ -176,3 +189,4 @@ export async function hybridSearch(
 
   return { candidates, debug };
 }
+

@@ -221,3 +221,14 @@ El tutor de `/tutor` ahora incorpora un motor pedagógico multinivel sobre el mi
 ## Sprint 18 · Gestión avanzada del conocimiento académico
 
 El panel administrativo incluye `/admin/knowledge` para cargar, versionar, procesar, publicar y revertir documentos académicos. Antes de usarlo en Supabase, ejecutar `supabase/migrations/202609230003_sprint18_knowledge_management.sql`. Ver detalles en `docs/SPRINT_18_KNOWLEDGE_MANAGEMENT.md`.
+
+## Sprint 22B · Arquitectura multi-curso
+
+El sistema ahora incorpora una capa multi-producto para administrar varios cursos o exámenes sin duplicar el tutor ni mezclar fuentes académicas. FATESCIPOL queda como producto inicial (`fatescipol-grado`) y las tablas existentes se etiquetan mediante una migración no destructiva. Ver [`docs/SPRINT_22B_MULTI_PRODUCT_ARCHITECTURE.md`](docs/SPRINT_22B_MULTI_PRODUCT_ARCHITECTURE.md) y [`docs/NEW_PRODUCT_GUIDE.md`](docs/NEW_PRODUCT_GUIDE.md).
+
+Rutas principales:
+
+- `/admin/products`: catálogo y creación de productos académicos.
+- `/preparaciones`: selector de preparaciones disponibles para el estudiante.
+
+Migración pendiente de aplicar cuando corresponda: `supabase/migrations/202609280001_sprint22b_multi_product_architecture.sql`.

@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Users,
   Wallet,
+  Boxes,
 } from "lucide-react";
 import Link from "next/link";
 import { z } from "zod";
@@ -94,6 +95,12 @@ export default async function AdminPage({
       title: "Licencias",
       description: "Activar, renovar o suspender accesos mensuales.",
       icon: Wallet,
+    },
+    {
+      href: "/admin/products",
+      title: "Productos académicos",
+      description: "Configurar cursos, exámenes y acceso multi-producto.",
+      icon: Boxes,
     },
     {
       href: "/admin/academics",
@@ -244,3 +251,4 @@ export default async function AdminPage({
     </AppShell>
   );
 }
+

@@ -34,7 +34,7 @@ type ChunkRow = {
   page: number | null;
 };
 
-export type RetrieveOptions = { section?: string | null; limit?: number };
+export type RetrieveOptions = { section?: string | null; limit?: number; productId?: string | null };
 
 function scoreChunk(
   chunk: ChunkRow,
@@ -79,13 +79,15 @@ export async function retrieveContext(
     .eq("number", unitNumber)
     .single();
   if (unitError || !unit?.enabled) return [];
-  const { data: documents, error: documentError } = await db
+  let documentsQuery = db
     .from("documents")
     .select("id,title,source,version,unit_id")
     .eq("unit_id", unit.id)
     .eq("status", "ready")
     .eq("active", true)
     .limit(50);
+  if (options.productId) documentsQuery = documentsQuery.eq("product_id", options.productId);
+  const { data: documents, error: documentError } = await documentsQuery;
   if (documentError || !documents?.length) return [];
   const docs = documents as DocumentRow[];
   const docMap = new Map(docs.map((doc) => [doc.id, doc]));
@@ -122,3 +124,4 @@ export async function retrieveContext(
     .sort((a, b) => b.score - a.score)
     .slice(0, options.limit || 5);
 }
+

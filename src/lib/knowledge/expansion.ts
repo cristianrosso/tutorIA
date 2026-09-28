@@ -5,6 +5,7 @@ import type { KnowledgeChunkCandidate } from "@/lib/knowledge/types";
 type ExpansionOptions = {
   maxParentExpansion?: number;
   maxRelationshipDepth?: number;
+  productId?: string | null;
 };
 
 type ExpandedChunkRow = {
@@ -20,6 +21,7 @@ type ExpandedChunkRow = {
   page_reference: string | null;
   keywords: string[] | null;
   metadata: Record<string, unknown> | null;
+  product_id?: string | null;
   knowledge_objects?: {
     id: string;
     title: string | null;
@@ -63,15 +65,22 @@ function candidateFromRow(
   };
 }
 
-async function fetchChunksForObjects(objectIds: string[], source: "parent" | "relation", relationType?: string) {
+async function fetchChunksForObjects(
+  objectIds: string[],
+  source: "parent" | "relation",
+  relationType?: string,
+  productId?: string | null,
+) {
   if (!objectIds.length) return [];
-  const { data, error } = await createSupabaseAdmin()
+  let query = createSupabaseAdmin()
     .from("knowledge_chunks")
     .select(
-      "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
+      "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,product_id,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
     )
     .in("knowledge_object_id", [...new Set(objectIds)])
     .limit(30);
+  if (productId) query = query.eq("product_id", productId);
+  const { data, error } = await query;
   if (error || !data) return [];
   return (data as unknown as ExpandedChunkRow[]).map((row) =>
     candidateFromRow(row, source, relationType),
@@ -87,7 +96,7 @@ export async function expandParentChild(
     .map((candidate) => candidate.parentId)
     .filter((id): id is string => Boolean(id))
     .slice(0, limit);
-  return fetchChunksForObjects(parentIds, "parent");
+  return fetchChunksForObjects(parentIds, "parent", undefined, options.productId);
 }
 
 export async function expandRelations(
@@ -100,7 +109,7 @@ export async function expandRelations(
     .filter((id): id is string => Boolean(id))
     .slice(0, 8);
   if (!objectIds.length) return [];
-  const { data, error } = await createSupabaseAdmin()
+  let relationQuery = createSupabaseAdmin()
     .from("knowledge_relations")
     .select("from_object_id,to_object_id,relation_type,confidence")
     .in("from_object_id", objectIds)
@@ -117,11 +126,15 @@ export async function expandRelations(
     ])
     .gte("confidence", 0.55)
     .limit(12);
+  if (options.productId) relationQuery = relationQuery.eq("product_id", options.productId);
+  const { data, error } = await relationQuery;
   if (error || !data?.length) return [];
   const rows = data as Array<{ to_object_id: string; relation_type: string }>;
   const chunks = await fetchChunksForObjects(
     rows.map((row) => row.to_object_id),
     "relation",
+    undefined,
+    options.productId,
   );
   const relationByTarget = new Map(rows.map((row) => [row.to_object_id, row.relation_type]));
   return chunks.map((chunk) => ({
@@ -129,3 +142,5 @@ export async function expandRelations(
     relationType: relationByTarget.get(chunk.knowledgeObjectId || "") || chunk.relationType,
   }));
 }
+
+

@@ -24,6 +24,8 @@ const vus = Number(args.get("vus") || 25);
 const durationSeconds = Number(args.get("duration") || 60);
 const delayMs = Number(args.get("delay-ms") || 250);
 const payloadKb = Number(args.get("payload-kb") || 1);
+const productId = args.get("product-id") || process.env.PERFORMANCE_PRODUCT_ID || null;
+const productSlug = args.get("product-slug") || process.env.PERFORMANCE_PRODUCT_SLUG || "fatescipol-grado";
 const out = args.get("out") || `reports/performance/sprint22-${scenario}-${Date.now()}.json`;
 
 if (!token) {
@@ -59,8 +61,10 @@ async function oneRequest() {
       headers: {
         "Content-Type": "application/json",
         "X-Performance-Test-Token": token,
+        "X-Academic-Product-Slug": productSlug,
+        ...(productId ? { "X-Academic-Product-Id": productId } : {}),
       },
-      body: JSON.stringify({ scenario, delayMs, payloadKb }),
+      body: JSON.stringify({ scenario, delayMs, payloadKb, productId, productSlug }),
     });
     const elapsed = performance.now() - started;
     latencies.push(elapsed);
@@ -94,6 +98,8 @@ const result = {
   mode: "simulated-openai-free",
   baseUrl,
   scenario,
+  productId,
+  productSlug,
   vus,
   durationSeconds,
   completed,
@@ -120,3 +126,4 @@ const result = {
 await mkdir(out.split(/[\\/]/).slice(0, -1).join("/") || ".", { recursive: true });
 await writeFile(out, JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
+
