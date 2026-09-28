@@ -162,19 +162,25 @@ begin
   end loop;
 end $$;
 
-insert into public.user_product_licenses (user_id, product_id, status, starts_at, expires_at, license_type, source_license_id, metadata)
-select
-  sl.user_id,
-  '00000000-0000-4000-8000-000000000101'::uuid,
-  sl.status,
-  sl.activated_at,
-  sl.expires_at,
-  case when sl.duration_days <= 31 then 'monthly' else 'custom' end,
-  sl.id,
-  jsonb_build_object('source','student_licenses_backfill','duration_days',sl.duration_days)
-from public.student_licenses sl
-where to_regclass('public.student_licenses') is not null
-on conflict do nothing;
+do $$
+begin
+  if to_regclass('public.student_licenses') is not null then
+    execute $sql$
+      insert into public.user_product_licenses (user_id, product_id, status, starts_at, expires_at, license_type, source_license_id, metadata)
+      select
+        sl.user_id,
+        '00000000-0000-4000-8000-000000000101'::uuid,
+        sl.status,
+        sl.activated_at,
+        sl.expires_at,
+        case when sl.duration_days <= 31 then 'monthly' else 'custom' end,
+        sl.id,
+        jsonb_build_object('source','student_licenses_backfill','duration_days',sl.duration_days)
+      from public.student_licenses sl
+      on conflict do nothing
+    $sql$;
+  end if;
+end $$;
 
 insert into public.user_product_licenses (user_id, product_id, status, starts_at, expires_at, license_type, metadata)
 select
@@ -330,3 +336,4 @@ comment on table public.academic_products is 'Sprint 22B: catálogo multi-curso/
 comment on column public.knowledge_chunks.product_id is 'Aislamiento RAG por producto académico. Null no debe usarse en nuevas publicaciones.';
 
 commit;
+
