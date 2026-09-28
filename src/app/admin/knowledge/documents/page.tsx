@@ -4,7 +4,7 @@ import { AdminNav } from "@/components/admin/admin-nav";
 import { KnowledgeUploadForm } from "@/components/admin/knowledge-management";
 import { requireAdmin } from "@/lib/auth/session";
 import { listKnowledgeDocuments } from "@/lib/admin/knowledge-management";
-import { listAcademicProducts } from "@/lib/products/products";
+import { defaultProduct, listAcademicProducts } from "@/lib/products/products";
 
 function statusLabel(value: unknown) {
   const labels: Record<string, string> = {
@@ -21,10 +21,21 @@ function statusLabel(value: unknown) {
 
 export default async function AdminKnowledgeDocumentsPage() {
   const profile = await requireAdmin();
-  const [data, products] = await Promise.all([
+  const [dataResult, productsResult] = await Promise.allSettled([
     listKnowledgeDocuments(),
     listAcademicProducts({ includeInactive: false }),
   ]);
+  const data =
+    dataResult.status === "fulfilled"
+      ? dataResult.value
+      : {
+          documents: [],
+          totals: { documents: 0, versions: 0, published: 0, reviewRequired: 0, jobs: 0 },
+          migrationMissing: true,
+          migrationName: "202609230003_sprint18_knowledge_management.sql",
+          warning: dataResult.reason instanceof Error ? dataResult.reason.message : "No se pudo cargar el catálogo académico.",
+        };
+  const products = productsResult.status === "fulfilled" ? productsResult.value : [defaultProduct()];
   return (
     <AppShell profile={profile} active="admin">
       <AdminNav />
@@ -36,7 +47,8 @@ export default async function AdminKnowledgeDocumentsPage() {
         </div>
         <Link className="button secondary" href="/admin/knowledge">Centro de conocimiento</Link>
       </div>
-      {data.migrationMissing && <p className="notice error">Falta aplicar la migración {data.migrationName} en Supabase.</p>}
+      {data.migrationMissing && <p className="notice error">Falta aplicar o completar la migración {data.migrationName} en Supabase.</p>}
+      {data.warning && <p className="notice warning">Detalle técnico: {data.warning}</p>}
       <section className="panel admin-section">
         <div className="section-heading"><h2>Nueva fuente</h2><span>El archivo se almacena privado y se procesa bajo demanda</span></div>
         <KnowledgeUploadForm products={products} />

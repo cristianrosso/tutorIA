@@ -26,6 +26,7 @@ export type KnowledgeAdminSummary = {
   };
   migrationMissing: boolean;
   migrationName: string;
+  warning?: string;
 };
 
 export type KnowledgeDocumentDetail = {
@@ -140,6 +141,23 @@ function assertSupportedFile(file: File) {
     throw new Error("El archivo supera el límite de 50 MB.");
 }
 
+function emptyKnowledgeSummary(input?: { migrationMissing?: boolean; warning?: string }): KnowledgeAdminSummary {
+  return {
+    documents: [],
+    totals: { documents: 0, versions: 0, published: 0, reviewRequired: 0, jobs: 0 },
+    migrationMissing: Boolean(input?.migrationMissing),
+    migrationName: MIGRATION_NAME,
+    warning: input?.warning,
+  };
+}
+
+function isKnowledgeSchemaIssue(message?: string | null) {
+  return /(knowledge_admin_documents|knowledge_document_versions|knowledge_processing_jobs|knowledge_publications|product_id|academic_products|relationship|schema cache|does not exist|column .* does not exist)/i.test(
+    String(message || ""),
+  );
+}
+
+
 async function createJob(input: {
   documentId: string;
   versionId: string;
@@ -190,7 +208,7 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
 
   let rows: Array<Record<string, unknown>> = ((productAwareQuery.data || []) as unknown) as Array<Record<string, unknown>>;
   let queryError = productAwareQuery.error;
-  if (queryError && /(product_id|academic_products|relationship|schema cache)/i.test(queryError.message)) {
+  if (queryError && isKnowledgeSchemaIssue(queryError.message)) {
     const fallback = await db
       .from("knowledge_admin_documents")
       .select("id,title,description,source_label,document_kind,status,active_version_id,created_at,updated_at")
@@ -201,15 +219,10 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
   }
 
   if (queryError) {
-    if (/knowledge_admin_documents/i.test(queryError.message)) {
-      return {
-        documents: [],
-        totals: { documents: 0, versions: 0, published: 0, reviewRequired: 0, jobs: 0 },
-        migrationMissing: true,
-        migrationName: MIGRATION_NAME,
-      };
+    if (isKnowledgeSchemaIssue(queryError.message)) {
+      return emptyKnowledgeSummary({ migrationMissing: true, warning: queryError.message });
     }
-    throw new Error(queryError.message);
+    return emptyKnowledgeSummary({ warning: queryError.message });
   }
 
   const documents = rows;
@@ -221,13 +234,18 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
         .in("document_id", documentIds)
         .order("created_at", { ascending: false })
     : { data: [], error: null };
-  if (versionsError) throw new Error(versionsError.message);
   const versionsByDocument = new Map<string, Array<Record<string, unknown>>>();
-  for (const version of (versions || []) as Array<Record<string, unknown>>) {
-    const documentId = String(version.document_id || "");
-    const current = versionsByDocument.get(documentId) || [];
-    current.push(version);
-    versionsByDocument.set(documentId, current);
+  if (versionsError) {
+    if (!isKnowledgeSchemaIssue(versionsError.message)) {
+      return emptyKnowledgeSummary({ warning: versionsError.message });
+    }
+  } else {
+    for (const version of (versions || []) as Array<Record<string, unknown>>) {
+      const documentId = String(version.document_id || "");
+      const current = versionsByDocument.get(documentId) || [];
+      current.push(version);
+      versionsByDocument.set(documentId, current);
+    }
   }
   const documentsWithVersions = documents.map((doc) => ({
     ...doc,
@@ -246,8 +264,9 @@ export async function listKnowledgeDocuments(): Promise<KnowledgeAdminSummary> {
       reviewRequired: documents.filter((doc) => doc.status === "review_required").length,
       jobs: 0,
     },
-    migrationMissing: false,
+    migrationMissing: Boolean(versionsError && isKnowledgeSchemaIssue(versionsError.message)),
     migrationName: MIGRATION_NAME,
+    warning: versionsError?.message,
   };
 }
 
