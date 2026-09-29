@@ -23,8 +23,8 @@ export default async function UnitDetailPage({
   const resolved = await params;
   const query = await searchParams;
   const productContext = await getStudentProductContext(profile, query.product);
-  const unitNumber = Math.min(15, Math.max(1, Number(resolved.id) || 1));
-  const unit = await getUnitByNumber(unitNumber);
+  const unitNumber = Math.min(99, Math.max(1, Number(resolved.id) || 1));
+  const unit = await getUnitByNumber(unitNumber, productContext.activeProduct.id);
   const topics = await getUnitTopics(unitNumber, productContext.activeProduct.id);
   return (
     <AppShell profile={profile} active="units">

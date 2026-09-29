@@ -80,6 +80,27 @@ function unitName(unitNumber?: number | null) {
   return OFFICIAL_UNITS.find((unit) => unit.number === unitNumber)?.name || null;
 }
 
+const DEFAULT_KNOWLEDGE_PRODUCT_ID = "00000000-0000-4000-8000-000000000101";
+
+function publicationUnitName(input: {
+  productId: string;
+  unitNumber?: number | null;
+  version: Record<string, unknown>;
+  document?: Record<string, unknown> | null;
+  chunks?: ReturnType<typeof splitDocument>;
+}) {
+  if (input.productId === DEFAULT_KNOWLEDGE_PRODUCT_ID) {
+    return unitName(input.unitNumber) || (input.unitNumber ? `Unidad ${input.unitNumber}` : "Documento general");
+  }
+  const topicName = String(input.version.topic_name || "").trim();
+  if (topicName) return topicName;
+  const firstChunkTitle = input.chunks?.map((chunk) => chunk.section_name).find(Boolean);
+  if (firstChunkTitle) return String(firstChunkTitle);
+  const title = String(input.document?.title || "").trim();
+  if (title) return title;
+  return input.unitNumber ? `Unidad ${input.unitNumber}` : "Documento general";
+}
+
 async function extractTextFromFile(input: { name: string; type?: string }, buffer: Buffer) {
   const ext = extensionOf(input.name);
   if (ext === "txt" || input.type === "text/plain") {
@@ -498,9 +519,16 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
     const chunks = splitDocument(text);
     if (!chunks.length) throw new Error("No hay fragmentos válidos para publicar.");
     const report = buildValidationReport({ text, chunks, unitNumber: version.unit_number as number | null });
-    const productId = String(version.product_id || document?.product_id || "00000000-0000-4000-8000-000000000101");
+    const productId = String(version.product_id || document?.product_id || DEFAULT_KNOWLEDGE_PRODUCT_ID);
     const sourceLabel = String(document?.source_label || "Documento académico FATESCIPOL");
     const title = String(document?.title || version.original_filename || "Documento académico");
+    const resolvedUnitName = publicationUnitName({
+      productId,
+      unitNumber: version.unit_number as number | null,
+      version,
+      document: document as Record<string, unknown> | null,
+      chunks,
+    });
     const { data: academicDocument, error: academicError } = await db
       .from("academic_documents")
       .insert({
@@ -532,9 +560,9 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
           academic_document_id: academicDocument.id,
           unit_id: unitRow?.id || null,
           unit_number: version.unit_number,
-          unit_name: unitName(version.unit_number as number) || `Unidad ${version.unit_number}`,
+          unit_name: resolvedUnitName,
           status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
-          hierarchy: { unit_number: version.unit_number, unit_name: unitName(version.unit_number as number) },
+          hierarchy: { unit_number: version.unit_number, unit_name: resolvedUnitName },
           validation: report,
           source_hash: sha256(`${version.unit_number}\n${text}`),
           product_id: productId,
@@ -580,7 +608,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
             sequence_index: topicMap.size,
             hierarchy: {
               unit_number: version.unit_number || null,
-              unit_name: unitName(version.unit_number as number) || null,
+              unit_name: resolvedUnitName,
               topic_number: number,
               topic_name: name,
             },
@@ -604,7 +632,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
       });
       const hierarchy = {
         unit_number: version.unit_number || null,
-        unit_name: unitName(version.unit_number as number) || null,
+        unit_name: resolvedUnitName,
         topic_number: number,
         topic_name: name,
         section_number: chunk.section,

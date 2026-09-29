@@ -14,11 +14,9 @@ export default async function TutorPage({
 }) {
   const profile = await requireStudent();
   const params = await searchParams;
-  const unitNumber = Math.min(15, Math.max(1, Number(params.unit) || 1));
-  const [unit, productContext] = await Promise.all([
-    getUnitByNumber(unitNumber),
-    getStudentProductContext(profile, params.product),
-  ]);
+  const unitNumber = Math.min(99, Math.max(1, Number(params.unit) || 1));
+  const productContext = await getStudentProductContext(profile, params.product);
+  const unit = await getUnitByNumber(unitNumber, productContext.activeProduct.id);
   const section = params.section?.slice(0, 180);
   const initialMessages = params.conversation
     ? await readInitialMessages(params.conversation, profile.id)

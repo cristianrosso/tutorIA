@@ -29,7 +29,7 @@ export default async function PracticePage({ searchParams }: { searchParams: Pro
       <AssessmentPracticePanel
         units={catalog.units}
         topics={catalog.topics}
-        initialUnit={Number(params.unit) || 1}
+        initialUnit={Math.max(1, Number(params.unit) || 1)}
         productId={productContext.activeProduct.id}
         productSlug={productContext.activeProduct.slug}
       />

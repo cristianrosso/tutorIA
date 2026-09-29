@@ -1,5 +1,8 @@
 import "server-only";
 import { createSupabaseServer } from "@/lib/supabase/server";
+import { createSupabaseAdmin } from "@/lib/supabase/admin";
+import { DEFAULT_PRODUCT_ID } from "@/lib/products/products";
+import { OFFICIAL_UNITS } from "@/lib/units";
 import { requireAdmin, requireProfile } from "@/lib/auth/session";
 import { accessProblem } from "@/lib/auth/rules";
 import { periodStart, summarizeUsage } from "@/lib/metrics";
@@ -23,8 +26,29 @@ export async function getUnits(): Promise<Unit[]> {
   return data as Unit[];
 }
 
-export async function getUnitByNumber(number: number): Promise<Unit> {
+export async function getUnitByNumber(number: number, productId?: string | null): Promise<Unit> {
   await requireProfile();
+  if (productId) {
+    const dbAdmin = createSupabaseAdmin();
+    let query = dbAdmin
+      .from("academic_units")
+      .select("id,unit_number,unit_name")
+      .eq("unit_number", number)
+      .eq("product_id", productId)
+      .order("created_at", { ascending: false });
+    const { data, error } = await query.limit(1);
+    if (!error && data?.length) {
+      const row = data[0];
+      const unit = {
+        id: String(row.id),
+        number: Number(row.unit_number),
+        name: String(row.unit_name || `Unidad ${row.unit_number}`),
+        enabled: true,
+      } as Unit;
+      const chunks = await getCourseChunkRows(productId);
+      return { ...unit, name: displayNameForCourseUnit(unit, chunks, productId) };
+    }
+  }
   const db = await createSupabaseServer();
   const { data, error } = await db
     .from("units")
@@ -41,7 +65,7 @@ function isMissingProductColumn(error: { message?: string; code?: string } | nul
 }
 
 async function getLegacyChunkRows(productId?: string | null): Promise<UnitTopicRow[]> {
-  const db = await createSupabaseServer();
+  const db = createSupabaseAdmin();
   let query = db
     .from("document_chunks")
     .select("unit_number,topic,section_name,section_title,section,content");
@@ -72,7 +96,7 @@ function firstRelation<T>(value: T | T[] | null | undefined) {
 }
 
 async function getKnowledgeChunkRows(productId?: string | null): Promise<UnitTopicRow[]> {
-  const db = await createSupabaseServer();
+  const db = createSupabaseAdmin();
   let query = db
     .from("knowledge_chunks")
     .select("content,source_content,metadata,academic_units(unit_number,unit_name),academic_topics(topic_number,topic_name)");
@@ -102,6 +126,58 @@ async function getCourseChunkRows(productId?: string | null) {
   return [...legacy, ...knowledge];
 }
 
+function firstTopicNameForUnit(chunks: UnitTopicRow[], unitNumber: number) {
+  for (const chunk of chunks) {
+    if (Number(chunk.unit_number) !== unitNumber) continue;
+    const name = getTopicName(chunk);
+    if (name && name.length > 3 && !isUnitHeadingTopic(name)) return name;
+  }
+  return null;
+}
+
+function isOfficialFatescipolUnitName(value: string) {
+  const normalized = normalizeTopicText(value).toLowerCase();
+  return OFFICIAL_UNITS.some((unit) => normalizeTopicText(unit.name).toLowerCase() === normalized);
+}
+
+function displayNameForCourseUnit(unit: Unit, chunks: UnitTopicRow[], productId?: string | null) {
+  if (!productId || productId === DEFAULT_PRODUCT_ID) return unit.name;
+  const detected = firstTopicNameForUnit(chunks, unit.number);
+  if (!detected) return unit.name;
+  if (!unit.name || /^unidad\s+\d+$/i.test(unit.name) || isOfficialFatescipolUnitName(unit.name)) return detected;
+  return unit.name;
+}
+
+type AcademicUnitRow = {
+  id: string;
+  unit_number: number;
+  unit_name: string | null;
+  product_id?: string | null;
+};
+
+async function getAcademicUnitsForProduct(productId?: string | null): Promise<Unit[]> {
+  if (!productId) return [];
+  const { data, error } = await createSupabaseAdmin()
+    .from("academic_units")
+    .select("id,unit_number,unit_name,product_id")
+    .eq("product_id", productId)
+    .order("unit_number", { ascending: true })
+    .order("created_at", { ascending: false });
+  if (error) return [];
+  const byNumber = new Map<number, Unit>();
+  for (const row of (data || []) as AcademicUnitRow[]) {
+    const number = Number(row.unit_number || 0);
+    if (!number || byNumber.has(number)) continue;
+    byNumber.set(number, {
+      id: String(row.id),
+      number,
+      name: String(row.unit_name || `Unidad ${number}`),
+      enabled: true,
+    } as Unit);
+  }
+  return [...byNumber.values()].sort((a, b) => a.number - b.number);
+}
+
 export async function getUnitsWithProgress(productId?: string | null): Promise<UnitProgressSummary[]> {
   const profile = await requireProfile();
   const db = await createSupabaseServer();
@@ -112,13 +188,26 @@ export async function getUnitsWithProgress(productId?: string | null): Promise<U
     )
     .eq("user_id", profile.id);
   if (productId) progressQuery = progressQuery.eq("product_id", productId);
-  const [{ data: units, error }, progressResult, chunks] =
+  const [legacyUnitsResult, academicUnits, progressResult, chunks] =
     await Promise.all([
       db.from("units").select("id,number,name,enabled").order("number"),
+      getAcademicUnitsForProduct(productId),
       progressQuery,
       getCourseChunkRows(productId),
     ]);
-  if (error || !units) throw new Error("No se pudieron cargar las unidades.");
+  if (legacyUnitsResult.error || !legacyUnitsResult.data) throw new Error("No se pudieron cargar las unidades.");
+  const chunkUnitNumbers = [...new Set((chunks || []).map((chunk) => Number(chunk.unit_number)).filter(Boolean))].sort((a, b) => a - b);
+  const synthesizedUnits = chunkUnitNumbers.map((number) => ({
+    id: `product-${productId || "default"}-unit-${number}`,
+    number,
+    name: firstTopicNameForUnit(chunks || [], number) || `Unidad ${number}`,
+    enabled: true,
+  }) as Unit);
+  const units = academicUnits.length
+    ? academicUnits
+    : productId && productId !== DEFAULT_PRODUCT_ID && synthesizedUnits.length
+      ? synthesizedUnits
+      : (legacyUnitsResult.data as Unit[]);
   const progress = progressResult.error && productId && isMissingProductColumn(progressResult.error)
     ? []
     : progressResult.data || [];
@@ -138,7 +227,7 @@ export async function getUnitsWithProgress(productId?: string | null): Promise<U
     if (topic) entry.topics.add(String(topic));
     chunkMap.set(number, entry);
   }
-  return (units as Unit[]).map((unit) => {
+  return units.map((unit) => {
     const p = progressByUnit.get(unit.id) as
       Record<string, number | string | null> | undefined;
     const activity =
@@ -151,6 +240,7 @@ export async function getUnitsWithProgress(productId?: string | null): Promise<U
     const chunkInfo = chunkMap.get(unit.number);
     return {
       ...unit,
+      name: displayNameForCourseUnit(unit, chunks || [], productId),
       status: String(p?.status || "sin_iniciar"),
       progress: calculated,
       topics: [...(chunkInfo?.topics || new Set<string>())].slice(0, 8),
