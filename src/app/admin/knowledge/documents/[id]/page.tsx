@@ -65,10 +65,10 @@ export default async function AdminKnowledgeDocumentDetailPage({
           {detail.versions.map((version) => (
             <article className="knowledge-version-card" key={String(version.id)}>
               <div>
-                <strong>{String(version.version_label)} · {String(version.original_filename)}</strong>
+                <strong>{String(version.version_label)} · {String(document.title)}</strong>
                 <span>{statusLabel(version.processing_status)} · extracción: {statusLabel(version.extraction_status)}</span>
                 <small>
-                  Unidad {String(version.unit_number || "general")} · Tema {String(version.topic_number || "sin tema")} · {Number(version.file_size_bytes || 0).toLocaleString("es-BO")} bytes
+                  Archivo: {String(version.original_filename)} · Unidad {String(version.unit_number || "general")} · Tema {String(version.topic_name || version.topic_number || "sin tema")} · {Number(version.file_size_bytes || 0).toLocaleString("es-BO")} bytes
                 </small>
               </div>
               <KnowledgeVersionActions

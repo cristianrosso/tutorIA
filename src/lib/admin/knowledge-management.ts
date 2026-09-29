@@ -39,16 +39,18 @@ export type KnowledgeDocumentDetail = {
   publications: Array<Record<string, unknown>>;
 };
 
+const emptyToUndefined = (value: unknown) => String(value || "").trim() || undefined;
+
 const uploadSchema = z.object({
   productId: z.uuid(),
   title: z.string().trim().min(3).max(180),
-  description: z.string().trim().max(800).optional(),
+  description: z.preprocess(emptyToUndefined, z.string().trim().max(800).optional()),
   sourceLabel: z.string().trim().min(3).max(240),
   documentKind: z.enum(["COMPENDIUM", "SUPPLEMENT", "CORRECTION", "OTHER"]),
   versionLabel: z.string().trim().min(1).max(80),
-  unitNumber: z.coerce.number().int().min(1).max(15).optional(),
-  topicNumber: z.string().trim().max(40).optional(),
-  topicName: z.string().trim().max(180).optional(),
+  unitNumber: z.preprocess(emptyToUndefined, z.coerce.number().int().min(1).max(60).optional()),
+  topicNumber: z.preprocess(emptyToUndefined, z.string().trim().max(40).optional()),
+  topicName: z.preprocess(emptyToUndefined, z.string().trim().max(180).optional()),
 });
 
 function sha256(buffer: Buffer | string) {
@@ -861,11 +863,11 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
         .insert({
           academic_document_id: academicDocument.id,
           unit_number: 1,
-          unit_name: "Documento general en revisión",
+          unit_name: resolvedUnitName,
           status: "REVIEW_REQUIRED",
-          hierarchy: { unit_number: null, unit_name: "Documento general" },
+          hierarchy: { unit_number: 1, unit_name: resolvedUnitName },
           validation: { ...report, requires_review: true },
-          source_hash: sha256(text),
+          source_hash: sha256(`${resolvedUnitName}\n${text}`),
           product_id: productId,
         })
         .select("id")

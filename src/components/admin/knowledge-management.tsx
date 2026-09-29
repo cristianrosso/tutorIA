@@ -68,7 +68,7 @@ export function KnowledgeUploadForm({ products = [] }: { products?: AcademicProd
           Unidad relacionada
           <select name="unitNumber" defaultValue="">
             <option value="">Documento general</option>
-            {Array.from({ length: 15 }, (_, index) => index + 1).map((unit) => (
+            {Array.from({ length: 30 }, (_, index) => index + 1).map((unit) => (
               <option key={unit} value={unit}>Unidad {unit}</option>
             ))}
           </select>
