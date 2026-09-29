@@ -678,16 +678,23 @@ export async function processKnowledgeVersion(versionId: string, userId: string)
       .eq("id", version.document_id)
       .maybeSingle();
     let intelligence: Awaited<ReturnType<typeof buildIntelligentAnnotations>> | null = null;
-    try {
-      intelligence = await buildIntelligentAnnotations({
-        chunks,
-        title: String(document?.title || version.original_filename || "Documento académico"),
-        sourceLabel: String(document?.source_label || "Documento académico"),
-        userId,
-      });
-    } catch (error) {
+    const runAiDuringProcess = process.env.KNOWLEDGE_AI_DURING_PROCESS === "true";
+    if (runAiDuringProcess) {
+      try {
+        intelligence = await buildIntelligentAnnotations({
+          chunks,
+          title: String(document?.title || version.original_filename || "Documento académico"),
+          sourceLabel: String(document?.source_label || "Documento académico"),
+          userId,
+        });
+      } catch (error) {
+        validation.warnings.push(
+          `La extracción básica terminó, pero la lectura inteligente falló: ${error instanceof Error ? error.message : "error desconocido"}`,
+        );
+      }
+    } else {
       validation.warnings.push(
-        `La extracción básica terminó, pero la lectura inteligente falló: ${error instanceof Error ? error.message : "error desconocido"}`,
+        "Lectura inteligente profunda diferida para evitar timeout; el documento queda estructurado y puede publicarse con metadata académica determinística.",
       );
     }
     const aiAnnotations = intelligence?.annotations || [];
