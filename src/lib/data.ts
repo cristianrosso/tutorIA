@@ -37,6 +37,7 @@ export async function getUnitByNumber(number: number, productId?: string | null)
       .eq("product_id", productId)
       .order("created_at", { ascending: false });
     const { data, error } = await query.limit(1);
+    const chunks = await getCourseChunkRows(productId);
     if (!error && data?.length) {
       const row = data[0];
       const unit = {
@@ -45,8 +46,16 @@ export async function getUnitByNumber(number: number, productId?: string | null)
         name: String(row.unit_name || `Unidad ${row.unit_number}`),
         enabled: true,
       } as Unit;
-      const chunks = await getCourseChunkRows(productId);
       return { ...unit, name: displayNameForCourseUnit(unit, chunks, productId) };
+    }
+    if (productId !== DEFAULT_PRODUCT_ID) {
+      const detected = firstTopicNameForUnit(chunks, number);
+      return {
+        id: `product-${productId}-unit-${number}`,
+        number,
+        name: detected || "Contenido pendiente de publicación",
+        enabled: Boolean(detected),
+      } as Unit;
     }
   }
   const db = await createSupabaseServer();
@@ -205,7 +214,7 @@ export async function getUnitsWithProgress(productId?: string | null): Promise<U
   }) as Unit);
   const units = academicUnits.length
     ? academicUnits
-    : productId && productId !== DEFAULT_PRODUCT_ID && synthesizedUnits.length
+    : productId && productId !== DEFAULT_PRODUCT_ID
       ? synthesizedUnits
       : (legacyUnitsResult.data as Unit[]);
   const progress = progressResult.error && productId && isMissingProductColumn(progressResult.error)

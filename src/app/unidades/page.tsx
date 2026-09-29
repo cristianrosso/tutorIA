@@ -47,8 +47,9 @@ export default async function UnitsPage({
         activeProduct={productContext.activeProduct}
         basePath="/unidades"
       />
-      <div className="unit-grid compact-units">
-        {units.map((unit) => (
+      {units.length ? (
+        <div className="unit-grid compact-units">
+          {units.map((unit) => (
           <article key={unit.id} className="unit-card enabled">
             <div className="unit-top">
               <span className="unit-number">
@@ -97,7 +98,18 @@ export default async function UnitsPage({
             </div>
           </article>
         ))}
-      </div>
+        </div>
+      ) : (
+        <section className="panel">
+          <div className="section-heading">
+            <h2>Sin unidades publicadas para este curso</h2>
+            <span>Curso activo: {productContext.activeProduct.short_name}</span>
+          </div>
+          <p className="notice error">
+            Este curso tiene preparación asignada, pero todavía no tiene material publicado al RAG/conocimiento. En Administración → Conocimiento debes procesar y publicar el documento cargado para que aparezcan sus unidades y temas aquí.
+          </p>
+        </section>
+      )}
     </AppShell>
   );
 }
