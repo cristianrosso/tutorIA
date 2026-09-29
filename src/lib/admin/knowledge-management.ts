@@ -249,8 +249,9 @@ async function buildIntelligentAnnotations(input: {
   sourceLabel: string;
   userId: string;
 }) {
-  const maxChunks = Number(process.env.KNOWLEDGE_AI_MAX_CHUNKS || 90);
+  const maxChunks = Number(process.env.KNOWLEDGE_AI_MAX_CHUNKS || 12);
   const batchSize = Number(process.env.KNOWLEDGE_AI_BATCH_SIZE || 6);
+  const maxBatches = Number(process.env.KNOWLEDGE_AI_MAX_BATCHES || 1);
   const selected = input.chunks.slice(0, Math.max(0, maxChunks));
   if (!selected.length) return { annotations: [] as IntelligentChunkAnnotation[], usage: null as null | { model: string; inputTokens: number; outputTokens: number; estimatedCost: number } };
   const annotations: IntelligentChunkAnnotation[] = [];
@@ -259,17 +260,17 @@ async function buildIntelligentAnnotations(input: {
   let totalOutputTokens = 0;
   let totalEstimatedCost = 0;
   const model = process.env.OPENAI_KNOWLEDGE_MODEL || process.env.OPENAI_ECONOMY_MODEL || process.env.OPENAI_FAST_MODEL || process.env.OPENAI_MODEL || "gpt-5.6-luna";
-  for (let offset = 0; offset < selected.length; offset += batchSize) {
+  for (let offset = 0, batchNumber = 0; offset < selected.length && batchNumber < maxBatches; offset += batchSize, batchNumber += 1) {
     const batch = selected.slice(offset, offset + batchSize);
     const payload = batch.map((chunk) => ({
       chunk_index: chunk.chunk_index,
       heading: chunk.section_name || chunk.topic || null,
       section: chunk.section,
-      text: limitText(chunk.content, 1600),
+      text: limitText(chunk.content, 1100),
     }));
     const completion = await generateTutorText({
       model,
-      maxOutputTokens: 2200,
+      maxOutputTokens: 1600,
       system: "Eres un analista académico. Lees material fuente y produces solo metadata pedagógica para RAG. No reescribes ni sustituyes el texto oficial.",
       user: `Documento: ${input.title}
 Fuente: ${input.sourceLabel}
@@ -317,6 +318,42 @@ ${JSON.stringify(payload)}`,
   return { annotations, usage };
 }
 
+function fallbackAnnotationForChunk(chunk: ReturnType<typeof splitDocument>[number]): IntelligentChunkAnnotation {
+  const title = chunk.section_name || chunk.topic || firstMeaningfulLine(chunk.content) || "Contenido académico";
+  const concept = title.replace(/^\d+(?:\.\d+)*\s*[.-]?\s*/, "").trim();
+  const keywords = Array.from(new Set([concept, ...chunk.content.split(/\s+/).slice(0, 80)]
+    .map((item) => item.toLowerCase().replace(/[^a-záéíóúñ0-9]/gi, ""))
+    .filter((item) => item.length > 4)))
+    .slice(0, 10);
+  return {
+    chunk_index: chunk.chunk_index,
+    topic_title: concept,
+    section_title: chunk.section_name || concept,
+    concept,
+    content_type: inferContentType(chunk.content),
+    keywords,
+    search_terms: keywords,
+    learning_objectives: [`Explicar ${concept}`, `Aplicar ${concept} en contexto académico`].slice(0, 2),
+    explanation_focus: `Explicar ${concept} con base en el documento fuente y un ejemplo aplicado.`,
+    oral_exam_focus: `Responder qué es ${concept}, sus elementos principales y su utilidad práctica.`,
+    confidence: chunk.section_name ? 0.62 : 0.52,
+  };
+}
+
+function firstMeaningfulLine(text: string) {
+  return text
+    .split(/\n+/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .find((line) => line.length >= 8 && line.length <= 140) || null;
+}
+function inferContentType(text: string) {
+  if (/\b(art[ií]culo|ley|decreto|reglamento|norma|resoluci[oó]n)\b/i.test(text)) return "NORMATIVE";
+  if (/\b(pasos|procedimiento|proceso|etapas|fases)\b/i.test(text)) return "PROCEDURE";
+  if (/\b(se define|es el|es la|concepto|definici[oó]n)\b/i.test(text)) return "DEFINITION";
+  if (/\b(clasificaci[oó]n|tipos|clases)\b/i.test(text)) return "CLASSIFICATION";
+  if (/[:;]\s*(primero|1\.|a\)|-)/i.test(text)) return "ENUMERATION";
+  return "OTHER";
+}
 function annotationMap(report: Record<string, unknown> | null | undefined) {
   const raw = report?.ai_annotations;
   const list = Array.isArray(raw) ? raw : [];
@@ -653,11 +690,18 @@ export async function processKnowledgeVersion(versionId: string, userId: string)
         `La extracción básica terminó, pero la lectura inteligente falló: ${error instanceof Error ? error.message : "error desconocido"}`,
       );
     }
+    const aiAnnotations = intelligence?.annotations || [];
     const enrichedValidation = {
       ...validation,
-      ai_processed: Boolean(intelligence?.annotations.length),
-      ai_annotations: intelligence?.annotations || [],
+      ai_processed: Boolean(aiAnnotations.length),
+      ai_annotations: aiAnnotations,
       ai_usage: intelligence?.usage || null,
+      warnings: [
+        ...validation.warnings,
+        ...(aiAnnotations.length && aiAnnotations.length < chunks.length
+          ? [`Lectura inteligente aplicada a ${aiAnnotations.length} de ${chunks.length} fragmentos; el resto usará metadata determinística al publicar.`]
+          : []),
+      ],
     };
 
     await db
@@ -816,7 +860,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
 
     const topicMap = new Map<string, string>();
     for (const [index, chunk] of chunks.entries()) {
-      const annotation = annotationForChunk(annotations, chunk.chunk_index);
+      const annotation = annotationForChunk(annotations, chunk.chunk_index) || fallbackAnnotationForChunk(chunk);
       const name = annotationTitle(annotation, topicTitle(version, chunk));
       const number = chunk.section || (version.topic_number as string | null) || null;
       const topicKey = `${number || ""}|${name}`;
