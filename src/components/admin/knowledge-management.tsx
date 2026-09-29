@@ -123,7 +123,7 @@ function VersionActionButton({
       <button className={`button ${icon === "rollback" ? "danger-button" : icon === "publish" ? "primary" : "secondary"}`} disabled={pending || disabled}>
         <Icon size={15} /> {pending ? "Trabajando…" : label}
       </button>
-      {state.message && <small className={state.ok ? "inline-success" : "inline-error"}>{state.message}</small>}
+      {state.message && !state.ok && <small className="inline-error">{state.message}</small>}
     </form>
   );
 }

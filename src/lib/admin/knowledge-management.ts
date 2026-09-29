@@ -800,14 +800,21 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
     const baseReport = buildValidationReport({ text, chunks, unitNumber: version.unit_number as number | null });
     const storedReport = (version.validation_report || {}) as Record<string, unknown>;
     const annotations = annotationMap(storedReport);
+    const detectedUnitNumbers = Array.from(new Set(chunks.map((chunk) => inferUnitNumberFromChunk(chunk)).filter(Boolean)));
+    const normalizedWarnings = baseReport.warnings.filter(
+      (warning) => !(detectedUnitNumbers.length && warning.includes("No se indicó unidad")),
+    );
     const report = {
       ...baseReport,
       ai_processed: Boolean(annotations.size),
       ai_annotations: Array.isArray(storedReport.ai_annotations) ? storedReport.ai_annotations : [],
       ai_usage: storedReport.ai_usage || null,
       warnings: [
-        ...baseReport.warnings,
-        ...(annotations.size ? [] : ["Publicación sin lectura inteligente previa; vuelve a Procesar para mejorar estructura pedagógica."]),
+        ...normalizedWarnings,
+        ...(detectedUnitNumbers.length && !version.unit_number
+          ? [`Unidades detectadas desde encabezados del documento: ${detectedUnitNumbers.join(", ")}.`]
+          : []),
+        ...(annotations.size ? [] : ["Publicación sin lectura inteligente previa; se usó metadata determinística basada en títulos y subtítulos del documento."]),
       ],
     };
     const productId = String(version.product_id || document?.product_id || DEFAULT_KNOWLEDGE_PRODUCT_ID);
