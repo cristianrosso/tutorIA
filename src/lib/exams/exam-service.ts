@@ -57,6 +57,8 @@ export async function createExam(profile: Profile, rawConfig: unknown) {
       questionType: normalizeExamQuestionType(config.questionType, config.examMode),
       difficulty: normalizeExamDifficulty(config.difficulty, chunkIndex),
       count: chunk.count,
+      productId: config.productId || null,
+      productSlug: config.productSlug || null,
     });
     const { data: assigned, error: assignedError } = await db
       .from("assessment_session_questions")

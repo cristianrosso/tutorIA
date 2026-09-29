@@ -16,6 +16,8 @@ export const createExamSchema = z.object({
   difficulty: z.union([z.enum(assessmentDifficulties), z.literal("mixed")]).default("basic"),
   count: z.coerce.number().int().min(1).max(50).default(5),
   durationMinutes: z.union([z.literal(0), z.literal(15), z.literal(30), z.literal(60), z.literal(90)]).default(0),
+  productId: z.uuid().optional().nullable(),
+  productSlug: z.string().trim().max(80).optional().nullable(),
 });
 
 export type CreateExamConfig = z.infer<typeof createExamSchema>;

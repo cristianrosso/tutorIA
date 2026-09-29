@@ -1,25 +1,35 @@
 import { BookOpen } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { TutorForm } from "@/components/tutor-form";
+import { StudentCourseSwitcher } from "@/components/student-course-switcher";
 import { requireStudent } from "@/lib/auth/session";
 import { getUnitByNumber } from "@/lib/data";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
+import { getStudentProductContext } from "@/lib/products/selection";
 
 export default async function TutorPage({
   searchParams,
 }: {
-  searchParams: Promise<{ unit?: string; section?: string; conversation?: string }>;
+  searchParams: Promise<{ unit?: string; section?: string; conversation?: string; product?: string }>;
 }) {
   const profile = await requireStudent();
   const params = await searchParams;
   const unitNumber = Math.min(15, Math.max(1, Number(params.unit) || 1));
-  const unit = await getUnitByNumber(unitNumber);
+  const [unit, productContext] = await Promise.all([
+    getUnitByNumber(unitNumber),
+    getStudentProductContext(profile, params.product),
+  ]);
   const section = params.section?.slice(0, 180);
   const initialMessages = params.conversation
     ? await readInitialMessages(params.conversation, profile.id)
     : [];
   return (
     <AppShell profile={profile} active="tutor">
+      <StudentCourseSwitcher
+        products={productContext.products}
+        activeProduct={productContext.activeProduct}
+        basePath={`/tutor?unit=${unitNumber}`}
+      />
       <div className="page-heading">
         <div>
           <span className="eyebrow">TUTOR IA · RAG POR UNIDAD</span>
@@ -27,8 +37,8 @@ export default async function TutorPage({
             Tutor IA<span className="heading-dot">.</span>
           </h1>
           <p>
-            Pregunta sobre Unidad {unit.number}, {unit.name}. El tutor filtra el
-            compendio por unidad y prioriza el tema seleccionado.
+            Pregunta sobre Unidad {unit.number}, {unit.name}, dentro del curso {productContext.activeProduct.short_name}. El tutor filtra el
+            compendio por curso, unidad y tema seleccionado.
           </p>
         </div>
         <span className="badge">
@@ -40,6 +50,8 @@ export default async function TutorPage({
         section={section}
         initialConversationId={params.conversation}
         initialMessages={initialMessages}
+        productId={productContext.activeProduct.id}
+        productSlug={productContext.activeProduct.slug}
       />
     </AppShell>
   );

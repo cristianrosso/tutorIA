@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { BookOpen, ClipboardCheck, GraduationCap, Mic } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { StudentCourseSwitcher } from "@/components/student-course-switcher";
 import { requireProfile } from "@/lib/auth/session";
 import { getUnitsWithProgress } from "@/lib/data";
+import { getStudentProductContext, withProduct } from "@/lib/products/selection";
 
 function statusLabel(status?: string) {
   const labels: Record<string, string> = {
@@ -15,25 +17,36 @@ function statusLabel(status?: string) {
   return labels[status || "sin_iniciar"] || "Sin iniciar";
 }
 
-export default async function UnitsPage() {
+export default async function UnitsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
   const profile = await requireProfile();
-  const units = await getUnitsWithProgress();
+  const params = await searchParams;
+  const productContext = await getStudentProductContext(profile, params.product);
+  const units = await getUnitsWithProgress(productContext.activeProduct.id);
   return (
     <AppShell profile={profile} active="units">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">COMPENDIO FATESCIPOL 2026</span>
+          <span className="eyebrow">{productContext.activeProduct.short_name}</span>
           <h1>
-            15 unidades temáticas<span className="heading-dot">.</span>
+            Contenidos del curso<span className="heading-dot">.</span>
           </h1>
           <p>
-            Selecciona una unidad para estudiar, practicar o rendir simulacro.
+            Selecciona una unidad dentro de {productContext.activeProduct.name}.
           </p>
         </div>
         <span className="badge">
-          {units.filter((u) => u.enabled).length} de 15 habilitadas
+          {units.filter((u) => u.chunks > 0).length} con material
         </span>
       </div>
+      <StudentCourseSwitcher
+        products={productContext.products}
+        activeProduct={productContext.activeProduct}
+        basePath="/unidades"
+      />
       <div className="unit-grid compact-units">
         {units.map((unit) => (
           <article key={unit.id} className="unit-card enabled">
@@ -58,25 +71,25 @@ export default async function UnitsPage() {
             </span>
             <div className="unit-actions">
               <Link
-                href={`/unidad/${unit.number}`}
+                href={withProduct(`/unidad/${unit.number}`, productContext.activeProduct)}
                 className="button secondary"
               >
                 <BookOpen size={15} /> Estudiar
               </Link>
               <Link
-                href={`/tutor?unit=${unit.number}`}
+                href={withProduct(`/tutor?unit=${unit.number}`, productContext.activeProduct)}
                 className="button secondary"
               >
                 <Mic size={15} /> Hablar
               </Link>
               <Link
-                href={`/practica?unit=${unit.number}`}
+                href={withProduct(`/practica?unit=${unit.number}`, productContext.activeProduct)}
                 className="button primary"
               >
                 <ClipboardCheck size={15} /> Práctica
               </Link>
               <Link
-                href={`/simulacro?unit=${unit.number}`}
+                href={withProduct(`/simulacro?unit=${unit.number}`, productContext.activeProduct)}
                 className="button secondary"
               >
                 <GraduationCap size={15} /> Simulacro

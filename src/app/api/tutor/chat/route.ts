@@ -5,12 +5,15 @@ import { generateTutorResponse } from "@/lib/tutor/tutor-service";
 import { pedagogicalModes } from "@/lib/pedagogy/types";
 import { createAssessmentSession } from "@/lib/assessment/question-generator";
 import { getAssessmentSession } from "@/lib/assessment/session-service";
+import { userCanAccessProduct } from "@/lib/products/products";
 
 const chatSchema = z.object({
   conversationId: z.uuid().optional().nullable(),
   message: z.string().trim().min(3).max(1200),
   mode: z.enum(pedagogicalModes).default("normal"),
   unitNumber: z.number().int().min(1).max(15).optional(),
+  productId: z.uuid().optional().nullable(),
+  productSlug: z.string().trim().max(80).optional().nullable(),
   debug: z.boolean().optional(),
 });
 
@@ -24,6 +27,9 @@ export async function POST(request: Request) {
     );
   }
   try {
+    if (parsed.data.productId && !(await userCanAccessProduct(profile, parsed.data.productId))) {
+      return NextResponse.json({ error: "No tienes acceso a ese curso." }, { status: 403 });
+    }
     if (isAssessmentRequest(parsed.data.message)) {
       const sessionId = await createAssessmentSession({
         profile,
@@ -31,6 +37,8 @@ export async function POST(request: Request) {
         questionType: questionTypeFromMessage(parsed.data.message),
         difficulty: difficultyFromMessage(parsed.data.message),
         count: countFromMessage(parsed.data.message),
+        productId: parsed.data.productId || null,
+        productSlug: parsed.data.productSlug || null,
       });
       const session = await getAssessmentSession(profile, sessionId);
       return NextResponse.json({
@@ -61,6 +69,7 @@ export async function POST(request: Request) {
       mode: parsed.data.mode,
       options: {
         unitNumber: parsed.data.unitNumber,
+        productId: parsed.data.productId || null,
         debug: parsed.data.debug,
       },
     });

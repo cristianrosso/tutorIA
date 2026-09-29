@@ -6,10 +6,14 @@ export function TutorForm({
   unit,
   initialConversationId,
   initialMessages,
+  productId,
+  productSlug,
 }: {
   unit: { number: number; name: string };
   section?: string;
   initialConversationId?: string;
+  productId?: string;
+  productSlug?: string;
   initialMessages?: Array<{
     id: string;
     role: "user" | "assistant";
@@ -27,6 +31,8 @@ export function TutorForm({
       unit={unit}
       initialConversationId={initialConversationId}
       initialMessages={initialMessages}
+      productId={productId}
+      productSlug={productSlug}
     />
   );
 }

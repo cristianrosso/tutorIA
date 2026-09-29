@@ -12,6 +12,7 @@ import {
   type TutorStructuredSource,
 } from "@/lib/tutor/tutor-service";
 import { detectPedagogicalMode } from "@/lib/pedagogy/mode-detector";
+import { userCanAccessProduct } from "@/lib/products/products";
 
 export const runtime = "nodejs";
 
@@ -36,6 +37,11 @@ export async function POST(request: Request) {
       15,
       Math.max(1, Number(form.get("unitNumber")) || 1),
     );
+    const productIdRaw = form.get("productId");
+    const productId = typeof productIdRaw === "string" && /^[0-9a-f-]{36}$/i.test(productIdRaw) ? productIdRaw : null;
+    if (productId && !(await userCanAccessProduct(profile, productId))) {
+      return fail("No tienes acceso a ese curso.", 403);
+    }
     const duration = durationFromForm(form.get("duration"));
     if (!(audio instanceof File))
       return fail("No se recibió audio para transcribir.");
@@ -56,7 +62,7 @@ export async function POST(request: Request) {
           : undefined,
       message: transcript,
       mode: tutorModeFromTranscript(transcript),
-      options: { unitNumber, voice: true },
+      options: { unitNumber, productId, voice: true },
     });
 
     await createSupabaseAdmin().from("usage_events").insert({

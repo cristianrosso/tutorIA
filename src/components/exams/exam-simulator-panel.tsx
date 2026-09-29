@@ -29,6 +29,8 @@ type Props = {
   units: UnitOption[];
   topics: TopicOption[];
   initialUnit?: number;
+  productId?: string;
+  productSlug?: string;
 };
 
 type Feedback = {
@@ -77,7 +79,7 @@ const terminalStatuses = new Set([
 const maxRecordingMs = 90_000;
 const minRecordingMs = 900;
 
-export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
+export function ExamSimulatorPanel({ units, topics, initialUnit = 1, productId, productSlug }: Props) {
   const initial = units.find((unit) => unit.number === initialUnit) || units[0];
   const [examMode, setExamMode] = useState("tribunal");
   const [unitId, setUnitId] = useState(initial?.id || "");
@@ -389,6 +391,8 @@ export function ExamSimulatorPanel({ units, topics, initialUnit = 1 }: Props) {
           difficulty,
           count,
           durationMinutes,
+          productId,
+          productSlug,
         }),
       });
       const created = await createResponse.json();

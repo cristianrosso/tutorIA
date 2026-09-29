@@ -10,14 +10,21 @@ import {
   Mic,
   Sparkles,
 } from "lucide-react";
+import { StudentCourseSwitcher } from "@/components/student-course-switcher";
 import type { Profile } from "@/lib/models";
 import { numberFormat } from "@/lib/metrics";
+import type { AcademicProduct } from "@/lib/products/products";
+import { withProduct } from "@/lib/products/selection";
 
 export function StudentDashboard({
   profile,
   stats,
+  products,
+  activeProduct,
 }: {
   profile: Profile;
+  products: AcademicProduct[];
+  activeProduct: AcademicProduct;
   stats: {
     conversations: number;
     simulations: number;
@@ -37,13 +44,14 @@ export function StudentDashboard({
             <span className="heading-dot">.</span>
           </h1>
           <p>
-            Prepárate para tu Examen de Grado 2026 con tu tutor inteligente.
+            Prepárate en {activeProduct.short_name} con tu tutor inteligente.
           </p>
         </div>
         <span className="badge">
           <span className="status-dot" /> Segundo año · El Alto
         </span>
       </div>
+      <StudentCourseSwitcher products={products} activeProduct={activeProduct} basePath="/dashboard" />
       <section className="dashboard-hero">
         <div className="hero-copy">
           <span className="eyebrow light">
@@ -59,7 +67,7 @@ export function StudentDashboard({
             para tu examen oral.
           </p>
           <span className="hero-label">
-            <BookOpen size={15} /> 15 unidades temáticas
+            <BookOpen size={15} /> {activeProduct.short_name}
           </span>
         </div>
         <div className="hero-orb" aria-hidden="true">
@@ -83,7 +91,7 @@ export function StudentDashboard({
           <span className="soon-label available">Disponible</span>
           <h3>Hablar con mi tutor</h3>
           <p>Pregunta, comprende y resuelve tus dudas mediante texto o voz.</p>
-          <Link href="/tutor" className="button primary">
+          <Link href={withProduct("/tutor", activeProduct)} className="button primary">
             <Mic size={17} /> Ver tutor
           </Link>
         </article>
@@ -97,7 +105,7 @@ export function StudentDashboard({
             Practica tu examen oral y recibe retroalimentación sobre tus
             respuestas.
           </p>
-          <Link href="/simulacro" className="button secondary">
+          <Link href={withProduct("/simulacro", activeProduct)} className="button secondary">
             Iniciar simulacro <ArrowRight size={17} />
           </Link>
         </article>
@@ -110,7 +118,7 @@ export function StudentDashboard({
           <p>
             Explora tu programa de estudio y conoce el material de cada unidad.
           </p>
-          <Link href="/unidades" className="button secondary">
+          <Link href={withProduct("/unidades", activeProduct)} className="button secondary">
             Explorar unidades <ArrowRight size={17} />
           </Link>
         </article>
@@ -119,7 +127,7 @@ export function StudentDashboard({
         <section className="panel">
           <div className="section-heading">
             <h2>Tu punto de partida</h2>
-            <Link href="/progreso">
+            <Link href={withProduct("/progreso", activeProduct)}>
               Ver progreso <ArrowRight size={14} />
             </Link>
           </div>

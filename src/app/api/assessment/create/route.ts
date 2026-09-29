@@ -5,6 +5,7 @@ import { consumeLimit } from "@/lib/auth/rate-limit";
 import { createAssessmentSession } from "@/lib/assessment/question-generator";
 import { getAssessmentSession } from "@/lib/assessment/session-service";
 import { assessmentDifficulties, assessmentQuestionTypes } from "@/lib/assessment/types";
+import { userCanAccessProduct } from "@/lib/products/products";
 
 const schema = z.object({
   unitNumber: z.coerce.number().int().min(1).max(15),
@@ -13,12 +14,17 @@ const schema = z.object({
   questionType: z.union([z.enum(assessmentQuestionTypes), z.literal("mixed")]).default("mixed"),
   difficulty: z.enum(assessmentDifficulties).default("basic"),
   count: z.coerce.number().int().min(1).max(20).default(5),
+  productId: z.uuid().optional().nullable(),
+  productSlug: z.string().trim().max(80).optional().nullable(),
 });
 
 export async function POST(request: Request) {
   const profile = await requireStudent();
   const parsed = schema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Configura una evaluación válida." }, { status: 400 });
+  if (parsed.data.productId && !(await userCanAccessProduct(profile, parsed.data.productId))) {
+    return NextResponse.json({ error: "No tienes acceso a ese curso." }, { status: 403 });
+  }
   if (!(await consumeLimit(`assessment-create:${profile.id}`, 6, 60))) {
     return NextResponse.json({ error: "Espera un momento antes de generar otra evaluación." }, { status: 429 });
   }

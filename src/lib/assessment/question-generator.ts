@@ -22,17 +22,19 @@ export type CreateAssessmentInput = {
   questionType: AssessmentQuestionType | "mixed";
   difficulty: AssessmentDifficulty;
   count: number;
+  productId?: string | null;
+  productSlug?: string | null;
 };
 
 export async function createAssessmentSession(input: CreateAssessmentInput) {
   const db = createSupabaseAdmin();
-  const unit = await getAcademicUnit(input.unitNumber);
-  const topic = input.topicId ? await getAcademicTopic(input.topicId, unit.id) : null;
+  const unit = await getAcademicUnit(input.unitNumber, input.productId || null);
+  const topic = input.topicId ? await getAcademicTopic(input.topicId, unit.id, input.productId || null) : null;
   const topicName = topic?.topic_name || input.topicName || null;
   const questionTypes = input.questionType === "mixed" ? [...assessmentQuestionTypes] : [input.questionType];
   const academic = await retrieveAcademicContext(
     buildAssessmentQuery(unit.unit_number, unit.unit_name, topicName, input.difficulty),
-    { unitNumber: unit.unit_number, topicId: topic?.id, maxChunks: 10, maxContextTokens: 3200 },
+    { unitNumber: unit.unit_number, topicId: topic?.id, productId: input.productId || undefined, maxChunks: 10, maxContextTokens: 3200 },
   );
   if (!academic.context.trim() || academic.sources.length === 0) {
     throw new Error("No existe contenido suficiente del compendio para generar esta evaluación.");
@@ -73,7 +75,7 @@ export async function createAssessmentSession(input: CreateAssessmentInput) {
       difficulty: input.difficulty,
       total_questions: validQuestions.length,
       max_score: validQuestions.length,
-      metadata: { unitNumber: unit.unit_number, unitName: unit.unit_name, topicName },
+      metadata: { unitNumber: unit.unit_number, unitName: unit.unit_name, topicName, productId: input.productId || null, productSlug: input.productSlug || null },
     })
     .select("id")
     .single();
@@ -303,25 +305,53 @@ function buildAssessmentQuery(unitNumber: number, unitName: string, topicName: s
   return `Unidad ${unitNumber} ${unitName}. ${topicName || "temas principales"}. ${verb}`;
 }
 
-async function getAcademicUnit(unitNumber: number) {
-  const { data, error } = await createSupabaseAdmin()
+async function getAcademicUnit(unitNumber: number, productId?: string | null) {
+  const db = createSupabaseAdmin();
+  let query = db
     .from("academic_units")
     .select("id,unit_number,unit_name")
-    .eq("unit_number", unitNumber)
-    .single();
-  if (error || !data) throw new Error("No se encontró la unidad académica.");
+    .eq("unit_number", unitNumber);
+  if (productId) query = query.eq("product_id", productId);
+  let { data, error } = await query.single();
+  if (productId && isMissingProductColumn(error)) {
+    const fallback = await db
+      .from("academic_units")
+      .select("id,unit_number,unit_name")
+      .eq("unit_number", unitNumber)
+      .single();
+    data = fallback.data;
+    error = fallback.error;
+  }
+  if (error || !data) throw new Error("No se encontró la unidad académica para el curso seleccionado.");
   return data as { id: string; unit_number: number; unit_name: string };
 }
 
-async function getAcademicTopic(topicId: string, unitId: string) {
-  const { data, error } = await createSupabaseAdmin()
+async function getAcademicTopic(topicId: string, unitId: string, productId?: string | null) {
+  const db = createSupabaseAdmin();
+  let query = db
     .from("academic_topics")
     .select("id,topic_name,topic_number,academic_unit_id")
     .eq("id", topicId)
-    .eq("academic_unit_id", unitId)
-    .single();
-  if (error || !data) throw new Error("No se encontró el tema académico seleccionado.");
+    .eq("academic_unit_id", unitId);
+  if (productId) query = query.eq("product_id", productId);
+  let { data, error } = await query.single();
+  if (productId && isMissingProductColumn(error)) {
+    const fallback = await db
+      .from("academic_topics")
+      .select("id,topic_name,topic_number,academic_unit_id")
+      .eq("id", topicId)
+      .eq("academic_unit_id", unitId)
+      .single();
+    data = fallback.data;
+    error = fallback.error;
+  }
+  if (error || !data) throw new Error("No se encontró el tema académico seleccionado para el curso activo.");
   return data as { id: string; topic_name: string; topic_number: string | null; academic_unit_id: string };
+}
+
+function isMissingProductColumn(error: { message?: string; code?: string } | null | undefined) {
+  const message = String(error?.message || "").toLowerCase();
+  return Boolean(error && (message.includes("product_id") || message.includes("schema cache") || message.includes("does not exist")));
 }
 
 function hashText(text: string) {

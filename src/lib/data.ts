@@ -35,23 +35,93 @@ export async function getUnitByNumber(number: number): Promise<Unit> {
   return data as Unit;
 }
 
-export async function getUnitsWithProgress(): Promise<UnitProgressSummary[]> {
+function isMissingProductColumn(error: { message?: string; code?: string } | null | undefined) {
+  const message = String(error?.message || "").toLowerCase();
+  return message.includes("product_id") || message.includes("schema cache") || message.includes("does not exist");
+}
+
+async function getLegacyChunkRows(productId?: string | null): Promise<UnitTopicRow[]> {
+  const db = await createSupabaseServer();
+  let query = db
+    .from("document_chunks")
+    .select("unit_number,topic,section_name,section_title,section,content");
+  if (productId) query = query.eq("product_id", productId);
+  const { data, error } = await query.limit(2500);
+  if (error && productId && isMissingProductColumn(error)) {
+    const fallback = await db
+      .from("document_chunks")
+      .select("unit_number,topic,section_name,section_title,section,content")
+      .limit(2500);
+    if (fallback.error) return [];
+    return (fallback.data || []) as UnitTopicRow[];
+  }
+  if (error) return [];
+  return (data || []) as UnitTopicRow[];
+}
+
+type KnowledgeChunkTopicRow = {
+  content?: string | null;
+  source_content?: string | null;
+  metadata?: Record<string, unknown> | null;
+  academic_units?: { unit_number?: number | null; unit_name?: string | null } | Array<{ unit_number?: number | null; unit_name?: string | null }> | null;
+  academic_topics?: { topic_number?: string | null; topic_name?: string | null } | Array<{ topic_number?: string | null; topic_name?: string | null }> | null;
+};
+
+function firstRelation<T>(value: T | T[] | null | undefined) {
+  return Array.isArray(value) ? value[0] || null : value || null;
+}
+
+async function getKnowledgeChunkRows(productId?: string | null): Promise<UnitTopicRow[]> {
+  const db = await createSupabaseServer();
+  let query = db
+    .from("knowledge_chunks")
+    .select("content,source_content,metadata,academic_units(unit_number,unit_name),academic_topics(topic_number,topic_name)");
+  if (productId) query = query.eq("product_id", productId);
+  const { data, error } = await query.limit(2500);
+  if (error) return [];
+  return ((data || []) as KnowledgeChunkTopicRow[]).map((row) => {
+    const unit = firstRelation(row.academic_units);
+    const topic = firstRelation(row.academic_topics);
+    const metadata = row.metadata || {};
+    return {
+      unit_number: Number(unit?.unit_number || metadata.unit_number || 0),
+      topic: String(topic?.topic_name || metadata.topic_name || ""),
+      section_name: String(metadata.section_name || topic?.topic_name || ""),
+      section_title: String(topic?.topic_name || metadata.topic_name || ""),
+      section: String(topic?.topic_number || metadata.topic_number || metadata.section_number || "") || null,
+      content: row.source_content || row.content || null,
+    };
+  });
+}
+
+async function getCourseChunkRows(productId?: string | null) {
+  const [legacy, knowledge] = await Promise.all([
+    getLegacyChunkRows(productId),
+    getKnowledgeChunkRows(productId),
+  ]);
+  return [...legacy, ...knowledge];
+}
+
+export async function getUnitsWithProgress(productId?: string | null): Promise<UnitProgressSummary[]> {
   const profile = await requireProfile();
   const db = await createSupabaseServer();
-  const [{ data: units, error }, { data: progress }, { data: chunks }] =
+  let progressQuery = db
+    .from("unit_progress")
+    .select(
+      "unit_id,status,study_sessions,questions_asked,practices,simulations,average_score",
+    )
+    .eq("user_id", profile.id);
+  if (productId) progressQuery = progressQuery.eq("product_id", productId);
+  const [{ data: units, error }, progressResult, chunks] =
     await Promise.all([
       db.from("units").select("id,number,name,enabled").order("number"),
-      db
-        .from("unit_progress")
-        .select(
-          "unit_id,status,study_sessions,questions_asked,practices,simulations,average_score",
-        )
-        .eq("user_id", profile.id),
-      db
-        .from("document_chunks")
-        .select("unit_number,topic,section_name,section_title"),
+      progressQuery,
+      getCourseChunkRows(productId),
     ]);
   if (error || !units) throw new Error("No se pudieron cargar las unidades.");
+  const progress = progressResult.error && productId && isMissingProductColumn(progressResult.error)
+    ? []
+    : progressResult.data || [];
   const progressByUnit = new Map(
     (progress || []).map((row) => [row.unit_id, row]),
   );
@@ -90,6 +160,7 @@ export async function getUnitsWithProgress(): Promise<UnitProgressSummary[]> {
 }
 
 type UnitTopicRow = {
+  unit_number?: number | null;
   topic: string | null;
   section_name: string | null;
   section_title: string | null;
@@ -150,15 +221,12 @@ function getTopicName(chunk: UnitTopicRow) {
 
 export async function getUnitTopics(
   unitNumber: number,
+  productId?: string | null,
 ): Promise<UnitTopicSummary[]> {
   await requireProfile();
-  const db = await createSupabaseServer();
-  const { data, error } = await db
-    .from("document_chunks")
-    .select("topic,section_name,section_title,section,content")
-    .eq("unit_number", unitNumber)
-    .limit(1500);
-  if (error) throw new Error("No se pudieron cargar los temas.");
+  const data = (await getCourseChunkRows(productId)).filter(
+    (chunk) => Number(chunk.unit_number) === unitNumber,
+  );
 
   const topics = new Map<string, UnitTopicSummary>();
   for (const chunk of (data || []) as UnitTopicRow[]) {

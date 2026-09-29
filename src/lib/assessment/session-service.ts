@@ -92,14 +92,35 @@ export async function getAssessmentHistory(profile: Profile, limit = 30) {
   });
 }
 
-export async function getAssessmentCatalog() {
+export async function getAssessmentCatalog(productId?: string | null) {
   const db = createSupabaseAdmin();
-  const [{ data: units }, { data: topics }] = await Promise.all([
-    db.from("academic_units").select("id,unit_number,unit_name").order("unit_number"),
-    db.from("academic_topics").select("id,academic_unit_id,topic_number,topic_name").order("topic_number"),
+  let unitsQuery = db.from("academic_units").select("id,unit_number,unit_name").order("unit_number");
+  let topicsQuery = db.from("academic_topics").select("id,academic_unit_id,topic_number,topic_name").order("topic_number");
+  if (productId) {
+    unitsQuery = unitsQuery.eq("product_id", productId);
+    topicsQuery = topicsQuery.eq("product_id", productId);
+  }
+  let [{ data: units, error: unitsError }, { data: topics, error: topicsError }] = await Promise.all([
+    unitsQuery,
+    topicsQuery,
   ]);
+  if (productId && (isMissingProductColumn(unitsError) || isMissingProductColumn(topicsError))) {
+    const fallback = await Promise.all([
+      db.from("academic_units").select("id,unit_number,unit_name").order("unit_number"),
+      db.from("academic_topics").select("id,academic_unit_id,topic_number,topic_name").order("topic_number"),
+    ]);
+    units = fallback[0].data;
+    topics = fallback[1].data;
+  } else if (unitsError || topicsError) {
+    throw new Error("No se pudo cargar el catálogo académico.");
+  }
   return {
     units: (units || []).map((unit) => ({ id: unit.id, number: unit.unit_number, name: unit.unit_name })),
     topics: (topics || []).map((topic) => ({ id: topic.id, unitId: topic.academic_unit_id, number: topic.topic_number, name: topic.topic_name })),
   };
+}
+
+function isMissingProductColumn(error: { message?: string; code?: string } | null | undefined) {
+  const message = String(error?.message || "").toLowerCase();
+  return Boolean(error && (message.includes("product_id") || message.includes("schema cache") || message.includes("does not exist")));
 }

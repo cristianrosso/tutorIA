@@ -118,10 +118,14 @@ export function TutorChat({
   unit,
   initialConversationId,
   initialMessages,
+  productId,
+  productSlug,
 }: {
   unit: { number: number; name: string };
   initialConversationId?: string;
   initialMessages?: ChatMessage[];
+  productId?: string;
+  productSlug?: string;
 }) {
   const router = useRouter();
   const [conversationId, setConversationId] = useState(
@@ -178,6 +182,8 @@ export function TutorChat({
           message: clean,
           mode: overrideMode || mode,
           unitNumber: unit.number,
+          productId,
+          productSlug,
         }),
       });
       const payload = (await response.json()) as TutorChatResponse;
@@ -333,6 +339,8 @@ export function TutorChat({
         setPending(true);
         if (conversationId) form.set("conversationId", conversationId);
         form.set("unitNumber", String(unit.number));
+        if (productId) form.set("productId", productId);
+        if (productSlug) form.set("productSlug", productSlug);
         const response = await fetch("/api/tutor/voice/respond", {
           method: "POST",
           body: form,

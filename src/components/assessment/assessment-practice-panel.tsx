@@ -8,7 +8,7 @@ import type { AssessmentSessionPublic, PublicAssessmentQuestion } from "@/lib/as
 type UnitOption = { id: string; number: number; name: string };
 type TopicOption = { id: string; unitId: string; number: string | null; name: string };
 
-type Props = { units: UnitOption[]; topics: TopicOption[]; initialUnit?: number };
+type Props = { units: UnitOption[]; topics: TopicOption[]; initialUnit?: number; productId?: string; productSlug?: string };
 
 const questionTypeLabels: Record<string, string> = {
   mixed: "Mixta",
@@ -21,7 +21,7 @@ const questionTypeLabels: Record<string, string> = {
 const difficultyLabels: Record<string, string> = { basic: "Básico", intermediate: "Intermedio", advanced: "Avanzado" };
 const resultLabels: Record<string, string> = { correct: "Correcta", partially_correct: "Parcialmente correcta", incorrect: "Incorrecta", requires_review: "Requiere revisión" };
 
-export function AssessmentPracticePanel({ units, topics, initialUnit = 1 }: Props) {
+export function AssessmentPracticePanel({ units, topics, initialUnit = 1, productId, productSlug }: Props) {
   const initial = units.find((unit) => unit.number === initialUnit) || units[0];
   const [unitId, setUnitId] = useState(initial?.id || "");
   const [topicId, setTopicId] = useState("");
@@ -50,7 +50,7 @@ export function AssessmentPracticePanel({ units, topics, initialUnit = 1 }: Prop
       const response = await fetch("/api/assessment/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ unitNumber: selectedUnit.number, topicId: topicId || null, topicName: topic?.name || null, questionType, difficulty, count }),
+        body: JSON.stringify({ unitNumber: selectedUnit.number, topicId: topicId || null, topicName: topic?.name || null, questionType, difficulty, count, productId, productSlug }),
       });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || "No se pudo iniciar la evaluación.");
@@ -103,7 +103,7 @@ export function AssessmentPracticePanel({ units, topics, initialUnit = 1 }: Prop
       <section className="panel assessment-config">
         <div className="section-heading">
           <h2>Configurar práctica</h2>
-          <span>Basada en el compendio</span>
+          <span>Basada en el curso activo</span>
         </div>
         <div className="form-grid compact">
           <label>

@@ -71,7 +71,7 @@ export async function generateTutorResponse(input: {
   conversationId?: string | null;
   message: string;
   mode?: TutorMode;
-  options?: { unitNumber?: number; debug?: boolean; voice?: boolean };
+  options?: { unitNumber?: number; productId?: string | null; debug?: boolean; voice?: boolean };
 }): Promise<TutorResponse> {
   const totalStarted = Date.now();
   const message = sanitizeMessage(input.message);
@@ -126,6 +126,7 @@ export async function generateTutorResponse(input: {
     : history.retrievalQuery;
   const academic = await retrieveAcademicContext(retrievalQuery, {
     unitNumber: input.options?.unitNumber,
+    productId: input.options?.productId || undefined,
     maxChunks: input.options?.voice ? 5 : 8,
     maxContextTokens: input.options?.voice ? 1800 : 2600,
     debug: input.options?.debug,
