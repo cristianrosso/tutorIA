@@ -802,23 +802,33 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
       document: document as Record<string, unknown> | null,
       chunks,
     });
+    const sourceHash = sha256(text);
     const { data: academicDocument, error: academicError } = await db
       .from("academic_documents")
-      .insert({
-        title,
-        source: sourceLabel,
-        document_version: String(version.version_label || "v1"),
-        schema_version: "MKF-1.0",
-        source_hash: sha256(text),
-        status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
-        report,
-        active: true,
-        product_id: productId,
-      })
+      .upsert(
+        {
+          title,
+          source: sourceLabel,
+          document_version: String(version.version_label || "v1"),
+          schema_version: "MKF-1.0",
+          source_hash: sourceHash,
+          status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
+          report,
+          active: true,
+          product_id: productId,
+        },
+        { onConflict: "source_hash,document_version,schema_version" },
+      )
       .select("id")
       .single();
     if (academicError || !academicDocument)
-      throw new Error(academicError?.message || "No se pudo crear el documento académico MKF-1.");
+      throw new Error(academicError?.message || "No se pudo crear o actualizar el documento académico MKF-1.");
+
+    const { error: cleanupError } = await db
+      .from("academic_units")
+      .delete()
+      .eq("academic_document_id", academicDocument.id);
+    if (cleanupError) throw new Error(cleanupError.message || "No se pudo limpiar la publicación anterior.");
 
     let academicUnitId: string | null = null;
     if (version.unit_number) {
