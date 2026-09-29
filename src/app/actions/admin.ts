@@ -241,7 +241,7 @@ export async function assignStudentCourse(
     if (error || target?.role !== "ESTUDIANTE") {
       return { error: "Solo se pueden asignar cursos a estudiantes." };
     }
-    await assignProductLicense({
+    const assigned = await assignProductLicense({
       userId: id.data,
       actorId: admin.id,
       productId: productId.data,
@@ -249,6 +249,9 @@ export async function assignStudentCourse(
       expiresAt,
       source: "student_detail",
     });
+    if (!assigned) {
+      return { error: "No se pudo asignar el curso. Falta aplicar la migración multi-curso en Supabase." };
+    }
     await logAdminAction({
       actorId: admin.id,
       action: "student_course_assigned",

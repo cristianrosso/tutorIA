@@ -226,9 +226,10 @@ export async function assignProductLicense(input: {
       metadata: { source: input.source || "admin_panel" },
     });
     if (error) throw new Error(error.message);
+    return true;
   } catch (error) {
     const message = error instanceof Error ? error.message.toLowerCase() : "";
-    if (message.includes("user_product_licenses") || message.includes("product_id")) return;
+    if (message.includes("user_product_licenses") || message.includes("product_id")) return false;
     throw error;
   }
 }
