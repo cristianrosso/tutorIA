@@ -232,3 +232,38 @@ export async function assignProductLicense(input: {
     throw error;
   }
 }
+
+
+export async function listProductLicensesForUser(userId: string) {
+  try {
+    const { data, error } = await createSupabaseAdmin()
+      .from("user_product_licenses")
+      .select("id,user_id,product_id,status,starts_at,expires_at,academic_products(id,slug,name,short_name,institution_name,exam_name,exam_year,status,settings,branding,created_at,updated_at)")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false });
+    if (error) {
+      if (isMissingProductTable(error)) return [];
+      throw new Error(error.message);
+    }
+    return (data || []) as ProductLicense[];
+  } catch (error) {
+    const message = error instanceof Error ? error.message.toLowerCase() : "";
+    if (message.includes("user_product_licenses") || message.includes("academic_products")) return [];
+    throw error;
+  }
+}
+
+export async function cancelProductLicense(input: { licenseId: string; userId: string }) {
+  try {
+    const { error } = await createSupabaseAdmin()
+      .from("user_product_licenses")
+      .update({ status: "cancelled" })
+      .eq("id", input.licenseId)
+      .eq("user_id", input.userId);
+    if (error) throw new Error(error.message);
+  } catch (error) {
+    const message = error instanceof Error ? error.message.toLowerCase() : "";
+    if (message.includes("user_product_licenses") || message.includes("status")) return;
+    throw error;
+  }
+}

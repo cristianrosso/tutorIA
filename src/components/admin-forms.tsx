@@ -3,14 +3,16 @@ import { useActionState } from "react";
 import { FileText, KeyRound, Plus, Save, Upload } from "lucide-react";
 import {
   activateMonthlyLicense,
+  assignStudentCourse,
   createStudent,
   ingestUnitOneDocument,
+  removeStudentCourse,
   renewMonthlyLicense,
   suspendStudentAccess,
   updateStudent,
 } from "@/app/actions/admin";
 import type { ActionState, Profile } from "@/lib/models";
-import type { AcademicProduct } from "@/lib/products/products";
+import type { AcademicProduct, ProductLicense } from "@/lib/products/products";
 
 function Feedback({ state }: { state: ActionState }) {
   return (
@@ -100,7 +102,102 @@ export function CreateStudentForm({ products = [] }: { products?: AcademicProduc
     </form>
   );
 }
-export function EditStudentForms({ profile }: { profile: Profile }) {
+function productFromLicense(license: ProductLicense) {
+  const value = license.academic_products;
+  return Array.isArray(value) ? value[0] || null : value || null;
+}
+
+function ProductAssignments({
+  profile,
+  products,
+  productLicenses,
+}: {
+  profile: Profile;
+  products: AcademicProduct[];
+  productLicenses: ProductLicense[];
+}) {
+  const [assignState, assignAction, assignPending] = useActionState(assignStudentCourse, {});
+  const [removeState, removeAction, removePending] = useActionState(removeStudentCourse, {});
+  const today = new Date().toISOString().slice(0, 10);
+  const defaultEnd = profile.expires_at
+    ? new Date(Date.parse(profile.expires_at) - 4 * 3600000).toISOString().slice(0, 10)
+    : "";
+  return (
+    <section className="student-course-manager">
+      <div className="section-heading compact">
+        <div>
+          <h3>Cursos asignados</h3>
+          <span>Controla a qué preparación y base de conocimiento accede el estudiante.</span>
+        </div>
+        <a className="button secondary" href="/admin/products">Crear curso</a>
+      </div>
+      {productLicenses.length ? (
+        <div className="mini-list">
+          {productLicenses.map((license) => {
+            const product = productFromLicense(license);
+            return (
+              <article className="mini-row" key={license.id}>
+                <strong>{product ? `${product.short_name} · ${product.name}` : license.product_id}</strong>
+                <span>
+                  {license.status} · {new Date(license.starts_at).toLocaleDateString("es-BO", { timeZone: "America/La_Paz" })}
+                  {license.expires_at ? ` → ${new Date(license.expires_at).toLocaleDateString("es-BO", { timeZone: "America/La_Paz" })}` : " → Sin vencimiento"}
+                </span>
+                {license.status !== "cancelled" ? (
+                  <form action={removeAction} className="inline-admin-form compact">
+                    <input type="hidden" name="id" value={profile.id} />
+                    <input type="hidden" name="license_id" value={license.id} />
+                    <button className="button secondary danger-button" disabled={removePending}>
+                      {removePending ? "Quitando…" : "Quitar curso"}
+                    </button>
+                  </form>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p className="notice">Este estudiante todavía no tiene cursos asignados en el módulo multi-curso.</p>
+      )}
+      <Feedback state={removeState} />
+      <form action={assignAction} className="inline-admin-form">
+        <input type="hidden" name="id" value={profile.id} />
+        <label>
+          Curso
+          <select name="product_id" required defaultValue={products[0]?.id || ""}>
+            {products.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.short_name} · {product.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Inicio
+          <input name="starts_at" type="date" required defaultValue={today} />
+        </label>
+        <label>
+          Vence
+          <input name="expires_at" type="date" defaultValue={defaultEnd} />
+        </label>
+        <button className="button secondary" disabled={assignPending || !products.length}>
+          <Save size={15} />
+          {assignPending ? "Asignando…" : "Asignar curso"}
+        </button>
+        <Feedback state={assignState} />
+      </form>
+    </section>
+  );
+}
+
+export function EditStudentForms({
+  profile,
+  products = [],
+  productLicenses = [],
+}: {
+  profile: Profile;
+  products?: AcademicProduct[];
+  productLicenses?: ProductLicense[];
+}) {
   const [state, action, pending] = useActionState(updateStudent, {});
   const [passwordState, passwordAction, passwordPending] = useActionState(
     updateStudent,
@@ -139,6 +236,7 @@ export function EditStudentForms({ profile }: { profile: Profile }) {
         </button>
         <Feedback state={state} />
       </form>
+      <ProductAssignments profile={profile} products={products} productLicenses={productLicenses} />
       <form action={passwordAction} className="inline-admin-form">
         <input type="hidden" name="id" value={profile.id} />
         <input type="hidden" name="operation" value="password" />

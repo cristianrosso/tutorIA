@@ -5,6 +5,7 @@ import { EditStudentForms, LicenseActions } from "@/components/admin-forms";
 import { requireAdmin } from "@/lib/auth/session";
 import { getAdminStudentDetail } from "@/lib/admin/admin-service";
 import { getEconomicSettings } from "@/lib/billing/economic-settings";
+import { listAcademicProducts, listProductLicensesForUser } from "@/lib/products/products";
 
 type LearningEvent = {
   event_type?: string;
@@ -31,9 +32,11 @@ export default async function AdminStudentDetailPage({
 }) {
   const profile = await requireAdmin();
   const { id } = await params;
-  const [detail, settings] = await Promise.all([
+  const [detail, settings, products, productLicenses] = await Promise.all([
     getAdminStudentDetail(id),
     getEconomicSettings(),
+    listAcademicProducts({ includeInactive: false }),
+    listProductLicensesForUser(id),
   ]);
   const student = detail.profile;
   const learningEvents = detail.learningEvents as LearningEvent[];
@@ -62,7 +65,11 @@ export default async function AdminStudentDetailPage({
           <p>Estado: {student.status}</p>
           <p>Inicio: {localDateTime(student.starts_at)}</p>
           <p>Vence: {localDateTime(student.expires_at)}</p>
-          <EditStudentForms profile={student} />
+          <EditStudentForms
+            profile={student}
+            products={products}
+            productLicenses={productLicenses}
+          />
           <LicenseActions
             profile={student}
             defaultDurationDays={settings.licenseDurationDays}

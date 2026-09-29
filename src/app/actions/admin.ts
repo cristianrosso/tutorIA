@@ -13,7 +13,7 @@ import { consumeLimit } from "@/lib/auth/rate-limit";
 import { ingestDocument } from "@/lib/rag/ingest";
 import type { ActionState } from "@/lib/models";
 import { createLicenseRecord, logAdminAction } from "@/lib/admin/admin-service";
-import { DEFAULT_PRODUCT_ID, assignProductLicense } from "@/lib/products/products";
+import { DEFAULT_PRODUCT_ID, assignProductLicense, cancelProductLicense } from "@/lib/products/products";
 
 function dateInput(value: FormDataEntryValue | null, endOfDay = false) {
   // Fechas del panel se interpretan explícitamente en Bolivia, UTC−4.
@@ -206,6 +206,91 @@ export async function updateStudent(
     };
   } catch {
     return { error: "El servicio no está disponible. Vuelve a intentarlo." };
+  }
+}
+
+
+export async function assignStudentCourse(
+  _previous: ActionState,
+  form: FormData,
+): Promise<ActionState> {
+  const admin = await requireAdmin();
+  const id = z.uuid().safeParse(form.get("id"));
+  const productId = z.uuid().safeParse(form.get("product_id"));
+  const startsAt = dateInput(form.get("starts_at"));
+  const expiresAt = form.get("expires_at") ? dateInput(form.get("expires_at"), true) : null;
+  if (!id.success || !productId.success || !z.iso.datetime({ offset: true }).safeParse(startsAt).success) {
+    return { error: "Selecciona estudiante, curso y fecha de inicio." };
+  }
+  if (expiresAt && !z.iso.datetime({ offset: true }).safeParse(expiresAt).success) {
+    return { error: "Revisa la fecha de vencimiento del curso." };
+  }
+  if (expiresAt && Date.parse(expiresAt) <= Date.parse(startsAt)) {
+    return { error: "La fecha de vencimiento debe ser posterior al inicio." };
+  }
+  try {
+    if (!(await consumeLimit(`admin:${admin.id}`, 30, 60))) {
+      return { error: "Espera un minuto antes de continuar." };
+    }
+    const db = createSupabaseAdmin();
+    const { data: target, error } = await db
+      .from("profiles")
+      .select("role")
+      .eq("id", id.data)
+      .single();
+    if (error || target?.role !== "ESTUDIANTE") {
+      return { error: "Solo se pueden asignar cursos a estudiantes." };
+    }
+    await assignProductLicense({
+      userId: id.data,
+      actorId: admin.id,
+      productId: productId.data,
+      startsAt,
+      expiresAt,
+      source: "student_detail",
+    });
+    await logAdminAction({
+      actorId: admin.id,
+      action: "student_course_assigned",
+      resourceType: "profile",
+      resourceId: id.data,
+      metadata: { product_id: productId.data, starts_at: startsAt, expires_at: expiresAt },
+    });
+    revalidatePath("/admin/students");
+    revalidatePath(`/admin/students/${id.data}`);
+    revalidatePath("/preparaciones");
+    return { success: "Curso asignado al estudiante." };
+  } catch {
+    return { error: "No se pudo asignar el curso. Verifica la migración multi-curso en Supabase." };
+  }
+}
+
+export async function removeStudentCourse(
+  _previous: ActionState,
+  form: FormData,
+): Promise<ActionState> {
+  const admin = await requireAdmin();
+  const id = z.uuid().safeParse(form.get("id"));
+  const licenseId = z.uuid().safeParse(form.get("license_id"));
+  if (!id.success || !licenseId.success) return { error: "Solicitud inválida." };
+  try {
+    if (!(await consumeLimit(`admin:${admin.id}`, 30, 60))) {
+      return { error: "Espera un minuto antes de continuar." };
+    }
+    await cancelProductLicense({ userId: id.data, licenseId: licenseId.data });
+    await logAdminAction({
+      actorId: admin.id,
+      action: "student_course_removed",
+      resourceType: "profile",
+      resourceId: id.data,
+      metadata: { license_id: licenseId.data },
+    });
+    revalidatePath("/admin/students");
+    revalidatePath(`/admin/students/${id.data}`);
+    revalidatePath("/preparaciones");
+    return { success: "Curso quitado del estudiante." };
+  } catch {
+    return { error: "No se pudo quitar el curso." };
   }
 }
 
