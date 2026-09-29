@@ -65,11 +65,11 @@ export function KnowledgeUploadForm({ products = [] }: { products?: AcademicProd
       </div>
       <div className="form-grid compact">
         <label>
-          Unidad relacionada
+          Asignatura / materia relacionada
           <select name="unitNumber" defaultValue="">
-            <option value="">Documento general</option>
+            <option value="">Asignar número automáticamente</option>
             {Array.from({ length: 30 }, (_, index) => index + 1).map((unit) => (
-              <option key={unit} value={unit}>Unidad {unit}</option>
+              <option key={unit} value={unit}>Asignatura {unit}</option>
             ))}
           </select>
         </label>
@@ -155,7 +155,7 @@ export function KnowledgeVersionActions({
         icon="publish"
         versionId={versionId}
         documentId={documentId}
-        disabled={!(status === "processed" || status === "review_required")}
+        disabled={!(status === "processed" || status === "review_required" || status === "published")}
       />
       <VersionActionButton
         action={rollbackKnowledgeVersionAction}

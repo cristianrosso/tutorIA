@@ -4,6 +4,7 @@ import { AppShell } from "@/components/app-shell";
 import { StudentCourseSwitcher } from "@/components/student-course-switcher";
 import { requireProfile } from "@/lib/auth/session";
 import { getUnitsWithProgress } from "@/lib/data";
+import { DEFAULT_PRODUCT_ID } from "@/lib/products/products";
 import { getStudentProductContext, withProduct } from "@/lib/products/selection";
 
 function statusLabel(status?: string) {
@@ -26,6 +27,10 @@ export default async function UnitsPage({
   const params = await searchParams;
   const productContext = await getStudentProductContext(profile, params.product);
   const units = await getUnitsWithProgress(productContext.activeProduct.id);
+  const isDefaultCourse = productContext.activeProduct.id === DEFAULT_PRODUCT_ID;
+  const contentLabel = isDefaultCourse ? "unidad" : "materia";
+  const contentLabelPlural = isDefaultCourse ? "unidades" : "materias";
+  const cardEyebrow = isDefaultCourse ? "UNIDAD TEMÁTICA" : "MATERIA";
   return (
     <AppShell profile={profile} active="units">
       <div className="page-heading">
@@ -35,7 +40,7 @@ export default async function UnitsPage({
             Contenidos del curso<span className="heading-dot">.</span>
           </h1>
           <p>
-            Selecciona una unidad dentro de {productContext.activeProduct.name}.
+            Selecciona una {contentLabel} dentro de {productContext.activeProduct.name}.
           </p>
         </div>
         <span className="badge">
@@ -57,7 +62,7 @@ export default async function UnitsPage({
               </span>
               <BookOpen size={23} />
             </div>
-            <span className="eyebrow">UNIDAD TEMÁTICA {unit.number}</span>
+            <span className="eyebrow">{cardEyebrow} {unit.number}</span>
             <h2>{unit.name}</h2>
             <p>
               {unit.chunks
@@ -106,7 +111,7 @@ export default async function UnitsPage({
             <span>Curso activo: {productContext.activeProduct.short_name}</span>
           </div>
           <p className="notice error">
-            Este curso tiene preparación asignada, pero todavía no tiene material publicado al RAG/conocimiento. En Administración → Conocimiento debes procesar y publicar el documento cargado para que aparezcan sus unidades y temas aquí.
+            Este curso tiene preparación asignada, pero todavía no tiene material publicado al RAG/conocimiento. En Administración → Conocimiento debes procesar y publicar cada documento cargado para que aparezcan sus {contentLabelPlural} y sus temas aquí.
           </p>
         </section>
       )}

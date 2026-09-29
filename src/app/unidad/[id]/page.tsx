@@ -10,6 +10,7 @@ import { AppShell } from "@/components/app-shell";
 import { StudentCourseSwitcher } from "@/components/student-course-switcher";
 import { requireProfile } from "@/lib/auth/session";
 import { getUnitByNumber, getUnitTopics } from "@/lib/data";
+import { DEFAULT_PRODUCT_ID } from "@/lib/products/products";
 import { getStudentProductContext, withProduct } from "@/lib/products/selection";
 
 export default async function UnitDetailPage({
@@ -26,18 +27,21 @@ export default async function UnitDetailPage({
   const unitNumber = Math.min(99, Math.max(1, Number(resolved.id) || 1));
   const unit = await getUnitByNumber(unitNumber, productContext.activeProduct.id);
   const topics = await getUnitTopics(unitNumber, productContext.activeProduct.id);
+  const isDefaultCourse = productContext.activeProduct.id === DEFAULT_PRODUCT_ID;
+  const contentLabel = isDefaultCourse ? "UNIDAD" : "MATERIA";
+  const filterLabel = isDefaultCourse ? "esta unidad" : "esta materia";
   return (
     <AppShell profile={profile} active="units">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">{productContext.activeProduct.short_name} · UNIDAD {unit.number}</span>
+          <span className="eyebrow">{productContext.activeProduct.short_name} · {contentLabel} {unit.number}</span>
           <h1>
             {unit.name}
             <span className="heading-dot">.</span>
           </h1>
           <p>
             Temas detectados solo para el curso activo. El tutor filtrará el RAG por
-            esta unidad y curso.
+            {filterLabel} y curso.
           </p>
         </div>
         <span className="badge">
@@ -94,7 +98,7 @@ export default async function UnitDetailPage({
             ))
           ) : (
             <p className="notice">
-              Todavía no hay temas detectados para esta unidad. Ejecuta la
+              Todavía no hay temas detectados para {filterLabel}. Ejecuta la
               ingesta completa del compendio.
             </p>
           )}

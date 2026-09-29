@@ -391,6 +391,23 @@ function inferUnitNameFromChunk(chunk: ReturnType<typeof splitDocument>[number],
   const name = candidates.find((line) => line.length >= 4 && line.length <= 100 && !/^concepto\b/i.test(line));
   return name || fallback;
 }
+function isGenericUnitHeading(value: string | null | undefined) {
+  return /^unidad(?:\s+tem[áa]tica)?\s*\d{1,3}$/i.test(String(value || "").trim());
+}
+
+function topicTitleForPublication(
+  version: Record<string, unknown>,
+  chunk: ReturnType<typeof splitDocument>[number],
+  annotation: IntelligentChunkAnnotation | null,
+  fallback: string,
+) {
+  const annotated = annotationTitle(annotation, "");
+  if (annotated && !isGenericUnitHeading(annotated)) return annotated;
+  const chunkTitle = topicTitle(version, chunk);
+  if (chunkTitle && !isGenericUnitHeading(chunkTitle)) return chunkTitle;
+  return inferUnitNameFromChunk(chunk, fallback);
+}
+
 function assertSupportedFile(file: File) {
   const ext = extensionOf(file.name);
   if (!SUPPORTED_EXTENSIONS.has(ext))
@@ -797,36 +814,9 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
   try {
     const chunks = splitDocument(text);
     if (!chunks.length) throw new Error("No hay fragmentos válidos para publicar.");
-    const baseReport = buildValidationReport({ text, chunks, unitNumber: version.unit_number as number | null });
-    const storedReport = (version.validation_report || {}) as Record<string, unknown>;
-    const annotations = annotationMap(storedReport);
-    const detectedUnitNumbers = Array.from(new Set(chunks.map((chunk) => inferUnitNumberFromChunk(chunk)).filter(Boolean)));
-    const normalizedWarnings = baseReport.warnings.filter(
-      (warning) => !(detectedUnitNumbers.length && warning.includes("No se indicó unidad")),
-    );
-    const report = {
-      ...baseReport,
-      ai_processed: Boolean(annotations.size),
-      ai_annotations: Array.isArray(storedReport.ai_annotations) ? storedReport.ai_annotations : [],
-      ai_usage: storedReport.ai_usage || null,
-      warnings: [
-        ...normalizedWarnings,
-        ...(detectedUnitNumbers.length && !version.unit_number
-          ? [`Unidades detectadas desde encabezados del documento: ${detectedUnitNumbers.join(", ")}.`]
-          : []),
-        ...(annotations.size ? [] : ["Publicación sin lectura inteligente previa; se usó metadata determinística basada en títulos y subtítulos del documento."]),
-      ],
-    };
     const productId = String(version.product_id || document?.product_id || DEFAULT_KNOWLEDGE_PRODUCT_ID);
     const sourceLabel = String(document?.source_label || "Documento académico FATESCIPOL");
     const title = String(document?.title || version.original_filename || "Documento académico");
-    const resolvedUnitName = publicationUnitName({
-      productId,
-      unitNumber: version.unit_number as number | null,
-      version,
-      document: document as Record<string, unknown> | null,
-      chunks,
-    });
     const sourceHash = sha256(text);
     const { data: academicDocument, error: academicError } = await db
       .from("academic_documents")
@@ -837,8 +827,8 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
           document_version: String(version.version_label || "v1"),
           schema_version: "MKF-1.0",
           source_hash: sourceHash,
-          status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
-          report,
+          status: "PROCESSED",
+          report: {},
           active: true,
           product_id: productId,
         },
@@ -849,58 +839,108 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
     if (academicError || !academicDocument)
       throw new Error(academicError?.message || "No se pudo crear o actualizar el documento académico MKF-1.");
 
+    const { data: previousUnits } = await db
+      .from("academic_units")
+      .select("unit_number")
+      .eq("academic_document_id", academicDocument.id)
+      .order("unit_number", { ascending: true })
+      .limit(1);
+    const preservedUnitNumber = Number(previousUnits?.[0]?.unit_number || 0) || null;
+    const { data: lastProductUnit } = await db
+      .from("academic_units")
+      .select("unit_number")
+      .eq("product_id", productId)
+      .neq("academic_document_id", academicDocument.id)
+      .order("unit_number", { ascending: false })
+      .limit(1);
+    const defaultUnitNumber =
+      Number(version.unit_number || 0) ||
+      preservedUnitNumber ||
+      (Number(lastProductUnit?.[0]?.unit_number || 0) + 1) ||
+      1;
+    const resolvedUnitName = publicationUnitName({
+      productId,
+      unitNumber: defaultUnitNumber,
+      version: { ...version, unit_number: defaultUnitNumber },
+      document: document as Record<string, unknown> | null,
+      chunks,
+    });
+    const baseReport = buildValidationReport({ text, chunks, unitNumber: defaultUnitNumber });
+    const storedReport = (version.validation_report || {}) as Record<string, unknown>;
+    const annotations = annotationMap(storedReport);
+    const detectedUnitNumbers = Array.from(new Set(chunks.map((chunk) => inferUnitNumberFromChunk(chunk)).filter(Boolean)));
+    const normalizedWarnings = baseReport.warnings.filter((warning) => !warning.includes("No se indicó unidad"));
+    const report = {
+      ...baseReport,
+      ai_processed: Boolean(annotations.size),
+      ai_annotations: Array.isArray(storedReport.ai_annotations) ? storedReport.ai_annotations : [],
+      ai_usage: storedReport.ai_usage || null,
+      hierarchy_model: productId === DEFAULT_KNOWLEDGE_PRODUCT_ID ? "official_unit" : "course_subject",
+      subject_unit_number: defaultUnitNumber,
+      subject_unit_name: resolvedUnitName,
+      warnings: [
+        ...normalizedWarnings,
+        ...(detectedUnitNumbers.length
+          ? [`Encabezados internos detectados y conservados como temas/subtemas de la materia: ${detectedUnitNumbers.join(", ")}.`]
+          : []),
+        ...(annotations.size ? [] : ["Publicación sin lectura inteligente previa; se usó metadata determinística basada en títulos y subtítulos del documento."]),
+      ],
+    };
+
+    const { error: academicUpdateError } = await db
+      .from("academic_documents")
+      .update({
+        title,
+        status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
+        report,
+        active: true,
+        product_id: productId,
+      })
+      .eq("id", academicDocument.id);
+    if (academicUpdateError) throw new Error(academicUpdateError.message);
+
     const { error: cleanupError } = await db
       .from("academic_units")
       .delete()
       .eq("academic_document_id", academicDocument.id);
     if (cleanupError) throw new Error(cleanupError.message || "No se pudo limpiar la publicación anterior.");
 
-    const defaultUnitNumber = Number(version.unit_number || 0) || null;
-    const unitMap = new Map<number, { id: string; name: string }>();
-    const ensureAcademicUnit = async (chunk: ReturnType<typeof splitDocument>[number], chunkUnitNumber: number) => {
-      const cached = unitMap.get(chunkUnitNumber);
-      if (cached) return cached;
-      const chunkUnitName = defaultUnitNumber
-        ? resolvedUnitName
-        : inferUnitNameFromChunk(chunk, resolvedUnitName);
-      const { data: unitRow } = await db
-        .from("units")
-        .select("id")
-        .eq("number", chunkUnitNumber)
-        .maybeSingle();
-      const { data: academicUnit, error: academicUnitError } = await db
-        .from("academic_units")
-        .insert({
-          academic_document_id: academicDocument.id,
-          unit_id: unitRow?.id || null,
-          unit_number: chunkUnitNumber,
-          unit_name: chunkUnitName,
-          status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
-          hierarchy: { unit_number: chunkUnitNumber, unit_name: chunkUnitName },
-          validation: defaultUnitNumber ? report : { ...report, inferred_from_source_headings: true },
-          source_hash: sha256(`${chunkUnitNumber}\n${chunkUnitName}\n${text}`),
+    const { data: unitRow } = await db
+      .from("units")
+      .select("id")
+      .eq("number", defaultUnitNumber)
+      .maybeSingle();
+    const { data: academicUnit, error: academicUnitError } = await db
+      .from("academic_units")
+      .insert({
+        academic_document_id: academicDocument.id,
+        unit_id: unitRow?.id || null,
+        unit_number: defaultUnitNumber,
+        unit_name: resolvedUnitName,
+        status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
+        hierarchy: {
           product_id: productId,
-        })
-        .select("id,unit_name")
-        .single();
-      if (academicUnitError || !academicUnit)
-        throw new Error(academicUnitError?.message || "No se pudo crear la unidad académica.");
-      const value = { id: academicUnit.id as string, name: String(academicUnit.unit_name || chunkUnitName) };
-      unitMap.set(chunkUnitNumber, value);
-      return value;
-    };
+          subject_number: defaultUnitNumber,
+          subject_name: resolvedUnitName,
+          unit_number: defaultUnitNumber,
+          unit_name: resolvedUnitName,
+        },
+        validation: { ...report, source_document_is_subject: productId !== DEFAULT_KNOWLEDGE_PRODUCT_ID },
+        source_hash: sha256(`${defaultUnitNumber}\n${resolvedUnitName}\n${text}`),
+        product_id: productId,
+      })
+      .select("id,unit_name")
+      .single();
+    if (academicUnitError || !academicUnit)
+      throw new Error(academicUnitError?.message || "No se pudo crear la materia académica.");
+    const academicUnitId = academicUnit.id as string;
+    const chunkUnitNumber = defaultUnitNumber;
+    const chunkUnitName = String(academicUnit.unit_name || resolvedUnitName);
 
     const topicMap = new Map<string, string>();
-    let activeUnitNumber = defaultUnitNumber || 1;
     for (const [index, chunk] of chunks.entries()) {
-      const detectedUnitNumber = defaultUnitNumber || inferUnitNumberFromChunk(chunk);
-      if (detectedUnitNumber) activeUnitNumber = detectedUnitNumber;
-      const chunkUnitNumber = activeUnitNumber;
-      const academicUnit = await ensureAcademicUnit(chunk, chunkUnitNumber);
-      const academicUnitId = academicUnit.id;
-      const chunkUnitName = academicUnit.name;
       const annotation = annotationForChunk(annotations, chunk.chunk_index) || fallbackAnnotationForChunk(chunk);
-      const name = annotationTitle(annotation, topicTitle(version, chunk));
+      const name = topicTitleForPublication(version, chunk, annotation, resolvedUnitName);
       const number = chunk.section || (version.topic_number as string | null) || null;
       const topicKey = `${academicUnitId}|${number || ""}|${name}`;
       let topicId = topicMap.get(topicKey);
@@ -1068,6 +1108,7 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
         published_by: userId,
         published_at: new Date().toISOString(),
         validation_report: report,
+        unit_number: defaultUnitNumber,
       })
       .eq("id", versionId);
     await db
@@ -1130,6 +1171,7 @@ export async function rollbackKnowledgeVersion(versionId: string, userId: string
 export function sprint18MigrationName() {
   return MIGRATION_NAME;
 }
+
 
 
 
