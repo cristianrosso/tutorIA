@@ -60,10 +60,12 @@ ${modeStructure(input.mode, input.queryIntent)}
 ${buildExampleInstruction({ query: input.query, sources: input.availableSources })}
 
 Instrucciones obligatorias:
-- Responde como profesor experto: natural, claro y directo, sin sonar como plantilla rígida.
+- Responde como profesor experto: natural, claro, breve y concreto, sin sonar como plantilla rígida.
+- Para definiciones o preguntas de concepto, usa este orden: respuesta breve para examen oral, ejemplo didáctico concreto, y luego ampliación mínima con fuente si hace falta.
+- La primera respuesta debe ser defendible oralmente en 2 a 4 frases; evita introducciones largas.
 - Usa el contexto académico recuperado como base del contenido oficial.
-- Diferencia lógicamente contenido del compendio, explicación generada y ejemplo didáctico cuando existan.
-- Si el estudiante pide ejemplo, puedes empezar por el ejemplo y después conectar con el concepto.
+- Diferencia lógicamente contenido del compendio, explicación generada y ejemplo didáctico cuando existan, pero con lenguaje natural.
+- Si el estudiante pide ejemplo, empieza por el ejemplo y después conecta con el concepto.
 - Si el estudiante dice que no entendió, no repitas literalmente: cambia la estrategia y conserva el significado académico.
 - Si faltan fuentes suficientes para una parte de la respuesta, indícalo sin inventar.
 - No inventes normas, artículos, procedimientos, fechas, sanciones, atribuciones ni definiciones oficiales.
@@ -91,17 +93,17 @@ function formatSources(sources: KnowledgeChunkCandidate[]) {
 
 function modeStructure(mode: TutorMode, intent: AcademicIntent) {
   if (mode === "quick")
-    return "Estructura: respuesta central en 2 a 5 frases, idea clave y fuente.";
+    return "Estructura: respuesta oral breve en 2 a 4 frases, ejemplo corto y fuente mínima.";
   if (mode === "simple")
-    return "Estructura: concepto base breve, explicación sencilla, ejemplo corto si ayuda y pregunta de comprobación opcional.";
+    return "Estructura: respuesta breve para examen oral, ejemplo sencillo y explicación mínima de refuerzo.";
   if (mode === "academic")
-    return "Estructura: concepto, definición académica, elementos o características respaldadas, aplicación y fuente.";
+    return "Estructura: definición breve y correcta, ejemplo ilustrativo, elementos respaldados y fuente.";
   if (mode === "deep")
     return "Estructura: desarrollo amplio con relaciones conceptuales, límites de la fuente, ejemplo y síntesis final.";
   if (mode === "example")
     return "Estructura: ejemplo didáctico concreto, conexión con el concepto oficial, explicación breve e idea clave.";
   if (mode === "review")
-    return "Estructura: tema, definición fundamental, elementos que debe recordar, aplicación, idea para examen y pregunta de comprobación.";
+    return "Estructura: respuesta modelo breve para examen, ejemplo, elementos que debe recordar y pregunta de comprobación.";
   if (mode === "comparison")
     return "Estructura: concepto A, concepto B, semejanzas, diferencias y aplicación. Usa tabla si mejora la claridad.";
   if (mode === "step_by_step")
@@ -110,5 +112,5 @@ function modeStructure(mode: TutorMode, intent: AcademicIntent) {
     return "Estructura: objetivo, secuencia, explicación de etapas y fuente.";
   if (intent === "comparison")
     return "Estructura: definiciones comparadas, semejanzas, diferencias y fuente.";
-  return "Estructura flexible: responde según la pregunta, con concepto base, explicación, ejemplo o comprobación solo cuando ayude.";
+  return "Estructura base: respuesta breve para examen oral, ejemplo concreto y ampliación breve solo si ayuda.";
 }

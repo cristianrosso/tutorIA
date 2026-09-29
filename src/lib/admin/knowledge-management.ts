@@ -375,6 +375,22 @@ function annotationTitle(annotation: IntelligentChunkAnnotation | null, fallback
   return annotation?.section_title || annotation?.topic_title || annotation?.concept || fallback;
 }
 
+function inferUnitNumberFromChunk(chunk: ReturnType<typeof splitDocument>[number]) {
+  const sample = `${chunk.section_name || ""}\n${chunk.content.slice(0, 220)}`;
+  const match = sample.match(/\bUNIDAD(?:\s+TEM[ÁA]TICA)?\s*(\d{1,3})\b/i);
+  return match ? Number(match[1]) : null;
+}
+
+function inferUnitNameFromChunk(chunk: ReturnType<typeof splitDocument>[number], fallback: string) {
+  const lines = chunk.content
+    .split(/\n+/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const unitIndex = lines.findIndex((line) => /\bUNIDAD(?:\s+TEM[ÁA]TICA)?\s*\d{1,3}\b/i.test(line));
+  const candidates = unitIndex >= 0 ? lines.slice(unitIndex + 1, unitIndex + 6) : lines.slice(0, 5);
+  const name = candidates.find((line) => line.length >= 4 && line.length <= 100 && !/^concepto\b/i.test(line));
+  return name || fallback;
+}
 function assertSupportedFile(file: File) {
   const ext = extensionOf(file.name);
   if (!SUPPORTED_EXTENSIONS.has(ext))
@@ -832,57 +848,54 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
       .eq("academic_document_id", academicDocument.id);
     if (cleanupError) throw new Error(cleanupError.message || "No se pudo limpiar la publicación anterior.");
 
-    let academicUnitId: string | null = null;
-    if (version.unit_number) {
+    const defaultUnitNumber = Number(version.unit_number || 0) || null;
+    const unitMap = new Map<number, { id: string; name: string }>();
+    const ensureAcademicUnit = async (chunk: ReturnType<typeof splitDocument>[number], chunkUnitNumber: number) => {
+      const cached = unitMap.get(chunkUnitNumber);
+      if (cached) return cached;
+      const chunkUnitName = defaultUnitNumber
+        ? resolvedUnitName
+        : inferUnitNameFromChunk(chunk, resolvedUnitName);
       const { data: unitRow } = await db
         .from("units")
         .select("id")
-        .eq("number", version.unit_number)
+        .eq("number", chunkUnitNumber)
         .maybeSingle();
       const { data: academicUnit, error: academicUnitError } = await db
         .from("academic_units")
         .insert({
           academic_document_id: academicDocument.id,
           unit_id: unitRow?.id || null,
-          unit_number: version.unit_number,
-          unit_name: resolvedUnitName,
+          unit_number: chunkUnitNumber,
+          unit_name: chunkUnitName,
           status: report.requires_review ? "REVIEW_REQUIRED" : "PROCESSED",
-          hierarchy: { unit_number: version.unit_number, unit_name: resolvedUnitName },
-          validation: report,
-          source_hash: sha256(`${version.unit_number}\n${text}`),
+          hierarchy: { unit_number: chunkUnitNumber, unit_name: chunkUnitName },
+          validation: defaultUnitNumber ? report : { ...report, inferred_from_source_headings: true },
+          source_hash: sha256(`${chunkUnitNumber}\n${chunkUnitName}\n${text}`),
           product_id: productId,
         })
-        .select("id")
+        .select("id,unit_name")
         .single();
       if (academicUnitError || !academicUnit)
         throw new Error(academicUnitError?.message || "No se pudo crear la unidad académica.");
-      academicUnitId = academicUnit.id as string;
-    } else {
-      const { data: academicUnit, error: academicUnitError } = await db
-        .from("academic_units")
-        .insert({
-          academic_document_id: academicDocument.id,
-          unit_number: 1,
-          unit_name: resolvedUnitName,
-          status: "REVIEW_REQUIRED",
-          hierarchy: { unit_number: 1, unit_name: resolvedUnitName },
-          validation: { ...report, requires_review: true },
-          source_hash: sha256(`${resolvedUnitName}\n${text}`),
-          product_id: productId,
-        })
-        .select("id")
-        .single();
-      if (academicUnitError || !academicUnit)
-        throw new Error(academicUnitError?.message || "No se pudo crear unidad general.");
-      academicUnitId = academicUnit.id as string;
-    }
+      const value = { id: academicUnit.id as string, name: String(academicUnit.unit_name || chunkUnitName) };
+      unitMap.set(chunkUnitNumber, value);
+      return value;
+    };
 
     const topicMap = new Map<string, string>();
+    let activeUnitNumber = defaultUnitNumber || 1;
     for (const [index, chunk] of chunks.entries()) {
+      const detectedUnitNumber = defaultUnitNumber || inferUnitNumberFromChunk(chunk);
+      if (detectedUnitNumber) activeUnitNumber = detectedUnitNumber;
+      const chunkUnitNumber = activeUnitNumber;
+      const academicUnit = await ensureAcademicUnit(chunk, chunkUnitNumber);
+      const academicUnitId = academicUnit.id;
+      const chunkUnitName = academicUnit.name;
       const annotation = annotationForChunk(annotations, chunk.chunk_index) || fallbackAnnotationForChunk(chunk);
       const name = annotationTitle(annotation, topicTitle(version, chunk));
       const number = chunk.section || (version.topic_number as string | null) || null;
-      const topicKey = `${number || ""}|${name}`;
+      const topicKey = `${academicUnitId}|${number || ""}|${name}`;
       let topicId = topicMap.get(topicKey);
       if (!topicId) {
         const { data: topic, error: topicError } = await db
@@ -893,8 +906,8 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
             topic_name: name,
             sequence_index: topicMap.size,
             hierarchy: {
-              unit_number: version.unit_number || null,
-              unit_name: resolvedUnitName,
+              unit_number: chunkUnitNumber,
+              unit_name: chunkUnitName,
               topic_number: number,
               topic_name: name,
             },
@@ -912,13 +925,13 @@ export async function publishKnowledgeVersion(versionId: string, userId: string)
 
       const objectId = buildKnowledgeId({
         versionId,
-        unitNumber: version.unit_number as number | null,
+        unitNumber: chunkUnitNumber,
         chunkIndex: index,
         title: name,
       });
       const hierarchy = {
-        unit_number: version.unit_number || null,
-        unit_name: resolvedUnitName,
+        unit_number: chunkUnitNumber,
+        unit_name: chunkUnitName,
         topic_number: number,
         topic_name: name,
         section_number: chunk.section,
