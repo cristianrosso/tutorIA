@@ -17,6 +17,7 @@ import {
   LayoutDashboard,
   LogOut,
   Mic,
+  Search,
   ShieldCheck,
   Users,
   Wallet,
@@ -127,9 +128,25 @@ export function AppShell({
       </aside>
       <div className="app-main">
         <header className="app-header">
-          <span className="breadcrumb">
-            Aula virtual <span>/</span> <strong>{breadcrumb(active)}</strong>
-          </span>
+          <div className="header-left">
+            <span className="breadcrumb">
+              Aula virtual <span>/</span> <strong>{breadcrumb(active)}</strong>
+            </span>
+            <form
+              className="header-search"
+              action={profile.role === "ADMIN" ? "/admin/knowledge/search" : "/unidades"}
+              role="search"
+              aria-label="Buscar contenido académico"
+            >
+              <Search size={16} />
+              <input
+                name="q"
+                type="search"
+                placeholder="Buscar temas, materias o preguntas..."
+                aria-label="Buscar temas, materias o preguntas"
+              />
+            </form>
+          </div>
           <div className="header-user">
             <span className="year-tag">GESTIÓN 2026</span>
             <span className="avatar">

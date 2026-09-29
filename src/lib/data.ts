@@ -30,7 +30,7 @@ export async function getUnitByNumber(number: number, productId?: string | null)
   await requireProfile();
   if (productId) {
     const dbAdmin = createSupabaseAdmin();
-    let query = dbAdmin
+    const query = dbAdmin
       .from("academic_units")
       .select("id,unit_number,unit_name")
       .eq("unit_number", number)

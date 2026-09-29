@@ -100,10 +100,14 @@ export async function getAssessmentCatalog(productId?: string | null) {
     unitsQuery = unitsQuery.eq("product_id", productId);
     topicsQuery = topicsQuery.eq("product_id", productId);
   }
-  let [{ data: units, error: unitsError }, { data: topics, error: topicsError }] = await Promise.all([
+  const [unitsResult, topicsResult] = await Promise.all([
     unitsQuery,
     topicsQuery,
   ]);
+  let units = unitsResult.data;
+  let topics = topicsResult.data;
+  const unitsError = unitsResult.error;
+  const topicsError = topicsResult.error;
   if (productId && (isMissingProductColumn(unitsError) || isMissingProductColumn(topicsError))) {
     const fallback = await Promise.all([
       db.from("academic_units").select("id,unit_number,unit_name").order("unit_number"),

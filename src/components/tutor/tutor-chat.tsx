@@ -142,7 +142,9 @@ export function TutorChat({
   const [voiceConversationMode, setVoiceConversationMode] = useState(true);
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const [playingMessageId, setPlayingMessageId] = useState("");
+  const [showJumpToLatest, setShowJumpToLatest] = useState(false);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const threadRef = useRef<HTMLDivElement | null>(null);
   const localMessageIdRef = useRef(0);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -153,8 +155,32 @@ export function TutorChat({
   const audioCacheRef = useRef<Map<string, string>>(new Map());
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    const thread = threadRef.current;
+    if (!thread) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      return;
+    }
+    const distanceFromBottom = thread.scrollHeight - thread.scrollTop - thread.clientHeight;
+    const shouldFollow = distanceFromBottom < 180;
+    if (shouldFollow) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      setShowJumpToLatest(false);
+    } else {
+      setShowJumpToLatest(true);
+    }
   }, [messages, pending]);
+
+  function handleThreadScroll() {
+    const thread = threadRef.current;
+    if (!thread) return;
+    const distanceFromBottom = thread.scrollHeight - thread.scrollTop - thread.clientHeight;
+    setShowJumpToLatest(distanceFromBottom >= 180);
+  }
+
+  function jumpToLatest() {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    setShowJumpToLatest(false);
+  }
 
   async function submit(
     text = message,
@@ -606,7 +632,7 @@ export function TutorChat({
 
       {voiceError && <p className="notice error">{voiceError}</p>}
 
-      <div className="chat-thread" aria-live="polite">
+      <div className="chat-thread" aria-live="polite" ref={threadRef} onScroll={handleThreadScroll}>
         {messages.length === 0 && (
           <div className="chat-empty">
             <Bot size={26} />
@@ -698,6 +724,16 @@ export function TutorChat({
         )}
         <div ref={bottomRef} />
       </div>
+
+        {showJumpToLatest && (
+          <button
+            className="button secondary chat-jump-button"
+            type="button"
+            onClick={jumpToLatest}
+          >
+            Volver al último mensaje
+          </button>
+        )}
 
       {error && <p className="notice error">{error}</p>}
 
