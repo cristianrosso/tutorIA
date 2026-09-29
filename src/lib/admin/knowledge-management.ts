@@ -99,10 +99,10 @@ function publicationUnitName(input: {
   }
   const topicName = String(input.version.topic_name || "").trim();
   if (topicName) return topicName;
-  const firstChunkTitle = input.chunks?.map((chunk) => chunk.section_name).find(Boolean);
-  if (firstChunkTitle) return String(firstChunkTitle);
   const title = String(input.document?.title || "").trim();
   if (title) return title;
+  const firstChunkTitle = input.chunks?.map((chunk) => chunk.section_name).find(Boolean);
+  if (firstChunkTitle) return String(firstChunkTitle);
   return input.unitNumber ? `Unidad ${input.unitNumber}` : "Documento general";
 }
 
