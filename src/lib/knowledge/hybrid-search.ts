@@ -166,25 +166,47 @@ export async function hybridSearch(
     }
   }
 
-  let query = db
-    .from("knowledge_chunks")
-    .select(
-      "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,product_id,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
-    )
-    .limit(1500);
   const unitFilter = options.unitNumber || analysis.probableUnitNumber;
-  if (unitFilter) query = query.contains("metadata", { unit_number: unitFilter });
-  if (options.productId) query = query.eq("product_id", options.productId);
-  const { data: lexicalRows, error: lexicalError } = await query;
-  if (!lexicalError && lexicalRows) {
-    for (const row of lexicalRows as unknown as DbKnowledgeChunk[]) {
+  const runLexicalSearch = async (withUnitFilter: boolean) => {
+    let query = db
+      .from("knowledge_chunks")
+      .select(
+        "id,knowledge_object_id,parent_id,academic_unit_id,academic_topic_id,chunk_type,content,source_content,source_text,source_reference,page_reference,keywords,metadata,product_id,knowledge_objects(id,title,concept,parent_id,hierarchy,source_content)",
+      )
+      .limit(1500);
+    if (withUnitFilter && unitFilter) query = query.contains("metadata", { unit_number: unitFilter });
+    if (options.productId) query = query.eq("product_id", options.productId);
+    return query;
+  };
+
+  const collectLexicalCandidates = (rows: DbKnowledgeChunk[]) => {
+    const before = candidates.length;
+    for (const row of rows) {
       const candidate = rowToCandidate(row, analysis, options, 0, "lexical");
       if (candidate.lexicalScore > 0 || candidate.academicScore > 0.2)
         candidates.push(candidate);
     }
+    return candidates.length - before;
+  };
+
+  const { data: lexicalRows, error: lexicalError } = await runLexicalSearch(Boolean(unitFilter));
+  let lexicalMatches = 0;
+  if (!lexicalError && lexicalRows) {
+    lexicalMatches = collectLexicalCandidates(lexicalRows as unknown as DbKnowledgeChunk[]);
     debug.lexical = candidates.filter((item) => item.source === "lexical").slice(0, 20);
   } else if (lexicalError) {
     debug.lexicalError = lexicalError.message;
+  }
+
+  if (options.productId && unitFilter && lexicalMatches === 0) {
+    const { data: relaxedRows, error: relaxedError } = await runLexicalSearch(false);
+    if (!relaxedError && relaxedRows) {
+      const relaxedMatches = collectLexicalCandidates(relaxedRows as unknown as DbKnowledgeChunk[]);
+      debug.lexicalUnitFallback = { unitFilter, relaxedMatches };
+      debug.lexical = candidates.filter((item) => item.source === "lexical").slice(0, 20);
+    } else if (relaxedError) {
+      debug.lexicalUnitFallbackError = relaxedError.message;
+    }
   }
 
   return { candidates, debug };
