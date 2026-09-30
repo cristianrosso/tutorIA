@@ -4891,3 +4891,288 @@ textarea {
     min-height: 46px;
   }
 }
+
+
+/* Sprint 25C · Pantalla de preparaciones con cambio estructural visible */
+.preparations-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 24px;
+  align-items: stretch;
+  padding: clamp(28px, 4vw, 54px);
+  border: 1px solid rgba(27, 138, 120, 0.18);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(27, 138, 120, 0.14), transparent 22rem),
+    radial-gradient(circle at 92% 8%, rgba(234, 215, 167, 0.34), transparent 18rem),
+    linear-gradient(135deg, #f8fbf7 0%, #eef8f1 48%, #fffaf0 100%);
+  box-shadow: 0 34px 90px rgba(8, 36, 44, 0.11);
+  margin-bottom: 28px;
+}
+
+.preparations-hero-copy h1 {
+  max-width: 980px;
+  margin: 10px 0 14px;
+  color: #082b35;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 850;
+}
+
+.preparations-hero-copy p {
+  max-width: 780px;
+  color: #5f7580;
+  font-size: clamp(16px, 1.45vw, 20px);
+  line-height: 1.7;
+}
+
+.preparations-summary-card {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  border-radius: 28px;
+  padding: 24px;
+  color: #fff;
+  background:
+    linear-gradient(145deg, rgba(7, 54, 59, 0.96), rgba(18, 132, 114, 0.94));
+  box-shadow: 0 24px 54px rgba(7, 54, 59, 0.24);
+}
+
+.preparations-summary-card svg {
+  color: var(--gold-300);
+}
+
+.preparations-summary-card strong {
+  font-size: 58px;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+}
+
+.preparations-summary-card span {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.preparations-catalog {
+  padding: clamp(22px, 3vw, 36px);
+  border: 1px solid rgba(16, 63, 63, 0.1);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 26px 70px rgba(9, 43, 47, 0.08);
+}
+
+.preparations-catalog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(16, 63, 63, 0.08);
+}
+
+.preparations-catalog-header h2 {
+  margin-top: 6px;
+  color: #082b35;
+  font-size: clamp(24px, 2.4vw, 34px);
+  letter-spacing: -0.035em;
+}
+
+.preparations-catalog-header > span {
+  color: #78909a;
+  font-size: 13px;
+  text-align: right;
+}
+
+.preparation-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 22px;
+}
+
+.preparation-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  min-height: 390px;
+  flex-direction: column;
+  gap: 22px;
+  padding: 26px;
+  border: 1px solid rgba(27, 138, 120, 0.2);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(27, 138, 120, 0.13), transparent 16rem),
+    linear-gradient(180deg, #ffffff, #fbfdf8);
+  box-shadow: 0 18px 48px rgba(9, 43, 47, 0.085);
+}
+
+.preparation-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 24px 0 24px;
+  height: 5px;
+  border-radius: 99px 99px 0 0;
+  background: linear-gradient(90deg, var(--teal-600), var(--gold-400));
+}
+
+.preparation-card-topline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.preparation-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 20px;
+  color: #075f56;
+  background: #e6f4ee;
+  border: 1px solid rgba(27, 138, 120, 0.18);
+}
+
+.preparation-card-topline span {
+  display: block;
+  color: #91a4aa;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.preparation-card-topline strong {
+  display: block;
+  color: #00796f;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+
+.preparation-card-body h3 {
+  max-width: 680px;
+  margin: 0 0 10px;
+  color: #082b35;
+  font-size: clamp(22px, 2.1vw, 32px);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.preparation-card-body p {
+  color: #617783;
+  line-height: 1.55;
+}
+
+.preparation-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.preparation-metrics span {
+  display: flex;
+  min-height: 76px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(16, 63, 63, 0.08);
+  border-radius: 18px;
+  color: #6d828b;
+  background: rgba(247, 250, 246, 0.9);
+  font-size: 12px;
+}
+
+.preparation-metrics svg {
+  color: #0f766e;
+}
+
+.preparation-metrics strong {
+  color: #082b35;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.preparation-progress {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.preparation-progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  color: #6f858d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.preparation-progress strong {
+  color: #0f766e;
+}
+
+.preparation-progress-track {
+  overflow: hidden;
+  height: 10px;
+  border-radius: 99px;
+  background: #e5efea;
+}
+
+.preparation-progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f766e, #c9a45f);
+}
+
+.preparation-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.preparation-actions .button {
+  min-height: 52px;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .preparations-hero {
+    grid-template-columns: 1fr;
+  }
+  .preparations-summary-card {
+    min-height: 130px;
+  }
+  .preparations-catalog-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .preparations-catalog-header > span {
+    text-align: left;
+  }
+  .preparation-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .preparations-hero,
+  .preparations-catalog,
+  .preparation-card {
+    border-radius: 24px;
+  }
+  .preparations-hero-copy h1 {
+    font-size: 36px;
+  }
+  .preparation-metrics,
+  .preparation-actions {
+    grid-template-columns: 1fr;
+  }
+}
