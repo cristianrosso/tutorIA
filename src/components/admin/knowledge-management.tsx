@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { BookOpen, FileUp, RefreshCcw, Rocket, RotateCcw } from "lucide-react";
 import type { AcademicProduct } from "@/lib/products/products";
 import {
@@ -12,14 +12,30 @@ import {
 
 type ActionState = { ok: boolean; message: string; documentId?: string };
 const initialState: ActionState = { ok: false, message: "" };
+const MAX_KNOWLEDGE_UPLOAD_BYTES = 50 * 1024 * 1024;
+const MAX_KNOWLEDGE_UPLOAD_MB = Math.floor(MAX_KNOWLEDGE_UPLOAD_BYTES / 1024 / 1024);
 
 export function KnowledgeUploadForm({ products = [] }: { products?: AcademicProduct[] }) {
+  const [clientError, setClientError] = useState("");
   const [state, action, pending] = useActionState(
     uploadKnowledgeDocumentAction as (state: ActionState, form: FormData) => Promise<ActionState>,
     initialState,
   );
   return (
-    <form className="admin-form knowledge-upload-form" action={action}>
+    <form
+      className="admin-form knowledge-upload-form"
+      action={action}
+      onSubmit={(event) => {
+        const fileInput = event.currentTarget.elements.namedItem("file") as HTMLInputElement | null;
+        const file = fileInput?.files?.[0];
+        if (file && file.size > MAX_KNOWLEDGE_UPLOAD_BYTES) {
+          event.preventDefault();
+          setClientError(`El archivo pesa ${(file.size / 1024 / 1024).toFixed(1)} MB. El límite actual es ${MAX_KNOWLEDGE_UPLOAD_MB} MB.`);
+          return;
+        }
+        setClientError("");
+      }}
+    >
       <div className="form-grid compact">
         <label>
           Curso / producto
@@ -84,11 +100,26 @@ export function KnowledgeUploadForm({ products = [] }: { products?: AcademicProd
       </div>
       <label>
         Archivo académico privado
-        <input name="file" type="file" accept=".pdf,.docx,.txt,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+        <input
+          name="file"
+          type="file"
+          accept=".pdf,.docx,.txt,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          required
+          onChange={(event) => {
+            const file = event.currentTarget.files?.[0];
+            if (file && file.size > MAX_KNOWLEDGE_UPLOAD_BYTES) {
+              setClientError(`El archivo pesa ${(file.size / 1024 / 1024).toFixed(1)} MB. El límite actual es ${MAX_KNOWLEDGE_UPLOAD_MB} MB.`);
+            } else {
+              setClientError("");
+            }
+          }}
+        />
+        <small>PDF, DOCX o TXT. Límite actual: {MAX_KNOWLEDGE_UPLOAD_MB} MB por archivo.</small>
       </label>
       <button className="button primary" disabled={pending}>
         <FileUp size={17} /> {pending ? "Cargando…" : "Cargar documento"}
       </button>
+      {clientError && <p className="notice error">{clientError}</p>}
       {state.message && <p className={`notice ${state.ok ? "success" : "error"}`}>{state.message}</p>}
       {state.documentId && (
         <a className="button secondary" href={`/admin/knowledge/documents/${state.documentId}`}>
