@@ -521,7 +521,7 @@ Maximos: conceptual 30, application 20, terminology 20, argumentation 20, clarit
 Si la pregunta pide enumerar fases, principios, valores, caracteristicas, elementos o clasificaciones, compara cada item con el contexto recuperado. No marques como correcto un listado distinto aunque use palabras generales como "fases", "ciclo", "doctrina" o "gestion".
 Ejemplo de criterio: si el compendio indica Creacion o Actualizacion, Difusion, Internalizacion y Aplicacion, una respuesta como "introduccion, desarrollo y desenlace" es incorrecta o insuficiente.
 Corrige como tribunal oral, breve y directo:
-- strengths: maximo 2 puntos concretos sobre lo que estuvo bien.
+- strengths: maximo 2 puntos concretos sobre lo que estuvo bien. Si el estudiante acerto una parte, reconocela expresamente.
 - missingConcepts: maximo 3 faltantes o errores concretos. Si el concepto esta bien pero falta un elemento del compendio, dilo como "Respuesta incompleta: falto ...".
 - misconceptions: solo errores conceptuales reales, no comentarios largos.
 - improvements: maximo 2 acciones concretas para mejorar.
@@ -529,6 +529,7 @@ Corrige como tribunal oral, breve y directo:
 - correctAnswer: respuesta esperada breve para examen oral, de 2 a 3 frases, usando solo informacion respaldada por el contexto recuperado.
 - modelAnswer: version aun mas breve y natural, lista para decir ante tribunal.
 - didacticExplanation, didacticExample y policeApplication: dejalos vacios salvo que sean indispensables; no alargues la correccion.
+No asignes cero total si hay alguna parte correcta o algun concepto respaldado en la respuesta. En ese caso da puntaje parcial coherente y explica exactamente que falto.
 Evita frases genericas como "define el concepto"; escribe el contenido que el estudiante debio decir.
 No repitas el nombre del tema como si fuera explicacion. Por ejemplo, para "Aplicacion de la doctrina" debes explicar que es la puesta en practica de la doctrina policial en la vida personal y profesional del personal policial, buscando resultados positivos que fortalezcan la imagen institucional.
 Si el estudiante responde parcialmente bien, no lo trates como totalmente correcto: indica exactamente que le falto.
@@ -944,24 +945,26 @@ function normalizeEvaluation(
   parsed: Partial<AnswerEvaluation>,
   fallback: AnswerEvaluation,
 ): AnswerEvaluation {
-  const score = makeScore({
+  const parsedStrengths = normalizeList(parsed.strengths);
+  const parsedMissing = normalizeList(parsed.missingConcepts);
+  const parsedImprovements = normalizeList(parsed.improvements);
+  const strengths = parsedStrengths.length ? parsedStrengths : fallback.strengths;
+  const hasPositiveEvidence = strengths.length > 0 || fallback.strengths.length > 0;
+  const rawScore = makeScore({
     conceptual: parsed.score?.conceptual ?? fallback.score.conceptual,
     application: parsed.score?.application ?? fallback.score.application,
     terminology: parsed.score?.terminology ?? fallback.score.terminology,
     argumentation: parsed.score?.argumentation ?? fallback.score.argumentation,
     clarity: parsed.score?.clarity ?? fallback.score.clarity,
   });
+  const score = preservePartialCredit(rawScore, fallback.score, hasPositiveEvidence);
   return compactEvaluation({
     score,
-    strengths: normalizeList(parsed.strengths).length
-      ? normalizeList(parsed.strengths)
-      : fallback.strengths,
-    missingConcepts: normalizeList(parsed.missingConcepts).length
-      ? normalizeList(parsed.missingConcepts)
-      : fallback.missingConcepts,
+    strengths,
+    missingConcepts: parsedMissing.length ? parsedMissing : fallback.missingConcepts,
     misconceptions: normalizeList(parsed.misconceptions),
-    improvements: normalizeList(parsed.improvements).length
-      ? normalizeList(parsed.improvements)
+    improvements: parsedImprovements.length
+      ? parsedImprovements
       : fallback.improvements,
     needsFollowUp:
       typeof parsed.needsFollowUp === "boolean"
@@ -998,6 +1001,28 @@ function normalizeEvaluation(
       typeof parsed.modelAnswer === "string" && parsed.modelAnswer.trim()
         ? parsed.modelAnswer.trim()
         : fallback.modelAnswer,
+  });
+}
+
+function preservePartialCredit(
+  rawScore: RubricScore,
+  fallbackScore: RubricScore,
+  hasPositiveEvidence: boolean,
+): RubricScore {
+  if (!hasPositiveEvidence) return rawScore;
+  const floor = makeScore({
+    conceptual: Math.max(8, Math.round(fallbackScore.conceptual * 0.75)),
+    application: Math.round(fallbackScore.application * 0.5),
+    terminology: Math.max(4, Math.round(fallbackScore.terminology * 0.75)),
+    argumentation: Math.round(fallbackScore.argumentation * 0.5),
+    clarity: Math.max(4, Math.round(fallbackScore.clarity * 0.75)),
+  });
+  return makeScore({
+    conceptual: Math.max(rawScore.conceptual, floor.conceptual),
+    application: Math.max(rawScore.application, floor.application),
+    terminology: Math.max(rawScore.terminology, floor.terminology),
+    argumentation: Math.max(rawScore.argumentation, floor.argumentation),
+    clarity: Math.max(rawScore.clarity, floor.clarity),
   });
 }
 
