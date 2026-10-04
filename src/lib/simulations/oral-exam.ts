@@ -518,17 +518,20 @@ Evalua la respuesta del estudiante contra el contexto del compendio. No evalues 
 Devuelve JSON estricto con esta forma:
 {"score":{"conceptual":0,"application":0,"terminology":0,"argumentation":0,"clarity":0},"strengths":[],"missingConcepts":[],"misconceptions":[],"improvements":[],"needsFollowUp":true,"followUpReason":"","feedback":"","correctAnswer":"","didacticExplanation":"","didacticExample":"","policeApplication":"","modelAnswer":""}
 Maximos: conceptual 30, application 20, terminology 20, argumentation 20, clarity 10.
-Si la pregunta pide enumerar fases, principios, valores, caracteristicas, elementos o clasificaciones, compara cada item con el contexto recuperado. No marques como correcto un listado distinto aunque use palabras generales como "fases", "ciclo", "doctrina" o "gestión".
-Ejemplo de criterio: si el compendio indica Creación o Actualización, Difusión, Internalización y Aplicación, una respuesta como "introducción, desarrollo y desenlace" es incorrecta o insuficiente.
-Genera retroalimentacion pedagogica que razone la respuesta:
-- correctAnswer: respuesta correcta orientativa directamente relacionada con la pregunta, usando solo informacion respaldada por el contexto recuperado.
-- didacticExplanation: explicacion sencilla del mismo punto, sin cambiar el significado academico.
-- didacticExample: ejemplo didactico generado, concreto e hipotetico; no lo presentes como cita, norma, articulo ni disposicion del compendio.
-- policeApplication: aplicacion coherente a la funcion policial cuando corresponda.
-- modelAnswer: respuesta oral breve y defendible para practicar ante tribunal.
+Si la pregunta pide enumerar fases, principios, valores, caracteristicas, elementos o clasificaciones, compara cada item con el contexto recuperado. No marques como correcto un listado distinto aunque use palabras generales como "fases", "ciclo", "doctrina" o "gestion".
+Ejemplo de criterio: si el compendio indica Creacion o Actualizacion, Difusion, Internalizacion y Aplicacion, una respuesta como "introduccion, desarrollo y desenlace" es incorrecta o insuficiente.
+Corrige como tribunal oral, breve y directo:
+- strengths: maximo 2 puntos concretos sobre lo que estuvo bien.
+- missingConcepts: maximo 3 faltantes o errores concretos. Si el concepto esta bien pero falta un elemento del compendio, dilo como "Respuesta incompleta: falto ...".
+- misconceptions: solo errores conceptuales reales, no comentarios largos.
+- improvements: maximo 2 acciones concretas para mejorar.
+- feedback: una sola frase de veredicto. Debe decir si fue correcta, incompleta o incorrecta y por que.
+- correctAnswer: respuesta esperada breve para examen oral, de 2 a 3 frases, usando solo informacion respaldada por el contexto recuperado.
+- modelAnswer: version aun mas breve y natural, lista para decir ante tribunal.
+- didacticExplanation, didacticExample y policeApplication: dejalos vacios salvo que sean indispensables; no alargues la correccion.
 Evita frases genericas como "define el concepto"; escribe el contenido que el estudiante debio decir.
-No repitas el nombre del tema como si fuera explicación. Por ejemplo, para "Aplicación de la doctrina" debes explicar que es la puesta en práctica de la doctrina policial en la vida personal y profesional del personal policial, buscando resultados positivos que fortalezcan la imagen institucional.
-Si el estudiante se equivoca o responde poco, explica que faltaba y luego ofrece una forma correcta de responder.
+No repitas el nombre del tema como si fuera explicacion. Por ejemplo, para "Aplicacion de la doctrina" debes explicar que es la puesta en practica de la doctrina policial en la vida personal y profesional del personal policial, buscando resultados positivos que fortalezcan la imagen institucional.
+Si el estudiante responde parcialmente bien, no lo trates como totalmente correcto: indica exactamente que le falto.
 
 Pregunta:
 ${input.question.question}
@@ -542,14 +545,14 @@ ${input.studentAnswer}
 Contexto recuperado:
 ${sourceBlock(input.retrievedContext)}
 `.trim(),
-      maxOutputTokens: 900,
+      maxOutputTokens: 480,
     });
     return normalizeEvaluation(
       parseJsonObject<Partial<AnswerEvaluation>>(completion.text),
       heuristic,
     );
   } catch {
-    return heuristic;
+    return compactEvaluation(heuristic);
   }
 }
 
@@ -948,7 +951,7 @@ function normalizeEvaluation(
     argumentation: parsed.score?.argumentation ?? fallback.score.argumentation,
     clarity: parsed.score?.clarity ?? fallback.score.clarity,
   });
-  return {
+  return compactEvaluation({
     score,
     strengths: normalizeList(parsed.strengths).length
       ? normalizeList(parsed.strengths)
@@ -995,6 +998,23 @@ function normalizeEvaluation(
       typeof parsed.modelAnswer === "string" && parsed.modelAnswer.trim()
         ? parsed.modelAnswer.trim()
         : fallback.modelAnswer,
+  });
+}
+
+function compactEvaluation(evaluation: AnswerEvaluation): AnswerEvaluation {
+  return {
+    ...evaluation,
+    strengths: compactFeedbackList(evaluation.strengths, 2, 150),
+    missingConcepts: compactFeedbackList(evaluation.missingConcepts, 3, 160),
+    misconceptions: compactFeedbackList(evaluation.misconceptions, 2, 160),
+    improvements: compactFeedbackList(evaluation.improvements, 2, 150),
+    followUpReason: compactFeedbackText(evaluation.followUpReason, 160),
+    feedback: compactFeedbackText(evaluation.feedback, 220),
+    correctAnswer: compactFeedbackText(evaluation.correctAnswer, 360),
+    didacticExplanation: compactFeedbackText(evaluation.didacticExplanation, 180),
+    didacticExample: compactFeedbackText(evaluation.didacticExample, 180),
+    policeApplication: compactFeedbackText(evaluation.policeApplication, 180),
+    modelAnswer: compactFeedbackText(evaluation.modelAnswer, 280),
   };
 }
 
@@ -1167,11 +1187,14 @@ function buildErrorReviews(questions: SimulationQuestion[]): ErrorReview[] {
             "Faltó mayor precisión conceptual.",
           ],
       conceptToCorrect: question.missing_concepts[0] || "Precisión conceptual",
-      betterExplanation:
+      betterExplanation: compactFeedbackText(
         question.model_answer ||
-        "Puede mejorar iniciando con el concepto, desarrollando sus elementos y cerrando con una aplicación policial concreta.",
-      didacticExample:
-        "Ejemplo didáctico generado: ante una pregunta del tribunal, primero defina el concepto, luego relacione sus elementos con la actuación policial y cierre con una aplicación concreta.",
+          question.feedback?.modelAnswer ||
+          question.feedback?.correctAnswer ||
+          "Respuesta esperada breve: indique el concepto correcto y complete los elementos que faltaron.",
+        260,
+      ),
+      didacticExample: "",
     }));
 }
 
@@ -1263,6 +1286,22 @@ function normalizeList(value: unknown) {
           .map((item) => item.trim()),
       ).slice(0, 8)
     : [];
+}
+
+function compactFeedbackList(items: string[], maxItems: number, maxChars: number) {
+  return uniqueStrings(
+    items
+      .map((item) => compactFeedbackText(item, maxChars))
+      .filter(Boolean),
+  ).slice(0, maxItems);
+}
+
+function compactFeedbackText(value: string, maxChars: number) {
+  const normalized = value.replace(/\s+/g, " ").trim();
+  if (!normalized || normalized.length <= maxChars) return normalized;
+  const sentence = normalized.match(/^.{40,}?[.!?](?:\s|$)/)?.[0]?.trim();
+  if (sentence && sentence.length <= maxChars) return sentence;
+  return `${normalized.slice(0, Math.max(0, maxChars - 1)).trim()}…`;
 }
 
 function uniqueStrings(items: string[]) {

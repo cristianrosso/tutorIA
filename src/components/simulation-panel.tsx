@@ -389,7 +389,12 @@ export function SimulationPanel({
                   <p>{question.answer}</p>
                   {question.feedback && (
                     <div className="answer-feedback">
-                      <h4>Retroalimentación del examinador</h4>
+                      <h4>Corrección breve del tribunal</h4>
+                      {question.feedback.feedback && (
+                        <p>
+                          <b>Veredicto:</b> {question.feedback.feedback}
+                        </p>
+                      )}
                       {question.feedback.strengths.length > 0 && (
                         <p>
                           <b>Qué estuvo bien:</b>{" "}
@@ -398,27 +403,15 @@ export function SimulationPanel({
                       )}
                       {question.feedback.missingConcepts.length > 0 && (
                         <p>
-                          <b>Qué faltó:</b>{" "}
+                          <b>Qué faltó o falló:</b>{" "}
                           {question.feedback.missingConcepts.join("; ")}
                         </p>
                       )}
                       <p>
-                        <b>Respuesta correcta orientativa:</b>{" "}
-                        {question.feedback.correctAnswer ||
+                        <b>Respuesta esperada breve:</b>{" "}
+                        {question.feedback.modelAnswer ||
                           question.model_answer ||
-                          question.feedback.modelAnswer}
-                      </p>
-                      <p>
-                        <b>Explicación sencilla:</b>{" "}
-                        {question.feedback.didacticExplanation}
-                      </p>
-                      <p>
-                        <b>Ejemplo didáctico generado:</b>{" "}
-                        {question.feedback.didacticExample}
-                      </p>
-                      <p>
-                        <b>Aplicación policial:</b>{" "}
-                        {question.feedback.policeApplication}
+                          question.feedback.correctAnswer}
                       </p>
                     </div>
                   )}
@@ -591,9 +584,11 @@ export function SimulationPanel({
                   <p>
                     <b>Cómo explicarlo mejor:</b> {item.betterExplanation}
                   </p>
-                  <p>
-                    <b>Ejemplo didáctico:</b> {item.didacticExample}
-                  </p>
+                  {item.didacticExample ? (
+                    <p>
+                      <b>Ejemplo didáctico:</b> {item.didacticExample}
+                    </p>
+                  ) : null}
                 </article>
               ))}
             </div>
